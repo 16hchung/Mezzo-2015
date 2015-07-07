@@ -2,10 +2,17 @@
 # platform :ios, '6.0'
 
 target 'Mezzo-1.0' do
-
+	use_frameworks!
+	pod 'RealmSwift'
+	platform :ios, '7.0'
+	pod 'Parse'
+	pod 'Bond', '~> 3.7'
 end
 
 target 'Mezzo-1.0Tests' do
-
+	use_frameworks!
+	pod 'RealmSwift'
+	platform :ios, '7.0'
+	pod 'Parse'
 end
 
