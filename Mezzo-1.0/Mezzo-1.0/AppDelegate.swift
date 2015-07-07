@@ -8,15 +8,30 @@
 
 import UIKit
 import CoreData
+import Parse
+import Bolts
+//import RealmSwift
+import Bond
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // Initialize Parse.
+        Parse.setApplicationId("7iSbeT5ZgTuFgqtSwg7L432VBO1VRPWdVgOMiP05", clientKey: "6YcizqHrQ8BRSqZjOvKxAGef9PefovLQdzzegWo8")
+        
+        PFUser.logInWithUsername("test", password: "test")
+        
+        //let realm = Realm()
+
+        if let user = PFUser.currentUser() {
+            println("yay")
+        } else {
+            println(":(")
+        }
+        
         return true
     }
 
