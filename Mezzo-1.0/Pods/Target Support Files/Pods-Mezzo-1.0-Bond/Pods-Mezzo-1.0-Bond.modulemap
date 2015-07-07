@@ -1,0 +1,6 @@
+framework module Bond {
+  umbrella header "Pods-Mezzo-1.0-Bond-umbrella.h"
+
+  export *
+  module * { export * }
+}
