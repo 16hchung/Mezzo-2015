@@ -15,8 +15,6 @@
 		8D18DED71B48359F004E3087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED61B48359F004E3087 /* Images.xcassets */; };
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
-		8DF4FC081B4C610A0020DB33 /* View Controllers in Resources */ = {isa = PBXBuildFile; fileRef = 8DF4FC071B4C610A0020DB33 /* View Controllers */; };
-		8DF4FC0A1B4C61210020DB33 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 8DF4FC091B4C61210020DB33 /* Models */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
 		A64509231B4C31D500D1C8BE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509211B4C31D500D1C8BE /* Parse.framework */; };
 		A64509251B4C320B00D1C8BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509241B4C320B00D1C8BE /* AudioToolbox.framework */; };
@@ -58,8 +56,6 @@
 		8D18DEDF1B48359F004E3087 /* Mezzo-1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mezzo-1.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
-		8DF4FC071B4C610A0020DB33 /* View Controllers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "View Controllers"; sourceTree = "<group>"; };
-		8DF4FC091B4C61210020DB33 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Models; sourceTree = "<group>"; };
 		A64509201B4C31D500D1C8BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		A64509211B4C31D500D1C8BE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
 		A64509241B4C320B00D1C8BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -169,8 +165,8 @@
 		8D18DEC91B48359F004E3087 /* Mezzo-1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				8DF4FC091B4C61210020DB33 /* Models */,
-				8DF4FC071B4C610A0020DB33 /* View Controllers */,
+				8DF4FC0E1B4C629D0020DB33 /* View Controllers */,
+				8DF4FC0D1B4C62920020DB33 /* Models */,
 				A6DCE8641B4B960C00ADA2EC /* Helpers */,
 				A6DCE8671B4B960C00ADA2EC /* Views */,
 				8D18DECC1B48359F004E3087 /* AppDelegate.swift */,
@@ -206,6 +202,20 @@
 				8D18DEE41B48359F004E3087 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8DF4FC0D1B4C62920020DB33 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		8DF4FC0E1B4C629D0020DB33 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A6DCE8641B4B960C00ADA2EC /* Helpers */ = {
@@ -326,10 +336,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DF4FC0A1B4C61210020DB33 /* Models in Resources */,
 				8D18DED51B48359F004E3087 /* Main.storyboard in Resources */,
 				8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */,
-				8DF4FC081B4C610A0020DB33 /* View Controllers in Resources */,
 				8D18DED71B48359F004E3087 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
