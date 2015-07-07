@@ -7,13 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2AB49F0E137151E7A942A43E /* Pods_Mezzo_1_0Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54E84AA8CF5CF21FF7BF3C95 /* Pods_Mezzo_1_0Tests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		6B21D710BC25AEBBC0EE9E56 /* Pods_Mezzo_1_0.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8D18DECD1B48359F004E3087 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DECC1B48359F004E3087 /* AppDelegate.swift */; };
 		8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DECE1B48359F004E3087 /* Mezzo_1_0.xcdatamodeld */; };
-		8D18DED21B48359F004E3087 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DED11B48359F004E3087 /* ViewController.swift */; };
 		8D18DED51B48359F004E3087 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED31B48359F004E3087 /* Main.storyboard */; };
 		8D18DED71B48359F004E3087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED61B48359F004E3087 /* Images.xcassets */; };
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
+		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
+		A64509231B4C31D500D1C8BE /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509211B4C31D500D1C8BE /* Parse.framework */; };
+		A64509251B4C320B00D1C8BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509241B4C320B00D1C8BE /* AudioToolbox.framework */; };
+		A64509271B4C321100D1C8BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509261B4C321100D1C8BE /* CFNetwork.framework */; };
+		A64509291B4C321900D1C8BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509281B4C321900D1C8BE /* CoreGraphics.framework */; };
+		A645092B1B4C322A00D1C8BE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A645092A1B4C322A00D1C8BE /* CoreLocation.framework */; };
+		A645092D1B4C323600D1C8BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A645092C1B4C323600D1C8BE /* MobileCoreServices.framework */; };
+		A645092F1B4C329F00D1C8BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A645092E1B4C329F00D1C8BE /* QuartzCore.framework */; };
+		A64509311B4C32A800D1C8BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509301B4C32A800D1C8BE /* Security.framework */; };
+		A64509331B4C32AE00D1C8BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509321B4C32AE00D1C8BE /* StoreKit.framework */; };
+		A64509351B4C32B700D1C8BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */; };
+		A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509361B4C32C000D1C8BE /* libz.dylib */; };
+		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
+		A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */; };
+		A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,17 +43,37 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		54E84AA8CF5CF21FF7BF3C95 /* Pods_Mezzo_1_0Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F9F7A22E57490952BF6F719 /* Pods-Mezzo-1.0Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0Tests/Pods-Mezzo-1.0Tests.release.xcconfig"; sourceTree = "<group>"; };
+		74E8347951B6220DC0290F0C /* Pods-Mezzo-1.0Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0Tests/Pods-Mezzo-1.0Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D18DEC71B48359F004E3087 /* Mezzo-1.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mezzo-1.0.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DECB1B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DECC1B48359F004E3087 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8D18DECF1B48359F004E3087 /* Mezzo_1_0.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Mezzo_1_0.xcdatamodel; sourceTree = "<group>"; };
-		8D18DED11B48359F004E3087 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8D18DED41B48359F004E3087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8D18DED61B48359F004E3087 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8D18DED91B48359F004E3087 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8D18DEDF1B48359F004E3087 /* Mezzo-1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mezzo-1.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
+		A64509201B4C31D500D1C8BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		A64509211B4C31D500D1C8BE /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		A64509241B4C320B00D1C8BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		A64509261B4C321100D1C8BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		A64509281B4C321900D1C8BE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A645092A1B4C322A00D1C8BE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		A645092C1B4C323600D1C8BE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		A645092E1B4C329F00D1C8BE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		A64509301B4C32A800D1C8BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A64509321B4C32AE00D1C8BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		A64509361B4C32C000D1C8BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorTableViewCell.swift; sourceTree = "<group>"; };
+		A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationTableViewCell.swift; sourceTree = "<group>"; };
+		B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.release.xcconfig"; sourceTree = "<group>"; };
+		EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +81,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */,
+				A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */,
+				A64509351B4C32B700D1C8BE /* SystemConfiguration.framework in Frameworks */,
+				A64509331B4C32AE00D1C8BE /* StoreKit.framework in Frameworks */,
+				A64509311B4C32A800D1C8BE /* Security.framework in Frameworks */,
+				A645092F1B4C329F00D1C8BE /* QuartzCore.framework in Frameworks */,
+				A645092D1B4C323600D1C8BE /* MobileCoreServices.framework in Frameworks */,
+				A645092B1B4C322A00D1C8BE /* CoreLocation.framework in Frameworks */,
+				A64509291B4C321900D1C8BE /* CoreGraphics.framework in Frameworks */,
+				A64509271B4C321100D1C8BE /* CFNetwork.framework in Frameworks */,
+				A64509251B4C320B00D1C8BE /* AudioToolbox.framework in Frameworks */,
+				6B21D710BC25AEBBC0EE9E56 /* Pods_Mezzo_1_0.framework in Frameworks */,
+				A64509231B4C31D500D1C8BE /* Parse.framework in Frameworks */,
+				A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,18 +102,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2AB49F0E137151E7A942A43E /* Pods_Mezzo_1_0Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		042A93102445127470B5A26B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A64509381B4C32C700D1C8BE /* libsqlite3.dylib */,
+				A64509361B4C32C000D1C8BE /* libz.dylib */,
+				A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */,
+				A64509321B4C32AE00D1C8BE /* StoreKit.framework */,
+				A64509301B4C32A800D1C8BE /* Security.framework */,
+				A645092E1B4C329F00D1C8BE /* QuartzCore.framework */,
+				A645092C1B4C323600D1C8BE /* MobileCoreServices.framework */,
+				A645092A1B4C322A00D1C8BE /* CoreLocation.framework */,
+				A64509281B4C321900D1C8BE /* CoreGraphics.framework */,
+				A64509261B4C321100D1C8BE /* CFNetwork.framework */,
+				A64509241B4C320B00D1C8BE /* AudioToolbox.framework */,
+				A64509201B4C31D500D1C8BE /* Bolts.framework */,
+				A64509211B4C31D500D1C8BE /* Parse.framework */,
+				EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */,
+				54E84AA8CF5CF21FF7BF3C95 /* Pods_Mezzo_1_0Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		611377EEF1FB5A5AED758EB0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */,
+				B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */,
+				74E8347951B6220DC0290F0C /* Pods-Mezzo-1.0Tests.debug.xcconfig */,
+				6F9F7A22E57490952BF6F719 /* Pods-Mezzo-1.0Tests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		8D18DEBE1B48359F004E3087 = {
 			isa = PBXGroup;
 			children = (
 				8D18DEC91B48359F004E3087 /* Mezzo-1.0 */,
 				8D18DEE21B48359F004E3087 /* Mezzo-1.0Tests */,
 				8D18DEC81B48359F004E3087 /* Products */,
+				611377EEF1FB5A5AED758EB0 /* Pods */,
+				042A93102445127470B5A26B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,11 +165,11 @@
 		8D18DEC91B48359F004E3087 /* Mezzo-1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				8D18DEEF1B4835E7004E3087 /* Model */,
-				8D18DEF01B4835E7004E3087 /* View Controllers */,
-				8D18DEF11B4835E7004E3087 /* Views */,
+				A6DCE8641B4B960C00ADA2EC /* Helpers */,
+				A6DCE8651B4B960C00ADA2EC /* Models */,
+				A6DCE8661B4B960C00ADA2EC /* ViewControllers */,
+				A6DCE8671B4B960C00ADA2EC /* Views */,
 				8D18DECC1B48359F004E3087 /* AppDelegate.swift */,
-				8D18DED11B48359F004E3087 /* ViewController.swift */,
 				8D18DED31B48359F004E3087 /* Main.storyboard */,
 				8D18DED61B48359F004E3087 /* Images.xcassets */,
 				8D18DED81B48359F004E3087 /* LaunchScreen.xib */,
@@ -118,25 +204,50 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		8D18DEEF1B4835E7004E3087 /* Model */ = {
+		A6DCE8641B4B960C00ADA2EC /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = Model;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
-		8D18DEF01B4835E7004E3087 /* View Controllers */ = {
+		A6DCE8651B4B960C00ADA2EC /* Models */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			path = "View Controllers";
+			path = Models;
 			sourceTree = "<group>";
 		};
-		8D18DEF11B4835E7004E3087 /* Views */ = {
+		A6DCE8661B4B960C00ADA2EC /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		A6DCE8671B4B960C00ADA2EC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A6DCE8681B4B960C00ADA2EC /* Donations */,
+				A6DCE8691B4B960C00ADA2EC /* Donors */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		A6DCE8681B4B960C00ADA2EC /* Donations */ = {
+			isa = PBXGroup;
+			children = (
+				A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */,
+			);
+			path = Donations;
+			sourceTree = "<group>";
+		};
+		A6DCE8691B4B960C00ADA2EC /* Donors */ = {
+			isa = PBXGroup;
+			children = (
+				A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */,
+			);
+			path = Donors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D18DEE91B48359F004E3087 /* Build configuration list for PBXNativeTarget "Mezzo-1.0" */;
 			buildPhases = (
+				2E354FD153B24DC0340A8C50 /* Check Pods Manifest.lock */,
 				8D18DEC31B48359F004E3087 /* Sources */,
 				8D18DEC41B48359F004E3087 /* Frameworks */,
 				8D18DEC51B48359F004E3087 /* Resources */,
+				B26E556B8F6B8641CF0539F2 /* Embed Pods Frameworks */,
+				9974B7F8A8F89BDA09511948 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -163,9 +277,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D18DEEC1B48359F004E3087 /* Build configuration list for PBXNativeTarget "Mezzo-1.0Tests" */;
 			buildPhases = (
+				2490780DDD89DBF5D26EBBFB /* Check Pods Manifest.lock */,
 				8D18DEDB1B48359F004E3087 /* Sources */,
 				8D18DEDC1B48359F004E3087 /* Frameworks */,
 				8D18DEDD1B48359F004E3087 /* Resources */,
+				ED9E4D7C122BEED0E98F91C8 /* Embed Pods Frameworks */,
+				EDF9CC09BBD729E9534198DB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -234,12 +351,106 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2490780DDD89DBF5D26EBBFB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		2E354FD153B24DC0340A8C50 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		9974B7F8A8F89BDA09511948 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B26E556B8F6B8641CF0539F2 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		ED9E4D7C122BEED0E98F91C8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mezzo-1.0Tests/Pods-Mezzo-1.0Tests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EDF9CC09BBD729E9534198DB /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Mezzo-1.0Tests/Pods-Mezzo-1.0Tests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D18DEC31B48359F004E3087 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D18DED21B48359F004E3087 /* ViewController.swift in Sources */,
+				A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */,
+				A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,
 				8D18DECD1B48359F004E3087 /* AppDelegate.swift in Sources */,
 			);
@@ -368,8 +579,13 @@
 		};
 		8D18DEEA1B48359F004E3087 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mezzo-1.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -378,8 +594,13 @@
 		};
 		8D18DEEB1B48359F004E3087 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Mezzo-1.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -388,6 +609,7 @@
 		};
 		8D18DEED1B48359F004E3087 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74E8347951B6220DC0290F0C /* Pods-Mezzo-1.0Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -407,6 +629,7 @@
 		};
 		8D18DEEE1B48359F004E3087 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6F9F7A22E57490952BF6F719 /* Pods-Mezzo-1.0Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -439,6 +662,7 @@
 				8D18DEEB1B48359F004E3087 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8D18DEEC1B48359F004E3087 /* Build configuration list for PBXNativeTarget "Mezzo-1.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +671,7 @@
 				8D18DEEE1B48359F004E3087 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
