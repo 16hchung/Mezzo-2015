@@ -8,7 +8,7 @@
         <!--Donors-->
         <scene sceneID="gDY-b2-KBZ">
             <objects>
-                <viewController id="Va9-Zt-8w1" sceneMemberID="viewController">
+                <viewController id="Va9-Zt-8w1" customClass="DonorsViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UmB-Ii-beG"/>
                         <viewControllerLayoutGuide type="bottom" id="Jdg-oi-qAL"/>
@@ -90,6 +90,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Donors" id="VZl-LP-4AE"/>
+                    <connections>
+                        <outlet property="searchBar" destination="A0U-NO-A8z" id="e89-ba-XOO"/>
+                        <outlet property="tableView" destination="hhi-la-Q4Z" id="eQj-fb-4Wt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rI1-h2-PcV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
