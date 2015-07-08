@@ -30,9 +30,9 @@ class Donor: PFObject, PFSubclassing {
         :param: atTime suggested time of donation's pickup
         :param: toOrganization organization receiving the offer
     */
-//    func offerADonation(atTime: NSDate, toOrganization: Organization) {
-//        
-//    }
+    func offerADonation(atTime: NSDate, toOrganization: Organization) {
+        
+    }
     
     
     // MARK: PFSubclassing Protocol

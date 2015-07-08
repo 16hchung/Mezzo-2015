@@ -20,15 +20,17 @@ class Organization: PFObject, PFSubclassing {
     
     // MARK: Methods
     
-    // TODO: create Donation class and implement cancel method
+    // TODO: implement cancel method
+    /**
+        Cancels donation (only an organization can do this)
     
-    /// Cancels donation (only an organization can do this)
-    /// :param: donation object to be cancelled
-//    func cancelDonation(#donation: Donation) {
-//        // confirm that the donation is meant for this organization?
-//        // delete from Parse (or add a cancelled flag?)
-//        // notify donor of this donation
-//    }
+        :param: donation object to be cancelled
+    */
+    func cancelDonation(#donation: Donation) {
+        // confirm that the donation is meant for this organization?
+        // delete from Parse (or add a cancelled flag?)
+        // notify donor of this donation
+    }
     
     
     // MARK: PFSubclassing Protocol
