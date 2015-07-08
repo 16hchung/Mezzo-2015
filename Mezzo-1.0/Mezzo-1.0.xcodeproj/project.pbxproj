@@ -15,6 +15,7 @@
 		8D18DED71B48359F004E3087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED61B48359F004E3087 /* Images.xcassets */; };
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
+		8D6B05B21B4DC05300CDE5B9 /* DonorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
 		8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC181B4D9F250020DB33 /* Donation.swift */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
@@ -30,7 +31,6 @@
 		A64509351B4C32B700D1C8BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */; };
 		A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509361B4C32C000D1C8BE /* libz.dylib */; };
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
-		A673D6761B4DA43600448DDF /* DonorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A673D6751B4DA43600448DDF /* DonorsViewController.swift */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
 		A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */; };
 		A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */; };
@@ -60,6 +60,7 @@
 		8D18DEDF1B48359F004E3087 /* Mezzo-1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mezzo-1.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
+		8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorsViewController.swift; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		A64509201B4C31D500D1C8BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A64509361B4C32C000D1C8BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		A673D6751B4DA43600448DDF /* DonorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorsViewController.swift; sourceTree = "<group>"; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorTableViewCell.swift; sourceTree = "<group>"; };
 		A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationTableViewCell.swift; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 		8D18DEC91B48359F004E3087 /* Mezzo-1.0 */ = {
 			isa = PBXGroup;
 			children = (
-				A673D6741B4DA42A00448DDF /* View Controllers */,
 				8DF4FC111B4C635E0020DB33 /* Models */,
+				8DF4FC0E1B4C629D0020DB33 /* View Controllers */,
 				A6DCE8641B4B960C00ADA2EC /* Helpers */,
 				A6DCE8671B4B960C00ADA2EC /* Views */,
 				8D18DECC1B48359F004E3087 /* AppDelegate.swift */,
@@ -212,21 +212,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8DF4FC0E1B4C629D0020DB33 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
 		8DF4FC111B4C635E0020DB33 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				8DF4FC121B4C638C0020DB33 /* Donor.swift */,
 				A69B1E601B4CFF9C0099F1E6 /* Organization.swift */,
+				8DF4FC181B4D9F250020DB33 /* Donation.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		A673D6741B4DA42A00448DDF /* View Controllers */ = {
-			isa = PBXGroup;
-			children = (
-				A673D6751B4DA43600448DDF /* DonorsViewController.swift */,
-			);
-			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 		A6DCE8641B4B960C00ADA2EC /* Helpers */ = {
@@ -461,8 +462,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
+				8D6B05B21B4DC05300CDE5B9 /* DonorsViewController.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
-				A673D6761B4DA43600448DDF /* DonorsViewController.swift in Sources */,
 				A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */,
 				A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,

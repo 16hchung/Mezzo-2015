@@ -15,17 +15,13 @@ class DonorsViewController: UIViewController {
     
     // MARK: enums
     
-    /// scheduled and not scheduled sections of table view
-    enum TableViewSections {
-        case Scheduled
-        case NotScheduled
-    }
-    
     // search bar modes
-    enum SearchBarState {
+    private enum SearchBarState {
         case DefaultMode
         case SearchMode
     }
+    
+    private var state: SearchBarState = .DefaultMode
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -64,20 +60,23 @@ extension DonorsViewController: UITableViewDataSource {
     // sets section header titles
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch (section) {
-        case .Scheduled:
+        case 0:
             return "Donation Scheduled"
-        case .NotScheduled:
+        case 1:
             return "No Donations Scheduled"
+        default:
+            return ""
         }
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch (section) {
-        case .Scheduled:
-            // grab from Parse
-        case .NotScheduled:
-            // grab from Parse
-        }
+//        switch (section) {
+//        case 0:
+//            // TODO
+//            // grab from Parse
+//        case 1:
+//            // grab from Parse
+//        }
         return 1 // TODO: comment out once Parse queries are available
     }
     
