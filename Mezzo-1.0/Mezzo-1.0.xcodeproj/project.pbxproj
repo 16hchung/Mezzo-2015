@@ -16,6 +16,7 @@
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
 		8D6B05B21B4DC05300CDE5B9 /* DonorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */; };
+		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
 		8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC181B4D9F250020DB33 /* Donation.swift */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
@@ -61,6 +62,7 @@
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
 		8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorsViewController.swift; sourceTree = "<group>"; };
+		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		A64509201B4C31D500D1C8BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				8D6B05B11B4DC05300CDE5B9 /* DonorsViewController.swift */,
+				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
 				8D6B05B21B4DC05300CDE5B9 /* DonorsViewController.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
+				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
 				A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */,
 				A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,
