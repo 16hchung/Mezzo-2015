@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Initialize Parse.
-        Parse.setApplicationId("7iSbeT5ZgTuFgqtSwg7L432VBO1VRPWdVgOMiP05", clientKey: "6YcizqHrQ8BRSqZjOvKxAGef9PefovLQdzzegWo8")
+        Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
         PFUser.logInWithUsername("testOrg", password: "testOrg")
         
