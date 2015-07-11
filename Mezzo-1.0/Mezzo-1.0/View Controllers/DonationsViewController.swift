@@ -37,6 +37,13 @@ class DonationsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    
+    // MARK: Navigation
+    
+    @IBAction func unwindToDonationsVC(sender: UIStoryboardSegue) {
+        
+    }
+    
     /*
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
