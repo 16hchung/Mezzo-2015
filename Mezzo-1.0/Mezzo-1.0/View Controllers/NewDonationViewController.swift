@@ -21,9 +21,9 @@ class NewDonationViewController: UIViewController {
     /// donation being created (no setting)
     var donation: Donation? {
         get {
-            donation = Donation()
+//            donation = Donation()
             // set properties
-            return donation
+            return Donation()
         }
     }
     

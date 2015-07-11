@@ -10,6 +10,7 @@ import UIKit
 
 class DonationTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var timeAndLocationLabel: UILabel!
-    @IBOutlet weak var cancelledView: UIView!
+    @IBOutlet weak var foodDetailsLabel: UILabel!
+    @IBOutlet weak var phoneNumberButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
 }

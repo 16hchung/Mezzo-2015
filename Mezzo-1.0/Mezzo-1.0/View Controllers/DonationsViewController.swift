@@ -12,6 +12,7 @@ class DonationsViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     // MARK: enums
     
@@ -85,10 +86,10 @@ extension DonationsViewController: UITableViewDelegate {
     }
 }
 
-extension DonorsViewController: UISearchBarDelegate {
+extension DonationsViewController: UISearchBarDelegate {
     // user begins editing the search text
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        state = .SearchMode
+        self.state = .SearchMode
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
