@@ -52,9 +52,8 @@ class DonorsViewController: UIViewController {
 extension DonorsViewController: UITableViewDataSource {
     // MARK: sections
     
-    // number of sections = 2 (donors that are scheduled and donors that aren't)
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        return 2 // donors that are scheduled and donors that aren't
     }
     
     // sets section header titles
