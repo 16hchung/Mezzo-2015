@@ -36,7 +36,6 @@
 		A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509361B4C32C000D1C8BE /* libz.dylib */; };
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
-		A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */; };
 		A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,7 +84,6 @@
 		A64509361B4C32C000D1C8BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
-		A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonorTableViewCell.swift; sourceTree = "<group>"; };
 		A6DCE86C1B4B966300ADA2EC /* DonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationTableViewCell.swift; sourceTree = "<group>"; };
 		B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.release.xcconfig"; sourceTree = "<group>"; };
 		EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -260,7 +258,6 @@
 			children = (
 				8D6B05BA1B51AE0400CDE5B9 /* New Donation */,
 				A6DCE8681B4B960C00ADA2EC /* Donations */,
-				A6DCE8691B4B960C00ADA2EC /* Donors */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -272,14 +269,6 @@
 				8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */,
 			);
 			path = Donations;
-			sourceTree = "<group>";
-		};
-		A6DCE8691B4B960C00ADA2EC /* Donors */ = {
-			isa = PBXGroup;
-			children = (
-				A6DCE86A1B4B964900ADA2EC /* DonorTableViewCell.swift */,
-			);
-			path = Donors;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -486,7 +475,6 @@
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
 				8D6B05B71B51AAB300CDE5B9 /* NewDonationViewController.swift in Sources */,
 				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
-				A6DCE86B1B4B964900ADA2EC /* DonorTableViewCell.swift in Sources */,
 				8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */,
 				8D6B05BC1B51AE1900CDE5B9 /* FoodTypeTableViewCell.swift in Sources */,
 				A6DCE86D1B4B966300ADA2EC /* DonationTableViewCell.swift in Sources */,
