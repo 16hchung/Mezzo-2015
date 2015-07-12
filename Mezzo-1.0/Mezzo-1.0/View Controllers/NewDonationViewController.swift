@@ -20,11 +20,6 @@ class NewDonationViewController: UIViewController {
     // TODO: research how to enforce lack of setting capabilities
     /// donation being created (no setting)
     var donation = Donation()
-//        get {
-////            donation = Donation()
-//            // set properties
-//            return Donation()
-//        }
     
     // MARK: Methods
 
@@ -39,6 +34,9 @@ class NewDonationViewController: UIViewController {
         
         foodTypesTableView.delegate = self
         foodTypesTableView.dataSource = self
+        
+        weightPickerView.delegate = self
+        weightPickerView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -61,6 +59,8 @@ class NewDonationViewController: UIViewController {
 
 }
 
+// MARK: Table View Data Source Protocol
+
 extension NewDonationViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Donation.foodTypes.count
@@ -72,6 +72,8 @@ extension NewDonationViewController: UITableViewDataSource {
         return cell
     }
 }
+
+// MARK: Table View Delegate Protocol
 
 extension NewDonationViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -93,7 +95,24 @@ extension NewDonationViewController: UITableViewDelegate {
     }
 }
 
+// MARK: Picker View Delegates
 
+extension NewDonationViewController: UIPickerViewDelegate {
+    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
+        return Donation.incrementedAmountRanges[row]
+    }
+}
+
+extension NewDonationViewController: UIPickerViewDataSource {
+    
+    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return Donation.incrementedAmountRanges.count
+    }
+}
 
 
 
