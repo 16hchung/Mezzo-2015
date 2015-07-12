@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class Donor: PFObject, PFSubclassing {
+class Donor: PFObject, PFSubclassing, User {
     
     // MARK: from Parse
     
@@ -19,7 +19,7 @@ class Donor: PFObject, PFSubclassing {
     @NSManaged var locatedAt: PFGeoPoint?
     /// identification for organizations and donors
     @NSManaged var EIN: String?
-    @NSManaged var businessName: String
+    @NSManaged var name: String
     /// String representation of donor's manager's phone number
     @NSManaged var phoneNumber: String
     /// donor's profile picture PFFile

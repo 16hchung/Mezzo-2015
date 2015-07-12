@@ -20,7 +20,13 @@ class ParseHelper {
         static let userProperty = "user"
     }
     
-    static func getUserType(fromUser: PFUser?) -> UserType? {
+    /**
+        Queries Donor and Organization tables in Parse to figure out if
+        current logged in PFUser is a donor or an organization.
+    
+        :returns: 
+    */
+    static func getUserType(fromUser: PFUser?) -> User? {
         // check if fromUser is a donor
         let donorQuery = Donor.query()
         donorQuery!.whereKey(DonorConstants.userProperty, equalTo:PFUser.currentUser()!)
@@ -28,7 +34,7 @@ class ParseHelper {
         // TODO: convert to doing in the background
         let maybeDonor = donorQuery!.findObjects()
         if let donor = maybeDonor!.last as? Donor {
-            return UserType.DonorUser(donor)
+            return donor
         }
         
         //check if fromUser is an org
@@ -37,7 +43,7 @@ class ParseHelper {
         
         let maybeOrg = orgQuery!.findObjects()
         if let organization = maybeOrg!.last as? Organization {
-            return UserType.OrganizationUser(organization)
+            return organization
         }
         
         return nil

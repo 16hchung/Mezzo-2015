@@ -12,7 +12,7 @@ import Parse
 import Bolts
 
 
-var user: UserType!
+var user: User!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,13 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println(":(")
         }
         
-        let user = ParseHelper.getUserType(PFUser.currentUser())
-        switch user! {
-        case .DonorUser :
-            println("donor")
-        case .OrganizationUser :
-            println("org")
-        }
+        user = ParseHelper.getUserType(PFUser.currentUser())
         
         return true
     }
