@@ -22,16 +22,16 @@ class Donation: PFObject, PFSubclassing {
     @NSManaged var foodDescription: String
     /// String representation of weight range
     @NSManaged var weightRange: String
-    /// http://stackoverflow.com/questions/30203562/using-property-observers-on-nsmanaged-vars
+    /// fromParse (use DonationState)
     @NSManaged var status: String
     
     // MARK: Other Properties
     
     /// states: Requested, Confirmed, Cancelled, Completed
     enum DonationState: String {
-        case Requested = "Acceptance Pending"
-        case Confirmed = "Confirmed"
-        case Cancelled = "Cancelled"
+        case Offered = "Acceptance Pending"
+        case Accepted = "Accepted"
+        case Declined = "Declined"
         case Completed = "Completed"
     }
     
@@ -66,15 +66,15 @@ class Donation: PFObject, PFSubclassing {
     private func statusStringToStateInt() -> DonationState {
         switch(status) {
         case "Acceptance Pending":
-            return .Requested
-        case "Confirmed":
-            return .Confirmed
-        case "Cancelled":
-            return .Cancelled
+            return .Offered
+        case "Accepted":
+            return .Accepted
+        case "Declined":
+            return .Declined
         case "Completed":
             return .Completed
         default:
-            return .Requested
+            return .Offered
         }
     }
     
@@ -86,7 +86,7 @@ class Donation: PFObject, PFSubclassing {
     
     override init() {
         super.init()
-        self.donationState = .Requested
+        self.donationState = .Offered
     }
     
     override class func initialize() {

@@ -18,7 +18,30 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
     
-    
+    var donation: Donation? {
+        didSet {
+            if let donation = donation {
+                
+                let displayingUser: User!
+                
+                if let user = user as? Organization {
+                    displayingUser = donation.fromDonor
+                } else {
+                    displayingUser = donation.toOrganization
+                }
+                
+                entityNameLabel.text = displayingUser.name
+                
+                var formatter = NSDateFormatter()
+                formatter.timeStyle = .ShortStyle
+                timeLabel.text = formatter.stringFromDate(donation.pickupAt)
+                
+                statusLabel.text = donation.status
+                
+                // TODO: expand button
+            }
+        }
+    }
     
     
 }
