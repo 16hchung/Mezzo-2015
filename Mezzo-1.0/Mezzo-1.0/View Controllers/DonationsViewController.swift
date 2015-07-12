@@ -154,6 +154,14 @@ extension DonationsViewController: UITableViewDelegate {
         tableView.endUpdates()
         
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 80
+        } else {
+            return 120
+        }
+    }
 }
 
 // MARK: - Search Bar Delegate
