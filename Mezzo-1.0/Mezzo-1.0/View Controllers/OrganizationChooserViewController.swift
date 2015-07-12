@@ -114,4 +114,12 @@ extension OrganizationChooserViewController: UITableViewDelegate {
         }
         tableView.endUpdates()
     }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return 70
+        } else {
+            return 290
+        }
+    }
 }
