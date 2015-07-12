@@ -2137,6 +2137,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0640;
+				TargetAttributes = {
+					4629AB5B3EE5FCFF565DED75 = {
+						DevelopmentTeam = E84YCQ522D;
+					};
+					9FCD6DF0B2FBC38F56D93599 = {
+						DevelopmentTeam = E84YCQ522D;
+					};
+				};
 			};
 			buildConfigurationList = A5191AE5CC459BF47F2B46E7 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -2580,6 +2588,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B37C3234AC5847F6E521969 /* Pods-Mezzo-1.0-Bond-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2595,6 +2604,7 @@
 				MODULEMAP_FILE = "Target Support Files/Pods-Mezzo-1.0-Bond/Pods-Mezzo-1.0-Bond.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Bond;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2957,6 +2967,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3A58EEBCD1E955424393FB3 /* Pods-Mezzo-1.0Tests-Bolts-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -2972,6 +2983,7 @@
 				MODULEMAP_FILE = "Target Support Files/Pods-Mezzo-1.0Tests-Bolts/Pods-Mezzo-1.0Tests-Bolts.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Bolts;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3065,6 +3077,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F3A58EEBCD1E955424393FB3 /* Pods-Mezzo-1.0Tests-Bolts-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -3080,6 +3093,7 @@
 				MODULEMAP_FILE = "Target Support Files/Pods-Mezzo-1.0Tests-Bolts/Pods-Mezzo-1.0Tests-Bolts.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = Bolts;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3092,6 +3106,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7B37C3234AC5847F6E521969 /* Pods-Mezzo-1.0-Bond-Private.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
@@ -3107,6 +3122,7 @@
 				MODULEMAP_FILE = "Target Support Files/Pods-Mezzo-1.0-Bond/Pods-Mezzo-1.0-Bond.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = Bond;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";

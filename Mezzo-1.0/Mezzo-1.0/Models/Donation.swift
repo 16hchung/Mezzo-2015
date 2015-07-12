@@ -66,7 +66,13 @@ class Donation: PFObject, PFSubclassing {
     
     // MARK: Methods
     
-    /** 
+    /// Uploads donation to Parse (with all fields populated except state)
+    func offer() {
+        donationState = .Offered
+        self.saveInBackground()
+    }
+    
+    /**
         Returns a string with a summary of the donation details (for use in the table view).
     
         :returns: summary string

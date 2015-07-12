@@ -30,11 +30,13 @@ class ParseHelper {
         static let dateProperty       = "pickupAt"
     }
     
+    // MARK: User Methods
+    
     /**
         Queries Donor and Organization tables in Parse to figure out if
         current logged in PFUser is a donor or an organization.
     
-        :returns: 
+        :returns: object that conforms to User protocol
     */
     static func getUserType(fromUser: PFUser?) -> User? {
         // check if fromUser is a donor
@@ -58,6 +60,17 @@ class ParseHelper {
         
         return nil
     }
+    
+    static func getAllOrgs(completionBlock: PFArrayResultBlock) {
+        let orgsQuery = Organization.query()!
+        // TODO: load the __ number of closest and highest priority organizations
+        // TODO: sort by times, desired foods
+        orgsQuery.orderByAscending(OrgConstants.nameProperty) // filler sort
+        
+        orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    // MARK: Donation Methods
     
     /**
         Gets all donations (includes completed, excludes cancelled) from a given donor.
@@ -106,15 +119,6 @@ class ParseHelper {
             query.whereKey(DonationConstants.statusProperty,
                 equalTo: Donation.DonationState.Completed.rawValue) // completed
         }
-    }
-    
-    static func getAllOrgs(completionBlock: PFArrayResultBlock) {
-        let orgsQuery = Organization.query()!
-        // TODO: load the __ number of closest and highest priority organizations
-        // TODO: sort by times, desired foods
-        orgsQuery.orderByAscending(OrgConstants.nameProperty) // filler sort
-        
-        orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
 }
 
