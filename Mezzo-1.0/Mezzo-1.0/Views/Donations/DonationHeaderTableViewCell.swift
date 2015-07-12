@@ -18,7 +18,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
     
-    var donation: Donation? {
+    var donation: Donation! {
         didSet {
             if let donation = donation {
                 
@@ -34,7 +34,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
-                timeLabel.text = formatter.stringFromDate(donation.pickupAt)
+                timeLabel.text = formatter.stringFromDate(donation.pickupAt!)
                 
                 statusLabel.text = donation.status
                 

@@ -11,7 +11,14 @@ import UIKit
 class FoodTypeTableViewCell: UITableViewCell {
 
     @IBOutlet weak var foodLabel: UILabel!
-    @IBOutlet weak var check: UIImageView!
+//
+//    var isSelected: Bool! = false {
+//        didSet {
+//            if let isSelected = isSelected {
+//                check.hidden = !isSelected
+//            }
+//        }
+//    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
