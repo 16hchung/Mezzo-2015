@@ -486,7 +486,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Available Organizations" id="vXV-bf-Bmo">
                         <barButtonItem key="backBarButtonItem" title="Back" id="clM-j7-ajF"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ILd-js-qzh"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ILd-js-qzh">
+                            <connections>
+                                <segue destination="jlH-nY-Nmv" kind="unwind" identifier="Cancel" unwindAction="unwindToDonationsVC:" id="Rgy-K7-YnP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
