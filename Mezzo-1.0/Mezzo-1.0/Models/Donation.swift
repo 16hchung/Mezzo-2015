@@ -15,31 +15,67 @@ class Donation: PFObject, PFSubclassing {
     
     @NSManaged var fromDonor: Donor?
     @NSManaged var toOrganization: Organization?
+    
     /// time of food pickup
     @NSManaged var pickupAt: NSDate
-    /// description of donation
+    /// description of donation (list of comma separated food types)
     @NSManaged var foodDescription: String
+    /// String representation of weight range
+    @NSManaged var weightRange: String
+    /// http://stackoverflow.com/questions/30203562/using-property-observers-on-nsmanaged-vars
+    @NSManaged var status: String
     
     // MARK: Other Properties
     
     /// states: Requested, Confirmed, Cancelled, Completed
-    enum DonationState: Int {
-        case Requested = 0
-        case Confirmed = 1
-        case Cancelled = 2
-        case Completed = 3
+    enum DonationState: String {
+        case Requested = "Requested"
+        case Confirmed = "Confirmed"
+        case Cancelled = "Cancelled"
+        case Completed = "Completed"
     }
     
-    private var donationState = DonationState.Requested
+    private var donationState: DonationState! {
+        set(newState) { // updates Parse's status string
+            status = newState.rawValue
+        }
+        get { // makes sure donationState is in sync with Parse
+            return statusStringToStateInt()
+        }
+    }
     
     // MARK: Methods
     
-    // TODO: implement nextState method (use raw values?)
-    /**
-        switches through states of Donation
+    /** 
+        Returns a string with a summary of the donation details (for use in the table view).
+    
+        :returns: summary string
     */
-    private func nextState() {
-        
+    func donationDetailsString() -> String {
+        return "\(foodDescription) | \(weightRange) lbs"
+    }
+    
+    // MARK: Helpers
+    /**
+        Converts donation status string stored in Parse to the Swift-stored
+        `donationState` enum. Called every time someone tries to get the value
+        of `donationState`.
+    
+        :returns: the appropriate `DonationState` enum
+    */
+    private func statusStringToStateInt() -> DonationState {
+        switch(status) {
+        case "Requested":
+            return .Requested
+        case "Confirmed":
+            return .Confirmed
+        case "Cancelled":
+            return .Cancelled
+        case "Completed":
+            return .Completed
+        default:
+            return .Requested
+        }
     }
     
     // MARK: PFSubclassing Protocol
@@ -50,6 +86,7 @@ class Donation: PFObject, PFSubclassing {
     
     override init() {
         super.init()
+        self.donationState = .Requested
     }
     
     override class func initialize() {

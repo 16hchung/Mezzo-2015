@@ -13,10 +13,15 @@ class Organization: PFObject, PFSubclassing {
     
     // MARK: Parse attributes
     
+    /// login info from Parse (don't need to use often)
     @NSManaged var user: PFUser?
     @NSManaged var locatedAt: PFGeoPoint?
-    @NSManaged var EIN: String
-    @NSManaged var businessName: String
+    @NSManaged var EIN: String?
+    @NSManaged var orgName: String
+    /// String representation of organization's manager's phone number
+    @NSManaged var phoneNumber: String
+    /// org's profile picture PFFile
+    @NSManaged var profilePictureFile: PFFile?
     
     // MARK: Methods
     

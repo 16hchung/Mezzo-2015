@@ -18,8 +18,12 @@ class Donor: PFObject, PFSubclassing {
     /// access `location` property instead
     @NSManaged var locatedAt: PFGeoPoint?
     /// identification for organizations and donors
-    @NSManaged var EIN: String
+    @NSManaged var EIN: String?
     @NSManaged var businessName: String
+    /// String representation of donor's manager's phone number
+    @NSManaged var phoneNumber: String
+    /// donor's profile picture PFFile
+    @NSManaged var profilePictureFile: PFFile?
     
     // MARK: Methods
     
