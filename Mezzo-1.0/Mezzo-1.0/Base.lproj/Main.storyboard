@@ -258,35 +258,25 @@
                                     <constraint firstAttribute="height" priority="250" constant="100" id="Nic-vH-5FX"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Food Type Cell" id="00Y-TF-ZrH" customClass="FoodTypeTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="checkmark" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Food Type Cell" id="00Y-TF-ZrH" customClass="FoodTypeTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00Y-TF-ZrH" id="QbD-JX-Wj4">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHY-4h-Vs1">
-                                                    <rect key="frame" x="18" y="11" width="534" height="21"/>
+                                                    <rect key="frame" x="18" y="11" width="495" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bgJ-OG-mGv">
-                                                    <rect key="frame" x="562" y="11" width="20" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="RcE-pP-Zfr"/>
-                                                        <constraint firstAttribute="height" constant="22" id="hLk-Zp-7VA"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="bgJ-OG-mGv" secondAttribute="centerY" id="N90-GW-wnx"/>
                                                 <constraint firstItem="YHY-4h-Vs1" firstAttribute="leading" secondItem="QbD-JX-Wj4" secondAttribute="leadingMargin" constant="10" id="OY5-MS-9Lg"/>
-                                                <constraint firstItem="bgJ-OG-mGv" firstAttribute="trailing" secondItem="QbD-JX-Wj4" secondAttribute="trailingMargin" constant="-10" id="eKh-uz-LOm"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YHY-4h-Vs1" secondAttribute="trailing" constant="40" id="eh1-fk-fx4"/>
                                                 <constraint firstAttribute="centerY" secondItem="YHY-4h-Vs1" secondAttribute="centerY" id="tNp-xB-dp8"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="check" destination="bgJ-OG-mGv" id="OWe-ve-JsY"/>
                                             <outlet property="foodLabel" destination="YHY-4h-Vs1" id="hpd-9z-21x"/>
                                         </connections>
                                     </tableViewCell>
@@ -355,7 +345,7 @@
         <!--Available Organizations-->
         <scene sceneID="odM-h3-ElJ">
             <objects>
-                <viewController id="5tF-LF-xic" sceneMemberID="viewController">
+                <viewController id="5tF-LF-xic" customClass="OrganizationChooserViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="buo-M9-lgE"/>
                         <viewControllerLayoutGuide type="bottom" id="30C-sU-Rrs"/>
@@ -374,7 +364,7 @@
                                 <rect key="frame" x="0.0" y="120" width="600" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Name Header" rowHeight="68" id="XBb-lV-3ZN">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Name Header" rowHeight="68" id="XBb-lV-3ZN" customClass="OrganizationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XBb-lV-3ZN" id="g4S-kv-gas">
@@ -423,8 +413,13 @@
                                                 <constraint firstItem="a7L-cq-krR" firstAttribute="top" secondItem="g4S-kv-gas" secondAttribute="topMargin" constant="15" id="ihX-qt-net"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="expandButton" destination="3b4-Nj-GWz" id="gg7-gK-Gxp"/>
+                                            <outlet property="orgNameLabel" destination="a7L-cq-krR" id="AwE-5M-eOj"/>
+                                            <outlet property="profileImageView" destination="r9P-SP-Kuj" id="zte-g4-ATm"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Body Cell" rowHeight="289" id="cTG-N9-fb8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Body Cell" rowHeight="289" id="cTG-N9-fb8" customClass="OrganizationBodyTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cTG-N9-fb8" id="jIn-eF-a7X">
@@ -450,6 +445,9 @@
                                                     <state key="normal" title="Send Donation Offer">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <segue destination="jlH-nY-Nmv" kind="unwind" identifier="Send Donation Offer" unwindAction="unwindToDonationsVC:" id="tMe-cr-4gc"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -466,6 +464,10 @@
                                                 <constraint firstItem="2Zn-JZ-PKB" firstAttribute="leading" secondItem="jIn-eF-a7X" secondAttribute="leading" id="vkZ-ix-4bB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="missionStatementLabel" destination="u5e-ju-OnM" id="Yab-kJ-KxV"/>
+                                            <outlet property="timePickerView" destination="uTy-gx-j0v" id="qPf-pI-NRT"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -486,8 +488,12 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="clM-j7-ajF"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="ILd-js-qzh"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hSQ-kK-xfT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jlH-nY-Nmv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="5337" y="-842"/>
         </scene>

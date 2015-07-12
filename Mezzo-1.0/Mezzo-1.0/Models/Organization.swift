@@ -20,6 +20,8 @@ class Organization: PFObject, PFSubclassing, User {
     @NSManaged var name: String
     /// String representation of organization's manager's phone number
     @NSManaged var phoneNumber: String
+    @NSManaged var missionStatement: String
+    @NSManaged var availableTimes: [String]
     /// org's profile picture PFFile
     @NSManaged var profilePictureFile: PFFile?
     
