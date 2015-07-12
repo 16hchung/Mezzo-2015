@@ -55,6 +55,12 @@ class Donation: PFObject, PFSubclassing {
         return "\(foodDescription) | \(weightRange) lbs"
     }
     
+    // TODO: grab the actual address from the geo point
+    func locationString() -> String {
+        //        return toOrganization?.locatedAt?.description
+        return "1234 Hippo Lane, Palo Alto, CA" // filler data
+    }
+    
     // MARK: Helpers
     /**
         Converts donation status string stored in Parse to the Swift-stored
