@@ -29,7 +29,7 @@ class Donation: PFObject, PFSubclassing {
     
     /// states: Requested, Confirmed, Cancelled, Completed
     enum DonationState: String {
-        case Requested = "Requested"
+        case Requested = "Acceptance Pending"
         case Confirmed = "Confirmed"
         case Cancelled = "Cancelled"
         case Completed = "Completed"
@@ -51,7 +51,7 @@ class Donation: PFObject, PFSubclassing {
     
         :returns: summary string
     */
-    func donationDetailsString() -> String {
+    func detailsString() -> String {
         return "\(foodDescription) | \(weightRange) lbs"
     }
     
@@ -65,7 +65,7 @@ class Donation: PFObject, PFSubclassing {
     */
     private func statusStringToStateInt() -> DonationState {
         switch(status) {
-        case "Requested":
+        case "Acceptance Pending":
             return .Requested
         case "Confirmed":
             return .Confirmed

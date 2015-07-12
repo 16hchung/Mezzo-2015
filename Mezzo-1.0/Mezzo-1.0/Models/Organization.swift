@@ -9,7 +9,7 @@
 import Foundation
 import Parse
 
-class Organization: PFObject, PFSubclassing {
+class Organization: PFObject, PFSubclassing, User {
     
     // MARK: Parse attributes
     
@@ -17,7 +17,7 @@ class Organization: PFObject, PFSubclassing {
     @NSManaged var user: PFUser?
     @NSManaged var locatedAt: PFGeoPoint?
     @NSManaged var EIN: String?
-    @NSManaged var orgName: String
+    @NSManaged var name: String
     /// String representation of organization's manager's phone number
     @NSManaged var phoneNumber: String
     /// org's profile picture PFFile
