@@ -32,6 +32,7 @@ class Donation: PFObject, PFSubclassing {
         case Offered = "Acceptance Pending"
         case Accepted = "Accepted"
         case Declined = "Declined"
+        case Cancelled = "Cancelled"
         case Completed = "Completed"
     }
     
@@ -77,6 +78,8 @@ class Donation: PFObject, PFSubclassing {
             return .Accepted
         case "Declined":
             return .Declined
+        case "Cancelled":
+            return .Cancelled
         case "Completed":
             return .Completed
         default:
