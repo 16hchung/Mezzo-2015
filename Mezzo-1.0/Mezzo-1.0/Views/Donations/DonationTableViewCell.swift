@@ -17,18 +17,41 @@ class DonationTableViewCell: UITableViewCell {
     var donation: Donation? {
         didSet {
             if let donation = donation {
-                let displayingUser: User!
-                
+                // get the other user (to grab their phone number)
+                let otherUser: User!
                 if let user = user as? Organization {
-                    displayingUser = donation.fromDonor
+                    otherUser = donation.fromDonor
                 } else {
-                    displayingUser = donation.toOrganization
+                    otherUser = donation.toOrganization
                 }
                 
-                
+                // update the labels
                 foodDetailsLabel.text = donation.detailsString()
-                phoneNumberButton.setTitle(displayingUser.phoneNumber, forState: UIControlState.Normal)
-//                locationButton.setTitle(donation.location, forState: UIControlState.Normal)
+                phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
+                locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
+            }
+        }
+    }
+    
+    @IBAction func dialPhoneNumber(sender: AnyObject) {
+        if let button = sender as? UIButton {
+            let oldPhone:String! = button.titleLabel?.text ?? ""
+        
+            var newPhone = ""
+            
+            for index in oldPhone.startIndex...oldPhone.endIndex{
+                let charAtIndex = oldPhone[index]
+                
+                switch charAtIndex {
+                case "0","1","2","3","4","5","6","7","8","9":
+                    newPhone = newPhone + String(charAtIndex)
+                default:
+                    println("Removed invalid character.")
+                }
+            }
+            
+            if let url = NSURL(string: "tel://\(button.titleLabel?.text)") {
+                UIApplication.sharedApplication().openURL(url)
             }
         }
     }
