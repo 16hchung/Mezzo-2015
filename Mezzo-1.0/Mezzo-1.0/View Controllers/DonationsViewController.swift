@@ -72,16 +72,16 @@ class DonationsViewController: UIViewController {
         if let identifier = sender.identifier {
             switch identifier {
             case "Send Donation Offer":
-                var donationToOffer = Donation()
-                donationToOffer.fromDonor = user as? Donor
+//                var donationToOffer = Donation()
                 
                 let source = sender.sourceViewController as! OrganizationChooserViewController
-                
+
                 let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
                 let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
                 
-                donationToOffer.toOrganization = cell.organization
-                donationToOffer.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
+                source.donation.fromDonor = user as? Donor
+                source.donation.toOrganization = cell.organization
+                source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
                 
                 source.donation.offer()
             default:
