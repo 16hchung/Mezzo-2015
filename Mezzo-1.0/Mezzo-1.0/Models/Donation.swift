@@ -19,7 +19,7 @@ class Donation: PFObject, PFSubclassing {
     /// time of food pickup
     @NSManaged var pickupAt: NSDate
     /// description of donation (list of comma separated food types)
-    @NSManaged var foodDescription: String
+    @NSManaged var foodDescription: [String]
     /// String representation of weight range
     @NSManaged var weightRange: String
     /// fromParse (use DonationState)
@@ -95,7 +95,7 @@ class Donation: PFObject, PFSubclassing {
     
     override init() {
         super.init()
-        self.donationState = .Offered
+//        self.donationState = .Offered
     }
     
     override class func initialize() {

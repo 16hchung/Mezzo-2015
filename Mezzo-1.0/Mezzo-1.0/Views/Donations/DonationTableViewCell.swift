@@ -27,8 +27,9 @@ class DonationTableViewCell: UITableViewCell {
                 
                 // update the labels
                 foodDetailsLabel.text = donation.detailsString()
-                phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
-                locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
+                phoneNumberButton.titleLabel!.text = otherUser.phoneNumber
+                //phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
+                //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
             }
         }
     }
@@ -39,7 +40,7 @@ class DonationTableViewCell: UITableViewCell {
         
             var newPhone = ""
             
-            for index in oldPhone.startIndex...oldPhone.endIndex{
+            for index in oldPhone.startIndex..<oldPhone.endIndex{
                 let charAtIndex = oldPhone[index]
                 
                 switch charAtIndex {

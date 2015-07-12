@@ -78,9 +78,13 @@ class ParseHelper {
     */
     static func getDonations(toOrg: Organization, isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
         let donationsQuery = Donation.query()!
+        donationsQuery.includeKey("toOrganization")
+        donationsQuery.includeKey("fromDonor")
         
-        donationsQuery.whereKey(DonationConstants.toOrgProperty, equalTo: toOrg)
-        getUpcomingOrCompletedDonations(donationsQuery, isUpcoming: isUpcoming)
+//        donationsQuery.whereKey(DonationConstants.toOrgProperty, equalTo: toOrg)
+//        donationsQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
+
+        //getUpcomingOrCompletedDonations(donationsQuery, isUpcoming: isUpcoming)
         
         donationsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
@@ -94,7 +98,9 @@ class ParseHelper {
             notEqualTo: Donation.DonationState.Cancelled.rawValue) // not cancelled
         
         if (isUpcoming) {
-            query.whereKey(DonationConstants.dateProperty, greaterThanOrEqualTo: NSDate()) // future dates
+            query.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
+            
+            //query.whereKey(DonationConstants.dateProperty, greaterThanOrEqualTo: NSDate()) // future dates
         } else {
             query.whereKey(DonationConstants.dateProperty, lessThan: NSDate()) // past dates
             query.whereKey(DonationConstants.statusProperty,

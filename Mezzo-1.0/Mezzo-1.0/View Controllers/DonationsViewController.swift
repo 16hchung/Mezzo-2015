@@ -19,6 +19,8 @@ class DonationsViewController: UIViewController {
     // MARK: Properties
     
     var donations = [Donation]()
+    /// shows selection status for every section in table view
+    private var donationSelectionStatuses: [Bool] = []
     
     // search bar modes
     private enum SearchBarState {
@@ -32,8 +34,26 @@ class DonationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // TODO: load donations
+        
+        // setting delegate + datasource
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
+        
+        // completionBlock for loading donations
+        var completionBlock = { (result: [AnyObject]?, error: NSError?) -> Void in
+            let loadedDonations = result as? [Donation] ?? []
+            self.donations += loadedDonations
+            self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
+            self.tableView.reloadData()
+        }
+        
+        // determine whether user = org or donor, then load donations
+        if let user = user as? Organization {
+            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
+        } else if let user = user as? Donor {
+            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,23 +87,27 @@ extension DonationsViewController: UITableViewDataSource {
         return donations.count
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
-        headerCell.donation = self.donations[section]
-        return headerCell
-    }
-    
     // MARK: Cells
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        if donationSelectionStatuses[section] {
+            return 2
+        } else {
+            return 1
+        }
     }
     
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
-        bodyCell.donation = self.donations[indexPath.section]
-        return bodyCell
+        if indexPath.row == 0 {
+            let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
+            headerCell.donation = self.donations[indexPath.section]
+            return headerCell
+        } else {
+            let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
+            bodyCell.donation = self.donations[indexPath.section]
+            return bodyCell
+        }
     }
 }
 
@@ -91,7 +115,22 @@ extension DonationsViewController: UITableViewDataSource {
 
 extension DonationsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // segue to the respective donor's donation(s)
+        // toggle selection status
+        donationSelectionStatuses[indexPath.section] = !donationSelectionStatuses[indexPath.section]
+        
+        // create index paths being inserted/deleted
+        var paths = [NSIndexPath]()
+        paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
+        
+        // animate row insertion/deletion
+        tableView.beginUpdates()
+        if donationSelectionStatuses[indexPath.section] {
+            tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+        } else {
+            tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+        }
+        tableView.endUpdates()
+        
     }
 }
 
