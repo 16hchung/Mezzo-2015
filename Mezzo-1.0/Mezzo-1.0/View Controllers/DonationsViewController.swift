@@ -9,29 +9,31 @@
 import UIKit
 
 class DonationsViewController: UIViewController {
-
+    
+    // MARK: Outlets
+    
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
-    // MARK: enums
+    // MARK: Properties
+    
+    var donations = [Donation]()
     
     // search bar modes
     private enum SearchBarState {
         case DefaultMode
         case SearchMode
     }
-    
-    
-    
     private var state: SearchBarState = .DefaultMode
+    
     
     // MARK: VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // TODO: load donations
     }
 
     override func didReceiveMemoryWarning() {
@@ -59,19 +61,19 @@ class DonationsViewController: UIViewController {
 // MARK: - Table View Data Source Protocol
 
 extension DonationsViewController: UITableViewDataSource {
-    // MARK: sections
+    // MARK: Sections
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return donations.count
     }
     
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
+        headerCell.donation = self.donations[section]
+        return headerCell
+    }
     
-    // TODO: create custom header cell class -> implement
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        
-//    }
-    
-    // MARK: cells
+    // MARK: Cells
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -79,11 +81,9 @@ extension DonationsViewController: UITableViewDataSource {
     
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
-        
-        // TODO: populate with data about the donation
-        
-        return cell
+        let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
+        bodyCell.donation = self.donations[indexPath.section]
+        return bodyCell
     }
 }
 
@@ -94,6 +94,8 @@ extension DonationsViewController: UITableViewDelegate {
         // segue to the respective donor's donation(s)
     }
 }
+
+// MARK: - Search Bar Delegate
 
 extension DonationsViewController: UISearchBarDelegate {
     // user begins editing the search text
