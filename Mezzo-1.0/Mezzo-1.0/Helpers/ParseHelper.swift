@@ -80,6 +80,8 @@ class ParseHelper {
         let donationsQuery = Donation.query()!
         
         donationsQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: fromDonor) // from donor
+        donationsQuery.includeKey("toOrganization")
+        donationsQuery.includeKey("fromDonor")
         getUpcomingOrCompletedDonations(donationsQuery, isUpcoming: isUpcoming)
         
         donationsQuery.findObjectsInBackgroundWithBlock(completionBlock)

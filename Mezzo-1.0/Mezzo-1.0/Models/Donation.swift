@@ -17,7 +17,7 @@ class Donation: PFObject, PFSubclassing {
     @NSManaged var toOrganization: Organization?
     
     /// time of food pickup
-    @NSManaged var pickupAt: NSDate?
+    @NSManaged var pickupAt: String?
     /// description of donation (list of comma separated food types)
     @NSManaged var foodDescription: [String]
     /// String representation of weight range

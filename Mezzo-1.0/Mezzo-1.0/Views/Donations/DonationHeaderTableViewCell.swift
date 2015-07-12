@@ -34,7 +34,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
-                timeLabel.text = formatter.stringFromDate(donation.pickupAt!)
+                timeLabel.text = donation.pickupAt!
                 
                 statusLabel.text = donation.status
                 
