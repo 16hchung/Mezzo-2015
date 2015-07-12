@@ -214,6 +214,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addBarButton" destination="u2J-zT-V1M" id="2n1-jX-K3g"/>
                         <outlet property="searchBar" destination="OH8-gy-N1q" id="Sr2-XR-SSy"/>
                         <outlet property="segmentedControl" destination="2cu-PG-mN2" id="oAk-i2-JLy"/>
                         <outlet property="tableView" destination="z9C-gj-fZ0" id="DNo-0M-7Ha"/>

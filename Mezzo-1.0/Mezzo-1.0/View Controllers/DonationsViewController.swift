@@ -15,6 +15,7 @@ class DonationsViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
     
     // MARK: Properties
     
@@ -50,10 +51,13 @@ class DonationsViewController: UIViewController {
         
         // determine whether user = org or donor, then load donations
         if let user = user as? Organization {
+            addBarButton.enabled = false
             ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
         } else if let user = user as? Donor {
+            addBarButton.enabled = true
             ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
         }
+        
     }
 
     override func didReceiveMemoryWarning() {
