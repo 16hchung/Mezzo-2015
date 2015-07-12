@@ -22,6 +22,8 @@ class DonationsViewController: UIViewController {
         case SearchMode
     }
     
+    
+    
     private var state: SearchBarState = .DefaultMode
     
     // MARK: VC Lifecycle

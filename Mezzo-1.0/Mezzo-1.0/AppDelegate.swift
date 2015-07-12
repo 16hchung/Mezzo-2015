@@ -10,8 +10,9 @@ import UIKit
 import CoreData
 import Parse
 import Bolts
-//import RealmSwift
-import Bond
+
+
+var user: UserType!
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -30,6 +31,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println("yay")
         } else {
             println(":(")
+        }
+        
+        let user = ParseHelper.getUserType(PFUser.currentUser())
+        switch user! {
+        case .DonorUser :
+            println("donor")
+        case .OrganizationUser :
+            println("org")
         }
         
         return true
