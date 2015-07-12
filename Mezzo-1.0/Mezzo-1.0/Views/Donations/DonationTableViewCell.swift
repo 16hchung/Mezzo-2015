@@ -14,7 +14,7 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
-    var donation: Donation? {
+    var donation: Donation! {
         didSet {
             if let donation = donation {
                 // get the other user (to grab their phone number)

@@ -19,16 +19,15 @@ class NewDonationViewController: UIViewController {
     
     // TODO: research how to enforce lack of setting capabilities
     /// donation being created (no setting)
-    var donation: Donation? {
-        get {
-//            donation = Donation()
-            // set properties
-            return Donation()
-        }
-    }
+    var donation = Donation()
+//        get {
+////            donation = Donation()
+//            // set properties
+//            return Donation()
+//        }
     
     // MARK: Methods
-    
+
     func saveDonation() {
         // TODO
     }
@@ -37,6 +36,9 @@ class NewDonationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        foodTypesTableView.delegate = self
+        foodTypesTableView.dataSource = self
 
         // Do any additional setup after loading the view.
     }
@@ -58,3 +60,62 @@ class NewDonationViewController: UIViewController {
     */
 
 }
+
+extension NewDonationViewController: UITableViewDataSource {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Donation.foodTypes.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Food Type Cell") as! FoodTypeTableViewCell
+        cell.foodLabel.text = Donation.foodTypes[indexPath.row]
+        return cell
+    }
+}
+
+extension NewDonationViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FoodTypeTableViewCell
+        
+        // update checkmark
+        if cell.accessoryType == UITableViewCellAccessoryType.None {
+            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+            donation.foodDescription.append(cell.foodLabel.text!)
+            println(donation.foodDescription)
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryType.None
+            var index = find(donation.foodDescription, cell.foodLabel.text!)
+            donation.foodDescription.removeAtIndex(index!)
+            println(donation.foodDescription)
+        }
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
