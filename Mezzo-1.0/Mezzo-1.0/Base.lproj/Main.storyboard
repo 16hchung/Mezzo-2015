@@ -248,7 +248,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="5tF-LF-xic" kind="show" id="4Op-ZM-TRB"/>
+                                    <segue destination="5tF-LF-xic" kind="show" identifier="Choose Organization" id="4Op-ZM-TRB"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="k5X-WH-rqd">

@@ -24,7 +24,7 @@ class NewDonationViewController: UIViewController {
     // MARK: Methods
 
     func saveDonation() {
-        // TODO
+        donation.weightRange = Donation.incrementedAmountRanges[weightPickerView.selectedRowInComponent(0)]
     }
     
     // MARK: VC Lifecycle
@@ -47,15 +47,24 @@ class NewDonationViewController: UIViewController {
     }
     
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "Choose Organization":
+                saveDonation()
+                let orgChooserVC = segue.destinationViewController as! OrganizationChooserViewController
+                orgChooserVC.donation = self.donation
+            default:
+                break
+            }
+
+        }
     }
-    */
+    
 
 }
 
