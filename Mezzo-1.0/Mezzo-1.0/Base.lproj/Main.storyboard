@@ -263,8 +263,8 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="00Y-TF-ZrH" id="QbD-JX-Wj4">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Food Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHY-4h-Vs1">
-                                                    <rect key="frame" x="18" y="11" width="495" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Type" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHY-4h-Vs1">
+                                                    <rect key="frame" x="18" y="11" width="534" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -360,11 +360,11 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7yo-Fv-ojy">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7yo-Fv-ojy">
                                 <rect key="frame" x="0.0" y="120" width="600" height="480"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Name Header" rowHeight="68" id="XBb-lV-3ZN" customClass="OrganizationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="Org Name Header" rowHeight="70" id="XBb-lV-3ZN" customClass="OrganizationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XBb-lV-3ZN" id="g4S-kv-gas">
@@ -456,6 +456,7 @@
                                                 <constraint firstItem="u5e-ju-OnM" firstAttribute="top" secondItem="jIn-eF-a7X" secondAttribute="topMargin" id="O9j-zI-rwG"/>
                                                 <constraint firstAttribute="centerX" secondItem="uTy-gx-j0v" secondAttribute="centerX" id="UEj-vK-moE"/>
                                                 <constraint firstItem="uTy-gx-j0v" firstAttribute="top" secondItem="v8r-ri-Wrf" secondAttribute="bottom" constant="8" id="XUV-5E-GeU"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="2Zn-JZ-PKB" secondAttribute="bottom" constant="14" id="YjP-MM-v5V"/>
                                                 <constraint firstItem="v8r-ri-Wrf" firstAttribute="leading" secondItem="u5e-ju-OnM" secondAttribute="leading" id="cVR-Zf-mQe"/>
                                                 <constraint firstItem="2Zn-JZ-PKB" firstAttribute="top" secondItem="uTy-gx-j0v" secondAttribute="bottom" constant="8" id="e9d-GP-MSA"/>
                                                 <constraint firstItem="v8r-ri-Wrf" firstAttribute="top" secondItem="u5e-ju-OnM" secondAttribute="bottom" constant="10" id="eHz-2q-h77"/>
