@@ -31,7 +31,7 @@ class ParseHelper {
         static let actualPickupTime = "orgSpecificTime"
     }
     
-    private struct OfferConstants {
+    struct OfferConstants {
         static let className = "Offer"
         static let toOrgProperty = "toOrganization"
         static let fromDonorProperty = "fromDonor"

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DonationsViewController: UIViewController {
     
@@ -43,19 +44,20 @@ class DonationsViewController: UIViewController {
         
         // completionBlock for loading donations
         var completionBlock = { (result: [AnyObject]?, error: NSError?) -> Void in
-            let loadedDonations = result as? [Donation] ?? []
+            // result should be an array of offers
+            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation] ?? []
             self.donations += loadedDonations
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
+
         }
         
-        // determine whether user = org or donor, then load donations
-        if let user = user as? Organization {
+        if let donorUser = (PFUser.currentUser()! as? User)?.donor {
             self.navigationItem.rightBarButtonItem = nil
-            ParseHelper.getDonations(toOrg: user, isUpcoming: true, completionBlock: completionBlock)
-        } else if let user = user as? Donor {
+            ParseHelper.getDonations(fromDonor: donorUser, isUpcoming: true, completionBlock: completionBlock)
+        } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
             self.navigationItem.rightBarButtonItem = self.addBarButton
-            ParseHelper.getDonations(fromDonor: user, isUpcoming: true, completionBlock: completionBlock)
+            ParseHelper.getDonations(toOrg: orgUser, isUpcoming: true, completionBlock: completionBlock)
         }
         
     }
@@ -79,9 +81,11 @@ class DonationsViewController: UIViewController {
                 let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
                 let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
                 
-                source.donation.fromDonor = user as? Donor
+                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
                 source.donation.toOrganization = cell.organization
-                source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
+                
+                // TODO: fix pickup time
+                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
                 
                 source.donation.offer()
             default:
@@ -178,7 +182,7 @@ extension DonationsViewController: UISearchBarDelegate {
     
     // user changed the search text, so filter through notes and update view
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // search for the given donor
+        // TODO: search for the given donor
     }
     
 }
