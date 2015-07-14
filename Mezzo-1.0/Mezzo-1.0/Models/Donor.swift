@@ -9,12 +9,10 @@
 import Foundation
 import Parse
 
-class Donor: PFObject, PFSubclassing, User {
+class Donor: PFObject, PFSubclassing {
     
     // MARK: from Parse
     
-    /// login info from Parse (don't need to use often)
-    @NSManaged var user: PFUser?
     /// access `location` property instead
     @NSManaged var locatedAt: PFGeoPoint?
     /// identification for organizations and donors
@@ -27,16 +25,6 @@ class Donor: PFObject, PFSubclassing, User {
     
     // MARK: Methods
     
-    // TODO: create Donation/Org classes + uncomment => implement
-    /**
-        Creates new `Donation` object and sends out offer
-        
-        :param: atTime suggested time of donation's pickup
-        :param: toOrganization organization receiving the offer
-    */
-    func offerADonation(atTime: NSDate, toOrganization: Organization) {
-        
-    }
     
     
     // MARK: PFSubclassing Protocol

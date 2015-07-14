@@ -16,14 +16,19 @@ class Donation: PFObject, PFSubclassing {
     @NSManaged var fromDonor: Donor?
     @NSManaged var toOrganization: Organization?
     
-    /// time of food pickup
-    @NSManaged var pickupAt: String?
     /// description of donation (list of comma separated food types)
     @NSManaged var foodDescription: [String]
     /// String representation of weight range
     @NSManaged var weightRange: String
     /// fromParse (use DonationState)
     @NSManaged var status: String
+    
+    /// start of donor-proposed time range
+    @NSManaged var donorTimeRangeStart: NSDate?
+    /// actual pickup time specified by Organization
+    @NSManaged var orgSpecificTime: NSDate?
+    /// end of donor-proposed time range
+    @NSManaged var donorTimeRangeEnd: NSDate?
     
     // MARK: Other Properties
     
@@ -61,8 +66,12 @@ class Donation: PFObject, PFSubclassing {
 //            
 //            return ret
             return ["≤ 50", "50 - 75", "75 - 100", "100 - 125", "125 - 150"]
+            // TODO: make this part less poopy and brute force
         }
     }
+    
+    
+    
     
     // MARK: Methods
     

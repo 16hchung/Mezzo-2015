@@ -51,11 +51,11 @@ class DonationsViewController: UIViewController {
         
         // determine whether user = org or donor, then load donations
         if let user = user as? Organization {
-            addBarButton.enabled = false
-            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
+            self.navigationItem.rightBarButtonItem = nil
+            ParseHelper.getDonations(toOrg: user, isUpcoming: true, completionBlock: completionBlock)
         } else if let user = user as? Donor {
-            addBarButton.enabled = true
-            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
+            self.navigationItem.rightBarButtonItem = self.addBarButton
+            ParseHelper.getDonations(fromDonor: user, isUpcoming: true, completionBlock: completionBlock)
         }
         
     }
