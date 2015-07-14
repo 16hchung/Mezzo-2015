@@ -12,8 +12,6 @@ import Parse
 import Bolts
 
 
-var user: User!
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,8 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             println(":(")
         }
-        
-        user = ParseHelper.getUserType(PFUser.currentUser())
         
         return true
     }
