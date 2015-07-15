@@ -12,7 +12,6 @@ class NewDonationViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var foodTypesTableView: UITableView!
     @IBOutlet weak var weightPickerView: UIPickerView!
     
     // MARK: Properties
@@ -32,9 +31,6 @@ class NewDonationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        foodTypesTableView.delegate = self
-        foodTypesTableView.dataSource = self
-        
         weightPickerView.delegate = self
         weightPickerView.dataSource = self
 
@@ -46,7 +42,22 @@ class NewDonationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    // MARK: food type buttons
+    @IBAction func foodTypeButtonSelected(sender: AnyObject) {
+        let button = sender as! UIButton
+        
+        if (button.imageView != nil) { // if image is empty checkbox, select
+            // reset image
+            donation.foodDescription.append(button.titleLabel!.text!)
+            println(donation.foodDescription)
+        } else { // if image is filled checkbox, deselect
+            // reset image
+            let index = find(donation.foodDescription, button.titleLabel!.text!)
+            donation.foodDescription.removeAtIndex(index!)
+            println(donation.foodDescription)
+        }
+    }
+    
     
     // MARK: - Navigation
 
@@ -68,41 +79,27 @@ class NewDonationViewController: UIViewController {
 
 }
 
-// MARK: Table View Data Source Protocol
-
-extension NewDonationViewController: UITableViewDataSource {
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Donation.foodTypes.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Food Type Cell") as! FoodTypeTableViewCell
-        cell.foodLabel.text = Donation.foodTypes[indexPath.row]
-        return cell
-    }
-}
-
 // MARK: Table View Delegate Protocol
-
-extension NewDonationViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FoodTypeTableViewCell
-        
-        // update checkmark
-        if cell.accessoryType == UITableViewCellAccessoryType.None {
-            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
-            donation.foodDescription.append(cell.foodLabel.text!)
-            println(donation.foodDescription)
-        } else {
-            cell.accessoryType = UITableViewCellAccessoryType.None
-            var index = find(donation.foodDescription, cell.foodLabel.text!)
-            donation.foodDescription.removeAtIndex(index!)
-            println(donation.foodDescription)
-        }
-        
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-    }
-}
+//
+//extension NewDonationViewController: UITableViewDelegate {
+//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//        let cell = tableView.cellForRowAtIndexPath(indexPath) as! FoodTypeTableViewCell
+//        
+//        // update checkmark
+//        if cell.accessoryType == UITableViewCellAccessoryType.None {
+//            cell.accessoryType = UITableViewCellAccessoryType.Checkmark
+//            donation.foodDescription.append(cell.foodLabel.text!)
+//            println(donation.foodDescription)
+//        } else {
+//            cell.accessoryType = UITableViewCellAccessoryType.None
+//            var index = find(donation.foodDescription, cell.foodLabel.text!)
+//            donation.foodDescription.removeAtIndex(index!)
+//            println(donation.foodDescription)
+//        }
+//
+//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+//    }
+//}
 
 // MARK: Picker View Delegates
 
@@ -122,28 +119,3 @@ extension NewDonationViewController: UIPickerViewDataSource {
         return Donation.incrementedAmountRanges.count
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
