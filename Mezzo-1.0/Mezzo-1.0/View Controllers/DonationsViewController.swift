@@ -47,16 +47,16 @@ class DonationsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        // loadDonations
+        // load donations (getDonations already deals with type of user)
         ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
             // do the add button thing
-            if let donorUser = (PFUser.currentUser()! as? User)?.donor {
+            if let user = PFUser.currentUser()! as? User where user.donor != nil {
                 self.navigationItem.rightBarButtonItem = self.addBarButton
-            } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
+            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
                 self.navigationItem.rightBarButtonItem = nil
             }
             
-            // result should be an array of offers => map to associated donations
+            // result should be an array of offers => convert to array associated donations
             let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation] ?? []
             // cast then recast from Set (no duplicates) back to Array
             let noDuplicateDonations = Array(Set(loadedDonations))

@@ -18,14 +18,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        User.registerSubclass()
+        
         // Initialize Parse.
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
-        PFUser.logInWithUsername("testDonor", password: "testDonor")
+        PFUser.logInWithUsername("testOrg", password: "testOrg")
         
         //let realm = Realm()
 
-        if let user = PFUser.currentUser() {
+        if let user = PFUser.currentUser() as? User {
             println("yay")
         } else {
             println(":(")
