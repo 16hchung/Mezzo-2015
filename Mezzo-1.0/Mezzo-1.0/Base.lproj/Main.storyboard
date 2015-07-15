@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -250,10 +250,10 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YeH-QW-0Re" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="781"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="717"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-mi-StB">
-                                                <rect key="frame" x="385" y="378" width="30" height="23"/>
+                                                <rect key="frame" x="385" y="314" width="30" height="23"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -265,36 +265,37 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Estimated total weight?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJi-mA-n22">
-                                                <rect key="frame" x="16" y="271" width="568" height="21"/>
+                                                <rect key="frame" x="16" y="207" width="568" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donation pickup time window:" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wY5-k7-2Fl">
-                                                <rect key="frame" x="16" y="486" width="568" height="21"/>
+                                                <rect key="frame" x="16" y="422" width="568" height="21"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cph-4d-7ia">
-                                                <rect key="frame" x="16" y="52" width="300" height="48"/>
+                                                <rect key="frame" x="16" y="52" width="300" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Grains" image="purple profile">
+                                                <state key="normal" title="Grains" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <connections>
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="9Ch-X9-3n0"/>
                                                 </connections>
                                             </button>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="dB2-5O-9Sb" userLabel="start window">
-                                                <rect key="frame" x="0.0" y="523" width="300" height="162"/>
+                                                <rect key="frame" x="0.0" y="459" width="300" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="458604264.59109002">
                                                     <!--2015-07-14 22:04:24 +0000-->
                                                 </date>
                                             </datePicker>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-FU-miQ">
-                                                <rect key="frame" x="218" y="701" width="165" height="30"/>
+                                                <rect key="frame" x="218" y="637" width="165" height="30"/>
                                                 <state key="normal" title="Next: Choose recipients">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -303,27 +304,28 @@
                                                 </connections>
                                             </button>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="30" translatesAutoresizingMaskIntoConstraints="NO" id="Ero-Pb-Q94" userLabel="end window">
-                                                <rect key="frame" x="300" y="523" width="300" height="162"/>
+                                                <rect key="frame" x="300" y="459" width="300" height="162"/>
                                                 <date key="date" timeIntervalSinceReferenceDate="458604264.59109002">
                                                     <!--2015-07-14 22:04:24 +0000-->
                                                 </date>
                                             </datePicker>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                                <rect key="frame" x="199" y="308" width="202" height="162"/>
+                                                <rect key="frame" x="199" y="244" width="202" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="202" id="9O1-fY-mbm"/>
                                                 </constraints>
                                             </pickerView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-cQ-sAk">
-                                                <rect key="frame" x="284" y="52" width="300" height="48"/>
+                                                <rect key="frame" x="284" y="52" width="300" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="79" id="lAf-8q-wiC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Oils" image="purple profile">
+                                                <state key="normal" title="Oils" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="lAf-8q-wiC"/>
@@ -334,48 +336,52 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vb-96-Wf3">
-                                                <rect key="frame" x="16" y="108" width="300" height="48"/>
+                                                <rect key="frame" x="16" y="88" width="300" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Fruits/Veggies" image="purple profile">
+                                                <state key="normal" title="Fruits/Veggies" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <connections>
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="ycW-hO-M8o"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-q8-XjI">
-                                                <rect key="frame" x="16" y="164" width="300" height="48"/>
+                                                <rect key="frame" x="16" y="124" width="300" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Meats/Beans" image="purple profile">
+                                                <state key="normal" title="Meats/Beans" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <connections>
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="caA-gx-xNw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfe-uy-wCm">
-                                                <rect key="frame" x="16" y="220" width="300" height="48"/>
+                                                <rect key="frame" x="16" y="160" width="300" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Dairy" image="purple profile">
+                                                <state key="normal" title="Dairy" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <connections>
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="lc7-m7-MGc"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oM-Iy-UBq">
-                                                <rect key="frame" x="284" y="108" width="300" height="48"/>
+                                                <rect key="frame" x="284" y="88" width="300" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="79" id="iQ4-1v-NJI"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Desserts" image="purple profile">
+                                                <state key="normal" title="Desserts" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="iQ4-1v-NJI"/>
@@ -386,15 +392,16 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-qV-Pin">
-                                                <rect key="frame" x="284" y="164" width="300" height="48"/>
+                                                <rect key="frame" x="284" y="124" width="300" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="79" id="mQF-05-KM2"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Condiments" image="purple profile">
+                                                <state key="normal" title="Condiments" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="mQF-05-KM2"/>
@@ -405,15 +412,16 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjw-z9-mcD">
-                                                <rect key="frame" x="284" y="223" width="300" height="48"/>
+                                                <rect key="frame" x="284" y="163" width="300" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="79" id="3ud-7K-yKk"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <state key="normal" title="Other" image="purple profile">
+                                                <state key="normal" title="Other" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <state key="selected" image="checked box"/>
                                                 <variation key="default">
                                                     <mask key="constraints">
                                                         <exclude reference="3ud-7K-yKk"/>
@@ -449,7 +457,7 @@
                                             <constraint firstItem="dB2-5O-9Sb" firstAttribute="leading" secondItem="YeH-QW-0Re" secondAttribute="leading" id="TYK-8T-HeX"/>
                                             <constraint firstItem="ppU-q8-XjI" firstAttribute="width" secondItem="5Vb-96-Wf3" secondAttribute="width" id="Yf9-u3-7EB"/>
                                             <constraint firstAttribute="centerX" secondItem="gUr-cQ-sAk" secondAttribute="centerX" id="aMb-ya-h8M"/>
-                                            <constraint firstItem="CJi-mA-n22" firstAttribute="bottom" secondItem="sfe-uy-wCm" secondAttribute="bottom" constant="24" id="acb-7G-uWi"/>
+                                            <constraint firstItem="CJi-mA-n22" firstAttribute="bottom" secondItem="sfe-uy-wCm" secondAttribute="bottom" constant="40" id="acb-7G-uWi"/>
                                             <constraint firstItem="0oM-Iy-UBq" firstAttribute="width" secondItem="gUr-cQ-sAk" secondAttribute="width" id="bqV-6t-4j8"/>
                                             <constraint firstItem="wY5-k7-2Fl" firstAttribute="top" secondItem="5UU-cu-cbs" secondAttribute="bottom" constant="16" id="c83-yC-u4U"/>
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="top" secondItem="Cph-4d-7ia" secondAttribute="bottom" constant="8" id="das-Bh-AHC"/>
@@ -490,6 +498,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="dl9-bN-qQ8" firstAttribute="top" secondItem="aSC-ik-Fqp" secondAttribute="bottom" id="62h-Ob-eul"/>
                             <constraint firstItem="YeH-QW-0Re" firstAttribute="width" secondItem="wc8-jI-sCv" secondAttribute="width" id="8pt-sc-XkY"/>
@@ -507,8 +516,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="grainsFoodTypeButton" destination="Cph-4d-7ia" id="LJL-dG-8kf"/>
                         <outlet property="weightPickerView" destination="5UU-cu-cbs" id="plH-aW-1ME"/>
+                        <outletCollection property="foodTypeButtons" destination="ppU-q8-XjI" collectionClass="NSMutableArray" id="96t-ef-d4i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Ej-h5-nF2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -516,7 +525,7 @@
             </objects>
             <point key="canvasLocation" x="4599" y="-842"/>
         </scene>
-        <!--Available Organizations-->
+        <!--Available Recipients-->
         <scene sceneID="odM-h3-ElJ">
             <objects>
                 <viewController id="5tF-LF-xic" customClass="OrganizationChooserViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -632,14 +641,14 @@
                             <constraint firstAttribute="centerX" secondItem="T7U-8q-uLF" secondAttribute="centerX" id="myl-lD-ou8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Available Organizations" id="vXV-bf-Bmo">
+                    <navigationItem key="navigationItem" title="Available Recipients" id="vXV-bf-Bmo">
                         <barButtonItem key="backBarButtonItem" title="Back" id="clM-j7-ajF"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="ILd-js-qzh">
                             <connections>
                                 <segue destination="jlH-nY-Nmv" kind="unwind" identifier="Cancel" unwindAction="unwindToDonationsVC:" id="Rgy-K7-YnP"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Send Offer" id="heK-0J-dit"/>
+                        <barButtonItem key="rightBarButtonItem" title="Offer" id="heK-0J-dit"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
@@ -671,7 +680,8 @@
     </scenes>
     <resources>
         <image name="blue profile" width="48" height="48"/>
+        <image name="checked box" width="28" height="28"/>
         <image name="expand" width="48" height="48"/>
-        <image name="purple profile" width="48" height="48"/>
+        <image name="unchecked box" width="28" height="28"/>
     </resources>
 </document>

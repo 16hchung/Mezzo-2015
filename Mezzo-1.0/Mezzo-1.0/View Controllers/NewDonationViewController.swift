@@ -12,6 +12,7 @@ class NewDonationViewController: UIViewController {
     
     // MARK: Outlets
     
+    @IBOutlet var foodTypeButtons: [UIButton]!
     @IBOutlet weak var weightPickerView: UIPickerView!
     
     // MARK: Properties
@@ -30,6 +31,13 @@ class NewDonationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set text wrap for food type button labels
+        for button in foodTypeButtons {
+            button.titleLabel?.numberOfLines = 0
+            button.titleLabel?.lineBreakMode = .ByWordWrapping
+            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        }
         
         weightPickerView.delegate = self
         weightPickerView.dataSource = self
