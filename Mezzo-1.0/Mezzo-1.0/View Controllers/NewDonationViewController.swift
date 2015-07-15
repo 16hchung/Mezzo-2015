@@ -34,8 +34,8 @@ class NewDonationViewController: UIViewController {
         
         // set text wrap for food type button labels
         for button in foodTypeButtons {
-            button.titleLabel?.numberOfLines = 0
-            button.titleLabel?.lineBreakMode = .ByWordWrapping
+            button.titleLabel?.numberOfLines = 1
+            button.titleLabel?.adjustsFontSizeToFitWidth = true
             button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
         }
         
