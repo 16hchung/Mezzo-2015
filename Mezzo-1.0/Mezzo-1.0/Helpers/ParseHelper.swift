@@ -81,33 +81,49 @@ class ParseHelper {
     
     // MARK: Donation Methods
     
-    /**
-        Gets all donations (includes completed, excludes cancelled) from a given donor.
-        Loads the upcoming or completed donations based on `isUpcoming` argument.
-    */
-    static func getDonations(#fromDonor: Donor, isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
-        let offerQuery = PFQuery(className: OfferConstants.className)
-        
-        offerQuery.whereKey(OfferConstants.fromDonorProperty, equalTo: (PFUser.currentUser()! as! User).donor!)
-        offerQuery.includeKey(OfferConstants.donationProperty)
-        offerQuery.includeKey(OfferConstants.toOrgProperty)
-        
-        offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
-    }
+//    /**
+//        Gets all donations (includes completed, excludes cancelled) from a given donor.
+//        Loads the upcoming or completed donations based on `isUpcoming` argument.
+//    */
+//    static func getDonations(#fromDonor: Donor, isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
+//        let offerQuery = PFQuery(className: OfferConstants.className)
+//        
+//        offerQuery.whereKey(OfferConstants.fromDonorProperty, equalTo: (PFUser.currentUser()! as! User).donor!)
+//        offerQuery.includeKey(OfferConstants.donationProperty)
+//        offerQuery.includeKey(OfferConstants.toOrgProperty)
+//        
+//        offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
+//    }
+//    
+//    
+//    static func getDonations(#toOrg: Organization, isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
+//        let offerQuery = PFQuery(className: OfferConstants.className)
+//        
+//        offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: (PFUser.currentUser()! as! User).organization!)
+//        offerQuery.includeKey(OfferConstants.donationProperty)
+//        offerQuery.includeKey(OfferConstants.fromDonorProperty)
+//        
+//        offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
+//        
+//    }
     
     /**
-        Gets all donations (includes completed, excludes cancelled) to a given organization.
+        Gets all donations (includes completed, excludes cancelled) associated with the PFUser.currentUser().
         Loads the upcoming or completed donations based on `isUpcoming` argument.
     */
-    static func getDonations(#toOrg: Organization, isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
+    static func getDonations(#isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
         let offerQuery = PFQuery(className: OfferConstants.className)
         
-        offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: (PFUser.currentUser()! as! User).organization!)
+        if let donorUser = (PFUser.currentUser()! as? User)?.donor {
+            offerQuery.whereKey(OfferConstants.fromDonorProperty, equalTo: donorUser)
+            offerQuery.includeKey(OfferConstants.toOrgProperty)
+        } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
+            offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
+            offerQuery.includeKey(OfferConstants.fromDonorProperty)
+        }
         offerQuery.includeKey(OfferConstants.donationProperty)
-        offerQuery.includeKey(OfferConstants.fromDonorProperty)
         
         offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
-        
     }
     
 //    /**
@@ -137,3 +153,24 @@ extension PFObject: Equatable {
 public func ==(lhs: PFObject, rhs: PFObject) -> Bool {
     return lhs.objectId == rhs.objectId
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
