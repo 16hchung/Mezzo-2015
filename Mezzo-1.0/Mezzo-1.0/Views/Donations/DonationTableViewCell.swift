@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DonationTableViewCell: UITableViewCell {
 
@@ -14,22 +15,42 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
+    
+    
     var donation: Donation! {
         didSet {
             if let donation = donation {
-                // get the other user (to grab their phone number)
-                let otherUser: User!
-                if let user = user as? Organization {
-                    otherUser = donation.fromDonor
-                } else {
-                    otherUser = donation.toOrganization
-                }
+                
+                // set up potential otherUser variables
+                var otherDonorUser: Donor?
+                var otherOrgUser: Organization?
+                if let donorUser = (PFUser.currentUser() as? User)?.donor {
+                    otherOrgUser = donation.toOrganization
+                } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
+                    otherDonorUser = donation.fromDonor
+                } // @ this point, either donor or org is nil, not both
+                
+                // populate data depending on which otherUser is nil
+                phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber
                 
                 // update the labels
                 foodDetailsLabel.text = donation.detailsString()
-                phoneNumberButton.titleLabel!.text = otherUser.phoneNumber
+                
+                
+//                // get the other user (to grab their phone number)
+//                let otherUser: User!
+//                if let user = user as? Organization {
+//                    otherUser = donation.fromDonor
+//                } else {
+//                    otherUser = donation.toOrganization
+//                }
+//                
+                // update the labels
+//                foodDetailsLabel.text = donation.detailsString()
+//                phoneNumberButton.titleLabel!.text = otherUser.phoneNumber
                 //phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
+                
             }
         }
     }

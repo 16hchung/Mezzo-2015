@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DonationHeaderTableViewCell: UITableViewCell {
 
@@ -22,21 +23,36 @@ class DonationHeaderTableViewCell: UITableViewCell {
         didSet {
             if let donation = donation {
                 
-                let displayingUser: User!
+                var otherDonorUser: Donor?
+                var otherOrgUser: Organization?
+                if let donorUser = (PFUser.currentUser() as? User)?.donor {
+                    otherOrgUser = donation.toOrganization
+                } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
+                    otherDonorUser = donation.fromDonor
+                } // @ this point, either donor or org is nil, not both
                 
-                if let user = user as? Organization {
-                    displayingUser = donation.fromDonor
-                } else {
-                    displayingUser = donation.toOrganization
-                }
-                
-                entityNameLabel.text = displayingUser.name
-                
+                entityNameLabel.text = otherDonorUser?.name ?? otherOrgUser?.name
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
-                timeLabel.text = donation.pickupAt!
+                timeLabel.text = formatter.stringFromDate(donation.orgSpecificTime!)
                 
                 statusLabel.text = donation.status
+//                
+//                let displayingUser: User!
+//                
+//                if let user = user as? Organization {
+//                    displayingUser = donation.fromDonor
+//                } else {
+//                    displayingUser = donation.toOrganization
+//                }
+//                
+//                entityNameLabel.text = displayingUser.name
+//                
+//                var formatter = NSDateFormatter()
+//                formatter.timeStyle = .ShortStyle
+//                timeLabel.text = donation.pickupAt!
+//                
+//                statusLabel.text = donation.status
                 
                 // TODO: expand button
             }
