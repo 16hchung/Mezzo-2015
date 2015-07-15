@@ -54,12 +54,12 @@ class NewDonationViewController: UIViewController {
     @IBAction func foodTypeButtonSelected(sender: AnyObject) {
         let button = sender as! UIButton
         
-        if (button.imageView != nil) { // if image is empty checkbox, select
-            // reset image
+        if (!button.selected) { // if image is empty checkbox, select
+            button.selected = true
             donation.foodDescription.append(button.titleLabel!.text!)
             println(donation.foodDescription)
         } else { // if image is filled checkbox, deselect
-            // reset image
+            button.selected = false
             let index = find(donation.foodDescription, button.titleLabel!.text!)
             donation.foodDescription.removeAtIndex(index!)
             println(donation.foodDescription)
