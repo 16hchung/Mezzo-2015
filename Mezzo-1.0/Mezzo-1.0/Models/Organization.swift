@@ -9,12 +9,10 @@
 import Foundation
 import Parse
 
-class Organization: PFObject, PFSubclassing, User {
+class Organization: PFObject, PFSubclassing{
     
     // MARK: Parse attributes
     
-    /// login info from Parse (don't need to use often)
-    @NSManaged var user: PFUser?
     @NSManaged var locatedAt: PFGeoPoint?
     @NSManaged var EIN: String?
     @NSManaged var name: String

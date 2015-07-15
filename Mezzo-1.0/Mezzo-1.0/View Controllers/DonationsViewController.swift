@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Parse
 
 class DonationsViewController: UIViewController {
     
@@ -41,23 +42,32 @@ class DonationsViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        // completionBlock for loading donations
-        var completionBlock = { (result: [AnyObject]?, error: NSError?) -> Void in
-            let loadedDonations = result as? [Donation] ?? []
-            self.donations += loadedDonations
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        // loadDonations
+        ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
+            // do the add button thing
+            if let donorUser = (PFUser.currentUser()! as? User)?.donor {
+                self.navigationItem.rightBarButtonItem = self.addBarButton
+            } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+            
+            // result should be an array of offers => map to associated donations
+            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation] ?? []
+            // cast then recast from Set (no duplicates) back to Array
+            let noDuplicateDonations = Array(Set(loadedDonations))
+            
+            self.donations += noDuplicateDonations
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
+            
+            // donors can't add two donations at once
+            if loadedDonations.count > 0 { self.addBarButton.enabled == false }
         }
-        
-        // determine whether user = org or donor, then load donations
-        if let user = user as? Organization {
-            addBarButton.enabled = false
-            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
-        } else if let user = user as? Donor {
-            addBarButton.enabled = true
-            ParseHelper.getDonations(user, isUpcoming: true, completionBlock: completionBlock)
-        }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -79,9 +89,11 @@ class DonationsViewController: UIViewController {
                 let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
                 let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
                 
-                source.donation.fromDonor = user as? Donor
+                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
                 source.donation.toOrganization = cell.organization
-                source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
+                
+                // TODO: fix pickup time
+                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
                 
                 source.donation.offer()
             default:
@@ -178,7 +190,7 @@ extension DonationsViewController: UISearchBarDelegate {
     
     // user changed the search text, so filter through notes and update view
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // search for the given donor
+        // TODO: search for the given donor
     }
     
 }

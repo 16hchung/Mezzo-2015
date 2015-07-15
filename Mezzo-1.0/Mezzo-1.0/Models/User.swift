@@ -9,11 +9,22 @@
 import Foundation
 import Parse
 
-protocol User {
-    var user: PFUser? { get set }
-    var locatedAt: PFGeoPoint? { get set }
-    var EIN: String? { get set }
-    var name: String { get set }
-    var phoneNumber: String { get set }
-    var profilePictureFile: PFFile? { get set }
+class User: PFUser, PFSubclassing {
+    //My variables
+    @NSManaged var donor: Donor?
+    @NSManaged var organization: Organization?
+    
+    
+    override init() {
+        super.init()
+    }
+    
+    override class func initialize() {
+        var onceToken : dispatch_once_t = 0;
+        dispatch_once(&onceToken) {
+            // inform Parse about this subclass
+            self.registerSubclass()
+        }
+    }
+    
 }
