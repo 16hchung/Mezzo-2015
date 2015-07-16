@@ -146,9 +146,7 @@ extension DonationsViewController: UITableViewDataSource {
             }
             
             return headerCell
-            
         } else {
-            
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
             bodyCell.donation = self.donations[indexPath.section]
             return bodyCell

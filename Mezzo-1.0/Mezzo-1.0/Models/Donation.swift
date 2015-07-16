@@ -18,8 +18,8 @@ class Donation: PFObject, PFSubclassing {
     
     /// description of donation (list of comma separated food types)
     @NSManaged var foodDescription: [String]
-    /// String representation of weight range
-    @NSManaged var weightRange: String
+    /// String representation of donation size (number + boxes/pallets)
+    @NSManaged var size: String
     /// fromParse (use DonationState)
     @NSManaged private var status: String
     
@@ -54,21 +54,17 @@ class Donation: PFObject, PFSubclassing {
     static let foodTypes: [String] = ["Grains", "Fruits/Veggies", "Meats/Beans",
         "Dairy", "Oils", "Desserts", "Condiments", "Other"]
     
+    static let pluralSizeTypes: [String] = ["boxes", "pallets"]
+    static let singularSizeTypes: [String] = ["box", "pallet"]
+    
     /// extreme min and max of weight + increments of ranges
-    static private let rangeProperties: (min: Int, max: Int, increment: Int) = (50, 150, 25)
-    static var incrementedAmountRanges: [String] {
-        get {
-//            var ret = ["≤ \(rangeProperties.min)"] // enter first range (unbounded at bottom)
-//            
-//            let numberOfRanges = (rangeProperties.min - rangeProperties.max) / rangeProperties.increment
-//            let rangeIterator = 0..<numberOfRanges
-//            rangeIterator.map { $0 * self.rangeProperties.increment + self.rangeProperties.min }
-//            
-//            return ret
-            return ["≤ 50", "50 - 75", "75 - 100", "100 - 125", "125 - 150"]
-            // TODO: make this part less poopy and brute force
-        }
-    }
+//    static private let rangeProperties: (min: Int, max: Int, increment: Int) = (50, 150, 25)
+//    static var incrementedAmountRanges: [String] {
+//        get {
+//            return ["≤ 50", "50 - 75", "75 - 100", "100 - 125", "125 - 150"]
+//            // TODO: make this part less poopy and brute force
+//        }
+//    }
     
     
     
@@ -87,7 +83,7 @@ class Donation: PFObject, PFSubclassing {
         :returns: summary string
     */
     func detailsString() -> String {
-        return "\(foodDescription) | \(weightRange) lbs"
+        return "\(foodDescription) | \(size)"
     }
     
     // TODO: grab the actual address from the geo point
