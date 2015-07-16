@@ -47,6 +47,11 @@ class DonationsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
+        reloadData()
+        
+    }
+    
+    func reloadData() {
         // load donations (getDonations already deals with type of user)
         ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
             // do the add button thing
@@ -81,21 +86,43 @@ class DonationsViewController: UIViewController {
     @IBAction func unwindToDonationsVC(sender: UIStoryboardSegue) {
         if let identifier = sender.identifier {
             switch identifier {
-            case "Send Donation Offer":
+            case "Send Offer":
 //                var donationToOffer = Donation()
                 
+//
+//                let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
+//                let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
+//                
+//                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
+//                source.donation.toOrganization = cell.organization
+//                
+//                // TODO: fix pickup time
+//                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
+//                
+//                source.donation.offer()
+                
                 let source = sender.sourceViewController as! OrganizationChooserViewController
-
-                let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
-                let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
+                
+                var selectedOrgCellArray = [Organization]()
+                
+                for cellSection in 0..<tableView.numberOfSections() {
+                    let path = NSIndexPath(forRow: 0, inSection: cellSection)
+                    
+                    if let cell = tableView.cellForRowAtIndexPath(path) as? OrganizationHeaderTableViewCell where cell.checkBoxButton.selected {
+                        
+                        selectedOrgCellArray.append(cell.organization!)
+                    }
+                }
                 
                 source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
-                source.donation.toOrganization = cell.organization
                 
-                // TODO: fix pickup time
-                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
-                
-                source.donation.offer()
+                source.donation.offer { (success: Bool, error: NSError?) -> Void in
+                    for org in selectedOrgCellArray {
+                        ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                    }
+                    
+                    self.reloadData()
+                }
             default:
                 break
             }

@@ -15,6 +15,7 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var orgNameLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet weak var checkBoxButton: UIButton!
     
     // MARK: Properties
     
@@ -26,15 +27,11 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBAction func checkBoxSelected(sender: UIButton) {
+        
+        checkBoxButton.selected = !checkBoxButton.selected
+        
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
 
 }

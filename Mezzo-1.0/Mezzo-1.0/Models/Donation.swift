@@ -76,9 +76,9 @@ class Donation: PFObject, PFSubclassing {
     // MARK: Methods
     
     /// Uploads donation to Parse (with all fields populated except state)
-    func offer() {
+    func offer(callback: PFBooleanResultBlock ) {
         donationState = .Offered
-        self.saveInBackground()
+        self.saveInBackgroundWithBlock(callback)
     }
     
     /**
