@@ -19,6 +19,10 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
     
+    
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var declineButton: UIButton!
+    
     var donation: Donation! {
         didSet {
             if let donation = donation {
