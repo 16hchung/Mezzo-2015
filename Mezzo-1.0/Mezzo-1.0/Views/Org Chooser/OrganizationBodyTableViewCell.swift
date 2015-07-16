@@ -13,17 +13,12 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     // MARK: Outlets
     
     @IBOutlet weak var missionStatementLabel: UILabel!
-    @IBOutlet weak var timePickerView: UIPickerView!
-    
     // MARK: Properties
     
     var organization: Organization? {
         didSet {
             if let organization = organization {
                 missionStatementLabel.text = organization.missionStatement
-                
-                timePickerView.delegate = self
-                timePickerView.dataSource = self
                 
             }
         }
