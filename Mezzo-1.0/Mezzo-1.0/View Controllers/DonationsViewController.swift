@@ -136,6 +136,11 @@ extension DonationsViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
             headerCell.donation = self.donations[indexPath.section]
+            
+            if let orgUser = (PFUser.currentUser() as? User)?.organization where orgUser = headerCell.donation.toOrganization {
+                
+            }
+            
             return headerCell
         } else {
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
