@@ -79,7 +79,7 @@ class NewDonationViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch identifier {
-            case "Choose Organization":
+            case "Choose Time":
                 saveDonation()
                 let orgChooserVC = segue.destinationViewController as! OrganizationChooserViewController
                 orgChooserVC.donation = self.donation

@@ -263,7 +263,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-mi-StB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-mi-StB">
                                 <rect key="frame" x="371" y="376" width="30" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -288,7 +288,10 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                <rect key="frame" x="199" y="306" width="202" height="162"/>
+                                <rect key="frame" x="200" y="306" width="200" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="rmy-0l-NsF"/>
+                                </constraints>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-cQ-sAk">
                                 <rect key="frame" x="16" y="225" width="131" height="28"/>
@@ -327,7 +330,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfe-uy-wCm">
-                                <rect key="frame" x="161" y="117" width="66" height="28"/>
+                                <rect key="frame" x="161" y="117" width="116" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Dairy" image="unchecked box">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -336,18 +339,6 @@
                                 <state key="selected" image="checked box"/>
                                 <connections>
                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="lc7-m7-MGc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oM-Iy-UBq">
-                                <rect key="frame" x="161" y="153" width="92" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="Desserts" image="unchecked box">
-                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="selected" image="checked box"/>
-                                <connections>
-                                    <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="oBT-bs-r2n"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-qV-Pin">
@@ -363,7 +354,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjw-z9-mcD">
-                                <rect key="frame" x="161" y="225" width="69" height="28"/>
+                                <rect key="frame" x="161" y="225" width="116" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="Other" image="unchecked box">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -380,6 +371,18 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0oM-Iy-UBq">
+                                <rect key="frame" x="161" y="153" width="116" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Desserts" image="unchecked box">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="selected" image="checked box"/>
+                                <connections>
+                                    <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="oBT-bs-r2n"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -397,8 +400,10 @@
                             <constraint firstItem="CJi-mA-n22" firstAttribute="leading" secondItem="wc8-jI-sCv" secondAttribute="leadingMargin" id="Jtt-hG-aAG"/>
                             <constraint firstItem="IGS-cE-5RJ" firstAttribute="top" secondItem="aSC-ik-Fqp" secondAttribute="bottom" constant="16" id="P8G-dP-dxo"/>
                             <constraint firstItem="0oM-Iy-UBq" firstAttribute="leading" secondItem="5Vb-96-Wf3" secondAttribute="trailing" constant="14" id="Q2R-4d-dAS"/>
+                            <constraint firstItem="0oM-Iy-UBq" firstAttribute="width" secondItem="pLk-qV-Pin" secondAttribute="width" id="Rrc-HG-ltX"/>
                             <constraint firstItem="Cph-4d-7ia" firstAttribute="leading" secondItem="gUr-cQ-sAk" secondAttribute="leading" id="SNv-Fo-qdR"/>
                             <constraint firstItem="sfe-uy-wCm" firstAttribute="centerY" secondItem="Cph-4d-7ia" secondAttribute="centerY" id="TNf-VW-RSJ"/>
+                            <constraint firstItem="0oM-Iy-UBq" firstAttribute="width" secondItem="mjw-z9-mcD" secondAttribute="width" id="TbO-Qh-8Yq"/>
                             <constraint firstItem="gUr-cQ-sAk" firstAttribute="width" secondItem="Cph-4d-7ia" secondAttribute="width" id="VUC-Vk-kku"/>
                             <constraint firstItem="gUr-cQ-sAk" firstAttribute="top" secondItem="ppU-q8-XjI" secondAttribute="bottom" constant="8" id="Vk7-Du-N5v"/>
                             <constraint firstItem="5UU-cu-cbs" firstAttribute="leading" secondItem="wc8-jI-sCv" secondAttribute="leadingMargin" constant="183" id="Yyg-4U-Mq9"/>
@@ -406,6 +411,7 @@
                             <constraint firstItem="CJi-mA-n22" firstAttribute="top" secondItem="gUr-cQ-sAk" secondAttribute="bottom" constant="16" id="cDT-aO-hMw"/>
                             <constraint firstItem="0oM-Iy-UBq" firstAttribute="centerY" secondItem="5Vb-96-Wf3" secondAttribute="centerY" id="gkC-bh-nJ7"/>
                             <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="16" id="iSS-mI-h5z"/>
+                            <constraint firstItem="0oM-Iy-UBq" firstAttribute="width" secondItem="sfe-uy-wCm" secondAttribute="width" id="jQV-zF-OHv"/>
                             <constraint firstItem="gUr-cQ-sAk" firstAttribute="width" secondItem="5Vb-96-Wf3" secondAttribute="width" id="k3j-a4-AYP"/>
                             <constraint firstAttribute="centerX" secondItem="5UU-cu-cbs" secondAttribute="centerX" id="mag-Bq-L8W"/>
                             <constraint firstItem="mjw-z9-mcD" firstAttribute="centerY" secondItem="gUr-cQ-sAk" secondAttribute="centerY" id="p87-Do-Fsz"/>
@@ -414,6 +420,11 @@
                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="top" secondItem="Cph-4d-7ia" secondAttribute="bottom" constant="8" id="suf-zZ-moU"/>
                             <constraint firstItem="ppU-q8-XjI" firstAttribute="centerY" secondItem="pLk-qV-Pin" secondAttribute="centerY" id="w7O-ZH-5zy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Yyg-4U-Mq9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="What?" id="AkB-kp-nMw">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PTa-Gr-kJ8">
@@ -470,16 +481,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JdF-oV-zWA">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="JdF-oV-zWA">
                                 <rect key="frame" x="0.0" y="126" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="startTimePicked:" destination="Eeq-Vc-FkX" eventType="editingDidEnd" id="orW-lx-YgH"/>
+                                    <action selector="startTimePicked:" destination="Eeq-Vc-FkX" eventType="valueChanged" id="dkB-33-a0Y"/>
                                 </connections>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
                                 <rect key="frame" x="0.0" y="329" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
