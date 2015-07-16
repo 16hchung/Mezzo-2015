@@ -137,12 +137,18 @@ extension DonationsViewController: UITableViewDataSource {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
             headerCell.donation = self.donations[indexPath.section]
             
-            if let orgUser = (PFUser.currentUser() as? User)?.organization where orgUser = headerCell.donation.toOrganization {
-                
+            if let orgUser = (PFUser.currentUser() as? User)?.organization where headerCell.donation.donationState == Donation.DonationState.Offered {
+                headerCell.declineButton.hidden == false
+                headerCell.acceptButton.hidden == false
+            } else {
+                headerCell.declineButton.hidden == true
+                headerCell.acceptButton.hidden == true
             }
             
             return headerCell
+            
         } else {
+            
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
             bodyCell.donation = self.donations[indexPath.section]
             return bodyCell

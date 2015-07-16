@@ -21,7 +21,7 @@ class Donation: PFObject, PFSubclassing {
     /// String representation of weight range
     @NSManaged var weightRange: String
     /// fromParse (use DonationState)
-    @NSManaged var status: String
+    @NSManaged private var status: String
     
     /// start of donor-proposed time range
     @NSManaged var donorTimeRangeStart: NSDate?
@@ -41,7 +41,7 @@ class Donation: PFObject, PFSubclassing {
         case Completed = "Completed"
     }
     
-    private var donationState: DonationState! {
+    var donationState: DonationState! {
         set(newState) { // updates Parse's status string
             status = newState.rawValue
         }

@@ -40,7 +40,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 formatter.timeStyle = .ShortStyle
                 timeLabel.text = formatter.stringFromDate(donation.orgSpecificTime!)
                 
-                statusLabel.text = donation.status
+                statusLabel.text = donation.donationState.rawValue
 //                
 //                let displayingUser: User!
 //                

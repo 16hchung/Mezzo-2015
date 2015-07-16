@@ -108,8 +108,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="acceptButton" destination="H9q-Eh-heU" id="Bep-Xl-s2H"/>
-                                            <outlet property="declineButton" destination="cX9-TJ-ENz" id="PrK-Eu-WGh"/>
+                                            <outlet property="acceptButton" destination="H9q-Eh-heU" id="QXc-Je-ERd"/>
+                                            <outlet property="declineButton" destination="cX9-TJ-ENz" id="D6G-XU-brg"/>
                                             <outlet property="entityNameLabel" destination="OdY-Mr-IBj" id="osh-QJ-SHQ"/>
                                             <outlet property="expandButton" destination="TSA-9r-Img" id="24X-cj-QiP"/>
                                             <outlet property="profileImageView" destination="2a0-6q-Qjb" id="SKL-5s-pkO"/>
