@@ -12,7 +12,11 @@ class PickupTimeViewController: UIViewController {
     
     @IBOutlet weak var startTimeRangePicker: UIDatePicker!
     @IBOutlet weak var endTimeRangePicker: UIDatePicker!
+    
+    var donation: Donation!
 
+    // MARK: VC lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,6 +26,17 @@ class PickupTimeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: methods
+    
+    func saveDonation() {
+        donation.donorTimeRangeStart = startTimeRangePicker.date
+        donation.donorTimeRangeEnd = endTimeRangePicker.date
+    }
+    
+    @IBAction func startTimePicked(sender: AnyObject) {
+        
     }
     
 
@@ -34,15 +49,4 @@ class PickupTimeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    
-
-}
-
-extension PickupTimeViewController: UIPickerViewDelegate {
-    
-}
-
-extension PickupTimeViewController: UIPickerViewDataSource {
-    
 }

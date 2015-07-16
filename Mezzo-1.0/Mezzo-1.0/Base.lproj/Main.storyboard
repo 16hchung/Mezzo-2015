@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -437,7 +437,7 @@
         <!--When?-->
         <scene sceneID="bF9-a8-paS">
             <objects>
-                <viewController id="Eeq-Vc-FkX" sceneMemberID="viewController">
+                <viewController id="Eeq-Vc-FkX" customClass="PickupTimeViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dZ9-Vg-U5X"/>
                         <viewControllerLayoutGuide type="bottom" id="xcT-Nc-iKs"/>
@@ -463,6 +463,9 @@
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
                                 </date>
+                                <connections>
+                                    <action selector="startTimePicked:" destination="Eeq-Vc-FkX" eventType="editingDidEnd" id="orW-lx-YgH"/>
+                                </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
                                 <rect key="frame" x="0.0" y="329" width="600" height="162"/>
@@ -503,6 +506,10 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="endTimeRangePicker" destination="y9n-dP-F6l" id="tUF-OF-K8w"/>
+                        <outlet property="startTimeRangePicker" destination="JdF-oV-zWA" id="blb-jR-u4h"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyF-RX-2oW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
