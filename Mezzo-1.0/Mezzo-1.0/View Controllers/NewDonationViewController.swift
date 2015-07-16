@@ -42,6 +42,8 @@ class NewDonationViewController: UIViewController {
         
         weightPickerView.delegate = self
         weightPickerView.dataSource = self
+        
+        nextButton.enabled = false
 
         // Do any additional setup after loading the view.
     }
@@ -65,6 +67,9 @@ class NewDonationViewController: UIViewController {
             donation.foodDescription.removeAtIndex(index!)
             println(donation.foodDescription)
         }
+        
+        // next button shouldn't be enabled unless foodDescription is populated
+        nextButton.enabled = !donation.foodDescription.isEmpty
     }
     
     
