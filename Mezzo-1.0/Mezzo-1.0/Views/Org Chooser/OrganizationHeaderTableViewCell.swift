@@ -19,6 +19,8 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
+    //static var selectedOrgArray = [Organization]()
+    
     var organization: Organization? {
         didSet {
             if let organization = organization {
@@ -30,7 +32,7 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     @IBAction func checkBoxSelected(sender: UIButton) {
         
         checkBoxButton.selected = !checkBoxButton.selected
-        
+        //OrganizationHeaderTableViewCell.selectedOrgArray += [self.organization!]
     }
     
 

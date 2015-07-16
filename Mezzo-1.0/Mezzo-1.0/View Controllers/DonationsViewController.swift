@@ -114,6 +114,8 @@ class DonationsViewController: UIViewController {
                     }
                 }
                 
+//                var someDonor = PFUser.currentUser()! as? User
+                
                 source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
                 
                 source.donation.offer { (success: Bool, error: NSError?) -> Void in

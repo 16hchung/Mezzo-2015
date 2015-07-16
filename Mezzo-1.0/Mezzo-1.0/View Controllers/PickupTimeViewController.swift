@@ -49,7 +49,7 @@ class PickupTimeViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let identifier = segue.identifier {
             switch (identifier) {
-            case "Choose Time":
+            case "Choose Org":
                 saveDonation()
                 let destination = segue.destinationViewController as? OrganizationChooserViewController
                 destination?.donation = self.donation

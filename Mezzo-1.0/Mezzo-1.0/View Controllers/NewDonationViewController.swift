@@ -81,7 +81,7 @@ class NewDonationViewController: UIViewController {
             switch identifier {
             case "Choose Time":
                 saveDonation()
-                let orgChooserVC = segue.destinationViewController as! OrganizationChooserViewController
+                let orgChooserVC = segue.destinationViewController as! PickupTimeViewController
                 orgChooserVC.donation = self.donation
             default:
                 break

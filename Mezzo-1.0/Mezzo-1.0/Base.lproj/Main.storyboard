@@ -681,6 +681,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="offerBarButton" destination="heK-0J-dit" id="3ux-7a-oNa"/>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
                     </connections>
                 </viewController>
