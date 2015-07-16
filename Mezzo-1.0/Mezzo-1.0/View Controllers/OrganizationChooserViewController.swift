@@ -13,6 +13,7 @@ class OrganizationChooserViewController: UIViewController {
     // MARK: Outlets
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var offerBarButton: UIBarButtonItem!
     
     // MARK: Properties
     
@@ -22,12 +23,16 @@ class OrganizationChooserViewController: UIViewController {
     
     var selectedIndex: Int? = nil
     
+    var selectedRecipientIndexPaths: [NSIndexPath] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // setting delegate and data source
         tableView.delegate = self
         tableView.dataSource = self
+        
+        offerBarButton.enabled = false
         
         // completion block for organizations query
         var completionBlock = { (result: [AnyObject]?, error: NSError?) -> Void in
@@ -40,15 +45,44 @@ class OrganizationChooserViewController: UIViewController {
         ParseHelper.getAllOrgs(completionBlock)
     }
     
-    /*
+//    func saveDonation() {
+//        var selectedOrgCellArray = [Organization]()
+//        
+//        for cellSection in 0..<tableView.numberOfSections() {
+//            let path = NSIndexPath(forRow: 0, inSection: cellSection)
+//            
+//            if let cell = tableView.cellForRowAtIndexPath(path) as? OrganizationHeaderTableViewCell where cell.checkBoxButton.selected {
+//                
+//                selectedOrgCellArray.append(cell.organization!)
+//            }
+//        }
+//        
+//        donation.offer()
+//    }
+    
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        
+//        if let identifier = segue.identifier {
+//            switch identifier {
+//            case "Send Offer":
+//                saveDonation()
+//            default:
+//                break
+//            }
+//        }
+        
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
+    
+    func cellCheckBoxSelected() {
+        offerBarButton.enabled = !offerBarButton.enabled
+    }
+    
 
 }
 
@@ -75,6 +109,10 @@ extension OrganizationChooserViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Org Name Header") as! OrganizationHeaderTableViewCell
+            
+            // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIControl_Class/#//apple_ref/occ/instm/UIControl/addTarget:action:forControlEvents:
+            headerCell.checkBoxButton.addTarget(self, action: "cellCheckBoxSelected", forControlEvents: UIControlEvents.TouchUpInside)
+            
             headerCell.organization = self.organizations[indexPath.section]
             return headerCell
         } else {

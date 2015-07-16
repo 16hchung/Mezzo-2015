@@ -77,6 +77,18 @@ class ParseHelper {
         
         offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
+    
+    static func addOfferToDonation(donation: Donation, toOrganization: Organization) {
+        
+        let offerObject = PFObject(className: OfferConstants.className)
+        offerObject[OfferConstants.fromDonorProperty] = donation.fromDonor
+        offerObject[OfferConstants.toOrgProperty] = toOrganization
+        offerObject[OfferConstants.donationProperty] = donation
+        offerObject[OfferConstants.statusProperty] = Donation.DonationState.Offered.rawValue
+        
+        offerObject.saveInBackground()
+        
+    }
 }
 
 extension PFObject: Equatable {
@@ -86,3 +98,30 @@ extension PFObject: Equatable {
 public func ==(lhs: PFObject, rhs: PFObject) -> Bool {
     return lhs.objectId == rhs.objectId
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -15,8 +15,11 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var orgNameLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
+    @IBOutlet weak var checkBoxButton: UIButton!
     
     // MARK: Properties
+    
+    //static var selectedOrgArray = [Organization]()
     
     var organization: Organization? {
         didSet {
@@ -26,15 +29,11 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBAction func checkBoxSelected(sender: UIButton) {
+        
+        checkBoxButton.selected = !checkBoxButton.selected
+        //OrganizationHeaderTableViewCell.selectedOrgArray += [self.organization!]
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    
 
 }

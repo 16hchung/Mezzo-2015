@@ -586,7 +586,7 @@
             </objects>
             <point key="canvasLocation" x="5387" y="-842"/>
         </scene>
-        <!--Available Recipients-->
+        <!--Who?-->
         <scene sceneID="odM-h3-ElJ">
             <objects>
                 <viewController id="5tF-LF-xic" customClass="OrganizationChooserViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
@@ -598,7 +598,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which organization do you want to donate to?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7U-8q-uLF">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose a recipient" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7U-8q-uLF">
                                 <rect key="frame" x="25" y="84" width="550" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -614,15 +614,41 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XBb-lV-3ZN" id="g4S-kv-gas">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Nj-GWz">
+                                                    <rect key="frame" x="534" y="11" width="48" height="48"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="48" id="b1a-8B-a1y"/>
+                                                        <constraint firstAttribute="width" constant="48" id="zmQ-xY-Jju"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                                    <state key="normal" image="expand">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thv-2o-W4W">
+                                                    <rect key="frame" x="8" y="18" width="32" height="32"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="32" id="bYw-u3-nfd"/>
+                                                        <constraint firstAttribute="width" constant="32" id="tAx-Oa-FgH"/>
+                                                    </constraints>
+                                                    <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                                                    <state key="normal" image="unchecked box">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="checked box"/>
+                                                    <connections>
+                                                        <action selector="checkBoxSelected:" destination="XBb-lV-3ZN" eventType="touchUpInside" id="ywQ-Yh-gPj"/>
+                                                    </connections>
+                                                </button>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue profile" translatesAutoresizingMaskIntoConstraints="NO" id="r9P-SP-Kuj">
-                                                    <rect key="frame" x="10" y="19" width="32" height="32"/>
+                                                    <rect key="frame" x="48" y="19" width="32" height="32"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="2ph-q3-kCW"/>
                                                         <constraint firstAttribute="width" constant="32" id="Tpn-yf-hCi"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Organization Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7L-cq-krR">
-                                                    <rect key="frame" x="52" y="23" width="472" height="24"/>
+                                                    <rect key="frame" x="90" y="23" width="169" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" priority="750" constant="500" id="zsA-Cw-0IV"/>
                                                     </constraints>
@@ -635,29 +661,21 @@
                                                         </mask>
                                                     </variation>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Nj-GWz">
-                                                    <rect key="frame" x="534" y="11" width="48" height="48"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="48" id="b1a-8B-a1y"/>
-                                                        <constraint firstAttribute="width" constant="48" id="zmQ-xY-Jju"/>
-                                                    </constraints>
-                                                    <inset key="contentEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
-                                                    <state key="normal" image="expand">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Thv-2o-W4W" secondAttribute="centerY" constant="0.5" id="2If-CD-4k4"/>
                                                 <constraint firstItem="a7L-cq-krR" firstAttribute="centerY" secondItem="3b4-Nj-GWz" secondAttribute="centerY" id="2bs-a1-se4"/>
-                                                <constraint firstItem="r9P-SP-Kuj" firstAttribute="leading" secondItem="g4S-kv-gas" secondAttribute="leading" constant="10" id="4kM-aa-3K0"/>
-                                                <constraint firstItem="3b4-Nj-GWz" firstAttribute="leading" secondItem="a7L-cq-krR" secondAttribute="trailing" constant="10" id="EbF-4h-b0D"/>
+                                                <constraint firstItem="r9P-SP-Kuj" firstAttribute="leading" secondItem="Thv-2o-W4W" secondAttribute="trailing" constant="8" id="5sk-1q-gLZ"/>
+                                                <constraint firstItem="3b4-Nj-GWz" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="a7L-cq-krR" secondAttribute="trailing" constant="8" id="E5a-gD-Qh4"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="3b4-Nj-GWz" secondAttribute="trailing" constant="10" id="LNI-ZH-o4I"/>
                                                 <constraint firstItem="r9P-SP-Kuj" firstAttribute="centerY" secondItem="a7L-cq-krR" secondAttribute="centerY" id="XCf-YW-VTn"/>
                                                 <constraint firstItem="a7L-cq-krR" firstAttribute="leading" secondItem="r9P-SP-Kuj" secondAttribute="trailing" constant="10" id="dEk-2V-DWZ"/>
                                                 <constraint firstItem="a7L-cq-krR" firstAttribute="top" secondItem="g4S-kv-gas" secondAttribute="topMargin" constant="15" id="ihX-qt-net"/>
+                                                <constraint firstItem="Thv-2o-W4W" firstAttribute="leading" secondItem="g4S-kv-gas" secondAttribute="leadingMargin" id="lV1-5P-fyz"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="checkBoxButton" destination="Thv-2o-W4W" id="qmL-Oe-9Nd"/>
                                             <outlet property="expandButton" destination="3b4-Nj-GWz" id="gg7-gK-Gxp"/>
                                             <outlet property="orgNameLabel" destination="a7L-cq-krR" id="AwE-5M-eOj"/>
                                             <outlet property="profileImageView" destination="r9P-SP-Kuj" id="zte-g4-ATm"/>
@@ -702,7 +720,7 @@
                             <constraint firstAttribute="centerX" secondItem="T7U-8q-uLF" secondAttribute="centerX" id="myl-lD-ou8"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Available Recipients" id="vXV-bf-Bmo">
+                    <navigationItem key="navigationItem" title="Who?" id="vXV-bf-Bmo">
                         <barButtonItem key="backBarButtonItem" title="Back" id="clM-j7-ajF"/>
                         <barButtonItem key="rightBarButtonItem" title="Offer" id="heK-0J-dit">
                             <connections>
@@ -711,6 +729,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="offerBarButton" destination="heK-0J-dit" id="3ux-7a-oNa"/>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
                     </connections>
                 </viewController>
