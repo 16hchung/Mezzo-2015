@@ -452,16 +452,16 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="JdF-oV-zWA">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="JdF-oV-zWA">
                                 <rect key="frame" x="0.0" y="126" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
                                 </date>
                                 <connections>
-                                    <action selector="startTimePicked:" destination="Eeq-Vc-FkX" eventType="editingDidEnd" id="orW-lx-YgH"/>
+                                    <action selector="startTimePicked:" destination="Eeq-Vc-FkX" eventType="valueChanged" id="dkB-33-a0Y"/>
                                 </connections>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
                                 <rect key="frame" x="0.0" y="329" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
