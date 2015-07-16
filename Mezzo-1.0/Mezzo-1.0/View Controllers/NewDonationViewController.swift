@@ -14,6 +14,7 @@ class NewDonationViewController: UIViewController {
     
     @IBOutlet var foodTypeButtons: [UIButton]!
     @IBOutlet weak var weightPickerView: UIPickerView!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     
     // MARK: Properties
     
