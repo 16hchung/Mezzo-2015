@@ -245,7 +245,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-mi-StB">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="lbs." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gla-mi-StB">
                                 <rect key="frame" x="371" y="376" width="30" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -270,7 +270,10 @@
                                 </connections>
                             </button>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                <rect key="frame" x="199" y="306" width="202" height="162"/>
+                                <rect key="frame" x="200" y="306" width="200" height="162"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="rmy-0l-NsF"/>
+                                </constraints>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gUr-cQ-sAk">
                                 <rect key="frame" x="16" y="225" width="131" height="28"/>
@@ -399,6 +402,11 @@
                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="top" secondItem="Cph-4d-7ia" secondAttribute="bottom" constant="8" id="suf-zZ-moU"/>
                             <constraint firstItem="ppU-q8-XjI" firstAttribute="centerY" secondItem="pLk-qV-Pin" secondAttribute="centerY" id="w7O-ZH-5zy"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Yyg-4U-Mq9"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="What?" id="AkB-kp-nMw">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PTa-Gr-kJ8">
