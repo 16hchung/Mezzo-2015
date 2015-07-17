@@ -42,6 +42,9 @@ class DonationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -68,12 +71,12 @@ class DonationsViewController: UIViewController {
             // cast then recast from Set (no duplicates) back to Array
             let noDuplicateDonations = Array(Set(loadedDonations!))
             
-            self.donations += noDuplicateDonations
+            self.donations = noDuplicateDonations
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
             
             // donors can't add two donations at once
-            if loadedDonations.count > 0 { self.addBarButton.enabled == false }
+            if loadedDonations!.count > 0 { self.addBarButton.enabled == false }
             
             // load the appropriate empty state button if necessary
             self.updateEmptyStateButton()
@@ -199,14 +202,6 @@ extension DonationsViewController: UITableViewDataSource {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
             headerCell.donation = self.donations[indexPath.section]
             
-            if let orgUser = (PFUser.currentUser() as? User)?.organization where headerCell.donation.donationState == Donation.DonationState.Offered {
-                headerCell.declineButton.hidden == false
-                headerCell.acceptButton.hidden == false
-            } else {
-                headerCell.declineButton.hidden == true
-                headerCell.acceptButton.hidden == true
-            }
-            
             return headerCell
         } else {
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
@@ -238,13 +233,13 @@ extension DonationsViewController: UITableViewDelegate {
         
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        if indexPath.row == 0 {
-            return 80
-        } else {
-            return 120
-        }
-    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row == 0 {
+//            return 126
+//        } else {
+//            return 120
+//        }
+//    }
 }
 
 // MARK: - Search Bar Delegate

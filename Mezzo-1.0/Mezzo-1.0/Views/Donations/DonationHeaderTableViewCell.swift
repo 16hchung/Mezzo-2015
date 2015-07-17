@@ -27,6 +27,14 @@ class DonationHeaderTableViewCell: UITableViewCell {
         didSet {
             if let donation = donation {
                 
+                if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == Donation.DonationState.Offered {
+                    declineButton.hidden = false
+                    acceptButton.hidden = false
+                } else {
+//                    declineButton.removeFromSuperview()
+//                    acceptButton.removeFromSuperview()
+                }
+                
                 var otherDonorUser: Donor?
                 var otherOrgUser: Organization?
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
@@ -41,24 +49,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 timeLabel.text = formatter.stringFromDate(donation.orgSpecificTime!)
                 
                 statusLabel.text = donation.donationState.rawValue
-//                
-//                let displayingUser: User!
-//                
-//                if let user = user as? Organization {
-//                    displayingUser = donation.fromDonor
-//                } else {
-//                    displayingUser = donation.toOrganization
-//                }
-//                
-//                entityNameLabel.text = displayingUser.name
-//                
-//                var formatter = NSDateFormatter()
-//                formatter.timeStyle = .ShortStyle
-//                timeLabel.text = donation.pickupAt!
-//                
-//                statusLabel.text = donation.status
-                
-                // TODO: expand button
             }
         }
     }
