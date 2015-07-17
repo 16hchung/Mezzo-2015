@@ -226,25 +226,7 @@
                                 <color key="backgroundColor" red="0.96269842461934163" green="0.96269842461934163" blue="0.96269842461934163" alpha="1" colorSpace="calibratedRGB"/>
                                 <inset key="contentEdgeInsets" minX="20" minY="30" maxX="20" maxY="0.0"/>
                                 <state key="normal">
-                                    <attributedString key="attributedTitle">
-                                        <fragment content="No donations yet!">
-                                            <attributes>
-                                                <color key="NSColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="20" name="HelveticaNeue-Medium"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                        <fragment>
-                                            <string key="content">
-
-Tap the + button in the top right to create a new offer.</string>
-                                            <attributes>
-                                                <color key="NSColor" red="0.49803921580314636" green="0.49803921580314636" blue="0.49803921580314636" alpha="1" colorSpace="calibratedRGB"/>
-                                                <font key="NSFont" size="16" name="HelveticaNeue"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
+                                    <attributedString key="attributedTitle"/>
                                 </state>
                             </button>
                         </subviews>

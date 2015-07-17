@@ -42,16 +42,12 @@ class DonationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
-        
-        emptyStateButton.titleLabel?.numberOfLines = 0
-        
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
         reloadData()
-        
     }
     
     func reloadData() {
@@ -75,7 +71,51 @@ class DonationsViewController: UIViewController {
             
             // donors can't add two donations at once
             if loadedDonations.count > 0 { self.addBarButton.enabled == false }
+            
+            // load the appropriate empty state button if necessary
+            self.updateEmptyStateButton()
         }
+    }
+    
+    func updateEmptyStateButton() {
+        if donations.count == 0 {
+            emptyStateButton.hidden = false
+            emptyStateButton.enabled = true
+            
+            // set text and segue
+            emptyStateButton.titleLabel?.numberOfLines = 0
+            emptyStateButton.titleLabel?.textAlignment = .Center
+            emptyStateButton.titleLabel?.textColor = UIColor.grayColor()
+            
+            if let user = PFUser.currentUser()! as? User where user.donor != nil {
+                let headline = "No donations yet!"
+                let text = NSMutableAttributedString(string: "\(headline)")
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "Tap the + button in the top right to create a new donation offer."))
+                
+                text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                emptyStateButton.setAttributedTitle(text, forState: .Normal)
+            
+            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+                emptyStateButton.enabled = false
+                
+                let headline = "No donations yet!"
+                let text = NSMutableAttributedString(string: "\(headline)")
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "We will notify you when a new donation offer comes in."))
+                
+                text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                emptyStateButton.setAttributedTitle(text, forState: .Normal)
+                
+                // TODO: redirect to settings page in the future?
+            }
+        } else {
+            emptyStateButton.enabled = false
+            emptyStateButton.hidden = true
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
