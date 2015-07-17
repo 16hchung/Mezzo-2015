@@ -15,7 +15,12 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
+    @IBOutlet weak var contactInfoTitle: UILabel!
+    @IBOutlet weak var locationTitle: UILabel!
+    @IBOutlet weak var OfferSentToTitle: UILabel!
     
+    @IBOutlet weak var cancelDonationButton: UIButton!
+    @IBOutlet weak var changeRecipientButton: UIButton!
     
     var donation: Donation! {
         didSet {
@@ -36,20 +41,23 @@ class DonationTableViewCell: UITableViewCell {
                 // update the labels
                 foodDetailsLabel.text = donation.detailsString()
                 
-                
-//                // get the other user (to grab their phone number)
-//                let otherUser: User!
-//                if let user = user as? Organization {
-//                    otherUser = donation.fromDonor
-//                } else {
-//                    otherUser = donation.toOrganization
-//                }
-//                
-                // update the labels
-//                foodDetailsLabel.text = donation.detailsString()
-//                phoneNumberButton.titleLabel!.text = otherUser.phoneNumber
                 //phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
+                
+                
+                if donation.donationState == Donation.DonationState.Offered {
+                    contactInfoTitle.hidden = true
+                    locationTitle.hidden = true
+                    phoneNumberButton.hidden = true
+                    locationButton.hidden = true
+                } else {
+                    cancelDonationButton.hidden = true
+                    changeRecipientButton.hidden = true
+                    OfferSentToTitle.hidden = true
+                    
+                    // input rows
+                    
+                }
                 
             }
         }
