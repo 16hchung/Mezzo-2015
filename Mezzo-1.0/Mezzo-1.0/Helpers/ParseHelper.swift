@@ -61,10 +61,10 @@ class ParseHelper {
         
         if let donorUser = (PFUser.currentUser()! as? User)?.donor {
             offerQuery.whereKey(OfferConstants.fromDonorProperty, equalTo: donorUser)
-            offerQuery.includeKey(OfferConstants.toOrgProperty)
+            offerQuery.includeKey(OfferConstants.fromDonorProperty)
         } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
             offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
-            offerQuery.includeKey(OfferConstants.fromDonorProperty)
+            offerQuery.includeKey(OfferConstants.toOrgProperty)
         }
         
         if isUpcoming {

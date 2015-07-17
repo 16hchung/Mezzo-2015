@@ -61,15 +61,15 @@ class DonationsViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem = nil
             }
             
-            let loadedOffers: AnyObject? = result?[0]
+            let loadedOffers =  result as? [PFObject]
 //            let donation = loadedOffers[ParseHelper.OfferConstants.donationProperty] as! Donation
             
             // result should be an array of offers => convert to array associated donations
-//            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation]
+            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
             // cast then recast from Set (no duplicates) back to Array
-            //let noDuplicateDonations = Array(Set(loadedDonations))
+            let noDuplicateDonations = Array(Set(loadedDonations!))
             
-//            self.donations += loadedDonations!
+            self.donations += noDuplicateDonations
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
             
