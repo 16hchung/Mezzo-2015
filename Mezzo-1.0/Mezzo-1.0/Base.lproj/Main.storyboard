@@ -228,6 +228,9 @@
                                 <state key="normal">
                                     <attributedString key="attributedTitle"/>
                                 </state>
+                                <connections>
+                                    <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonationFromEmpty" id="o90-aA-Pcx"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -780,4 +783,7 @@
         <image name="expand" width="48" height="48"/>
         <image name="unchecked box" width="28" height="28"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="o90-aA-Pcx"/>
+    </inferredMetricsTieBreakers>
 </document>
