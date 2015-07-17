@@ -17,6 +17,7 @@ class DonationsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
+    @IBOutlet weak var emptyStateButton: UIButton!
     
     // MARK: Properties
     
@@ -41,6 +42,8 @@ class DonationsViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         searchBar.delegate = self
+        
+        emptyStateButton.titleLabel?.numberOfLines = 0
         
     }
     
