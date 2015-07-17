@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+protocol OrgHeaderCellDelegate {
+    
+    func boxCheckedForOrgCell(orgCell: OrganizationHeaderTableViewCell)
+    
+}
+
 class OrganizationHeaderTableViewCell: UITableViewCell {
     
     // MARK: Outlets
@@ -18,6 +25,8 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxButton: UIButton!
     
     // MARK: Properties
+    
+    var delegate: OrgHeaderCellDelegate?
     
     //static var selectedOrgArray = [Organization]()
     
@@ -32,6 +41,7 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     @IBAction func checkBoxSelected(sender: UIButton) {
         
         checkBoxButton.selected = !checkBoxButton.selected
+        delegate!.boxCheckedForOrgCell(self)
         //OrganizationHeaderTableViewCell.selectedOrgArray += [self.organization!]
     }
     

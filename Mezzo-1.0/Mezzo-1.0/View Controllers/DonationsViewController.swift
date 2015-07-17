@@ -61,17 +61,20 @@ class DonationsViewController: UIViewController {
                 self.navigationItem.rightBarButtonItem = nil
             }
             
-            // result should be an array of offers => convert to array associated donations
-            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation] ?? []
-            // cast then recast from Set (no duplicates) back to Array
-            let noDuplicateDonations = Array(Set(loadedDonations))
+            let loadedOffers: AnyObject? = result?[0]
+//            let donation = loadedOffers[ParseHelper.OfferConstants.donationProperty] as! Donation
             
-            self.donations += noDuplicateDonations
+            // result should be an array of offers => convert to array associated donations
+//            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] } as? [Donation]
+            // cast then recast from Set (no duplicates) back to Array
+            //let noDuplicateDonations = Array(Set(loadedDonations))
+            
+//            self.donations += loadedDonations!
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
             
             // donors can't add two donations at once
-            if loadedDonations.count > 0 { self.addBarButton.enabled == false }
+//            if loadedDonations!.count > 0 { self.addBarButton.enabled == false }
         }
     }
 
@@ -103,23 +106,10 @@ class DonationsViewController: UIViewController {
                 
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
-                var selectedOrgCellArray = [Organization]()
-                
-                for cellSection in 0..<tableView.numberOfSections() {
-                    let path = NSIndexPath(forRow: 0, inSection: cellSection)
-                    
-                    if let cell = tableView.cellForRowAtIndexPath(path) as? OrganizationHeaderTableViewCell where cell.checkBoxButton.selected {
-                        
-                        selectedOrgCellArray.append(cell.organization!)
-                    }
-                }
-                
-//                var someDonor = PFUser.currentUser()! as? User
-                
                 source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
                 
                 source.donation.offer { (success: Bool, error: NSError?) -> Void in
-                    for org in selectedOrgCellArray {
+                    for org in source.selectedRecipientOrganizations {
                         ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
                     }
                     

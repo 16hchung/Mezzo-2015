@@ -23,7 +23,7 @@ class OrganizationChooserViewController: UIViewController {
     
     var selectedIndex: Int? = nil
     
-    var selectedRecipientIndexPaths: [NSIndexPath] = []
+    var selectedRecipientOrganizations = [Organization]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +78,6 @@ class OrganizationChooserViewController: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    
-    func cellCheckBoxSelected() {
-        offerBarButton.enabled = !offerBarButton.enabled
-    }
-    
 
 }
 
@@ -110,8 +105,7 @@ extension OrganizationChooserViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Org Name Header") as! OrganizationHeaderTableViewCell
             
-            // https://developer.apple.com/library/ios/documentation/UIKit/Reference/UIControl_Class/#//apple_ref/occ/instm/UIControl/addTarget:action:forControlEvents:
-            headerCell.checkBoxButton.addTarget(self, action: "cellCheckBoxSelected", forControlEvents: UIControlEvents.TouchUpInside)
+            headerCell.delegate = self
             
             headerCell.organization = self.organizations[indexPath.section]
             return headerCell
@@ -121,6 +115,21 @@ extension OrganizationChooserViewController: UITableViewDataSource {
             return bodyCell
         }
     }
+}
+
+extension OrganizationChooserViewController: OrgHeaderCellDelegate {
+    
+    func boxCheckedForOrgCell(orgCell: OrganizationHeaderTableViewCell) {
+        
+        if orgCell.checkBoxButton.selected {
+            selectedRecipientOrganizations.append(orgCell.organization!)
+        } else {
+            selectedRecipientOrganizations = selectedRecipientOrganizations.filter { $0 != orgCell.organization! }
+        }
+        
+        offerBarButton.enabled = !offerBarButton.enabled
+    }
+    
 }
 
 // MARK: - Table View Delegate Protocol
