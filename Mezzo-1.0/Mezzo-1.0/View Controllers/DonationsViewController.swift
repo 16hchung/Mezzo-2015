@@ -56,12 +56,7 @@ class DonationsViewController: UIViewController {
     func reloadData() {
         // load donations (getDonations already deals with type of user)
         ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
-            // do the add button thing
-            if let user = PFUser.currentUser()! as? User where user.donor != nil {
-                self.navigationItem.rightBarButtonItem = self.addBarButton
-            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
-                self.navigationItem.rightBarButtonItem = nil
-            }
+            
             
             let loadedOffers =  result as? [PFObject]
 //            let donation = loadedOffers[ParseHelper.OfferConstants.donationProperty] as! Donation
@@ -75,8 +70,14 @@ class DonationsViewController: UIViewController {
             self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
             self.tableView.reloadData()
             
-            // donors can't add two donations at once
-            if loadedDonations!.count > 0 { self.addBarButton.enabled == false }
+            // do the add button thing
+            if let user = PFUser.currentUser()! as? User where user.donor != nil {
+                self.navigationItem.rightBarButtonItem = self.addBarButton
+                // donors can't add two donations at once
+                if self.donations.count > 0 { self.addBarButton.enabled == false }
+            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+                self.navigationItem.rightBarButtonItem = nil
+            }
             
             // load the appropriate empty state button if necessary
             self.updateEmptyStateButton()
@@ -204,9 +205,12 @@ extension DonationsViewController: UITableViewDataSource {
             headerCell.donation = self.donations[indexPath.section]
             
             return headerCell
+            
         } else {
+            
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
             bodyCell.donation = self.donations[indexPath.section]
+            
             return bodyCell
         }
     }
