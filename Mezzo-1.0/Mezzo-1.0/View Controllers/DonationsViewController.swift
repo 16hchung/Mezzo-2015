@@ -55,20 +55,24 @@ class DonationsViewController: UIViewController {
     
     func reloadData() {
         // load donations (getDonations already deals with type of user)
-        ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
-            
-            
+        ParseHelper.getUpcomingDonations(isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedOffers =  result as? [PFObject]
-//            let donation = loadedOffers[ParseHelper.OfferConstants.donationProperty] as! Donation
+            let offer = loadedOffers![0]
+            let donation = offer[ParseHelper.OfferConstants.donationProperty] as! Donation
             
-            // result should be an array of offers => convert to array associated donations
-            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
-            // cast then recast from Set (no duplicates) back to Array
-            let noDuplicateDonations = Array(Set(loadedDonations!))
+            println(donation.fromDonor?.name)
+//
+//            // result should be an array of offers => convert to array associated donations
+//            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
+//            // cast then recast from Set (no duplicates) back to Array
+//            let noDuplicateDonations = Array(Set(loadedDonations!))
             
-            self.donations = noDuplicateDonations
-            self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
-            self.tableView.reloadData()
+//            self.donations = noDuplicateDonations
+//            self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
+//            self.tableView.reloadData()
+            
+            // donors can't add two donations at once
+//            if loadedOffers!.count > 0 { self.addBarButton.enabled == false }
             
             // do the add button thing
             if let user = PFUser.currentUser()! as? User where user.donor != nil {
@@ -82,6 +86,12 @@ class DonationsViewController: UIViewController {
             // load the appropriate empty state button if necessary
             self.updateEmptyStateButton()
         }
+        
+//        if (PFUser.currentUser() as! User).organization != nil {
+//            ParseHelper.getUpcomingDonations(isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
+//                let acceptedOffers = result as? [Donation]
+//            }
+//        }
     }
     
     func updateEmptyStateButton() {
@@ -265,23 +275,3 @@ extension DonationsViewController: UISearchBarDelegate {
     }
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
