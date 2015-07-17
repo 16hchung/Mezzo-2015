@@ -206,18 +206,33 @@
                             </tableView>
                             <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="OH8-gy-N1q">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="oX4-Yn-K8u"/>
+                                </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2cu-PG-mN2">
                                 <rect key="frame" x="142" y="118" width="316" height="29"/>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="750" constant="316" id="2cu-h4-PAi"/>
+                                    <constraint firstAttribute="height" constant="28" id="FqS-cT-Ihs"/>
                                 </constraints>
                                 <segments>
                                     <segment title="Upcoming"/>
                                     <segment title="Completed"/>
                                 </segments>
                             </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="my8-LK-HQv">
+                                <rect key="frame" x="0.0" y="156" width="600" height="444"/>
+                                <color key="backgroundColor" red="0.96269842461934163" green="0.96269842461934163" blue="0.96269842461934163" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="30" maxX="20" maxY="0.0"/>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonationFromEmpty" id="o90-aA-Pcx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -228,8 +243,12 @@
                             <constraint firstItem="z9C-gj-fZ0" firstAttribute="leading" secondItem="URt-bY-r0R" secondAttribute="leading" id="PI5-O6-MAH"/>
                             <constraint firstItem="OH8-gy-N1q" firstAttribute="top" secondItem="EyM-HA-9We" secondAttribute="bottom" id="S1n-ra-Iqv"/>
                             <constraint firstAttribute="trailing" secondItem="z9C-gj-fZ0" secondAttribute="trailing" id="TZ1-UG-vXP"/>
+                            <constraint firstItem="uof-ab-a0Q" firstAttribute="top" secondItem="my8-LK-HQv" secondAttribute="bottom" id="XIc-xi-GIt"/>
+                            <constraint firstItem="my8-LK-HQv" firstAttribute="leading" secondItem="URt-bY-r0R" secondAttribute="leadingMargin" constant="-16" id="YQM-3d-Zwc"/>
                             <constraint firstItem="2cu-PG-mN2" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="URt-bY-r0R" secondAttribute="leadingMargin" constant="10" id="fb1-m5-0Yp"/>
                             <constraint firstItem="OH8-gy-N1q" firstAttribute="leading" secondItem="URt-bY-r0R" secondAttribute="leading" id="h9Z-IN-Vep"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="my8-LK-HQv" secondAttribute="trailing" constant="-16" id="hlw-6A-nDF"/>
+                            <constraint firstItem="my8-LK-HQv" firstAttribute="top" secondItem="2cu-PG-mN2" secondAttribute="bottom" constant="10" id="uRF-PG-ksy"/>
                             <constraint firstItem="z9C-gj-fZ0" firstAttribute="top" secondItem="2cu-PG-mN2" secondAttribute="bottom" constant="10" id="zRR-cZ-5z7"/>
                         </constraints>
                     </view>
@@ -243,6 +262,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButton" destination="u2J-zT-V1M" id="2n1-jX-K3g"/>
+                        <outlet property="emptyStateButton" destination="my8-LK-HQv" id="Gu8-r4-MQd"/>
                         <outlet property="searchBar" destination="OH8-gy-N1q" id="Sr2-XR-SSy"/>
                         <outlet property="segmentedControl" destination="2cu-PG-mN2" id="oAk-i2-JLy"/>
                         <outlet property="tableView" destination="z9C-gj-fZ0" id="DNo-0M-7Ha"/>
@@ -764,4 +784,7 @@
         <image name="expand" width="48" height="48"/>
         <image name="unchecked box" width="28" height="28"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="o90-aA-Pcx"/>
+    </inferredMetricsTieBreakers>
 </document>
