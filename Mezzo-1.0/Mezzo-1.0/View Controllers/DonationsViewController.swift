@@ -87,6 +87,7 @@ class DonationsViewController: UIViewController {
         if donations.count == 0 {
             emptyStateButton.hidden = false
             emptyStateButton.enabled = true
+            emptyStateButton.backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
             
             // set text and segue
             emptyStateButton.titleLabel?.numberOfLines = 0
