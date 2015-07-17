@@ -45,15 +45,21 @@ class DonationTableViewCell: UITableViewCell {
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
                 
                 
-                if donation.donationState == Donation.DonationState.Offered {
+                if let donorUser = (PFUser.currentUser() as? User)?.donor where donation.donationState == Donation.DonationState.Offered {
+                    
                     contactInfoTitle.hidden = true
                     locationTitle.hidden = true
                     phoneNumberButton.hidden = true
                     locationButton.hidden = true
+                    
                 } else {
+                    
                     cancelDonationButton.hidden = true
                     changeRecipientButton.hidden = true
                     OfferSentToTitle.hidden = true
+                    
+                    
+                    
                     
                     // input rows
                     
