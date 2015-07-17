@@ -37,6 +37,29 @@ class Organization: PFObject, PFSubclassing{
         // notify donor of this donation
     }
     
+    func acceptDonation(donation: Donation) {
+        ParseHelper.getOfferForDonation(donation, toOrganization: (PFUser.currentUser()! as! User).organization!) {
+            (result: [AnyObject]?, error: NSError?) -> Void in
+            if let result = result {
+                let donationsToAccept = result.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
+                
+                for donationObject in donationsToAccept {
+                    donationObject.toOrganization = (PFUser.currentUser()! as! User).organization!
+                    donationObject.donationState = .Accepted
+                    donationObject.saveInBackground()
+                }
+                
+                for offer in result {
+                    if let offer = offer as? PFObject {
+                        offer[ParseHelper.OfferConstants.statusProperty] = Donation.DonationState.Accepted.rawValue
+                        offer.saveInBackground()
+                    }
+                    
+                }
+            }
+        }
+    }
+    
     
     // MARK: PFSubclassing Protocol
     

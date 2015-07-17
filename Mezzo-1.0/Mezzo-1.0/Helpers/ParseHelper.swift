@@ -89,6 +89,17 @@ class ParseHelper {
         offerObject.saveInBackground()
         
     }
+    
+    static func getOfferForDonation(donation: Donation, toOrganization: Organization, callBack: PFArrayResultBlock) {
+        let offerQuery = PFQuery(className: OfferConstants.className)
+        offerQuery.whereKey(OfferConstants.donationProperty, equalTo: donation)
+        offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: toOrganization)
+        
+        offerQuery.includeKey(OfferConstants.donationProperty)
+        
+        offerQuery.findObjectsInBackgroundWithBlock(callBack)
+    }
+    
 }
 
 extension PFObject: Equatable {
