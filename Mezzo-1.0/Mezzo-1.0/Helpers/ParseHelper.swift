@@ -52,35 +52,6 @@ class ParseHelper {
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
-    // MARK: Donation Methods
-    
-    /**
-        Gets all donations (includes completed, excludes cancelled) associated with the PFUser.currentUser().
-        Loads the upcoming or completed donations based on `isUpcoming` argument.
-    */
-//    static func getDonations(#isUpcoming: Bool, completionBlock: PFArrayResultBlock) {
-//        let offerQuery = PFQuery(className: OfferConstants.className)
-//        
-//        if let donorUser = (PFUser.currentUser()! as? User)?.donor {
-//            offerQuery.whereKey(OfferConstants.fromDonorProperty, equalTo: donorUser)
-//            offerQuery.includeKey(OfferConstants.fromDonorProperty)
-//        } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
-//            offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
-//            offerQuery.includeKey(OfferConstants.toOrgProperty)
-//        }
-//        
-//        if isUpcoming {
-//            offerQuery.whereKey(OfferConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue)
-//        } else {
-//            offerQuery.whereKey(OfferConstants.statusProperty, equalTo: Donation.DonationState.Completed.rawValue)
-//        }
-//        
-//        offerQuery.includeKey(OfferConstants.donationProperty)
-//        
-//        offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
-//    }
-    
-
     /**
         Gets completed donations for the current user.
     */
@@ -110,33 +81,41 @@ class ParseHelper {
             
             let donationQuery = PFQuery(className: DonationConstants.className)
             donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser)
+            donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue) // not completed yet
+            donationQuery.includeKey(DonationConstants.toOrgProperty)
             donationQuery.includeKey(DonationConstants.fromDonorProperty)
-            donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
+            
+            let offerQuery = PFQuery(className: OfferConstants.className)
+            offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationQuery)
+            offerQuery.includeKey(OfferConstants.donationProperty)
+            
+            offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
             
         } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
             
             if isPending { // donations to an org that await their response
+                
+                let offerQuery = PFQuery(className: OfferConstants.className)
+                offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
+                offerQuery.whereKey(OfferConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue) // pending for the current recipient
+                
+                // make sure entire donation is still pending too
+                let donationStatusQuery = PFQuery(className: DonationConstants.className)
+                donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
+                donationStatusQuery.includeKey(DonationConstants.fromDonorProperty)
+                offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
+                
+                offerQuery.includeKey(OfferConstants.toOrgProperty)
+                offerQuery.includeKey(OfferConstants.donationProperty)
+                offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
+                
+            } else { // donations to an org that they have accepted
                 
                 let donationQuery = PFQuery(className: DonationConstants.className)
                 donationQuery.whereKey(DonationConstants.toOrgProperty, equalTo: orgUser) // to current recipient user
                 donationQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Accepted.rawValue) // accepted
                 donationQuery.includeKey(DonationConstants.toOrgProperty)
                 donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
-                
-            } else { // donations to an org that they have accepted
-                
-                let offerQuery = PFQuery(className: OfferConstants.className)
-                offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
-                offerQuery.whereKey(OfferConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue) // pending for the current recipient
-
-                // make sure entire donation is still pending too
-                let donationStatusQuery = PFQuery(className: DonationConstants.className)
-                donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
-                offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
-                
-                offerQuery.includeKey(OfferConstants.toOrgProperty)
-                offerQuery.includeKey(OfferConstants.donationProperty)
-                offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
                 
             }
         }
@@ -154,13 +133,13 @@ class ParseHelper {
         
     }
     
-    static func getOfferForDonation(donation: Donation, toOrganization: Organization, callBack: PFArrayResultBlock) {
+    /**
+        Get all the offers for a given donation object.
+    */
+    static func getOffersForDonation(donation: Donation, callBack: PFArrayResultBlock) {
         let offerQuery = PFQuery(className: OfferConstants.className)
         offerQuery.whereKey(OfferConstants.donationProperty, equalTo: donation)
-        offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: toOrganization)
-        
         offerQuery.includeKey(OfferConstants.donationProperty)
-        
         offerQuery.findObjectsInBackgroundWithBlock(callBack)
     }
     
