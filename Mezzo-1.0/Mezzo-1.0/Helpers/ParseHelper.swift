@@ -72,54 +72,48 @@ class ParseHelper {
     }
     
     /**
-        Gets upcoming donations for the current user to display on the donationsVC page.
-        IsPending is for the org's view, for loading pending donations awaiting their response
-        and loadng accepted upcoming donations separately.
+        Gets upcoming (not completed) donations for the current donor.
     */
-    static func getUpcomingDonations(#isPending: Bool, completionBlock: PFArrayResultBlock) {
-        if let donorUser = (PFUser.currentUser()! as? User)?.donor {
-            
-            let donationQuery = PFQuery(className: DonationConstants.className)
-            donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser)
-            donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue) // not completed yet
-            donationQuery.includeKey(DonationConstants.toOrgProperty)
-            donationQuery.includeKey(DonationConstants.fromDonorProperty)
+    static func getUpcomingDonationsForDonor(#donorUser: Donor, completionBlock: PFArrayResultBlock) {
+        let donationQuery = PFQuery(className: DonationConstants.className)
+        donationQuery.includeKey(DonationConstants.toOrgProperty)
+        donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser) // from the donor user passed in
+        donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue) // not completed yet
+        donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
+    }
+    
+    /**
+        Gets upcoming donations for the current recipient user.
+    
+        :param: isPending If true, returns pending offers for the recipient. If false, returns accepted donations for recipient.
+    */
+    static func getUpcomingDonationsForRecipient(#orgUser: Organization, isPending: Bool, completionBlock: PFArrayResultBlock) {
+        if isPending {
             
             let offerQuery = PFQuery(className: OfferConstants.className)
-            offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationQuery)
-            offerQuery.includeKey(OfferConstants.donationProperty)
+            offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
+            offerQuery.whereKey(OfferConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue) // pending for the current recipient
             
+            // make sure entire donation is still pending too
+            let donationStatusQuery = PFQuery(className: DonationConstants.className)
+            donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
+            offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
+            
+            offerQuery.includeKey(OfferConstants.fromDonorProperty)
+            offerQuery.includeKey(OfferConstants.donationProperty)
             offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
             
-        } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
+        } else {
             
-            if isPending { // donations to an org that await their response
-                
-                let offerQuery = PFQuery(className: OfferConstants.className)
-                offerQuery.whereKey(OfferConstants.toOrgProperty, equalTo: orgUser)
-                offerQuery.whereKey(OfferConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue) // pending for the current recipient
-                
-                // make sure entire donation is still pending too
-                let donationStatusQuery = PFQuery(className: DonationConstants.className)
-                donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
-                donationStatusQuery.includeKey(DonationConstants.fromDonorProperty)
-                offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
-                
-                offerQuery.includeKey(OfferConstants.toOrgProperty)
-                offerQuery.includeKey(OfferConstants.donationProperty)
-                offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
-                
-            } else { // donations to an org that they have accepted
-                
-                let donationQuery = PFQuery(className: DonationConstants.className)
-                donationQuery.whereKey(DonationConstants.toOrgProperty, equalTo: orgUser) // to current recipient user
-                donationQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Accepted.rawValue) // accepted
-                donationQuery.includeKey(DonationConstants.toOrgProperty)
-                donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
-                
-            }
+            let donationQuery = PFQuery(className: DonationConstants.className)
+            donationQuery.whereKey(DonationConstants.toOrgProperty, equalTo: orgUser) // to current recipient user
+            donationQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Accepted.rawValue) // accepted
+            donationQuery.includeKey(DonationConstants.toOrgProperty)
+            donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
+
         }
     }
+    
     
     static func addOfferToDonation(donation: Donation, toOrganization: Organization) {
         
