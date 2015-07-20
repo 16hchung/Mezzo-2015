@@ -65,24 +65,19 @@ class DonationsViewController: UIViewController {
             // load pending donation offers first
             ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
                 let pendingOffers = result as? [PFObject] ?? []
-                var pendingDonations = [Donation]()
+                var pendingDonations:[Donation] = [Donation]()
                 
                 for offer in pendingOffers {
                     let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
                     pendingDonations.append(donation)
-//                    let name: String = donation.fromDonor!["name"] as! String
                 }
                 
-                self.donations = pendingDonations
-//                println(self.donations)
-                self.reloadUI()
-            }
-            // then load any accepted donations
-            ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
-                let acceptedDonations = result as? [Donation]
-                self.donations += acceptedDonations!
-//                println(self.donations)
-//                self.reloadUI()
+                // then load any accepted donations
+                ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
+                    let acceptedDonations = result as? [Donation] ?? []
+                    self.donations = pendingDonations + acceptedDonations
+                    self.reloadUI()
+                }
             }
         }
             
