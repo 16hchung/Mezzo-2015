@@ -75,19 +75,25 @@
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-TJ-ENz">
-                                                    <rect key="frame" x="117" y="84" width="51" height="32"/>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-TJ-ENz">
+                                                    <rect key="frame" x="117" y="84" width="51" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="eA6-gp-xGA"/>
+                                                        <constraint firstAttribute="height" constant="31" id="eA6-gp-xGA"/>
                                                     </constraints>
                                                     <state key="normal" title="Decline">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="eA6-gp-xGA"/>
+                                                        </mask>
+                                                    </variation>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9q-Eh-heU">
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9q-Eh-heU">
                                                     <rect key="frame" x="52" y="84" width="49" height="31"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="32" id="FRI-AZ-9PK"/>
+                                                        <constraint firstAttribute="height" id="FRI-AZ-9PK"/>
+                                                        <constraint firstAttribute="height" constant="31" id="bZg-aN-vgh"/>
                                                     </constraints>
                                                     <state key="normal" title="Accept">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -117,17 +123,21 @@
                                                 <constraint firstItem="TSA-9r-Img" firstAttribute="trailing" secondItem="9yz-OS-nlW" secondAttribute="trailing" constant="-10" id="cxf-cW-4a9"/>
                                                 <constraint firstItem="2a0-6q-Qjb" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leading" constant="10" id="dhd-cu-1OB"/>
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="leading" secondItem="cIg-db-JZO" secondAttribute="leading" id="fCy-eL-Ucw"/>
+                                                <constraint firstItem="cX9-TJ-ENz" firstAttribute="height" secondItem="H9q-Eh-heU" secondAttribute="height" id="kXL-Pu-oGU"/>
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="16" id="rTW-sQ-cto"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="centerY" secondItem="cIg-db-JZO" secondAttribute="centerY" id="wnM-kA-hSO"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
+                                                    <exclude reference="OgX-95-RFn"/>
                                                     <exclude reference="IoK-VW-Ej2"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="acceptButton" destination="H9q-Eh-heU" id="QXc-Je-ERd"/>
+                                            <outlet property="acceptButtonBottomConstraint" destination="6h1-14-0vG" id="UrS-Pe-j8M"/>
+                                            <outlet property="acceptButtonHeightConstraint" destination="bZg-aN-vgh" id="vXx-9l-SBp"/>
                                             <outlet property="declineButton" destination="cX9-TJ-ENz" id="D6G-XU-brg"/>
                                             <outlet property="entityNameLabel" destination="OdY-Mr-IBj" id="osh-QJ-SHQ"/>
                                             <outlet property="expandButton" destination="TSA-9r-Img" id="24X-cj-QiP"/>
@@ -268,6 +278,9 @@
                                     <segment title="Upcoming"/>
                                     <segment title="Completed"/>
                                 </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="hU1-ZQ-Oh3" eventType="valueChanged" id="ZfF-NE-Zr0"/>
+                                </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="top" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="my8-LK-HQv">
                                 <rect key="frame" x="0.0" y="584" width="600" height="16"/>

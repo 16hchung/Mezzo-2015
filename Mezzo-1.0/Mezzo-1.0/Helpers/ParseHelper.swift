@@ -60,10 +60,10 @@ class ParseHelper {
         
         if let donorUser = (PFUser.currentUser()! as? User)?.donor {
             donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser)
-            donationQuery.includeKey(DonationConstants.fromDonorProperty)
+            donationQuery.includeKey(DonationConstants.toOrgProperty)
         } else if let orgUser = (PFUser.currentUser()! as? User)?.organization {
             donationQuery.whereKey(DonationConstants.toOrgProperty, equalTo: orgUser)
-            donationQuery.includeKey(DonationConstants.toOrgProperty)
+            donationQuery.includeKey(DonationConstants.fromDonorProperty)
         }
         
         donationQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Completed.rawValue)

@@ -19,20 +19,20 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var expandButton: UIButton!
     
-    
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var declineButton: UIButton!
+    
+    @IBOutlet weak var acceptButtonBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var acceptButtonHeightConstraint: NSLayoutConstraint!
+    
     
     var donation: Donation! {
         didSet {
             if let donation = donation {
-                
                 if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == Donation.DonationState.Offered {
-                    declineButton.hidden = false
-                    acceptButton.hidden = false
+                    showAcceptAndDeclineButtons()
                 } else {
-                    declineButton.removeFromSuperview()
-                    acceptButton.removeFromSuperview()
+                    hideAcceptAndDeclineButtons()
                 }
                 
                 var entityName: String = "Today's donation offer"
@@ -41,7 +41,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 var otherOrgUser: Organization?
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
                     otherOrgUser = donation.toOrganization
-                    if donation.donationState == Donation.DonationState.Accepted {
+                    if donation.donationState != Donation.DonationState.Offered {
                         entityName = otherOrgUser?["name"] as! String
                     }
                 } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
@@ -49,7 +49,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     entityName = otherDonorUser?["name"] as! String
                 } // @ this point, either donor or org is nil, not both
                 
-//                entityNameLabel.text = otherDonorUser?["name"] as? String ?? otherOrgUser?["name"] as? String
                 entityNameLabel.text = entityName
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
@@ -60,5 +59,26 @@ class DonationHeaderTableViewCell: UITableViewCell {
         }
     }
     
+    private func showAcceptAndDeclineButtons() {
+        declineButton.hidden = false
+        acceptButton.hidden = false
+        
+        acceptButton.titleLabel!.font = UIFont(name: acceptButton.titleLabel!.font.fontName, size: 15.0)
+        declineButton.titleLabel!.font = UIFont(name: declineButton.titleLabel!.font.fontName, size: 15.0)
+        
+        acceptButtonHeightConstraint.constant = 31
+        acceptButtonBottomConstraint.constant = 16
+    }
+    
+    private func hideAcceptAndDeclineButtons() {
+        declineButton.hidden = true
+        acceptButton.hidden = true
+        
+        acceptButton.titleLabel!.font = UIFont(name: acceptButton.titleLabel!.font.fontName, size: 0.0)
+        declineButton.titleLabel!.font = UIFont(name: declineButton.titleLabel!.font.fontName, size: 0.0)
+        
+        acceptButtonHeightConstraint.constant = 0
+        acceptButtonBottomConstraint.constant = 0
+    }
     
 }

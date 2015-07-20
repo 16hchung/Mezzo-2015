@@ -50,15 +50,17 @@ class DonationsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        reloadData()
+        reloadUpcomingDonationsData()
     }
     
-    func reloadData() {
+    // MARK: reload donations data
+    
+    private func reloadUpcomingDonationsData() {
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
-                let loadedDonations =  result as? [Donation]
-                self.donations = loadedDonations!
+                let loadedDonations =  result as? [Donation] ?? []
+                self.donations = loadedDonations
                 self.reloadUI()
             }
         } else if let orgUser = (PFUser.currentUser() as! User).organization {
@@ -80,9 +82,28 @@ class DonationsViewController: UIViewController {
                 }
             }
         }
-            
-        
     }
+    
+    private func reloadCompletedDonationsData() {
+        ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
+            let loadedDonations = result as? [Donation] ?? []
+            self.donations = loadedDonations
+            self.reloadUI()
+        }
+    }
+    
+    @IBAction func segmentedControlChanged(sender: AnyObject) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: // upcoming
+            reloadUpcomingDonationsData()
+        case 1: // completed
+            reloadCompletedDonationsData()
+        default:
+            reloadUpcomingDonationsData()
+        }
+    }
+    
+    // MARK: update UI after data has been loaded
     
     private func reloadUI() {
         self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
@@ -178,7 +199,7 @@ class DonationsViewController: UIViewController {
                         ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
                     }
                     
-                    self.reloadData()
+                    self.reloadUpcomingDonationsData()
                 }
             default:
                 break
