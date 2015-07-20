@@ -37,24 +37,43 @@ class Organization: PFObject, PFSubclassing{
         // notify donor of this donation
     }
     
-    func acceptDonation(donation: Donation) {
+    /**
+        Accepts or declines a donation
+    
+        :param: donation (Donation) donation being responded to
+        :param: byAccepting (Bool) true if accepting, false if declining
+    */
+    func respondToOfferForDonation(donation: Donation, byAccepting: Bool) {
         ParseHelper.getOffersForDonation(donation) {
             (result: [AnyObject]?, error: NSError?) -> Void in
             if let result = result {
-                let donationsToAccept = result.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
+                // filter through offers
+                let specificOffer = result.filter { $0[ParseHelper.OfferConstants.toOrgProperty] as! Organization == self }
                 
+                
+                // get donation for filtered offer
+                let donationsToAccept = specificOffer.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
+                
+                // save donation state in donation object
                 for donationObject in donationsToAccept {
                     donationObject.toOrganization = (PFUser.currentUser()! as! User).organization!
-                    donationObject.donationState = .Accepted
+                    
+                    if byAccepting { donationObject.donationState = .Accepted }
+                    else { // update if it's the last org to decline
+                        let pendingOffers = result.filter { $0[ParseHelper.OfferConstants.statusProperty] as! String == Donation.DonationState.Offered.rawValue }
+                        if pendingOffers.isEmpty { donationObject.donationState = .Declined }
+                    }
+                    
                     donationObject.saveInBackground()
                 }
                 
-                for offer in result {
+                // update offer object
+                for offer in specificOffer {
                     if let offer = offer as? PFObject {
-                        offer[ParseHelper.OfferConstants.statusProperty] = Donation.DonationState.Accepted.rawValue
+                        if byAccepting { offer[ParseHelper.OfferConstants.statusProperty] = Donation.DonationState.Accepted.rawValue }
+                        else { offer[ParseHelper.OfferConstants.statusProperty] = Donation.DonationState.Declined.rawValue }
                         offer.saveInBackground()
                     }
-                    
                 }
             }
         }
