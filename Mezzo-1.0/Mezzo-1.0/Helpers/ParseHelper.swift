@@ -134,6 +134,7 @@ class ParseHelper {
         let offerQuery = PFQuery(className: OfferConstants.className)
         offerQuery.whereKey(OfferConstants.donationProperty, equalTo: donation)
         offerQuery.includeKey(OfferConstants.donationProperty)
+        offerQuery.includeKey(OfferConstants.donationProperty + "." + DonationConstants.fromDonorProperty)
         offerQuery.findObjectsInBackgroundWithBlock(callBack)
     }
     
@@ -146,3 +147,31 @@ extension PFObject: Equatable {
 public func ==(lhs: PFObject, rhs: PFObject) -> Bool {
     return lhs.objectId == rhs.objectId
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

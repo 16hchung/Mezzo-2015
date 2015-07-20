@@ -38,7 +38,7 @@ class Organization: PFObject, PFSubclassing{
     }
     
     func acceptDonation(donation: Donation) {
-        ParseHelper.getOfferForDonation(donation, toOrganization: (PFUser.currentUser()! as! User).organization!) {
+        ParseHelper.getOffersForDonation(donation) {
             (result: [AnyObject]?, error: NSError?) -> Void in
             if let result = result {
                 let donationsToAccept = result.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
