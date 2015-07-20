@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -493,7 +493,7 @@
                                             <constraint firstItem="5UU-cu-cbs" firstAttribute="leading" secondItem="JZO-Ws-LA8" secondAttribute="trailing" constant="8" id="64F-Li-p8w"/>
                                             <constraint firstAttribute="trailing" secondItem="IGS-cE-5RJ" secondAttribute="trailing" constant="12" id="6KT-iQ-Fim"/>
                                             <constraint firstItem="ppU-q8-XjI" firstAttribute="top" secondItem="5Vb-96-Wf3" secondAttribute="bottom" constant="8" id="7bs-En-fcp"/>
-                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="5UU-cu-cbs" secondAttribute="bottom" priority="750" constant="163" id="BDA-ta-E4q"/>
+                                            <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="5UU-cu-cbs" secondAttribute="bottom" priority="250" constant="163" id="BDA-ta-E4q"/>
                                             <constraint firstItem="IGS-cE-5RJ" firstAttribute="leading" secondItem="Chb-Ba-aAT" secondAttribute="leading" constant="16" id="Bww-Oo-PaV"/>
                                             <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="-20" id="C4D-CL-4og"/>
                                             <constraint firstItem="sfe-uy-wCm" firstAttribute="leading" secondItem="0oM-Iy-UBq" secondAttribute="leading" id="Ccp-C1-zOb"/>
@@ -584,20 +584,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What time should your donation be picked up?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ovX-cs-0VO">
-                                <rect key="frame" x="16" y="72" width="568" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What time should your donation be picked up?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ovX-cs-0VO">
+                                <rect key="frame" x="16" y="84" width="568" height="21"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3k0-Zs-eT9">
-                                <rect key="frame" x="16" y="101" width="568" height="17"/>
+                                <rect key="frame" x="16" y="113" width="568" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="JdF-oV-zWA">
-                                <rect key="frame" x="0.0" y="126" width="600" height="162"/>
+                                <rect key="frame" x="0.0" y="134" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
                                 </date>
@@ -606,7 +606,7 @@
                                 </connections>
                             </datePicker>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="y9n-dP-F6l">
-                                <rect key="frame" x="0.0" y="329" width="600" height="162"/>
+                                <rect key="frame" x="0.0" y="325" width="600" height="162"/>
                                 <date key="date" timeIntervalSinceReferenceDate="458685877.97430199">
                                     <!--2015-07-15 20:44:37 +0000-->
                                 </date>
@@ -621,16 +621,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3k0-Zs-eT9" firstAttribute="top" secondItem="ovX-cs-0VO" secondAttribute="bottom" constant="8" id="0ug-q6-6c6"/>
-                            <constraint firstItem="y9n-dP-F6l" firstAttribute="top" secondItem="5oq-aA-bZT" secondAttribute="bottom" constant="8" id="1Vc-tN-h1J"/>
-                            <constraint firstItem="JdF-oV-zWA" firstAttribute="top" secondItem="3k0-Zs-eT9" secondAttribute="bottom" constant="8" id="BKQ-ug-Ffr"/>
+                            <constraint firstItem="y9n-dP-F6l" firstAttribute="top" secondItem="5oq-aA-bZT" secondAttribute="bottom" constant="4" id="1Vc-tN-h1J"/>
+                            <constraint firstItem="JdF-oV-zWA" firstAttribute="top" secondItem="3k0-Zs-eT9" secondAttribute="bottom" constant="4" id="BKQ-ug-Ffr"/>
                             <constraint firstAttribute="centerX" secondItem="y9n-dP-F6l" secondAttribute="centerX" id="EbH-3t-AnK"/>
                             <constraint firstItem="JdF-oV-zWA" firstAttribute="leading" secondItem="C6q-Kt-HOo" secondAttribute="leading" id="IFE-oW-G3u"/>
                             <constraint firstAttribute="centerX" secondItem="ovX-cs-0VO" secondAttribute="centerX" id="NON-mU-nbz"/>
-                            <constraint firstItem="5oq-aA-bZT" firstAttribute="top" secondItem="JdF-oV-zWA" secondAttribute="bottom" constant="16" id="aMi-YD-dKM"/>
+                            <constraint firstItem="5oq-aA-bZT" firstAttribute="top" secondItem="JdF-oV-zWA" secondAttribute="bottom" constant="8" id="aMi-YD-dKM"/>
                             <constraint firstAttribute="centerX" secondItem="3k0-Zs-eT9" secondAttribute="centerX" id="are-9w-L6w"/>
                             <constraint firstAttribute="centerX" secondItem="5oq-aA-bZT" secondAttribute="centerX" id="bRH-qa-eNy"/>
                             <constraint firstItem="ovX-cs-0VO" firstAttribute="leading" secondItem="C6q-Kt-HOo" secondAttribute="leadingMargin" id="bv2-fZ-dFu"/>
-                            <constraint firstItem="ovX-cs-0VO" firstAttribute="top" secondItem="dZ9-Vg-U5X" secondAttribute="bottom" constant="8" id="c6y-en-EiY"/>
+                            <constraint firstItem="ovX-cs-0VO" firstAttribute="top" secondItem="dZ9-Vg-U5X" secondAttribute="bottom" constant="20" id="c6y-en-EiY"/>
                             <constraint firstItem="3k0-Zs-eT9" firstAttribute="leading" secondItem="C6q-Kt-HOo" secondAttribute="leadingMargin" id="d9w-m4-eMD"/>
                             <constraint firstItem="5oq-aA-bZT" firstAttribute="leading" secondItem="C6q-Kt-HOo" secondAttribute="leadingMargin" id="haZ-da-a1f"/>
                             <constraint firstItem="y9n-dP-F6l" firstAttribute="leading" secondItem="C6q-Kt-HOo" secondAttribute="leading" id="jex-Ak-aQV"/>

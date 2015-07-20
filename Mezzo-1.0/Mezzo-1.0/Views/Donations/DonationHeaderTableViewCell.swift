@@ -31,8 +31,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     declineButton.hidden = false
                     acceptButton.hidden = false
                 } else {
-//                    declineButton.removeFromSuperview()
-//                    acceptButton.removeFromSuperview()
+                    declineButton.removeFromSuperview()
+                    acceptButton.removeFromSuperview()
                 }
                 
                 var otherDonorUser: Donor?
@@ -43,7 +43,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     otherDonorUser = donation.fromDonor
                 } // @ this point, either donor or org is nil, not both
                 
-                entityNameLabel.text = otherDonorUser?.name ?? otherOrgUser?.name
+                entityNameLabel.text = otherDonorUser?["name"] as? String ?? otherOrgUser?["name"] as? String
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
                 timeLabel.text = formatter.stringFromDate(donation.orgSpecificTime!)
