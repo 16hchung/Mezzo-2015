@@ -53,14 +53,20 @@ class DonationTableViewCell: UITableViewCell {
                         if let pendingOffers = pendingOffers {
                             pendingOrgListLabel.text = ""
                             pendingOrgStatusesLabel.text = ""
-                            pendingOrgListLabel.numberOfLines = pendingOffers.count * 2
-                            pendingOrgStatusesLabel.numberOfLines = pendingOffers.count * 2
+                            if pendingOffers.count < 1 {
+                                pendingOrgListLabel.numberOfLines = 1
+                                pendingOrgStatusesLabel.numberOfLines = 1
+                            } else {
+                                pendingOrgListLabel.numberOfLines = pendingOffers.count * 2
+                                pendingOrgStatusesLabel.numberOfLines = pendingOffers.count * 2
+
+                            }
                             
                             println(pendingOffers)
                             
                             for offer in pendingOffers {
-                                pendingOrgListLabel.text! += "\((offer[ParseHelper.OfferConstants.toOrgProperty] as! Organization).name)\n\n"
-                                pendingOrgStatusesLabel.text! += "\(offer[ParseHelper.OfferConstants.className])\n\n"
+                                pendingOrgListLabel.text! += "\(offer.objectForKey(ParseHelper.OfferConstants.toOrgProperty)!.objectForKey(ParseHelper.OrgConstants.nameProperty)!)\n\n"
+                                pendingOrgStatusesLabel.text! += "\(offer[ParseHelper.OfferConstants.statusProperty]!)\n\n"
                             }
                         }
                         

@@ -17,7 +17,7 @@ class ParseHelper {
     private struct DonorConstants {
     }
     
-    private struct OrgConstants {
+    struct OrgConstants {
         static let nameProperty = "name"
     }
     
