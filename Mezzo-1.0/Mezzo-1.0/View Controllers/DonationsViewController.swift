@@ -49,8 +49,8 @@ class DonationsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        
-        reloadUpcomingDonationsData()
+        segmentedControl.selectedSegmentIndex = 0
+        if(segmentedControl.selectedSegmentIndex == 0) { reloadUpcomingDonationsData() }
     }
     
     // MARK: reload donations data
