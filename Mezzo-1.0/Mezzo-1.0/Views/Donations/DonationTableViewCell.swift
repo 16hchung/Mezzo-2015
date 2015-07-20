@@ -22,52 +22,66 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var cancelDonationButton: UIButton!
     @IBOutlet weak var changeRecipientButton: UIButton!
     
+    @IBOutlet weak var pendingOrgListLabel: UILabel!
+    @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
+    
+    var pendingOffers: [PFObject]?
+    
     var donation: Donation! {
         didSet {
             if let donation = donation {
+                cancelDonationButton.hidden = true
+                changeRecipientButton.hidden = true
                 
                 // set up potential otherUser variables
                 var otherDonorUser: Donor?
                 var otherOrgUser: Organization?
+                
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
                     otherOrgUser = donation.toOrganization
+                    
+                    locationButton.hidden = true
+                    locationTitle.hidden = true
+                    
+                    if donation.donationState == Donation.DonationState.Offered || donation.donationState == Donation.DonationState.Declined {
+                        
+                        contactInfoTitle.hidden = true
+                        phoneNumberButton.hidden = true
+                        
+                        OfferSentToTitle.hidden = false
+                        
+                        if let pendingOffers = pendingOffers {
+                            pendingOrgListLabel.text = ""
+                            pendingOrgStatusesLabel.text = ""
+                            pendingOrgListLabel.numberOfLines = pendingOffers.count * 2
+                            pendingOrgStatusesLabel.numberOfLines = pendingOffers.count * 2
+                            
+                            println(pendingOffers)
+                            
+                            for offer in pendingOffers {
+                                pendingOrgListLabel.text! += "\((offer[ParseHelper.OfferConstants.toOrgProperty] as! Organization).name)\n\n"
+                                pendingOrgStatusesLabel.text! += "\(offer[ParseHelper.OfferConstants.className])\n\n"
+                            }
+                        }
+                        
+                        if donation.donationState == Donation.DonationState.Declined {
+                            cancelDonationButton.hidden = false
+                            changeRecipientButton.hidden = false
+                        }
+                        
+                    }
                 } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
                     otherDonorUser = donation.fromDonor
                 } // @ this point, either donor or org is nil, not both
                 
                 // populate data depending on which otherUser is nil
-                phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber
+                phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber ?? ""
                 
                 // update the labels
                 foodDetailsLabel.text = donation.detailsString()
                 
                 //phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
-                
-                
-                if let donorUser = (PFUser.currentUser() as? User)?.donor where donation.donationState == Donation.DonationState.Offered {
-                    
-                    contactInfoTitle.hidden = true
-                    locationTitle.hidden = true
-                    phoneNumberButton.hidden = true
-                    locationButton.hidden = true
-                    
-                } else {
-                    
-                    cancelDonationButton.hidden = true
-                    changeRecipientButton.hidden = true
-                    OfferSentToTitle.hidden = true
-                    
-                    var someNumber = 3
-                    
-                    let potentialRecipientLabels = [OfferSentToTitle] + [UILabel](count: someNumber, repeatedValue: UILabel())
-                    
-                    for label in potentialRecipientLabels {
-                        
-                    }
-                    
-                    
-                }
                 
             }
         }

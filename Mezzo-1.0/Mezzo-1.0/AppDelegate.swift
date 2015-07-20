@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse.
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
-        PFUser.logInWithUsername("testOrg", password: "testOrg")
+        PFUser.logInWithUsername("testDonor", password: "testDonor")
         
         //let realm = Realm()
 

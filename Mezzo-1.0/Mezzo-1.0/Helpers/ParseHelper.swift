@@ -135,7 +135,8 @@ class ParseHelper {
         let offerQuery = PFQuery(className: OfferConstants.className)
         offerQuery.whereKey(OfferConstants.donationProperty, equalTo: donation)
         offerQuery.includeKey(OfferConstants.donationProperty)
-        offerQuery.includeKey("\(OfferConstants.donationProperty).\(DonationConstants.toOrgProperty)")
+        offerQuery.includeKey(OfferConstants.fromDonorProperty)
+        offerQuery.includeKey(OfferConstants.toOrgProperty)
         offerQuery.findObjectsInBackgroundWithBlock(callBack)
     }
     

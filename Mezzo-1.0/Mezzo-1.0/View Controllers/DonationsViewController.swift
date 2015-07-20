@@ -228,6 +228,10 @@ extension DonationsViewController: UITableViewDataSource {
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
             bodyCell.donation = self.donations[indexPath.section]
             
+            ParseHelper.getOffersForDonation(bodyCell.donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+                bodyCell.pendingOffers = result as? [PFObject]
+            }
+            
             return bodyCell
         }
     }
