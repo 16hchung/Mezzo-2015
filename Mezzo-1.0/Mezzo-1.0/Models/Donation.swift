@@ -83,7 +83,8 @@ class Donation: PFObject, PFSubclassing {
         :returns: summary string
     */
     func detailsString() -> String {
-        return "\(foodDescription) | \(size)"
+        let joinedDescriptionList = join(", ", foodDescription)
+        return "\(joinedDescriptionList) | \(size)"
     }
     
     // TODO: grab the actual address from the geo point

@@ -99,8 +99,8 @@ class ParseHelper {
             donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
             offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
             
-            offerQuery.includeKey(OfferConstants.fromDonorProperty)
             offerQuery.includeKey(OfferConstants.donationProperty)
+            offerQuery.includeKey("\(OfferConstants.donationProperty).\(DonationConstants.fromDonorProperty)")
             offerQuery.findObjectsInBackgroundWithBlock(completionBlock)
             
         } else {
