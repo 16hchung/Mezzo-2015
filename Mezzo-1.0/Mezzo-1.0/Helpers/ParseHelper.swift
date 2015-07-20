@@ -109,6 +109,7 @@ class ParseHelper {
             donationQuery.whereKey(DonationConstants.toOrgProperty, equalTo: orgUser) // to current recipient user
             donationQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Accepted.rawValue) // accepted
             donationQuery.includeKey(DonationConstants.toOrgProperty)
+            donationQuery.includeKey(DonationConstants.fromDonorProperty)
             donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
 
         }

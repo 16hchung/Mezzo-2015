@@ -35,15 +35,22 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     acceptButton.removeFromSuperview()
                 }
                 
+                var entityName: String = "Today's donation offer"
+                
                 var otherDonorUser: Donor?
                 var otherOrgUser: Organization?
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
                     otherOrgUser = donation.toOrganization
+                    if donation.donationState == Donation.DonationState.Accepted {
+                        entityName = otherOrgUser?["name"] as! String
+                    }
                 } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
                     otherDonorUser = donation.fromDonor
+                    entityName = otherDonorUser?["name"] as! String
                 } // @ this point, either donor or org is nil, not both
                 
-                entityNameLabel.text = otherDonorUser?["name"] as? String ?? otherOrgUser?["name"] as? String
+//                entityNameLabel.text = otherDonorUser?["name"] as? String ?? otherOrgUser?["name"] as? String
+                entityNameLabel.text = entityName
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
                 timeLabel.text = formatter.stringFromDate(donation.orgSpecificTime!)
