@@ -58,10 +58,14 @@ class DonationTableViewCell: UITableViewCell {
                     changeRecipientButton.hidden = true
                     OfferSentToTitle.hidden = true
                     
+                    var someNumber = 3
                     
+                    let potentialRecipientLabels = [OfferSentToTitle] + [UILabel](count: someNumber, repeatedValue: UILabel())
                     
+                    for label in potentialRecipientLabels {
+                        
+                    }
                     
-                    // input rows
                     
                 }
                 
