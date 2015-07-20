@@ -62,7 +62,7 @@ class NewDonationViewController: UIViewController {
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.view.frame.origin.y -= keyboardFrame.size.height
-            self.bottomConstraint.constant -= 100 // reduce the gap between the bottom of the picker and the keyboard
+            self.bottomConstraint.constant -= 200 // reduce the gap between the bottom of the picker and the keyboard
         })
     }
     
@@ -72,8 +72,32 @@ class NewDonationViewController: UIViewController {
         
         UIView.animateWithDuration(0.1, animations: { () -> Void in
             self.view.frame.origin.y += keyboardFrame.size.height
-            self.bottomConstraint.constant += 100
+            self.bottomConstraint.constant += 200
         })
+    }
+    
+    private func addDoneToKeyboard() {
+        var doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
+        doneToolbar.barStyle = UIBarStyle.Default
+        
+        var flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        var done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
+        
+        var items = NSMutableArray()
+        items.addObject(flexSpace)
+        items.addObject(done)
+        
+        doneToolbar.items = items as [AnyObject]
+        doneToolbar.sizeToFit()
+        
+        sizeTextField.inputAccessoryView = doneToolbar
+    }
+    
+    func doneButtonAction() {
+        self.view.endEditing(true)
+        // next button shouldn't be enabled unless foodDescription and size are populated
+        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
+            && sizeTextField.text.toInt() > 0
     }
     
     // MARK: VC Lifecycle
@@ -97,12 +121,12 @@ class NewDonationViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
+        addDoneToKeyboard()
+        
         // if users taps outside of the keyboard area, dismiss the keyboard
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: "didTapView")
         self.view.addGestureRecognizer(tapRecognizer)
-        
-        // Do any additional setup after loading the view.
     }
     
     override func didReceiveMemoryWarning() {

@@ -209,13 +209,13 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-DY-zZV">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hKo-DY-zZV">
                                                     <rect key="frame" x="18" y="149" width="114" height="30"/>
                                                     <state key="normal" title="Cancel Donation">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNo-Zu-fn3">
+                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNo-Zu-fn3">
                                                     <rect key="frame" x="444" y="149" width="138" height="30"/>
                                                     <state key="normal" title="Change Recipient(s)">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -224,6 +224,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="yM7-SB-u3K" firstAttribute="top" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="1Bn-CX-NWy"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yM7-SB-u3K" secondAttribute="bottom" constant="10" id="81q-Ah-rGf"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EgA-08-onu" secondAttribute="trailing" constant="10" id="9NF-HO-YgA"/>
                                                 <constraint firstItem="hKo-DY-zZV" firstAttribute="bottom" secondItem="GEX-eX-pCk" secondAttribute="bottom" constant="-16" id="9jr-kD-eDh"/>
                                                 <constraint firstItem="bVb-cy-F8U" firstAttribute="centerY" secondItem="yM7-SB-u3K" secondAttribute="centerY" id="G8c-X5-XCv"/>
@@ -246,6 +247,11 @@
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="top" secondItem="GEX-eX-pCk" secondAttribute="topMargin" constant="15" id="shU-S1-mw0"/>
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="leading" secondItem="eiN-XT-rJI" secondAttribute="leading" id="tSA-VS-P19"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="81q-Ah-rGf"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
@@ -368,7 +374,7 @@
                                                 </connections>
                                             </button>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                                <rect key="frame" x="228" y="210" width="200" height="162"/>
+                                                <rect key="frame" x="228" y="190" width="200" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="rKj-HO-Y46"/>
                                                     <constraint firstAttribute="width" constant="200" id="rmy-0l-NsF"/>
@@ -485,7 +491,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZO-Ws-LA8">
-                                                <rect key="frame" x="180" y="276" width="40" height="30"/>
+                                                <rect key="frame" x="180" y="256" width="40" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="OH9-RZ-3AQ"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="V8h-F4-GDn"/>
@@ -508,7 +514,7 @@
                                             <constraint firstItem="ppU-q8-XjI" firstAttribute="top" secondItem="5Vb-96-Wf3" secondAttribute="bottom" constant="8" id="7bs-En-fcp"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="5UU-cu-cbs" secondAttribute="bottom" priority="250" constant="163" id="BDA-ta-E4q"/>
                                             <constraint firstItem="IGS-cE-5RJ" firstAttribute="leading" secondItem="Chb-Ba-aAT" secondAttribute="leading" constant="16" id="Bww-Oo-PaV"/>
-                                            <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="-20" id="C4D-CL-4og"/>
+                                            <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="-40" id="C4D-CL-4og"/>
                                             <constraint firstItem="sfe-uy-wCm" firstAttribute="leading" secondItem="0oM-Iy-UBq" secondAttribute="leading" id="Ccp-C1-zOb"/>
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="leading" secondItem="Cph-4d-7ia" secondAttribute="leading" id="LBD-mN-8Lr"/>
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="width" secondItem="ppU-q8-XjI" secondAttribute="width" id="LN4-eT-o1M"/>
