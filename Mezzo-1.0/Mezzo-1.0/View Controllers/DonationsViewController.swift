@@ -55,46 +55,58 @@ class DonationsViewController: UIViewController {
     
     func reloadData() {
         // load donations (getDonations already deals with type of user)
-        ParseHelper.getUpcomingDonations(isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
-            let loadedOffers =  result as? [PFObject]
-            let offer = loadedOffers![0]
-            let donation = offer[ParseHelper.OfferConstants.donationProperty] as! Donation
-            
-            println(donation.fromDonor?.name)
-//
-//            // result should be an array of offers => convert to array associated donations
-//            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
-//            // cast then recast from Set (no duplicates) back to Array
-//            let noDuplicateDonations = Array(Set(loadedDonations!))
-            
-//            self.donations = noDuplicateDonations
-//            self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
-//            self.tableView.reloadData()
-            
-            // donors can't add two donations at once
-//            if loadedOffers!.count > 0 { self.addBarButton.enabled == false }
-            
-            // do the add button thing
-            if let user = PFUser.currentUser()! as? User where user.donor != nil {
-                self.navigationItem.rightBarButtonItem = self.addBarButton
-                // donors can't add two donations at once
-                if self.donations.count > 0 { self.addBarButton.enabled == false }
-            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
-                self.navigationItem.rightBarButtonItem = nil
+        if let donorUser = (PFUser.currentUser() as! User).donor {
+            ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
+                let loadedDonations =  result as? [Donation]
+                self.donations = loadedDonations!
+                self.reloadUI()
             }
-            
-            // load the appropriate empty state button if necessary
-            self.updateEmptyStateButton()
+        } else if let orgUser = (PFUser.currentUser() as! User).organization {
+            // load pending donation offers first
+            ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
+                let pendingOffers = result as? [PFObject] ?? []
+                var pendingDonations = [Donation]()
+                
+                for offer in pendingOffers {
+                    let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
+                    pendingDonations.append(donation)
+//                    let name: String = donation.fromDonor!["name"] as! String
+                }
+                
+                self.donations = pendingDonations
+//                println(self.donations)
+                self.reloadUI()
+            }
+            // then load any accepted donations
+            ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
+                let acceptedDonations = result as? [Donation]
+                self.donations += acceptedDonations!
+//                println(self.donations)
+//                self.reloadUI()
+            }
         }
+            
         
-//        if (PFUser.currentUser() as! User).organization != nil {
-//            ParseHelper.getUpcomingDonations(isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
-//                let acceptedOffers = result as? [Donation]
-//            }
-//        }
     }
     
-    func updateEmptyStateButton() {
+    private func reloadUI() {
+        self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
+        self.tableView.reloadData()
+        
+        // load the appropriate empty state button if necessary
+        self.updateEmptyStateButton()
+        
+        // do the add button thing
+        if let user = PFUser.currentUser()! as? User where user.donor != nil {
+            self.navigationItem.rightBarButtonItem = self.addBarButton
+            // donors can't add two donations at once
+            if self.donations.count > 0 { self.addBarButton.enabled == false }
+        } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    private func updateEmptyStateButton() {
         if donations.count == 0 {
             emptyStateButton.hidden = false
             emptyStateButton.enabled = true
