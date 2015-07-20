@@ -30,7 +30,21 @@ class DonationsViewController: UIViewController {
         case DefaultMode
         case SearchMode
     }
-    private var state: SearchBarState = .DefaultMode
+
+    private var searchBarState: SearchBarState = .DefaultMode {
+        didSet {
+            switch(searchBarState) {
+            case .DefaultMode:
+                searchBar.resignFirstResponder()
+                searchBar.text = ""
+                searchBar.showsCancelButton = false
+            case .SearchMode:
+                let searchText = searchBar.text ?? ""
+                searchBar.showsCancelButton = true
+                // donations = searchDonations(searchText)
+            }
+        }
+    }
     
     
     // MARK: VC Lifecycle
@@ -51,6 +65,8 @@ class DonationsViewController: UIViewController {
         super.viewWillAppear(true)
         segmentedControl.selectedSegmentIndex = 0
         if(segmentedControl.selectedSegmentIndex == 0) { reloadUpcomingDonationsData() }
+        
+        searchBarState = .DefaultMode
     }
     
     // MARK: reload donations data
@@ -292,16 +308,16 @@ extension DonationsViewController: UITableViewDelegate {
 extension DonationsViewController: UISearchBarDelegate {
     // user begins editing the search text
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.state = .SearchMode
+        self.searchBarState = .SearchMode
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        state = .DefaultMode
+        searchBarState = .DefaultMode
     }
     
     // user changed the search text, so filter through notes and update view
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         // TODO: search for the given donor
+        // donations = searchDonations(searchText)
     }
-    
 }
