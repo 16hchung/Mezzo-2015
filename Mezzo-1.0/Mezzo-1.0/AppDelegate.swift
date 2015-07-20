@@ -24,8 +24,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
         PFUser.logInWithUsername("testOrg", password: "testOrg")
-        
-        //let realm = Realm()
 
         if let user = PFUser.currentUser() as? User {
             println("yay")
@@ -33,7 +31,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             println(":(")
         }
         
+        // Parse push notification setup
+        let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
+        let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
+        application.registerUserNotificationSettings(settings)
+        application.registerForRemoteNotifications()
+        
         return true
+    }
+    
+    /// MARK: more Parse push notification setup
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        // store the deviceToken in the current installation and save it to Parse
+        let currentInstallation = PFInstallation.currentInstallation()
+        currentInstallation.setDeviceTokenFromData(deviceToken)
+        currentInstallation.channels = ["global"]
+        currentInstallation.saveInBackground()
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        PFPush.handlePush(userInfo)
     }
 
     func applicationWillResignActive(application: UIApplication) {
