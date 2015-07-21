@@ -76,8 +76,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func selectTime(sender: UIButton) {
-        hideTimePickingRelatedViews()
         hideAcceptAndDeclineButtons()
+        hideTimePickingRelatedViews()
         donation.orgSpecificTime = donationDatePicker.date
         donation.saveInBackground()
     }
@@ -101,6 +101,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     private func showTimePickingRelatedViews() {
+        (superview?.superview as? UITableView)?.beginUpdates()
+        
         datePickerBottomConstraint.active = true
         
         donationDatePicker.hidden = false
@@ -108,15 +110,23 @@ class DonationHeaderTableViewCell: UITableViewCell {
         selectTimeButton.hidden = false
         pickupTimeDescriptionLabel.hidden = false
         
+        (superview?.superview as? UITableView)?.endUpdates()
+
+        
         
     }
     
     private func hideTimePickingRelatedViews() {
+        (superview?.superview as? UITableView)?.beginUpdates()
+        
         donationDatePicker.hidden = true
         selectedTimeLabel.hidden = true
         selectTimeButton.hidden = true
         pickupTimeDescriptionLabel.hidden = true
         datePickerBottomConstraint.active = false
+        
+        (superview?.superview as? UITableView)?.endUpdates()
+
     }
     
     private func showAcceptAndDeclineButtons() {

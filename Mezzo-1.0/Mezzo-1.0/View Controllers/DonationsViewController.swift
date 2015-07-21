@@ -61,7 +61,7 @@ class DonationsViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        tableView.estimatedRowHeight = 100
+        tableView.estimatedRowHeight = 200
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
