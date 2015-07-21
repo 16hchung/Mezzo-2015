@@ -21,7 +21,22 @@ class DonationsViewController: UIViewController {
     
     // MARK: Properties
     
-    var donations = [Donation]()
+    var donations = [Donation : [PFObject]]()
+    var orderedDonationKeys: [Donation] {
+        get { // TODO: add canceled?
+            var donationsToReturn = [Donation]()
+            
+            var allSortedKeys = donations.keys.array
+            allSortedKeys.sort { return $0.updatedAt < $1.updatedAt }
+            
+            // states array ordered based on order we want in tableView
+            for donationState: Donation.DonationState in [.Declined, .Offered, .Accepted, .Completed] {
+                donationsToReturn += allSortedKeys.filter{ $0.donationState == donationState }
+            }
+            
+            return donationsToReturn
+        }
+    }
     /// shows selection status for every section in table view
     private var donationSelectionStatuses: [Bool] = []
     
@@ -61,7 +76,7 @@ class DonationsViewController: UIViewController {
         tableView.dataSource = self
         searchBar.delegate = self
         
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
     }
     
@@ -80,7 +95,10 @@ class DonationsViewController: UIViewController {
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
                 let loadedDonations =  result as? [Donation] ?? []
-                self.donations = loadedDonations
+                
+                for donation in loadedDonations {
+                    self.donations[donation] = []
+                }
                 self.reloadUI()
             }
         } else if let orgUser = (PFUser.currentUser() as! User).organization {
@@ -97,7 +115,9 @@ class DonationsViewController: UIViewController {
                 // then load any accepted donations
                 ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
                     let acceptedDonations = result as? [Donation] ?? []
-                    self.donations = pendingDonations + acceptedDonations
+                    for donation in pendingDonations + acceptedDonations {
+                        self.donations[donation] = []
+                    }
                     self.reloadUI()
                 }
             }
@@ -107,7 +127,9 @@ class DonationsViewController: UIViewController {
     private func reloadCompletedDonationsData() {
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
-            self.donations = loadedDonations
+            for donation in loadedDonations {
+                self.donations[donation] = []
+            }
             self.reloadUI()
         }
     }
@@ -257,17 +279,16 @@ extension DonationsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
-            headerCell.donation = self.donations[indexPath.section]
-            
+            headerCell.donation = self.orderedDonationKeys[indexPath.section]
             return headerCell
             
         } else {
             
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
-            ParseHelper.getOffersForDonation(donations[indexPath.section]) { (result: [AnyObject]?, error: NSError?) -> Void in
-                bodyCell.pendingOffers = result as? [PFObject]
-                bodyCell.donation = self.donations[indexPath.section]
-            }
+            
+            bodyCell.pendingOffers = donations[orderedDonationKeys[indexPath.section]]!
+            bodyCell.donation = orderedDonationKeys[indexPath.section]
+            
             return bodyCell
         }
     }
@@ -285,13 +306,23 @@ extension DonationsViewController: UITableViewDelegate {
         paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
         
         // animate row insertion/deletion
-        tableView.beginUpdates()
         if donationSelectionStatuses[indexPath.section] {
-            tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+            ParseHelper.getOffersForDonation(orderedDonationKeys[paths[0].section]) { (result: [AnyObject]?, error: NSError?) -> Void in
+//                bodyCell.pendingOffers = result as? [PFObject]
+//                bodyCell.donation = self.donations[indexPath.section]
+                
+                self.donations[self.orderedDonationKeys[paths[0].section]] = result as? [PFObject]
+                
+                self.tableView.beginUpdates()
+                self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+                self.tableView.endUpdates()
+            }
         } else {
+            tableView.beginUpdates()
             tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+            tableView.endUpdates()
         }
-        tableView.endUpdates()
+        
         
     }
 }

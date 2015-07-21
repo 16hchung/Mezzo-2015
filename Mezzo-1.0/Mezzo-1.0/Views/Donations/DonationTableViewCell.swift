@@ -102,7 +102,6 @@ class DonationTableViewCell: UITableViewCell {
                 }
                 
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
-                
             }
         }
     }

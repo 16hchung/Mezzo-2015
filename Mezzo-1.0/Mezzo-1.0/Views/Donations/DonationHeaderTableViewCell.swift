@@ -105,6 +105,13 @@ class DonationHeaderTableViewCell: UITableViewCell {
         
         datePickerBottomConstraint.active = true
         
+        donationDatePicker.minimumDate = donation.donorTimeRangeStart
+        donationDatePicker.maximumDate = donation.donorTimeRangeEnd
+        
+        var formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        selectedTimeLabel.text = formatter.stringFromDate(donationDatePicker.date)
+        
         donationDatePicker.hidden = false
         selectedTimeLabel.hidden = false
         selectTimeButton.hidden = false
