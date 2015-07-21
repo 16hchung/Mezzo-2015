@@ -26,7 +26,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var acceptButtonHeightConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var donationDatePicker: UIDatePicker!
+    @IBOutlet weak var datePickerBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var selectedTimeLabel: UILabel!
+    @IBOutlet weak var pickupTimeDescriptionLabel: UILabel!
     @IBOutlet weak var selectTimeButton: UIButton!
     
     var donation: Donation! {
@@ -37,6 +39,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } else {
                     hideAcceptAndDeclineButtons()
                 }
+                
+                hideTimePickingRelatedViews()
                 
                 var entityName: String = "Today's donation offer"
                 
@@ -97,11 +101,22 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     private func showTimePickingRelatedViews() {
-        // TODO
+        datePickerBottomConstraint.active = true
+        
+        donationDatePicker.hidden = false
+        selectedTimeLabel.hidden = false
+        selectTimeButton.hidden = false
+        pickupTimeDescriptionLabel.hidden = false
+        
+        
     }
     
     private func hideTimePickingRelatedViews() {
-        // TODO
+        donationDatePicker.hidden = true
+        selectedTimeLabel.hidden = true
+        selectTimeButton.hidden = true
+        pickupTimeDescriptionLabel.hidden = true
+        datePickerBottomConstraint.active = false
     }
     
     private func showAcceptAndDeclineButtons() {
