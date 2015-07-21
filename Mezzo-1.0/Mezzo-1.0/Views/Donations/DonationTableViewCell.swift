@@ -26,7 +26,6 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
     
     // MARK: constraints
-    
     @IBOutlet weak var contactInfoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var locationBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var cancelDonationBottomConstraint: NSLayoutConstraint!
@@ -39,22 +38,22 @@ class DonationTableViewCell: UITableViewCell {
     var donation: Donation! {
         didSet {
             if let donation = donation {
-                hideCancelledOptions(true)
+                hideDeclinedOptions(true)
                 
                 // set up potential otherUser variables
                 var otherDonorUser: Donor?
                 var otherOrgUser: Organization?
                 
-                if let donorUser = (PFUser.currentUser() as? User)?.donor {
+                if let donorUser = (PFUser.currentUser() as? User)?.donor { // current user is a donor
                     otherOrgUser = donation.toOrganization
                     
-                    hideLocation(true)
+                    hideLocation(true) // b/c donor doesn't need location
+                    hideOffers(false) // b/c donation from donor's POV always has an offers tab
                     
+                    // no recipient has claimed the donation yet
                     if donation.donationState == Donation.DonationState.Offered || donation.donationState == Donation.DonationState.Declined {
                         
-                        hideContactInfo(true)
-                        
-                        hideOffers(false)
+                        hideContactInfo(true) // b/c there is no recipient's contact info to display yet
                         
                         if let pendingOffers = pendingOffers {
                             pendingOrgListLabel.text = ""
@@ -68,7 +67,7 @@ class DonationTableViewCell: UITableViewCell {
 
                             }
                             
-                            println(pendingOffers)
+//                            println(pendingOffers)
                             
                             for offer in pendingOffers {
                                 pendingOrgListLabel.text! += "\(offer.objectForKey(ParseHelper.OfferConstants.toOrgProperty)!.objectForKey(ParseHelper.OrgConstants.nameProperty)!)\n\n"
@@ -76,22 +75,32 @@ class DonationTableViewCell: UITableViewCell {
                             }
                         }
                         
-                        if donation.donationState == Donation.DonationState.Declined {
-                            hideCancelledOptions(false)
+                        if donation.donationState == Donation.DonationState.Declined { // declined
+                            hideDeclinedOptions(false) // show options
                         }
                         
+                    } else { // accepted or completed
+                        hideContactInfo(false)
+                        hideOffers(true)
                     }
-                } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
+                    
+                } else if let orgUser = (PFUser.currentUser() as? User)?.organization { // current user is a recipient
                     otherDonorUser = donation.fromDonor
+                    
+                    hideLocation(false)
+                    hideContactInfo(false)
+                    hideOffers(true)
+                    
                 } // @ this point, either donor or org is nil, not both
-                
-                // populate data depending on which otherUser is nil
-                phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber ?? ""
                 
                 // update the labels
                 foodDetailsLabel.text = donation.detailsString()
+
+                if !phoneNumberButton.hidden {
+                    // populate data depending on which otherUser is nil
+                    phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber ?? ""
+                }
                 
-                //phoneNumberButton.setTitle(otherUser.phoneNumber, forState: UIControlState.Normal)
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
                 
             }
@@ -121,7 +130,7 @@ class DonationTableViewCell: UITableViewCell {
         }
     }
     
-    // collapses/shows buttons or labels
+    /// Collapses or shows buttons or labels.
     private func setFontOfUIObject(object: AnyObject, normalFontSize: CGFloat, hidden: Bool) {
         if let button = object as? UIButton {
             button.hidden = hidden
@@ -134,6 +143,7 @@ class DonationTableViewCell: UITableViewCell {
         }
     }
     
+    /// Hides location title and button with address
     private func hideLocation(hidden: Bool) {
         setFontOfUIObject(locationTitle, normalFontSize: 14.0, hidden: hidden)
         setFontOfUIObject(locationButton, normalFontSize: 14.0, hidden: hidden)
@@ -141,6 +151,7 @@ class DonationTableViewCell: UITableViewCell {
         locationBottomConstraint.constant = hidden ? -15 : 10
     }
     
+    /// Hides contact info title and button with phone number.
     private func hideContactInfo(hidden: Bool) {
         setFontOfUIObject(contactInfoTitle, normalFontSize: 14.0 , hidden: hidden)
         setFontOfUIObject(phoneNumberButton, normalFontSize: 14.0 , hidden: hidden)
@@ -148,13 +159,15 @@ class DonationTableViewCell: UITableViewCell {
         contactInfoBottomConstraint.constant = hidden ? -20 : 10
     }
     
-    private func hideCancelledOptions(hidden: Bool) {
+    /// Hides buttons that appear when a donation is all declined (cancel and change recipient buttons)
+    private func hideDeclinedOptions(hidden: Bool) {
         setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
         setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
         
         cancelDonationBottomConstraint.constant = hidden ? 0 : -16
     }
     
+    /// Hides offers title label and two pending list labels (org names and statuses)
     private func hideOffers(hidden: Bool) {
         setFontOfUIObject(OfferSentToTitle, normalFontSize: 14.0, hidden: hidden)
         setFontOfUIObject(pendingOrgListLabel, normalFontSize: 12.0, hidden: hidden)

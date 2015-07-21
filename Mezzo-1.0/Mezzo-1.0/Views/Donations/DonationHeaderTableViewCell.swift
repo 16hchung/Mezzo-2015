@@ -44,7 +44,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 var otherOrgUser: Organization?
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
                     otherOrgUser = donation.toOrganization
-                    if donation.donationState != Donation.DonationState.Offered {
+                    if donation.donationState != Donation.DonationState.Offered && donation.donationState != Donation.DonationState.Declined {
                         entityName = otherOrgUser?["name"] as! String
                     }
                 } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
