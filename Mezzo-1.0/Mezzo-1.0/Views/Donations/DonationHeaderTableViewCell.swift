@@ -25,6 +25,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var acceptButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var acceptButtonHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var donationDatePicker: UIDatePicker!
+    @IBOutlet weak var selectedTimeLabel: UILabel!
+    @IBOutlet weak var selectTimeButton: UIButton!
     
     var donation: Donation! {
         didSet {
@@ -58,6 +61,44 @@ class DonationHeaderTableViewCell: UITableViewCell {
             }
         }
     }
+    @IBAction func dateValueChanged(sender: UIDatePicker) {
+        var formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        selectedTimeLabel.text = formatter.stringFromDate(sender.date)
+    }
+    
+    @IBAction func selectTime(sender: UIButton) {
+        hideTimePickingRelatedViews()
+        hideAcceptAndDeclineButtons()
+        donation.orgSpecificTime = donationDatePicker.date
+        donation.saveInBackground()
+    }
+    
+    @IBAction func acceptDonation(sender: UIButton) {
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            ParseHelper.respondToOfferForDonation(donation, byAccepting: true)
+        }
+        acceptButton.selected = true
+        declineButton.enabled = false
+        showTimePickingRelatedViews()
+        
+    }
+    
+    @IBAction func declineDonation(sender: UIButton) {
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            ParseHelper.respondToOfferForDonation(donation, byAccepting: false)
+        }
+        hideTimePickingRelatedViews()
+        hideAcceptAndDeclineButtons()
+    }
+    
+    private func showTimePickingRelatedViews() {
+        // TODO
+    }
+    
+    private func hideTimePickingRelatedViews() {
+        // TODO
+    }
     
     private func showAcceptAndDeclineButtons() {
         declineButton.hidden = false
@@ -80,5 +121,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         acceptButtonHeightConstraint.constant = 0
         acceptButtonBottomConstraint.constant = 0
     }
+    
+    
     
 }
