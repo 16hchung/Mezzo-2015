@@ -112,6 +112,9 @@
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I can pick it up at:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fy2-yq-6FS">
                                                     <rect key="frame" x="23" y="115" width="133" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="KdL-NY-Yeq"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
@@ -168,6 +171,7 @@
                                                 <constraint firstItem="fy2-yq-6FS" firstAttribute="top" secondItem="H9q-Eh-heU" secondAttribute="bottom" id="dHb-mH-IIw"/>
                                                 <constraint firstItem="2a0-6q-Qjb" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leading" constant="10" id="dhd-cu-1OB"/>
                                                 <constraint firstItem="fy2-yq-6FS" firstAttribute="leading" secondItem="H9q-Eh-heU" secondAttribute="leading" id="g6l-bG-ksf"/>
+                                                <constraint firstItem="Wo5-4f-YJI" firstAttribute="top" secondItem="fy2-yq-6FS" secondAttribute="bottom" constant="7" id="h9j-Xj-Pxg"/>
                                                 <constraint firstItem="cX9-TJ-ENz" firstAttribute="height" secondItem="H9q-Eh-heU" secondAttribute="height" id="kXL-Pu-oGU"/>
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="16" id="rTW-sQ-cto"/>
                                                 <constraint firstItem="Wo5-4f-YJI" firstAttribute="top" secondItem="bgq-Es-XAd" secondAttribute="bottom" id="w9X-KL-uls"/>
@@ -179,6 +183,8 @@
                                                     <exclude reference="OgX-95-RFn"/>
                                                     <exclude reference="IoK-VW-Ej2"/>
                                                     <exclude reference="3et-F4-Y9G"/>
+                                                    <exclude reference="a16-0w-v4n"/>
+                                                    <exclude reference="w9X-KL-uls"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -186,10 +192,12 @@
                                             <outlet property="acceptButton" destination="H9q-Eh-heU" id="QXc-Je-ERd"/>
                                             <outlet property="acceptButtonBottomConstraint" destination="6h1-14-0vG" id="UrS-Pe-j8M"/>
                                             <outlet property="acceptButtonHeightConstraint" destination="bZg-aN-vgh" id="vXx-9l-SBp"/>
+                                            <outlet property="datePickerBottomConstraint" destination="a16-0w-v4n" id="NN2-10-80A"/>
                                             <outlet property="declineButton" destination="cX9-TJ-ENz" id="x4R-eG-tip"/>
                                             <outlet property="donationDatePicker" destination="Wo5-4f-YJI" id="5do-FU-YbW"/>
                                             <outlet property="entityNameLabel" destination="OdY-Mr-IBj" id="osh-QJ-SHQ"/>
                                             <outlet property="expandButton" destination="TSA-9r-Img" id="24X-cj-QiP"/>
+                                            <outlet property="pickupTimeDescriptionLabel" destination="fy2-yq-6FS" id="big-zL-kdp"/>
                                             <outlet property="profileImageView" destination="2a0-6q-Qjb" id="SKL-5s-pkO"/>
                                             <outlet property="selectTimeButton" destination="bgq-Es-XAd" id="sxa-ef-Ifo"/>
                                             <outlet property="selectedTimeLabel" destination="WOa-kU-PZT" id="39A-Xd-jhG"/>
@@ -332,13 +340,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="OH8-gy-N1q">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="oX4-Yn-K8u"/>
-                                </constraints>
-                                <textInputTraits key="textInputTraits"/>
-                            </searchBar>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2cu-PG-mN2">
                                 <rect key="frame" x="142" y="118" width="316" height="29"/>
                                 <constraints>
@@ -363,6 +364,13 @@
                                     <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonationFromEmpty" id="o90-aA-Pcx"/>
                                 </connections>
                             </button>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="OH8-gy-N1q">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="oX4-Yn-K8u"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
