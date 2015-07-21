@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -54,11 +54,11 @@
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="C7x-LB-csC"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
                                                     <rect key="frame" x="523" y="51" width="36" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -135,7 +135,7 @@
                                                     </connections>
                                                 </button>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Wo5-4f-YJI">
-                                                    <rect key="frame" x="0.0" y="142" width="600" height="162"/>
+                                                    <rect key="frame" x="0.0" y="141" width="600" height="162"/>
                                                     <date key="date" timeIntervalSinceReferenceDate="459129368.83822399">
                                                         <!--2015-07-20 23:56:08 +0000-->
                                                     </date>
@@ -327,14 +327,20 @@
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="OfferSentToTitle" destination="eiN-XT-rJI" id="15P-9G-kgB"/>
+                                            <outlet property="cancelDonationBottomConstraint" destination="9jr-kD-eDh" id="aCW-fo-oxN"/>
                                             <outlet property="cancelDonationButton" destination="hKo-DY-zZV" id="MSc-NI-6fg"/>
                                             <outlet property="changeRecipientButton" destination="UNo-Zu-fn3" id="gyH-5m-2Hx"/>
+                                            <outlet property="contactInfoBottomConstraint" destination="1Bn-CX-NWy" id="Nym-2z-DpT"/>
                                             <outlet property="contactInfoTitle" destination="oM4-qK-2aL" id="5GE-SC-mjp"/>
                                             <outlet property="foodDetailsLabel" destination="sbH-4q-6R8" id="5fb-VC-NFS"/>
+                                            <outlet property="locationBottomConstraint" destination="MU4-H7-nku" id="guI-6s-gQa"/>
                                             <outlet property="locationButton" destination="bVb-cy-F8U" id="8wD-Ul-kXD"/>
                                             <outlet property="locationTitle" destination="yM7-SB-u3K" id="yLk-CP-yVD"/>
+                                            <outlet property="offerSentToBottomConstraint" destination="imF-Uw-LFK" id="Qaf-2c-7Tq"/>
+                                            <outlet property="pendingOrgListBottomConstraint" destination="Th3-mN-aZL" id="4k4-ra-bqf"/>
                                             <outlet property="pendingOrgListLabel" destination="bfN-58-Gip" id="ePh-lN-qJt"/>
                                             <outlet property="pendingOrgStatusesLabel" destination="YSf-ry-4KG" id="Rnl-fy-CqG"/>
+                                            <outlet property="pendingStatusListBottomConstraint" destination="7nh-lj-wfR" id="fy1-fF-pQm"/>
                                             <outlet property="phoneNumberButton" destination="EgA-08-onu" id="zhQ-Uf-yvi"/>
                                         </connections>
                                     </tableViewCell>
@@ -447,7 +453,7 @@
                                                 </connections>
                                             </button>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                                <rect key="frame" x="228" y="210" width="200" height="162"/>
+                                                <rect key="frame" x="228" y="190" width="200" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="rKj-HO-Y46"/>
                                                     <constraint firstAttribute="width" constant="200" id="rmy-0l-NsF"/>
@@ -564,7 +570,7 @@
                                                 </connections>
                                             </button>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZO-Ws-LA8">
-                                                <rect key="frame" x="180" y="276" width="40" height="30"/>
+                                                <rect key="frame" x="180" y="256" width="40" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="OH9-RZ-3AQ"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="V8h-F4-GDn"/>
@@ -587,7 +593,7 @@
                                             <constraint firstItem="ppU-q8-XjI" firstAttribute="top" secondItem="5Vb-96-Wf3" secondAttribute="bottom" constant="8" id="7bs-En-fcp"/>
                                             <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="5UU-cu-cbs" secondAttribute="bottom" priority="250" constant="163" id="BDA-ta-E4q"/>
                                             <constraint firstItem="IGS-cE-5RJ" firstAttribute="leading" secondItem="Chb-Ba-aAT" secondAttribute="leading" constant="16" id="Bww-Oo-PaV"/>
-                                            <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="-20" id="C4D-CL-4og"/>
+                                            <constraint firstItem="5UU-cu-cbs" firstAttribute="top" secondItem="CJi-mA-n22" secondAttribute="bottom" constant="-40" id="C4D-CL-4og"/>
                                             <constraint firstItem="sfe-uy-wCm" firstAttribute="leading" secondItem="0oM-Iy-UBq" secondAttribute="leading" id="Ccp-C1-zOb"/>
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="leading" secondItem="Cph-4d-7ia" secondAttribute="leading" id="LBD-mN-8Lr"/>
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="width" secondItem="ppU-q8-XjI" secondAttribute="width" id="LN4-eT-o1M"/>

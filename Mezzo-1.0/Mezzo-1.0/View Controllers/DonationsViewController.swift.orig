@@ -1,0 +1,294 @@
+//
+//  DonationsViewController.swift
+//  Mezzo-1.0
+//
+//  Created by Heejung Chung on 7/8/15.
+//  Copyright (c) 2015 MezzoAwesomeness. All rights reserved.
+//
+
+import UIKit
+import Parse
+
+class DonationsViewController: UIViewController {
+    
+    // MARK: Outlets
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var addBarButton: UIBarButtonItem!
+    @IBOutlet weak var emptyStateButton: UIButton!
+    
+    // MARK: Properties
+    
+    var donations = [Donation]()
+    var offers = [PFObject]()
+    
+    /// shows selection status for every section in table view
+    private var donationSelectionStatuses: [Bool] = []
+    
+    // search bar modes
+    private enum SearchBarState {
+        case DefaultMode
+        case SearchMode
+    }
+    private var state: SearchBarState = .DefaultMode
+    
+    
+    // MARK: VC Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // setting delegate + datasource
+        tableView.delegate = self
+        tableView.dataSource = self
+        searchBar.delegate = self
+        
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
+        // put add button in top corner if needed
+        if let user = PFUser.currentUser()! as? User where user.donor != nil {
+            self.navigationItem.rightBarButtonItem = self.addBarButton
+        } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+            self.navigationItem.rightBarButtonItem = nil
+        }
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        reloadData()
+    }
+    
+    func reloadData() {
+        // load donations (getDonations already deals with type of user)
+<<<<<<< Updated upstream
+        ParseHelper.getDonations(isUpcoming: true) { (result: [AnyObject]?, error: NSError?) -> Void in
+            
+            
+=======
+        ParseHelper.getUpcomingDonations(isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
+>>>>>>> Stashed changes
+            let loadedOffers =  result as? [PFObject]
+            let offer = loadedOffers![0]
+            let donation = offer[ParseHelper.OfferConstants.donationProperty] as! Donation
+            
+            println(donation.fromDonor?.name)
+//
+//            // result should be an array of offers => convert to array associated donations
+//            let loadedDonations = result?.map { $0[ParseHelper.OfferConstants.donationProperty] as! Donation }
+//            // cast then recast from Set (no duplicates) back to Array
+//            let noDuplicateDonations = Array(Set(loadedDonations!))
+            
+//            self.donations = noDuplicateDonations
+//            self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
+//            self.tableView.reloadData()
+            
+<<<<<<< Updated upstream
+            // do the add button thing
+            if let user = PFUser.currentUser()! as? User where user.donor != nil {
+                self.navigationItem.rightBarButtonItem = self.addBarButton
+                // donors can't add two donations at once
+                if self.donations.count > 0 { self.addBarButton.enabled == false }
+            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+                self.navigationItem.rightBarButtonItem = nil
+            }
+=======
+            // donors can't add two donations at once
+//            if loadedOffers!.count > 0 { self.addBarButton.enabled == false }
+>>>>>>> Stashed changes
+            
+            // load the appropriate empty state button if necessary
+            self.updateEmptyStateButton()
+        }
+        
+//        if (PFUser.currentUser() as! User).organization != nil {
+//            ParseHelper.getUpcomingDonations(isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
+//                let acceptedOffers = result as? [Donation]
+//            }
+//        }
+    }
+    
+    func updateEmptyStateButton() {
+        if donations.count == 0 {
+            emptyStateButton.hidden = false
+            emptyStateButton.enabled = true
+            emptyStateButton.backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
+            
+            // set text and segue
+            emptyStateButton.titleLabel?.numberOfLines = 0
+            emptyStateButton.titleLabel?.textAlignment = .Center
+            emptyStateButton.titleLabel?.textColor = UIColor.grayColor()
+            
+            if let user = PFUser.currentUser()! as? User where user.donor != nil {
+                let headline = "No donations yet!"
+                let text = NSMutableAttributedString(string: "\(headline)")
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "Tap the + button in the top right to create a new donation offer."))
+                
+                text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                emptyStateButton.setAttributedTitle(text, forState: .Normal)
+            
+            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+                emptyStateButton.enabled = false
+                
+                let headline = "No donations yet!"
+                let text = NSMutableAttributedString(string: "\(headline)")
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "\n"))
+                text.appendAttributedString(NSAttributedString(string: "We will notify you when a new donation offer comes in."))
+                
+                text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                emptyStateButton.setAttributedTitle(text, forState: .Normal)
+                
+                // TODO: redirect to settings page in the future?
+            }
+        } else {
+            emptyStateButton.enabled = false
+            emptyStateButton.hidden = true
+        }
+        
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    
+    // MARK: Navigation
+    
+    @IBAction func unwindToDonationsVC(sender: UIStoryboardSegue) {
+        if let identifier = sender.identifier {
+            switch identifier {
+            case "Send Offer":
+//                var donationToOffer = Donation()
+                
+//
+//                let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
+//                let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
+//                
+//                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
+//                source.donation.toOrganization = cell.organization
+//                
+//                // TODO: fix pickup time
+//                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
+//                
+//                source.donation.offer()
+                
+                let source = sender.sourceViewController as! OrganizationChooserViewController
+                
+                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
+                
+                source.donation.offer { (success: Bool, error: NSError?) -> Void in
+                    for org in source.selectedRecipientOrganizations {
+                        ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                    }
+                    
+                    self.reloadData()
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    /*
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+
+// MARK: - Table View Data Source Protocol
+
+extension DonationsViewController: UITableViewDataSource {
+    // MARK: Sections
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return donations.count
+    }
+    
+    // MARK: Cells
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if donationSelectionStatuses[section] {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    
+    // load a new table view cell with donor's name and time of next donation (if applicable)
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if indexPath.row == 0 {
+            let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
+            headerCell.donation = self.donations[indexPath.section]
+            
+            return headerCell
+            
+        } else {
+            
+            let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
+            bodyCell.donation = self.donations[indexPath.section]
+            
+            return bodyCell
+        }
+    }
+}
+
+// MARK: - Table View Delegate Protocol
+
+extension DonationsViewController: UITableViewDelegate {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        // toggle selection status
+        donationSelectionStatuses[indexPath.section] = !donationSelectionStatuses[indexPath.section]
+        
+        // create index paths being inserted/deleted
+        var paths = [NSIndexPath]()
+        paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
+        
+        // animate row insertion/deletion
+        tableView.beginUpdates()
+        if donationSelectionStatuses[indexPath.section] {
+            tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+        } else {
+            tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+        }
+        tableView.endUpdates()
+        
+    }
+    
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        if indexPath.row == 0 {
+//            return 126
+//        } else {
+//            return 120
+//        }
+//    }
+}
+
+// MARK: - Search Bar Delegate
+
+extension DonationsViewController: UISearchBarDelegate {
+    // user begins editing the search text
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        self.state = .SearchMode
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        state = .DefaultMode
+    }
+    
+    // user changed the search text, so filter through notes and update view
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        // TODO: search for the given donor
+    }
+    
+}

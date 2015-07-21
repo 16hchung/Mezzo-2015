@@ -25,13 +25,21 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var pendingOrgListLabel: UILabel!
     @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
     
+    // MARK: constraints
+    
+    @IBOutlet weak var contactInfoBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var locationBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var cancelDonationBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var offerSentToBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pendingOrgListBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var pendingStatusListBottomConstraint: NSLayoutConstraint!
+    
     var pendingOffers: [PFObject]?
     
     var donation: Donation! {
         didSet {
             if let donation = donation {
-                cancelDonationButton.hidden = true
-                changeRecipientButton.hidden = true
+                hideCancelledOptions(true)
                 
                 // set up potential otherUser variables
                 var otherDonorUser: Donor?
@@ -40,15 +48,13 @@ class DonationTableViewCell: UITableViewCell {
                 if let donorUser = (PFUser.currentUser() as? User)?.donor {
                     otherOrgUser = donation.toOrganization
                     
-                    locationButton.hidden = true
-                    locationTitle.hidden = true
+                    hideLocation(true)
                     
                     if donation.donationState == Donation.DonationState.Offered || donation.donationState == Donation.DonationState.Declined {
                         
-                        contactInfoTitle.hidden = true
-                        phoneNumberButton.hidden = true
+                        hideContactInfo(true)
                         
-                        OfferSentToTitle.hidden = false
+                        hideOffers(false)
                         
                         if let pendingOffers = pendingOffers {
                             pendingOrgListLabel.text = ""
@@ -71,8 +77,7 @@ class DonationTableViewCell: UITableViewCell {
                         }
                         
                         if donation.donationState == Donation.DonationState.Declined {
-                            cancelDonationButton.hidden = false
-                            changeRecipientButton.hidden = false
+                            hideCancelledOptions(false)
                         }
                         
                     }
@@ -114,5 +119,49 @@ class DonationTableViewCell: UITableViewCell {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
+    }
+    
+    // collapses/shows buttons or labels
+    private func setFontOfUIObject(object: AnyObject, normalFontSize: CGFloat, hidden: Bool) {
+        if let button = object as? UIButton {
+            button.hidden = hidden
+            let fontSize: CGFloat = hidden ? 0.0 : normalFontSize
+            button.titleLabel!.font = UIFont(name: button.titleLabel!.font.fontName, size: fontSize)
+        } else if let label = object as? UILabel {
+            label.hidden = hidden
+            let fontSize: CGFloat = hidden ? 0.0 : normalFontSize
+            label.font = UIFont(name: label.font.fontName, size: fontSize)
+        }
+    }
+    
+    private func hideLocation(hidden: Bool) {
+        setFontOfUIObject(locationTitle, normalFontSize: 14.0, hidden: hidden)
+        setFontOfUIObject(locationButton, normalFontSize: 14.0, hidden: hidden)
+        
+        locationBottomConstraint.constant = hidden ? -15 : 10
+    }
+    
+    private func hideContactInfo(hidden: Bool) {
+        setFontOfUIObject(contactInfoTitle, normalFontSize: 14.0 , hidden: hidden)
+        setFontOfUIObject(phoneNumberButton, normalFontSize: 14.0 , hidden: hidden)
+        
+        contactInfoBottomConstraint.constant = hidden ? -20 : 10
+    }
+    
+    private func hideCancelledOptions(hidden: Bool) {
+        setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
+        setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
+        
+        cancelDonationBottomConstraint.constant = hidden ? 0 : -16
+    }
+    
+    private func hideOffers(hidden: Bool) {
+        setFontOfUIObject(OfferSentToTitle, normalFontSize: 14.0, hidden: hidden)
+        setFontOfUIObject(pendingOrgListLabel, normalFontSize: 12.0, hidden: hidden)
+        setFontOfUIObject(pendingOrgStatusesLabel, normalFontSize: 12.0, hidden: hidden)
+        
+        offerSentToBottomConstraint.constant = hidden ? 0 : 8
+        pendingStatusListBottomConstraint.constant = hidden ? 0 : 8
+        pendingOrgListBottomConstraint.constant = hidden ? 0 : 8
     }
 }
