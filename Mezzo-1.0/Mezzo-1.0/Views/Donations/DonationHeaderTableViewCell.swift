@@ -52,7 +52,11 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 entityNameLabel.text = entityName
                 var formatter = NSDateFormatter()
                 formatter.timeStyle = .ShortStyle
-                timeLabel.text = formatter.stringFromDate(donation.donorTimeRangeEnd!)
+                if let specificTime = donation.orgSpecificTime {
+                    timeLabel.text = formatter.stringFromDate(specificTime)
+                } else {
+                    timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!))-\(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
+                }
                 
                 statusLabel.text = donation.donationState.rawValue
             }

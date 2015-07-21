@@ -46,6 +46,10 @@ class DonationsViewController: UIViewController {
         }
     }
     
+    // segmented control modes
+    private let UPCOMING: Int  = 0
+    private let COMPLETED: Int = 1
+    
     
     // MARK: VC Lifecycle
     
@@ -63,8 +67,8 @@ class DonationsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        segmentedControl.selectedSegmentIndex = 0
-        if(segmentedControl.selectedSegmentIndex == 0) { reloadUpcomingDonationsData() }
+        segmentedControl.selectedSegmentIndex = UPCOMING
+        if(segmentedControl.selectedSegmentIndex == UPCOMING) { reloadUpcomingDonationsData() }
         
         searchBarState = .DefaultMode
     }
@@ -110,9 +114,9 @@ class DonationsViewController: UIViewController {
     
     @IBAction func segmentedControlChanged(sender: AnyObject) {
         switch segmentedControl.selectedSegmentIndex {
-        case 0: // upcoming
+        case UPCOMING:
             reloadUpcomingDonationsData()
-        case 1: // completed
+        case COMPLETED:
             reloadCompletedDonationsData()
         default:
             reloadUpcomingDonationsData()
@@ -126,7 +130,7 @@ class DonationsViewController: UIViewController {
         self.tableView.reloadData()
         
         // load the appropriate empty state button if necessary
-        self.updateEmptyStateButton()
+        self.updateNoDonationsButton()
         
         // do the add button thing
         if let user = PFUser.currentUser()! as? User where user.donor != nil {
@@ -138,40 +142,46 @@ class DonationsViewController: UIViewController {
         }
     }
     
-    private func updateEmptyStateButton() {
+    private func updateNoDonationsButton() {
         if donations.count == 0 {
             emptyStateButton.hidden = false
             emptyStateButton.enabled = true
             emptyStateButton.backgroundColor = UIColor(red: 245, green: 245, blue: 245, alpha: 1)
             
-            // set text and segue
             emptyStateButton.titleLabel?.numberOfLines = 0
             emptyStateButton.titleLabel?.textAlignment = .Center
             emptyStateButton.titleLabel?.textColor = UIColor.grayColor()
             
-            if let user = PFUser.currentUser()! as? User where user.donor != nil {
-                let headline = "No donations yet!"
+            if (segmentedControl.selectedSegmentIndex == COMPLETED) {
+                let headline = "No donations completed!"
                 let text = NSMutableAttributedString(string: "\(headline)")
-                text.appendAttributedString(NSAttributedString(string: "\n"))
-                text.appendAttributedString(NSAttributedString(string: "\n"))
-                text.appendAttributedString(NSAttributedString(string: "Tap the + button in the top right to create a new donation offer."))
-                
                 text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
                 emptyStateButton.setAttributedTitle(text, forState: .Normal)
-            
-            } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
-                emptyStateButton.enabled = false
-                
-                let headline = "No donations yet!"
-                let text = NSMutableAttributedString(string: "\(headline)")
-                text.appendAttributedString(NSAttributedString(string: "\n"))
-                text.appendAttributedString(NSAttributedString(string: "\n"))
-                text.appendAttributedString(NSAttributedString(string: "We will notify you when a new donation offer comes in."))
-                
-                text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
-                emptyStateButton.setAttributedTitle(text, forState: .Normal)
-                
-                // TODO: redirect to settings page in the future?
+            } else {
+                if let user = PFUser.currentUser()! as? User where user.donor != nil {
+                    let headline = "No donations yet!"
+                    let text = NSMutableAttributedString(string: "\(headline)")
+                    text.appendAttributedString(NSAttributedString(string: "\n"))
+                    text.appendAttributedString(NSAttributedString(string: "\n"))
+                    text.appendAttributedString(NSAttributedString(string: "Tap the + button in the top right to create a new donation offer."))
+                    
+                    text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                    emptyStateButton.setAttributedTitle(text, forState: .Normal)
+                    
+                } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
+                    emptyStateButton.enabled = false
+                    
+                    let headline = "No donations yet!"
+                    let text = NSMutableAttributedString(string: "\(headline)")
+                    text.appendAttributedString(NSAttributedString(string: "\n"))
+                    text.appendAttributedString(NSAttributedString(string: "\n"))
+                    text.appendAttributedString(NSAttributedString(string: "We will notify you when a new donation offer comes in."))
+                    
+                    text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
+                    emptyStateButton.setAttributedTitle(text, forState: .Normal)
+                    
+                    // TODO: redirect to settings page in the future?
+                }
             }
         } else {
             emptyStateButton.enabled = false
@@ -222,15 +232,6 @@ class DonationsViewController: UIViewController {
             }
         }
     }
-    
-    /*
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 // MARK: - Table View Data Source Protocol
@@ -293,14 +294,6 @@ extension DonationsViewController: UITableViewDelegate {
         tableView.endUpdates()
         
     }
-    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row == 0 {
-//            return 126
-//        } else {
-//            return 120
-//        }
-//    }
 }
 
 // MARK: - Search Bar Delegate
