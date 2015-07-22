@@ -91,6 +91,9 @@ class DonationsViewController: UIViewController {
     // MARK: reload donations data
     
     private func reloadUpcomingDonationsData() {
+        
+        donations = [:]
+        
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
@@ -125,6 +128,9 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
+        
+        donations = [:]
+        
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
             for donation in loadedDonations {
@@ -275,19 +281,38 @@ extension DonationsViewController: UITableViewDataSource {
         }
     }
     
+    
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header") as! DonationHeaderTableViewCell
+            let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
+            
             headerCell.donation = self.orderedDonationKeys[indexPath.section]
             return headerCell
             
         } else {
             
-            let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body") as! DonationTableViewCell
+            let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body", forIndexPath: indexPath) as! DonationTableViewCell
             
-            bodyCell.pendingOffers = donations[orderedDonationKeys[indexPath.section]]!
-            bodyCell.donation = orderedDonationKeys[indexPath.section]
+            let donation = orderedDonationKeys[indexPath.section]
+            
+            if donations[donation]!.count == 0 && (donation.donationState == .Offered || donation.donationState == .Declined) {
+                
+                bodyCell.loadingCoverView.hidden = false
+                
+                ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+                    
+                    bodyCell.loadingCoverView.hidden = true
+
+                    self.donations[donation] = result as? [PFObject]
+                    
+                    bodyCell.pendingOffers = self.donations[donation]!
+                    bodyCell.donation = donation
+                }
+            } else {
+                bodyCell.pendingOffers = donations[donation]!
+                bodyCell.donation = donation
+            }
             
             return bodyCell
         }
@@ -298,31 +323,30 @@ extension DonationsViewController: UITableViewDataSource {
 
 extension DonationsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        // toggle selection status
-        donationSelectionStatuses[indexPath.section] = !donationSelectionStatuses[indexPath.section]
-        
-        // create index paths being inserted/deleted
-        var paths = [NSIndexPath]()
-        paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
-        
-        // animate row insertion/deletion
-        if donationSelectionStatuses[indexPath.section] {
-            ParseHelper.getOffersForDonation(orderedDonationKeys[paths[0].section]) { (result: [AnyObject]?, error: NSError?) -> Void in
-//                bodyCell.pendingOffers = result as? [PFObject]
-//                bodyCell.donation = self.donations[indexPath.section]
-                
-                self.donations[self.orderedDonationKeys[paths[0].section]] = result as? [PFObject]
-                
-                self.tableView.beginUpdates()
-                self.tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
-                self.tableView.endUpdates()
+        if indexPath.row == 0 {
+            // toggle selection status
+            donationSelectionStatuses[indexPath.section] = !donationSelectionStatuses[indexPath.section]
+            
+            // create index paths being inserted/deleted
+            var paths = [NSIndexPath]()
+            paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
+            
+            //        let donation = orderedDonationKeys[paths[0].section]
+            
+            self.tableView.beginUpdates()
+            // animate row insertion/deletion
+            if donationSelectionStatuses[indexPath.section] {
+                //            if donations[donation]!.count == 0 && (donation.donationState == .Offered || donation.donationState == .Declined) {
+                //                ParseHelper.getOffersForDonation(orderedDonationKeys[paths[0].section]) { (result: [AnyObject]?, error: NSError?) -> Void in
+                //                    self.donations[self.orderedDonationKeys[paths[0].section]] = result as? [PFObject]
+                //                }
+                //            }
+                tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
+            } else if tableView.numberOfRowsInSection(indexPath.section) == 2 {
+                tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
             }
-        } else {
-            tableView.beginUpdates()
-            tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
             tableView.endUpdates()
         }
-        
         
     }
 }

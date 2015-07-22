@@ -25,6 +25,10 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var pendingOrgListLabel: UILabel!
     @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
     
+    @IBOutlet weak var loadingCoverView: UIView!
+    @IBOutlet weak var activityIndicator: UIView!
+    
+    
     // MARK: constraints
     @IBOutlet weak var contactInfoBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var locationBottomConstraint: NSLayoutConstraint!
@@ -33,9 +37,10 @@ class DonationTableViewCell: UITableViewCell {
     @IBOutlet weak var pendingOrgListBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var pendingStatusListBottomConstraint: NSLayoutConstraint!
     
+    
     var pendingOffers: [PFObject]?
     
-    var donation: Donation! {
+    weak var donation: Donation! {
         didSet {
             if let donation = donation {
                 hideDeclinedOptions(true)
@@ -55,7 +60,7 @@ class DonationTableViewCell: UITableViewCell {
                         
                         hideContactInfo(true) // b/c there is no recipient's contact info to display yet
                         
-                        if let pendingOffers = pendingOffers {
+                        if let pendingOffers = pendingOffers where pendingOffers.count > 0 {
                             pendingOrgListLabel.text = ""
                             pendingOrgStatusesLabel.text = ""
                             if pendingOffers.count < 1 {
@@ -64,7 +69,6 @@ class DonationTableViewCell: UITableViewCell {
                             } else {
                                 pendingOrgListLabel.numberOfLines = pendingOffers.count * 2
                                 pendingOrgStatusesLabel.numberOfLines = pendingOffers.count * 2
-
                             }
                             
 //                            println(pendingOffers)
@@ -98,7 +102,8 @@ class DonationTableViewCell: UITableViewCell {
 
                 if !phoneNumberButton.hidden {
                     // populate data depending on which otherUser is nil
-                    phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber ?? ""
+                    println("\(otherOrgUser?[ParseHelper.OrgConstants.phoneNumProperty])")
+                    phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber // ?? ""
                 }
                 
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)

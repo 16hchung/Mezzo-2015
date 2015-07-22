@@ -19,11 +19,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         User.registerSubclass()
+        Organization.registerSubclass()
+        Donor.registerSubclass()
         
         // Initialize Parse.
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
-        PFUser.logInWithUsername("testDonor", password: "testDonor")
+        PFUser.logInWithUsername("testOrg", password: "testOrg")
         
 
         if let user = PFUser.currentUser() as? User {

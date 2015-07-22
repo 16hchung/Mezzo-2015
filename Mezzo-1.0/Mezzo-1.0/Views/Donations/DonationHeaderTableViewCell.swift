@@ -31,7 +31,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var pickupTimeDescriptionLabel: UILabel!
     @IBOutlet weak var selectTimeButton: UIButton!
     
-    var donation: Donation! {
+    weak var donation: Donation! {
         didSet {
             if let donation = donation {
                 if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == Donation.DonationState.Offered {
@@ -101,7 +101,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     private func showTimePickingRelatedViews() {
-        (superview?.superview as? UITableView)?.beginUpdates()
+//        (superview?.superview as? UITableView)?.beginUpdates()
         
         datePickerBottomConstraint.active = true
         
@@ -117,14 +117,14 @@ class DonationHeaderTableViewCell: UITableViewCell {
         selectTimeButton.hidden = false
         pickupTimeDescriptionLabel.hidden = false
         
-        (superview?.superview as? UITableView)?.endUpdates()
+//        (superview?.superview as? UITableView)?.endUpdates()
 
         
         
     }
     
     private func hideTimePickingRelatedViews() {
-        (superview?.superview as? UITableView)?.beginUpdates()
+//        (superview?.superview as? UITableView)?.beginUpdates()
         
         donationDatePicker.hidden = true
         selectedTimeLabel.hidden = true
@@ -132,7 +132,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         pickupTimeDescriptionLabel.hidden = true
         datePickerBottomConstraint.active = false
         
-        (superview?.superview as? UITableView)?.endUpdates()
+//        (superview?.superview as? UITableView)?.endUpdates()
 
     }
     
@@ -157,7 +157,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
         acceptButtonHeightConstraint.constant = 0
         acceptButtonBottomConstraint.constant = 0
     }
-    
-    
+//    
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        showAcceptAndDeclineButtons()
+//        showTimePickingRelatedViews()
+//    }
+//    
     
 }

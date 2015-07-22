@@ -3,22 +3,14 @@ PODS:
   - Bond (3.9.0)
   - Parse (1.7.5):
     - Bolts/Tasks (>= 1.2.0)
-  - Realm (0.93.2):
-    - Realm/Headers (= 0.93.2)
-  - Realm/Headers (0.93.2)
-  - RealmSwift (0.93.2):
-    - Realm (= 0.93.2)
 
 DEPENDENCIES:
   - Bond (~> 3.7)
   - Parse
-  - RealmSwift
 
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
-  Realm: 2fdd0ae74f730e190384e0338d8a0d3654df8220
-  RealmSwift: 231b064da9f98b1c4f325fe1f1cb8756aae2b8d6
 
 COCOAPODS: 0.37.2

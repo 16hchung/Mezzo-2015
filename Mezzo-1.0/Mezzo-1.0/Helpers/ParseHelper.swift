@@ -19,6 +19,7 @@ class ParseHelper {
     
     struct OrgConstants {
         static let nameProperty = "name"
+        static let phoneNumProperty = "phoneNumber"
     }
     
     private struct DonationConstants {

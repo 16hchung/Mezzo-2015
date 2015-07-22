@@ -103,7 +103,7 @@ extension OrganizationChooserViewController: UITableViewDataSource {
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
-            let headerCell = tableView.dequeueReusableCellWithIdentifier("Org Name Header") as! OrganizationHeaderTableViewCell
+            let headerCell = tableView.dequeueReusableCellWithIdentifier("Org Name Header", forIndexPath: indexPath) as! OrganizationHeaderTableViewCell
             
             headerCell.delegate = self
             
