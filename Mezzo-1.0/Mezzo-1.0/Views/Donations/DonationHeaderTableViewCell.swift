@@ -25,12 +25,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var acceptButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var acceptButtonHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var donationDatePicker: UIDatePicker!
-    @IBOutlet weak var datePickerBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var selectedTimeLabel: UILabel!
-    @IBOutlet weak var pickupTimeDescriptionLabel: UILabel!
-    @IBOutlet weak var selectTimeButton: UIButton!
-    
     weak var donation: Donation! {
         didSet {
             if let donation = donation {
@@ -39,9 +33,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } else {
                     hideAcceptAndDeclineButtons()
                 }
-                
-                hideTimePickingRelatedViews()
-                
                 var entityName: String = "Today's donation offer"
                 
                 var otherDonorUser: Donor?
@@ -69,18 +60,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
             }
         }
     }
-    @IBAction func dateValueChanged(sender: UIDatePicker) {
-        var formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        selectedTimeLabel.text = formatter.stringFromDate(sender.date)
-    }
-    
-    @IBAction func selectTime(sender: UIButton) {
-        hideAcceptAndDeclineButtons()
-        hideTimePickingRelatedViews()
-        donation.orgSpecificTime = donationDatePicker.date
-        donation.saveInBackground()
-    }
     
     @IBAction func acceptDonation(sender: UIButton) {
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
@@ -88,52 +67,13 @@ class DonationHeaderTableViewCell: UITableViewCell {
         }
         acceptButton.selected = true
         declineButton.enabled = false
-        showTimePickingRelatedViews()
-        
     }
     
     @IBAction func declineDonation(sender: UIButton) {
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
             ParseHelper.respondToOfferForDonation(donation, byAccepting: false)
         }
-        hideTimePickingRelatedViews()
         hideAcceptAndDeclineButtons()
-    }
-    
-    private func showTimePickingRelatedViews() {
-//        (superview?.superview as? UITableView)?.beginUpdates()
-        
-        datePickerBottomConstraint.active = true
-        
-        donationDatePicker.minimumDate = donation.donorTimeRangeStart
-        donationDatePicker.maximumDate = donation.donorTimeRangeEnd
-        
-        var formatter = NSDateFormatter()
-        formatter.timeStyle = .ShortStyle
-        selectedTimeLabel.text = formatter.stringFromDate(donationDatePicker.date)
-        
-        donationDatePicker.hidden = false
-        selectedTimeLabel.hidden = false
-        selectTimeButton.hidden = false
-        pickupTimeDescriptionLabel.hidden = false
-        
-//        (superview?.superview as? UITableView)?.endUpdates()
-
-        
-        
-    }
-    
-    private func hideTimePickingRelatedViews() {
-//        (superview?.superview as? UITableView)?.beginUpdates()
-        
-        donationDatePicker.hidden = true
-        selectedTimeLabel.hidden = true
-        selectTimeButton.hidden = true
-        pickupTimeDescriptionLabel.hidden = true
-        datePickerBottomConstraint.active = false
-        
-//        (superview?.superview as? UITableView)?.endUpdates()
-
     }
     
     private func showAcceptAndDeclineButtons() {
@@ -157,12 +97,5 @@ class DonationHeaderTableViewCell: UITableViewCell {
         acceptButtonHeightConstraint.constant = 0
         acceptButtonBottomConstraint.constant = 0
     }
-//    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        showAcceptAndDeclineButtons()
-//        showTimePickingRelatedViews()
-//    }
-//    
     
 }

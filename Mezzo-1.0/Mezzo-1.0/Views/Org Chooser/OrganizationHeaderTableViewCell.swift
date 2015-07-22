@@ -9,7 +9,7 @@
 import UIKit
 
 
-protocol OrgHeaderCellDelegate {
+protocol OrgHeaderCellDelegate: class {
     
     func boxCheckedForOrgCell(orgCell: OrganizationHeaderTableViewCell)
     
@@ -26,7 +26,7 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
-    var delegate: OrgHeaderCellDelegate?
+    weak var delegate: OrgHeaderCellDelegate?
     
     //static var selectedOrgArray = [Organization]()
     

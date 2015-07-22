@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse.
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
+//        PFUser.logInWithUsername("testDonor", password: "testDonor")
         PFUser.logInWithUsername("testOrg", password: "testOrg")
-        
 
         if let user = PFUser.currentUser() as? User {
             println("yay")

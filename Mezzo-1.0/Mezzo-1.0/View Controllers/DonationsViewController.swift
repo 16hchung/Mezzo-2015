@@ -81,6 +81,7 @@ class DonationsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        donations = [:]
         super.viewWillAppear(true)
         segmentedControl.selectedSegmentIndex = UPCOMING
         if(segmentedControl.selectedSegmentIndex == UPCOMING) { reloadUpcomingDonationsData() }
@@ -91,9 +92,6 @@ class DonationsViewController: UIViewController {
     // MARK: reload donations data
     
     private func reloadUpcomingDonationsData() {
-        
-        donations = [:]
-        
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
@@ -101,6 +99,7 @@ class DonationsViewController: UIViewController {
                 
                 for donation in loadedDonations {
                     self.donations[donation] = []
+                    
                 }
                 self.reloadUI()
             }
@@ -128,9 +127,6 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
-        
-        donations = [:]
-        
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
             for donation in loadedDonations {
@@ -140,7 +136,11 @@ class DonationsViewController: UIViewController {
         }
     }
     
+    
+    
     @IBAction func segmentedControlChanged(sender: AnyObject) {
+        donations = [:]
+        
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -288,6 +288,7 @@ extension DonationsViewController: UITableViewDataSource {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
             
             headerCell.donation = self.orderedDonationKeys[indexPath.section]
+            
             return headerCell
             
         } else {
@@ -301,6 +302,7 @@ extension DonationsViewController: UITableViewDataSource {
                 bodyCell.loadingCoverView.hidden = false
                 
                 ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+                    tableView.beginUpdates()
                     
                     bodyCell.loadingCoverView.hidden = true
 
@@ -308,6 +310,8 @@ extension DonationsViewController: UITableViewDataSource {
                     
                     bodyCell.pendingOffers = self.donations[donation]!
                     bodyCell.donation = donation
+                    
+                    tableView.endUpdates()
                 }
             } else {
                 bodyCell.pendingOffers = donations[donation]!
