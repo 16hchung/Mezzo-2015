@@ -74,6 +74,7 @@
 		8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
 		8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationBodyTableViewCell.swift; sourceTree = "<group>"; };
+		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
 		A64509201B4C31D500D1C8BE /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
@@ -197,6 +198,7 @@
 				8D18DED81B48359F004E3087 /* LaunchScreen.xib */,
 				8D18DECE1B48359F004E3087 /* Mezzo_1_0.xcdatamodeld */,
 				8D18DECA1B48359F004E3087 /* Supporting Files */,
+				8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */,
 			);
 			path = "Mezzo-1.0";
 			sourceTree = "<group>";
@@ -589,6 +591,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0bfd683f-ab82-452e-8636-98b8ab522cd0";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mezzo-1.0/Mezzo-1.0-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -628,6 +631,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "0bfd683f-ab82-452e-8636-98b8ab522cd0";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Mezzo-1.0/Mezzo-1.0-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

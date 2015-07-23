@@ -5,6 +5,7 @@ target 'Mezzo-1.0' do
 	use_frameworks!
 #	pod 'RealmSwift'
 	platform :ios, '8.0'
+	pod "RMDateSelectionViewController", "~> 2.0.1"
 	pod 'Parse'
 	pod 'Bond', '~> 3.7'
 end

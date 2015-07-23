@@ -8,6 +8,8 @@
 
 import UIKit
 import Parse
+import RMDateSelectionViewController
+import RMActionController
 
 class DonationsViewController: UIViewController {
     
@@ -81,8 +83,8 @@ class DonationsViewController: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
-        donations = [:]
         super.viewWillAppear(true)
+        donations = [:]
         segmentedControl.selectedSegmentIndex = UPCOMING
         if(segmentedControl.selectedSegmentIndex == UPCOMING) { reloadUpcomingDonationsData() }
         
@@ -239,20 +241,6 @@ class DonationsViewController: UIViewController {
         if let identifier = sender.identifier {
             switch identifier {
             case "Send Offer":
-//                var donationToOffer = Donation()
-                
-//
-//                let path = NSIndexPath(forRow: 1, inSection: source.selectedIndex!)
-//                let cell = source.tableView.cellForRowAtIndexPath(path) as! OrganizationBodyTableViewCell
-//                
-//                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
-//                source.donation.toOrganization = cell.organization
-//                
-//                // TODO: fix pickup time
-//                //source.donation.pickupAt = cell.organization?.availableTimes[cell.timePickerView.selectedRowInComponent(0)]
-//                
-//                source.donation.offer()
-                
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
                 source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
@@ -261,8 +249,6 @@ class DonationsViewController: UIViewController {
                     for org in source.selectedRecipientOrganizations {
                         ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
                     }
-                    
-                    self.reloadUpcomingDonationsData()
                 }
             default:
                 break
@@ -295,6 +281,7 @@ extension DonationsViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.row == 0 {
             let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
+            headerCell.delegate = self
             
             headerCell.donation = self.orderedDonationKeys[indexPath.section]
             
@@ -382,3 +369,76 @@ extension DonationsViewController: UISearchBarDelegate {
         // donations = searchDonations(searchText)
     }
 }
+
+extension DonationsViewController: DonationHeaderCellDelegate {
+    
+    func showTimePickingDialogue(cell: DonationHeaderTableViewCell) {
+        
+        let selectAction = RMAction(title: "Select", style: RMActionStyle.Done) { controller -> Void in
+            if let controller = controller as? RMDateSelectionViewController {
+                ParseHelper.respondToOfferForDonation(cell.donation, withTime: controller.datePicker.date, byAccepting: true) { success, error -> Void in
+                    self.donations = [:]
+                    self.reloadUpcomingDonationsData()
+                }
+            }
+        }
+        
+        let cancelAction = RMAction(title: "Cancel", style: RMActionStyle.Cancel) { controller -> Void in }
+        
+        let controller = RMDateSelectionViewController(style: RMActionControllerStyle.White, title: "Pickup Time", message: "I can pick up the donation at:", selectAction: selectAction, andCancelAction: cancelAction)
+        
+        controller.datePicker.minimumDate = cell.donation.donorTimeRangeStart
+        controller.datePicker.maximumDate = cell.donation.donorTimeRangeEnd
+        
+        presentViewController(controller, animated: true, completion: nil)
+    }
+    
+    func showDeclineDialogue(cell: DonationHeaderTableViewCell) {
+        
+        let alertController = UIAlertController(title: nil, message: "Decline this donation offer?", preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
+            ParseHelper.respondToOfferForDonation(cell.donation, withTime: nil, byAccepting: false) { success, error -> Void in
+                self.donations = [:]
+                self.reloadUpcomingDonationsData()
+            }
+        }
+        alertController.addAction(yesAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

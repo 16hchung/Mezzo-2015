@@ -9,6 +9,11 @@
 import UIKit
 import Parse
 
+protocol DonationHeaderCellDelegate: class {
+    func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
+    func showDeclineDialogue(cell: DonationHeaderTableViewCell)
+}
+
 class DonationHeaderTableViewCell: UITableViewCell {
 
     // MARK: Outlets
@@ -24,6 +29,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
     
     @IBOutlet weak var acceptButtonBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var acceptButtonHeightConstraint: NSLayoutConstraint!
+    
+    weak var delegate: DonationHeaderCellDelegate?
     
     weak var donation: Donation! {
         didSet {
@@ -48,32 +55,29 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } // @ this point, either donor or org is nil, not both
                 
                 entityNameLabel.text = entityName
-                var formatter = NSDateFormatter()
-                formatter.timeStyle = .ShortStyle
-                if let specificTime = donation.orgSpecificTime {
-                    timeLabel.text = formatter.stringFromDate(specificTime)
-                } else {
-                    timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!))-\(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
-                }
+                updateTimeLabel()
                 
                 statusLabel.text = donation.donationState.rawValue
             }
         }
     }
     
-    @IBAction func acceptDonation(sender: UIButton) {
-        if let orgUser = (PFUser.currentUser() as? User)?.organization {
-            ParseHelper.respondToOfferForDonation(donation, byAccepting: true)
+    func updateTimeLabel() {
+        var formatter = NSDateFormatter()
+        formatter.timeStyle = .ShortStyle
+        if let specificTime = donation.orgSpecificTime {
+            timeLabel.text = formatter.stringFromDate(specificTime)
+        } else {
+            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!))-\(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
         }
-        acceptButton.selected = true
-        declineButton.enabled = false
+    }
+    
+    @IBAction func acceptDonation(sender: UIButton) {
+        delegate?.showTimePickingDialogue(self)
     }
     
     @IBAction func declineDonation(sender: UIButton) {
-        if let orgUser = (PFUser.currentUser() as? User)?.organization {
-            ParseHelper.respondToOfferForDonation(donation, byAccepting: false)
-        }
-        hideAcceptAndDeclineButtons()
+        delegate?.showDeclineDialogue(self)
     }
     
     private func showAcceptAndDeclineButtons() {
