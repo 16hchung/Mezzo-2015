@@ -137,7 +137,6 @@ class DonationsViewController: UIViewController {
     }
     
     
-    
     @IBAction func segmentedControlChanged(sender: AnyObject) {
         donations = [:]
         
@@ -155,7 +154,6 @@ class DonationsViewController: UIViewController {
     
     private func reloadUI() {
         self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
-        self.tableView.reloadData()
         
         // load the appropriate empty state button if necessary
         self.updateNoDonationsButton()
@@ -168,6 +166,17 @@ class DonationsViewController: UIViewController {
         } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
             self.navigationItem.rightBarButtonItem = nil
         }
+        
+        // expand cells of organizations
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            for index in 0..<orderedDonationKeys.count {
+                if orderedDonationKeys[index].donationState == .Offered {
+                    donationSelectionStatuses[index] = true
+                }
+            }
+        }
+        
+        self.tableView.reloadData()
     }
     
     private func updateNoDonationsButton() {
