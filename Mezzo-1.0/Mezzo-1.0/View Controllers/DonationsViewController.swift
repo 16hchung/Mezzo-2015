@@ -20,7 +20,7 @@ class DonationsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var emptyStateButton: UIButton!
-    
+
     // MARK: Properties
     
     var donations = [Donation : [PFObject]]()
@@ -39,8 +39,6 @@ class DonationsViewController: UIViewController {
             return donationsToReturn
         }
     }
-    /// shows selection status for every section in table view
-    private var donationSelectionStatuses: [Bool] = []
     
     // search bar modes
     private enum SearchBarState {
@@ -101,9 +99,27 @@ class DonationsViewController: UIViewController {
                 
                 for donation in loadedDonations {
                     self.donations[donation] = []
-                    
+//                    if donation.donationState == .Offered || donation.donationState == .Declined {
+//                        ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+//                            self.donations[donation] = result as? [PFObject]
+//                        }
+//                    }
                 }
-                self.reloadUI()
+                
+                loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
+                if loadedDonations.isEmpty {
+                    self.reloadUI()
+                } else {
+                    for donation in loadedDonations {
+                        ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+                            self.donations[donation] = result as? [PFObject]
+                            if donation == loadedDonations.last {
+                                self.reloadUI()
+                            }
+                        }
+                    }
+                }
+                
             }
         } else if let orgUser = (PFUser.currentUser() as! User).organization {
             // load pending donation offers first
@@ -155,8 +171,6 @@ class DonationsViewController: UIViewController {
     // MARK: update UI after data has been loaded
     
     private func reloadUI() {
-        self.donationSelectionStatuses = [Bool](count: (self.donations.count), repeatedValue: false)
-        
         // load the appropriate empty state button if necessary
         self.updateNoDonationsButton()
         
@@ -167,15 +181,6 @@ class DonationsViewController: UIViewController {
             if self.donations.count > 0 { self.addBarButton.enabled == false }
         } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
             self.navigationItem.rightBarButtonItem = nil
-        }
-        
-        // expand cells of organizations
-        if let orgUser = (PFUser.currentUser() as? User)?.organization {
-            for index in 0..<orderedDonationKeys.count {
-                if orderedDonationKeys[index].donationState == .Offered {
-                    donationSelectionStatuses[index] = true
-                }
-            }
         }
         
         self.tableView.reloadData()
@@ -260,95 +265,34 @@ class DonationsViewController: UIViewController {
 // MARK: - Table View Data Source Protocol
 
 extension DonationsViewController: UITableViewDataSource {
-    // MARK: Sections
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return donations.count
-    }
     
     // MARK: Cells
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if donationSelectionStatuses[section] {
-            return 2
-        } else {
-            return 1
-        }
+        return donations.count
     }
     
     
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
-            headerCell.delegate = self
-            
-            headerCell.donation = self.orderedDonationKeys[indexPath.section]
-            
-            return headerCell
-            
-        } else {
-            
-            let bodyCell = tableView.dequeueReusableCellWithIdentifier("Donation Body", forIndexPath: indexPath) as! DonationTableViewCell
-            
-            let donation = orderedDonationKeys[indexPath.section]
-            
-            if donations[donation]!.count == 0 && (donation.donationState == .Offered || donation.donationState == .Declined) {
-                
-                bodyCell.loadingCoverView.hidden = false
-                
-                ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
-                    tableView.beginUpdates()
-                    
-                    bodyCell.loadingCoverView.hidden = true
-
-                    self.donations[donation] = result as? [PFObject]
-                    
-                    bodyCell.pendingOffers = self.donations[donation]!
-                    bodyCell.donation = donation
-                    
-                    tableView.endUpdates()
-                }
-            } else {
-                bodyCell.pendingOffers = donations[donation]!
-                bodyCell.donation = donation
-            }
-            
-            return bodyCell
-        }
+        let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
+        headerCell.delegate = self
+        
+        let donation = orderedDonationKeys[indexPath.row]
+        headerCell.pendingOffers = donations[donation]
+        headerCell.donation = donation
+        
+        
+        
+        return headerCell
+        
     }
 }
 
 // MARK: - Table View Delegate Protocol
 
 extension DonationsViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row == 0 {
-            // toggle selection status
-            donationSelectionStatuses[indexPath.section] = !donationSelectionStatuses[indexPath.section]
-            
-            // create index paths being inserted/deleted
-            var paths = [NSIndexPath]()
-            paths.append(NSIndexPath(forRow: 1, inSection: indexPath.section))
-            
-            //        let donation = orderedDonationKeys[paths[0].section]
-            
-            self.tableView.beginUpdates()
-            // animate row insertion/deletion
-            if donationSelectionStatuses[indexPath.section] {
-                //            if donations[donation]!.count == 0 && (donation.donationState == .Offered || donation.donationState == .Declined) {
-                //                ParseHelper.getOffersForDonation(orderedDonationKeys[paths[0].section]) { (result: [AnyObject]?, error: NSError?) -> Void in
-                //                    self.donations[self.orderedDonationKeys[paths[0].section]] = result as? [PFObject]
-                //                }
-                //            }
-                tableView.insertRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
-            } else if tableView.numberOfRowsInSection(indexPath.section) == 2 {
-                tableView.deleteRowsAtIndexPaths(paths, withRowAnimation: UITableViewRowAnimation.Top)
-            }
-            tableView.endUpdates()
-        }
-        
-    }
+    
 }
 
 // MARK: - Search Bar Delegate
