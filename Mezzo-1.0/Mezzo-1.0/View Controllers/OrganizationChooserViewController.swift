@@ -14,6 +14,7 @@ class OrganizationChooserViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var offerBarButton: UIBarButtonItem!
+    @IBOutlet weak var loadingView: UIView!
     
     // MARK: Properties
     
@@ -34,31 +35,15 @@ class OrganizationChooserViewController: UIViewController {
         
         offerBarButton.enabled = false
         
-        // completion block for organizations query
-        var completionBlock = { (result: [AnyObject]?, error: NSError?) -> Void in
+        loadingView.hidden = false
+        // run Parse query
+        ParseHelper.getAllOrgs { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedOrgs = result as? [Organization] ?? []
             self.organizations = loadedOrgs
             self.tableView.reloadData()
+            self.loadingView.hidden = true
         }
-        
-        // run Parse query
-        ParseHelper.getAllOrgs(completionBlock)
     }
-    
-//    func saveDonation() {
-//        var selectedOrgCellArray = [Organization]()
-//        
-//        for cellSection in 0..<tableView.numberOfSections() {
-//            let path = NSIndexPath(forRow: 0, inSection: cellSection)
-//            
-//            if let cell = tableView.cellForRowAtIndexPath(path) as? OrganizationHeaderTableViewCell where cell.checkBoxButton.selected {
-//                
-//                selectedOrgCellArray.append(cell.organization!)
-//            }
-//        }
-//        
-//        donation.offer()
-//    }
     
     
     // MARK: - Navigation
@@ -66,17 +51,6 @@ class OrganizationChooserViewController: UIViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-//        if let identifier = segue.identifier {
-//            switch identifier {
-//            case "Send Offer":
-//                saveDonation()
-//            default:
-//                break
-//            }
-//        }
-        
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
 
 }

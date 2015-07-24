@@ -58,7 +58,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
                                                     <rect key="frame" x="538" y="50" width="36" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -803,17 +803,42 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view alpha="0.75" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5e-2Y-7gI">
+                                <rect key="frame" x="0.0" y="120" width="600" height="480"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="0bk-tG-m8w">
+                                        <rect key="frame" x="290" y="230" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please wait..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESp-Wo-bXL">
+                                        <rect key="frame" x="252" y="202" width="97" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="0bk-tG-m8w" firstAttribute="top" secondItem="ESp-Wo-bXL" secondAttribute="bottom" constant="8" id="eUb-2E-3BA"/>
+                                    <constraint firstAttribute="centerY" secondItem="0bk-tG-m8w" secondAttribute="centerY" id="gw3-EZ-E7R"/>
+                                    <constraint firstItem="0bk-tG-m8w" firstAttribute="centerX" secondItem="ESp-Wo-bXL" secondAttribute="centerX" id="qGG-aP-siZ"/>
+                                    <constraint firstAttribute="centerX" secondItem="0bk-tG-m8w" secondAttribute="centerX" id="xGo-tV-WQM"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7yo-Fv-ojy" firstAttribute="top" secondItem="F5e-2Y-7gI" secondAttribute="top" id="6Op-PW-1ny"/>
                             <constraint firstAttribute="trailing" secondItem="7yo-Fv-ojy" secondAttribute="trailing" id="8mI-P6-rRr"/>
                             <constraint firstItem="T7U-8q-uLF" firstAttribute="leading" secondItem="Jv6-9a-0CT" secondAttribute="leading" constant="25" id="Iac-Bc-cWr"/>
                             <constraint firstItem="30C-sU-Rrs" firstAttribute="top" secondItem="7yo-Fv-ojy" secondAttribute="bottom" id="Jcb-cI-sLg"/>
                             <constraint firstItem="T7U-8q-uLF" firstAttribute="top" secondItem="buo-M9-lgE" secondAttribute="bottom" constant="20" id="X2u-9P-fpk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F5e-2Y-7gI" secondAttribute="trailing" constant="-16" id="YU7-tv-avW"/>
+                            <constraint firstItem="F5e-2Y-7gI" firstAttribute="leading" secondItem="Jv6-9a-0CT" secondAttribute="leadingMargin" constant="-16" id="ZMq-hv-X3Q"/>
                             <constraint firstAttribute="trailing" secondItem="T7U-8q-uLF" secondAttribute="trailing" constant="25" id="cYC-ib-PdY"/>
                             <constraint firstItem="7yo-Fv-ojy" firstAttribute="leading" secondItem="Jv6-9a-0CT" secondAttribute="leading" id="d1q-yD-MP4"/>
                             <constraint firstItem="7yo-Fv-ojy" firstAttribute="top" secondItem="T7U-8q-uLF" secondAttribute="bottom" constant="15" id="hgr-Xf-Ezl"/>
                             <constraint firstAttribute="centerX" secondItem="T7U-8q-uLF" secondAttribute="centerX" id="myl-lD-ou8"/>
+                            <constraint firstItem="30C-sU-Rrs" firstAttribute="top" secondItem="F5e-2Y-7gI" secondAttribute="bottom" id="oxB-Qi-sHI"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Who" id="vXV-bf-Bmo">
@@ -825,6 +850,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loadingView" destination="F5e-2Y-7gI" id="EP4-cr-XYz"/>
                         <outlet property="offerBarButton" destination="heK-0J-dit" id="3ux-7a-oNa"/>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
                     </connections>
