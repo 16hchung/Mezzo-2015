@@ -288,10 +288,19 @@ extension DonationsViewController: UITableViewDataSource {
         headerCell.pendingOffers = donations[donation]
         headerCell.donation = donation
         
-        
+//        headerCell.updateConstraintsIfNeeded()
+        for label in headerCell.multiLineLabels! {
+            label.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds)
+        }
+        headerCell.setNeedsLayout()
+        headerCell.layoutIfNeeded()
         
         return headerCell
         
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 }
 

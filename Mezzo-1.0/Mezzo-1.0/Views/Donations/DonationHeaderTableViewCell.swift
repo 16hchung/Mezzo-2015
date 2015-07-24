@@ -55,9 +55,13 @@ class DonationHeaderTableViewCell: UITableViewCell {
     
     var pendingOffers: [PFObject]?
     
+    var multiLineLabels:[UILabel!]?
+    
     weak var donation: Donation! {
         didSet {
             if let donation = donation {
+                multiLineLabels = [timeLabel, statusLabel, foodDetailsLabel, locationButton.titleLabel, pendingOrgListLabel]
+                
                 hideDeclinedOptions(true)
                 // toggle hide and accept stuff
                 if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == Donation.DonationState.Offered {
@@ -143,7 +147,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         if let specificTime = donation.orgSpecificTime {
             timeLabel.text = formatter.stringFromDate(specificTime)
         } else {
-            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!))-\(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
+            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
         }
     }
     
@@ -221,7 +225,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
         
         for constraint in locationTitle.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
-                constraint.active = !hidden
+//                constraint.active = !hidden
+                constraint.priority = hidden ? 1 : 990
             }
         }
         
@@ -235,7 +240,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
         
         for constraint in contactInfoTitle.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
-                constraint.active = !hidden
+//                constraint.active = !hidden
+                constraint.priority = hidden ? 1 : 990
             }
         }
         
@@ -249,7 +255,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
         
         for constraint in cancelDonationButton.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
-                constraint.active = !hidden
+//                constraint.active = !hidden
+                constraint.priority = hidden ? 1 : 990
             }
         }
         
@@ -264,7 +271,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
         
         for constraint in OfferSentToTitle.constraints() + pendingOrgListLabel.constraints() + pendingOrgStatusesLabel.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
-                constraint.active = !hidden
+//                constraint.active = !hidden
+                constraint.priority = hidden ? 1 : 990
             }
         }
         
