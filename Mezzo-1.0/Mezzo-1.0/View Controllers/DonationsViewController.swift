@@ -20,6 +20,7 @@ class DonationsViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
     @IBOutlet weak var emptyStateButton: UIButton!
+    @IBOutlet weak var loadingView: UIView!
 
     // MARK: Properties
     
@@ -92,6 +93,8 @@ class DonationsViewController: UIViewController {
     // MARK: reload donations data
     
     private func reloadUpcomingDonationsData() {
+        loadingView.hidden = false
+        
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
@@ -145,6 +148,7 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
+        loadingView.hidden = false
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
             for donation in loadedDonations {
@@ -184,6 +188,8 @@ class DonationsViewController: UIViewController {
         }
         
         self.tableView.reloadData()
+        
+        loadingView.hidden = true
     }
     
     private func updateNoDonationsButton() {
