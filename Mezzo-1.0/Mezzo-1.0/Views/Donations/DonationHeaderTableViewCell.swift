@@ -125,15 +125,13 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 
                 if !phoneNumberButton.hidden {
                     // populate data depending on which otherUser is nil
-                    println("\(otherOrgUser?[ParseHelper.OrgConstants.phoneNumProperty])")
-                    phoneNumberButton.titleLabel!.text = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber // ?? ""
+                    let phoneNum = otherDonorUser?.phoneNumber ?? otherOrgUser?.phoneNumber
+                    phoneNumberButton.setTitle(phoneNum, forState: .Normal)
                 }
                 
                 //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
                 
             }
-
-            
         }
     }
     
@@ -192,11 +190,11 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 case "0","1","2","3","4","5","6","7","8","9":
                     newPhone = newPhone + String(charAtIndex)
                 default:
-                    println("Removed invalid character.")
+                    break
                 }
             }
             
-            if let url = NSURL(string: "tel://\(button.titleLabel?.text)") {
+            if let url = NSURL(string: "tel://\(newPhone)") {
                 UIApplication.sharedApplication().openURL(url)
             }
         }
