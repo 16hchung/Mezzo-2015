@@ -226,7 +226,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         for constraint in locationTitle.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
 //                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 990
+                constraint.priority = hidden ? 1 : 750
             }
         }
         
@@ -241,7 +241,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         for constraint in contactInfoTitle.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
 //                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 990
+                constraint.priority = hidden ? 1 : 750
             }
         }
         
@@ -256,7 +256,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         for constraint in cancelDonationButton.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
 //                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 990
+                constraint.priority = hidden ? 1 : 750
             }
         }
         
@@ -272,7 +272,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
         for constraint in OfferSentToTitle.constraints() + pendingOrgListLabel.constraints() + pendingOrgStatusesLabel.constraints() {
             if let constraint = constraint as? NSLayoutConstraint {
 //                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 990
+                constraint.priority = hidden ? 1 : 750
             }
         }
         
