@@ -138,6 +138,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     // TODO: add day
     func updateTimeLabel() {
         var formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
         formatter.timeStyle = .ShortStyle
         if let specificTime = donation.orgSpecificTime {
             timeLabel.text = formatter.stringFromDate(specificTime)
