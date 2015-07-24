@@ -33,6 +33,9 @@ class OrganizationChooserViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight = UITableViewAutomaticDimension
+        
         offerBarButton.enabled = false
         
         loadingView.hidden = false
