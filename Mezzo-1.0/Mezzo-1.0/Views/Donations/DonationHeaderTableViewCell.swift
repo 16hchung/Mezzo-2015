@@ -160,7 +160,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     private func showAcceptAndDeclineButtons() {
-        acceptButtonBottomConstraint.active = true
+//        acceptButtonBottomConstraint.active = true
         
         declineButton.hidden = false
         acceptButton.hidden = false
@@ -168,11 +168,11 @@ class DonationHeaderTableViewCell: UITableViewCell {
         acceptButton.titleLabel!.font = UIFont(name: acceptButton.titleLabel!.font.fontName, size: 15.0)
         declineButton.titleLabel!.font = UIFont(name: declineButton.titleLabel!.font.fontName, size: 15.0)
         
-        acceptButtonBottomConstraint.constant = 16
+//        acceptButtonBottomConstraint.constant = 16
     }
     
     private func hideAcceptAndDeclineButtons() {
-        acceptButtonBottomConstraint.active = false
+//        acceptButtonBottomConstraint.active = false
 
         declineButton.hidden = true
         acceptButton.hidden = true
@@ -223,12 +223,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(locationTitle, normalFontSize: 14.0, hidden: hidden)
         setFontOfUIObject(locationButton, normalFontSize: 14.0, hidden: hidden)
         
-        for constraint in locationTitle.constraints() {
-            if let constraint = constraint as? NSLayoutConstraint {
-//                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 750
-            }
-        }
+//        for constraint in locationTitle.constraints() {
+//            if let constraint = constraint as? NSLayoutConstraint {
+////                constraint.active = !hidden
+//                constraint.priority = hidden ? 1 : 750
+//            }
+//        }
         
 //        locationBottomConstraint.constant = hidden ? -15 : 10
     }
@@ -238,12 +238,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(contactInfoTitle, normalFontSize: 14.0 , hidden: hidden)
         setFontOfUIObject(phoneNumberButton, normalFontSize: 14.0 , hidden: hidden)
         
-        for constraint in contactInfoTitle.constraints() {
-            if let constraint = constraint as? NSLayoutConstraint {
-//                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 750
-            }
-        }
+//        for constraint in contactInfoTitle.constraints() {
+//            if let constraint = constraint as? NSLayoutConstraint {
+////                constraint.active = !hidden
+//                constraint.priority = hidden ? 1 : 750
+//            }
+//        }
         
 //        contactInfoBottomConstraint.constant = hidden ? -20 : 10
     }
@@ -253,12 +253,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
         setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
         
-        for constraint in cancelDonationButton.constraints() {
-            if let constraint = constraint as? NSLayoutConstraint {
-//                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 750
-            }
-        }
+//        for constraint in cancelDonationButton.constraints() {
+//            if let constraint = constraint as? NSLayoutConstraint {
+////                constraint.active = !hidden
+//                constraint.priority = hidden ? 1 : 750
+//            }
+//        }
         
 //        cancelDonationBottomConstraint.constant = hidden ? 0 : -16
     }
@@ -269,12 +269,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(pendingOrgListLabel, normalFontSize: 12.0, hidden: hidden)
         setFontOfUIObject(pendingOrgStatusesLabel, normalFontSize: 12.0, hidden: hidden)
         
-        for constraint in OfferSentToTitle.constraints() + pendingOrgListLabel.constraints() + pendingOrgStatusesLabel.constraints() {
-            if let constraint = constraint as? NSLayoutConstraint {
-//                constraint.active = !hidden
-                constraint.priority = hidden ? 1 : 750
-            }
-        }
+//        for constraint in OfferSentToTitle.constraints() + pendingOrgListLabel.constraints() + pendingOrgStatusesLabel.constraints() {
+//            if let constraint = constraint as? NSLayoutConstraint {
+////                constraint.active = !hidden
+//                constraint.priority = hidden ? 1 : 750
+//            }
+//        }
         
 //        offerSentToBottomConstraint.constant = hidden ? 0 : 8
 //        pendingStatusListBottomConstraint.constant = hidden ? 0 : 8
