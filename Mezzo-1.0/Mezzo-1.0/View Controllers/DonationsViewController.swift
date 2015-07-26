@@ -67,6 +67,10 @@ class DonationsViewController: UIViewController {
     private let COMPLETED: Int = 1
     
     
+    /// pull to refresh
+    var refreshControl = UIRefreshControl()
+    
+    
     // MARK: VC Lifecycle
     
     override func viewDidLoad() {
@@ -85,7 +89,11 @@ class DonationsViewController: UIViewController {
         super.viewWillAppear(true)
         donations = [:]
         segmentedControl.selectedSegmentIndex = UPCOMING
-        if(segmentedControl.selectedSegmentIndex == UPCOMING) { reloadUpcomingDonationsData() }
+        reloadUpcomingDonationsData()
+        
+        // pull to refresh setup
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        self.tableView.addSubview(refreshControl)
         
         searchBarState = .DefaultMode
     }
@@ -93,6 +101,7 @@ class DonationsViewController: UIViewController {
     // MARK: reload donations data
     
     private func reloadUpcomingDonationsData() {
+        self.donations = [Donation : [PFObject]]()
         loadingView.hidden = false
         
         // load donations (getDonations already deals with type of user)
@@ -101,22 +110,20 @@ class DonationsViewController: UIViewController {
                 let loadedDonations =  result as? [Donation] ?? []
                 
                 for donation in loadedDonations {
-                    self.donations[donation] = []
-//                    if donation.donationState == .Offered || donation.donationState == .Declined {
-//                        ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
-//                            self.donations[donation] = result as? [PFObject]
-//                        }
-//                    }
+                    self.donations.updateValue([], forKey: donation)
                 }
                 
+                // filter donations that need to display their offers
                 loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
                 if loadedDonations.isEmpty {
                     self.reloadUI()
                 } else {
                     for donation in loadedDonations {
                         ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
-                            self.donations[donation] = result as? [PFObject]
-                            if donation == loadedDonations.last {
+                            let loadedOffers = result as? [PFObject] ?? []
+                            self.donations.updateValue(loadedOffers, forKey: donation)
+                            
+                            if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                 self.reloadUI()
                             }
                         }
@@ -148,6 +155,7 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
+        self.donations = [Donation : [PFObject]]()
         loadingView.hidden = false
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
@@ -170,6 +178,21 @@ class DonationsViewController: UIViewController {
         default:
             reloadUpcomingDonationsData()
         }
+    }
+    
+    // MARK: pull to refresh
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case UPCOMING:
+            reloadUpcomingDonationsData()
+        case COMPLETED:
+            reloadCompletedDonationsData()
+        default:
+            reloadUpcomingDonationsData()
+        }
+        
+        refreshControl.endRefreshing()
     }
     
     // MARK: update UI after data has been loaded
