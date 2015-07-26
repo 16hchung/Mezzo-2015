@@ -19,8 +19,10 @@ class PickupTimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let startTime = nearestFifteenthMinute()
+        startTimeRangePicker.minimumDate = startTime
+        startTimePicked(startTimeRangePicker)
         
-        startTimeRangePicker.minimumDate = NSDate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,7 +43,18 @@ class PickupTimeViewController: UIViewController {
         endTimeRangePicker.setDate(startTime, animated: true)
     }
     
-
+    private func nearestFifteenthMinute() -> NSDate {
+        var componentMask : NSCalendarUnit = (NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute)
+        var components = NSCalendar.currentCalendar().components(componentMask, fromDate: NSDate())
+        
+        components.minute += 15 - components.minute % 15
+        components.second = 0
+        if (components.minute == 0) {
+            components.hour += 1
+        }
+        
+        return NSCalendar.currentCalendar().dateFromComponents(components)!
+    }
     
     // MARK: - Navigation
 
@@ -58,5 +71,4 @@ class PickupTimeViewController: UIViewController {
             }
         }
     }
-    
 }
