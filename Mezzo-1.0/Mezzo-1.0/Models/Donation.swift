@@ -88,9 +88,7 @@ class Donation: PFObject, PFSubclassing {
         :returns: whether the donation should be displayed (either marked as complete now or just shouldn't be shown)
     */
     func checkIfExpiredOrCompleted() -> Bool {
-        // if past today's date and donation has been accepted
-        println("END TIME RANGE IS BEFORE TODAY'S DATE : \(donorTimeRangeEnd < NSDate())")
-        
+        // if past today's date      
         if donorTimeRangeEnd < NSDate() || (orgSpecificTime != nil && orgSpecificTime < NSDate()) {
             // don't mark pending or declined donations that have expired as complete
             

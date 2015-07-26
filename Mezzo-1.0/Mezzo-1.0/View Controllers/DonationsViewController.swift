@@ -67,8 +67,14 @@ class DonationsViewController: UIViewController {
     private let COMPLETED: Int = 1
     
     
-    /// pull to refresh
-    var refreshControl = UIRefreshControl()
+    /// pull to refresh 
+    // lazy b/c doesn't need to be created immediately
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.attributedTitle = NSAttributedString(string: "Refreshing your donations...")
+        return refreshControl
+    }()
     
     
     // MARK: VC Lifecycle
@@ -92,7 +98,6 @@ class DonationsViewController: UIViewController {
         reloadUpcomingDonationsData()
         
         // pull to refresh setup
-        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
         self.tableView.addSubview(refreshControl)
         
         searchBarState = .DefaultMode
