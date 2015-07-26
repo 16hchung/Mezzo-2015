@@ -57,18 +57,6 @@ class Donation: PFObject, PFSubclassing {
     static let pluralSizeTypes: [String] = ["boxes", "pallets"]
     static let singularSizeTypes: [String] = ["box", "pallet"]
     
-    /// extreme min and max of weight + increments of ranges
-//    static private let rangeProperties: (min: Int, max: Int, increment: Int) = (50, 150, 25)
-//    static var incrementedAmountRanges: [String] {
-//        get {
-//            return ["≤ 50", "50 - 75", "75 - 100", "100 - 125", "125 - 150"]
-//            // TODO: make this part less poopy and brute force
-//        }
-//    }
-    
-    
-    
-    
     // MARK: Methods
     
     /// Uploads donation to Parse (with all fields populated except state)
@@ -91,6 +79,28 @@ class Donation: PFObject, PFSubclassing {
     func locationString() -> String {
         //        return toOrganization?.locatedAt?.description
         return "1234 Hippo Lane, Palo Alto, CA" // filler data
+    }
+    
+    /**
+        Checks if the current donation is already expired or completed (the pickup time range
+        or specific pickup time has already passed).
+    
+        :returns: whether the donation should be displayed (either marked as complete now or just shouldn't be shown)
+    */
+    func checkIfExpiredOrCompleted() -> Bool {
+        // if past today's date and donation has been accepted
+        println("END TIME RANGE IS BEFORE TODAY'S DATE : \(donorTimeRangeEnd < NSDate())")
+        
+        if donorTimeRangeEnd < NSDate() || (orgSpecificTime != nil && orgSpecificTime < NSDate()) {
+            // don't mark pending or declined donations that have expired as complete
+            
+            if donationState == .Accepted { // mark expired accpeted donations as complete
+                donationState = .Completed
+                self.saveInBackground()
+            }
+            return false // should not be displayed
+        }
+        return true // should be displayed
     }
     
     // MARK: Helpers
