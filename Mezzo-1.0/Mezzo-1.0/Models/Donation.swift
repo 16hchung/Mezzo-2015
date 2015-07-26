@@ -41,7 +41,7 @@ class Donation: PFObject, PFSubclassing {
         case Completed = "Completed"
     }
     
-    var donationState: DonationState! {
+    var donationState: DonationState {
         set(newState) { // updates Parse's status string
             status = newState.rawValue
         }
@@ -99,6 +99,22 @@ class Donation: PFObject, PFSubclassing {
             return false // should not be displayed
         }
         return true // should be displayed
+    }
+    
+    /// Returns appropriate color for a donation's state
+    func stateToColor() -> UIColor {
+        switch (donationState) {
+        case .Accepted:
+            return UIColor.greenColor()
+        case .Offered:
+            return UIColor.orangeColor()
+        case .Declined:
+            return UIColor.redColor()
+        case .Completed:
+            return UIColor.grayColor()
+        default:
+            return UIColor.blackColor()
+        }
     }
     
     // MARK: Helpers

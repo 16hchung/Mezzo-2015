@@ -125,6 +125,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 updateTimeLabel()
                 
                 statusLabel.text = donation.donationState.rawValue
+                statusLabel.textColor = donation.stateToColor()
                 foodDetailsLabel.text = donation.detailsString()
                 
                 if !phoneNumberButton.hidden {
