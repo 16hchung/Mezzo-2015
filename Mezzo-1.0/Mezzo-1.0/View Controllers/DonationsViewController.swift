@@ -107,7 +107,8 @@ class DonationsViewController: UIViewController {
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
-                let loadedDonations =  result as? [Donation] ?? []
+                var loadedDonations =  result as? [Donation] ?? []
+                loadedDonations = loadedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
                 
                 for donation in loadedDonations {
                     self.donations.updateValue([], forKey: donation)
@@ -139,12 +140,13 @@ class DonationsViewController: UIViewController {
                 
                 for offer in pendingOffers {
                     let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
-                    pendingDonations.append(donation)
+                    if donation.checkIfExpiredOrCompleted() { pendingDonations.append(donation) }
                 }
                 
                 // then load any accepted donations
                 ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
-                    let acceptedDonations = result as? [Donation] ?? []
+                    var acceptedDonations = result as? [Donation] ?? []
+                    acceptedDonations = acceptedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
                     for donation in pendingDonations + acceptedDonations {
                         self.donations[donation] = []
                     }
