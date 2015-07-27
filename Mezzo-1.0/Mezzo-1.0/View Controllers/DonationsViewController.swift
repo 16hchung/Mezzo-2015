@@ -15,7 +15,7 @@ class DonationsViewController: UIViewController {
     
     // MARK: Outlets
     
-    @IBOutlet weak var searchBar: UISearchBar!
+//    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var addBarButton: UIBarButtonItem!
@@ -41,26 +41,26 @@ class DonationsViewController: UIViewController {
         }
     }
     
-    // search bar modes
-    private enum SearchBarState {
-        case DefaultMode
-        case SearchMode
-    }
-
-    private var searchBarState: SearchBarState = .DefaultMode {
-        didSet {
-            switch(searchBarState) {
-            case .DefaultMode:
-                searchBar.resignFirstResponder()
-                searchBar.text = ""
-                searchBar.showsCancelButton = false
-            case .SearchMode:
-                let searchText = searchBar.text ?? ""
-                searchBar.showsCancelButton = true
-                // donations = searchDonations(searchText)
-            }
-        }
-    }
+//    // search bar modes
+//    private enum SearchBarState {
+//        case DefaultMode
+//        case SearchMode
+//    }
+//
+//    private var searchBarState: SearchBarState = .DefaultMode {
+//        didSet {
+//            switch(searchBarState) {
+//            case .DefaultMode:
+//                searchBar.resignFirstResponder()
+//                searchBar.text = ""
+//                searchBar.showsCancelButton = false
+//            case .SearchMode:
+//                let searchText = searchBar.text ?? ""
+//                searchBar.showsCancelButton = true
+//                // donations = searchDonations(searchText)
+//            }
+//        }
+//    }
     
     // segmented control modes
     private let UPCOMING: Int  = 0
@@ -85,7 +85,7 @@ class DonationsViewController: UIViewController {
         // setting delegate + datasource
         tableView.delegate = self
         tableView.dataSource = self
-        searchBar.delegate = self
+//        searchBar.delegate = self
         
         tableView.estimatedRowHeight = 100
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -100,13 +100,12 @@ class DonationsViewController: UIViewController {
         // pull to refresh setup
         self.tableView.addSubview(refreshControl)
         
-        searchBarState = .DefaultMode
+//        searchBarState = .DefaultMode
     }
     
     // MARK: reload donations data
     
     private func reloadUpcomingDonationsData() {
-        self.donations = [Donation : [PFObject]]()
         loadingView.hidden = false
         
         // load donations (getDonations already deals with type of user)
@@ -162,7 +161,6 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
-        self.donations = [Donation : [PFObject]]()
         loadingView.hidden = false
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
@@ -190,6 +188,7 @@ class DonationsViewController: UIViewController {
     // MARK: pull to refresh
     
     func handleRefresh(refreshControl: UIRefreshControl) {
+        donations = [:]
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -199,7 +198,7 @@ class DonationsViewController: UIViewController {
             reloadUpcomingDonationsData()
         }
         
-        refreshControl.endRefreshing()
+//        refreshControl.endRefreshing()
     }
     
     // MARK: update UI after data has been loaded
@@ -219,6 +218,8 @@ class DonationsViewController: UIViewController {
         
         self.tableView.reloadData()
         
+        refreshControl.endRefreshing()
+        // refreshing bool
         loadingView.hidden = true
     }
     
@@ -341,22 +342,22 @@ extension DonationsViewController: UITableViewDelegate {
 
 // MARK: - Search Bar Delegate
 
-extension DonationsViewController: UISearchBarDelegate {
-    // user begins editing the search text
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
-        self.searchBarState = .SearchMode
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        searchBarState = .DefaultMode
-    }
-    
-    // user changed the search text, so filter through notes and update view
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // TODO: search for the given donor
-        // donations = searchDonations(searchText)
-    }
-}
+//extension DonationsViewController: UISearchBarDelegate {
+//    // user begins editing the search text
+//    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+//        self.searchBarState = .SearchMode
+//    }
+//    
+//    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+//        searchBarState = .DefaultMode
+//    }
+//    
+//    // user changed the search text, so filter through notes and update view
+//    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+//        // TODO: search for the given donor
+//        // donations = searchDonations(searchText)
+//    }
+//}
 
 extension DonationsViewController: DonationHeaderCellDelegate {
     
