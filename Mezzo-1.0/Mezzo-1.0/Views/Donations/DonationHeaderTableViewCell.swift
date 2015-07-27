@@ -134,13 +134,12 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     phoneNumberButton.setTitle(phoneNum, forState: .Normal)
                 }
                 
-                //locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
+                locationButton.setTitle(donation.locationString(), forState: UIControlState.Normal)
                 
             }
         }
     }
     
-    // TODO: add day
     func updateTimeLabel() {
         var formatter = NSDateFormatter()
         formatter.dateStyle = .ShortStyle
@@ -202,6 +201,19 @@ class DonationHeaderTableViewCell: UITableViewCell {
             
             if let url = NSURL(string: "tel://\(newPhone)") {
                 UIApplication.sharedApplication().openURL(url)
+            }
+        }
+    }
+    
+    @IBAction func mapLocation(sender: UIButton) {
+        let location = donation.location()
+        
+        if let lat = location.latitude, long = location.longitude {
+            if UIApplication.sharedApplication().canOpenURL(NSURL(string:"comgooglemaps://")!) {
+                let searchable = donation.locationString().stringByReplacingOccurrencesOfString(" ", withString: "+")
+                UIApplication.sharedApplication().openURL(NSURL(string: "comgooglemaps://?q=\(searchable)&center=\(lat),\(long)&zoom=14")!)
+            } else {
+                // go to apple maps
             }
         }
     }

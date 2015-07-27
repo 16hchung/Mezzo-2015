@@ -13,6 +13,7 @@ class Organization: PFObject, PFSubclassing{
     
     // MARK: Parse attributes
     
+    @NSManaged var locationString: String?
     @NSManaged var locatedAt: PFGeoPoint?
     @NSManaged var EIN: String?
     @NSManaged var name: String

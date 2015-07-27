@@ -13,6 +13,7 @@ class Donor: PFObject, PFSubclassing {
     
     // MARK: from Parse
     
+    @NSManaged var locationString: String?
     /// access `location` property instead
     @NSManaged var locatedAt: PFGeoPoint?
     /// identification for organizations and donors
@@ -22,10 +23,6 @@ class Donor: PFObject, PFSubclassing {
     @NSManaged var phoneNumber: String
     /// donor's profile picture PFFile
     @NSManaged var profilePictureFile: PFFile?
-    
-    // MARK: Methods
-    
-    
     
     // MARK: PFSubclassing Protocol
     

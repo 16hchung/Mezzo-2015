@@ -76,10 +76,35 @@ class Donation: PFObject, PFSubclassing {
         return "\(joinedDescriptionList) | \(size)"
     }
     
-    // TODO: grab the actual address from the geo point
     func locationString() -> String {
-        //        return toOrganization?.locatedAt?.description
-        return "1234 Hippo Lane, Palo Alto, CA" // filler data
+        var returnedString = ""
+        
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            returnedString = fromDonor?.locationString ?? ""
+        } else if let donorUser = (PFUser.currentUser() as? User)?.donor {
+            returnedString = toOrganization?.locationString ?? ""
+        }
+        
+        return returnedString
+    }
+    
+    /**
+        Returns lat and long of locatedAt property based on who is the currentUser
+        
+        :returns: latitude, longitude optional doubles
+    */
+    func location() -> (latitude: Double?, longitude: Double?) {
+        var toReturn: (latitude: Double?, longitude: Double?) = (nil, nil)
+        
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            toReturn.latitude = fromDonor?.locatedAt?.latitude
+            toReturn.longitude = fromDonor?.locatedAt?.longitude
+        } else if let donorUser = (PFUser.currentUser() as? User)?.donor {
+            toReturn.latitude = toOrganization?.locatedAt?.latitude
+            toReturn.longitude = toOrganization?.locatedAt?.longitude
+        }
+        
+        return toReturn
     }
     
     /**

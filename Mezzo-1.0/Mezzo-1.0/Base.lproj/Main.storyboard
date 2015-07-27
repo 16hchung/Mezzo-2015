@@ -113,6 +113,9 @@
                                                     <state key="normal" title="14 Hippo St., Palo Alto CA">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="mapLocation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="XFk-fT-oY6"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqX-Ig-tr2">
                                                     <rect key="frame" x="10" y="91" width="54" height="21"/>
