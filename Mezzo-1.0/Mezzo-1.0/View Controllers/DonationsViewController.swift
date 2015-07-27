@@ -93,7 +93,6 @@ class DonationsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        donations = [:]
         segmentedControl.selectedSegmentIndex = UPCOMING
         reloadUpcomingDonationsData()
         
@@ -108,6 +107,8 @@ class DonationsViewController: UIViewController {
     private func reloadUpcomingDonationsData() {
         loadingView.hidden = false
         
+        var loadingDonations: [Donation : [PFObject]] = [:]
+        
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
@@ -115,20 +116,22 @@ class DonationsViewController: UIViewController {
                 loadedDonations = loadedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
                 
                 for donation in loadedDonations {
-                    self.donations.updateValue([], forKey: donation)
+                    loadingDonations[donation] = []
                 }
                 
                 // filter donations that need to display their offers
                 loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
                 if loadedDonations.isEmpty {
+                    self.donations = loadingDonations
                     self.reloadUI()
                 } else {
                     for donation in loadedDonations {
                         ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
                             let loadedOffers = result as? [PFObject] ?? []
-                            self.donations.updateValue(loadedOffers, forKey: donation)
+                            loadingDonations[donation] = []
                             
                             if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
+                                self.donations = loadingDonations
                                 self.reloadUI()
                             }
                         }
@@ -152,8 +155,9 @@ class DonationsViewController: UIViewController {
                     var acceptedDonations = result as? [Donation] ?? []
                     acceptedDonations = acceptedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
                     for donation in pendingDonations + acceptedDonations {
-                        self.donations[donation] = []
+                        loadingDonations[donation] = []
                     }
+                    self.donations = loadingDonations
                     self.reloadUI()
                 }
             }
@@ -161,20 +165,22 @@ class DonationsViewController: UIViewController {
     }
     
     private func reloadCompletedDonationsData() {
+        var loadingDonations: [Donation : [PFObject]] = [:]
+        
         loadingView.hidden = false
+        
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
             let loadedDonations = result as? [Donation] ?? []
             for donation in loadedDonations {
-                self.donations[donation] = []
+                loadingDonations[donation] = []
             }
+            self.donations = loadingDonations
             self.reloadUI()
         }
     }
     
     
     @IBAction func segmentedControlChanged(sender: AnyObject) {
-        donations = [:]
-        
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -188,7 +194,6 @@ class DonationsViewController: UIViewController {
     // MARK: pull to refresh
     
     func handleRefresh(refreshControl: UIRefreshControl) {
-        donations = [:]
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -367,7 +372,6 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         let selectAction = RMAction(title: "Select", style: RMActionStyle.Done) { controller -> Void in
             if let controller = controller as? RMDateSelectionViewController {
                 ParseHelper.respondToOfferForDonation(cell.donation, withTime: controller.datePicker.date, byAccepting: true) { success, error -> Void in
-                    self.donations = [:]
                     self.reloadUpcomingDonationsData()
                 }
             }
@@ -392,7 +396,6 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         
         let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
             ParseHelper.respondToOfferForDonation(cell.donation, withTime: nil, byAccepting: false) { success, error -> Void in
-                self.donations = [:]
                 self.reloadUpcomingDonationsData()
             }
         }

@@ -263,8 +263,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
     
     /// Hides buttons that appear when a donation is all declined (cancel and change recipient buttons)
     private func hideDeclinedOptions(hidden: Bool) {
-        setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
-        setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
+//        setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
+//        setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
         
 //        for constraint in cancelDonationButton.constraints() {
 //            if let constraint = constraint as? NSLayoutConstraint {

@@ -25,8 +25,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Initialize Parse.
         Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
         
-        PFUser.logInWithUsername("testDonor", password: "testDonor")
-//        PFUser.logInWithUsername("testOrg", password: "testOrg")
+        let acl = PFACL()
+        acl.setPublicReadAccess(true)
+        PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
+        
+//        PFUser.logInWithUsername("testDonor", password: "testDonor")
+//        PFUser.logInWithUsername("targetDonor", password: "targetDonor")
+        PFUser.logInWithUsername("testOrg", password: "testOrg")
 
         if let user = PFUser.currentUser() as? User {
             println("yay")
