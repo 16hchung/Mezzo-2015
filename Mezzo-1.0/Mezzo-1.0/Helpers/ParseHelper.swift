@@ -53,6 +53,8 @@ class ParseHelper {
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
+    // MARK: donations
+    
     /**
         Gets completed donations for the current user.
     */
@@ -116,6 +118,7 @@ class ParseHelper {
         }
     }
     
+    // MARK: offers
     
     static func addOfferToDonation(donation: Donation, toOrganization: Organization) {
         
@@ -184,6 +187,51 @@ class ParseHelper {
                 
             }
         }
+    }
+    
+    // MARK: push notifications
+    
+    static func sendPush(toUser: PFObject, donation: Donation) {
+        let pushQuery = PFInstallation.query()
+        
+        if let org = toUser as? Organization {
+            pushQuery!.whereKey("org", equalTo: org)
+        } else if let donor = toUser as? Donor {
+            pushQuery!.whereKey("donor", equalTo: donor)
+        }
+        
+        let push = PFPush()
+        var message: String = ""
+        
+        push.setQuery(pushQuery)
+        
+        // set message
+//        println("PUSH NOTIFICATION: \(donation.fromDonor!)")
+        
+//        switch (donation.donationState) {
+//        case .Offered:
+//            message = "New donation offer from \((PFUser.currentUser() as? User)!.donor!.name)."
+//            break
+//        case .Accepted:
+//            message = "Your donation was accepted by \((PFUser.currentUser() as? User)!.organization!.name)."
+//        case .Declined:
+//            message = "Your donation was declined by \((PFUser.currentUser() as? User)!.organization!.name)."
+//        default:
+//            message = "Keep up the great work!"
+//        }
+        
+        println("PUSH NOTIF \((PFUser.currentUser() as? User)!)")
+        println("PUSH NOTIF \((PFUser.currentUser() as? User)!.donor!)")
+        let donorUser = (PFUser.currentUser() as? User)!.objectForKey("donor") as? Donor
+        println(donorUser)
+        let name = donorUser!.name
+        println(name)
+        message = "New donation offer from \((PFUser.currentUser() as? User)!.donor!.name)."
+        
+        println("PUSH NOTIFICATION: message = \(message)")
+        push.setMessage(message)
+        push.sendPushInBackground()
+        println("PUSH NOTIFICATION: sending push")
     }
     
 }

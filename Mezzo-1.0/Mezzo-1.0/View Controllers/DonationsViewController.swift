@@ -284,11 +284,10 @@ class DonationsViewController: UIViewController {
             case "Send Offer":
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
-                source.donation.fromDonor = (PFUser.currentUser()! as? User)?.donor
-                
-                source.donation.offer { (success: Bool, error: NSError?) -> Void in
+                source.donation.offer ((PFUser.currentUser()! as! User).donor!)  { (success: Bool, error: NSError?) -> Void in
                     for org in source.selectedRecipientOrganizations {
                         ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                        ParseHelper.sendPush(org, donation: source.donation)
                     }
                 }
             default:

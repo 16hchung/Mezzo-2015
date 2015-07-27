@@ -49,6 +49,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.channels = ["global"]
+        
+        // store the user pointer
+        if let donor = (PFUser.currentUser() as? User)?.donor {
+            currentInstallation["donor"] = donor
+        } else if let org = (PFUser.currentUser() as? User)?.organization {
+            currentInstallation["org"] = org
+        }
+        
         currentInstallation.saveInBackground()
     }
     
