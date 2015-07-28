@@ -16,6 +16,19 @@ import Bolts
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+//    override init() {
+//        super.init()
+//        
+//        parseLoginHelper = ParseLoginHelper { [unowned self] user, error in
+//            if let user = user {
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UIViewController
+//                
+//                self.window?.rootViewController!.presentViewController(tabBarController, animated: true, completion: nil)
+//            }
+//        }
+//    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         User.registerSubclass()

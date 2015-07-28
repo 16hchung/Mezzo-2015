@@ -17,6 +17,8 @@ PODS:
     - FBSDKCoreKit/arc
   - Parse (1.7.5):
     - Bolts/Tasks (>= 1.2.0)
+  - ParseUI (1.1.4):
+    - Parse (~> 1.7)
   - RMActionController (1.0.4)
   - RMDateSelectionViewController (2.0.1):
     - RMActionController (~> 1.0.0)
@@ -25,6 +27,7 @@ DEPENDENCIES:
   - Bond (~> 3.7)
   - FBSDKCoreKit (~> 4.4)
   - Parse
+  - ParseUI
   - RMDateSelectionViewController (~> 2.0.1)
 
 SPEC CHECKSUMS:
@@ -32,6 +35,7 @@ SPEC CHECKSUMS:
   Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
   FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
+  ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09
   RMDateSelectionViewController: 027bdeeaacb78b2b528808ed21efd697490d2b4e
 

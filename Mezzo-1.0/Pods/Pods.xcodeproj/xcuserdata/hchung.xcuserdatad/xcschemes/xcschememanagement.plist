@@ -24,6 +24,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Mezzo-1.0-ParseUI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Mezzo-1.0-RMActionController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -54,6 +59,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Mezzo-1.0Tests-ParseUI.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Mezzo-1.0Tests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -62,57 +72,67 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>2FF37F04962E72AA4874DF68</key>
+		<key>0F45C10BBAD931322FD09298</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>33F48AF6A11B56ADE12A7B37</key>
+		<key>185F588A7C5818E694F54DFB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>43BBB6CD868FD005591A18E8</key>
+		<key>1CA8AEFF0A4DAAE2398629D9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>65ABC7629FCF279F23838D7B</key>
+		<key>2AA0DFD6CAD727306C0B080E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>80401EB7BD59BEAB6C2261A3</key>
+		<key>2AB4596385F6D25DD99A04FD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8777DCD58F2561E8F23259DE</key>
+		<key>583F7C61CB77C3F63EF39C9E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9DEC5B8F6DA219016119812A</key>
+		<key>6E2363D31904672C2BD323C3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B437BE91DA2B3668FE1193F5</key>
+		<key>9077AB9E67C69E0D9F3196EB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CCD74E3EAB2C17F9AA1366DB</key>
+		<key>962246B42756CDC796A5F5E5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DDD6D4E6336CB83EE85F581D</key>
+		<key>CF318072A5AFF564C4C4F85B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DFB5FEC1580DEBE40D82B694</key>
+		<key>D4098BE8AE0F9EE7F310DA64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EC6FFF20ED8C9F3DD8F5BDE9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F71ADD820A8FDF67BB6E68F9</key>
 		<dict>
 			<key>primary</key>
 			<true/>
