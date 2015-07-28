@@ -168,7 +168,10 @@ class ParseHelper {
     static func respondToOfferForDonation(donation: Donation, withTime: NSDate?, byAccepting: Bool, callBack: PFBooleanResultBlock?) {
         ParseHelper.getOffersForDonation(donation) {
             (result: [AnyObject]?, error: NSError?) -> Void in
-            if let result = result {
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+                
+            } else if let result = result {
                 // filter through offers
                 let specificOffer = result.filter { $0[ParseHelper.OfferConstants.toOrgProperty] as? Organization == (PFUser.currentUser() as? User)?.organization }
                                 // get donation for filtered offer

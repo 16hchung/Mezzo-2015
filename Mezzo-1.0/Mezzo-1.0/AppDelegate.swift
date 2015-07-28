@@ -9,26 +9,32 @@
 import UIKit
 import CoreData
 import Parse
+import ParseUI
 import Bolts
+import FBSDKCoreKit
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var parseLoginHelper: ParseLoginHelper!
     
-//    override init() {
-//        super.init()
-//        
-//        parseLoginHelper = ParseLoginHelper { [unowned self] user, error in
-//            if let user = user {
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let tabBarController = storyboard.instantiateViewControllerWithIdentifier("TabBarController") as! UIViewController
-//                
-//                self.window?.rootViewController!.presentViewController(tabBarController, animated: true, completion: nil)
-//            }
-//        }
-//    }
+    override init() {
+        super.init()
+        
+        parseLoginHelper = ParseLoginHelper { [unowned self] user, error in
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+                
+            } else if let user = user {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let navController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UIViewController
+                
+                self.window?.rootViewController!.presentViewController(navController, animated: true, completion: nil)
+            }
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         User.registerSubclass()
@@ -42,15 +48,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         acl.setPublicReadAccess(true)
         PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
         
+//        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
+        
+        let user = PFUser.currentUser()
+        
+        let startViewController: UIViewController
+        
+        if user != nil {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
+        } else {
+            let loginViewController = MezzoLoginViewController()
+            loginViewController.fields = .UsernameAndPassword | .LogInButton | .PasswordForgotten // | .Facebook
+            loginViewController.delegate = parseLoginHelper
+            
+            loginViewController.signUpController?.delegate = parseLoginHelper
+            
+            startViewController = loginViewController
+        }
+        
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.rootViewController = startViewController
+        self.window?.makeKeyAndVisible()
+        
 //        PFUser.logInWithUsername("testDonor", password: "testDonor")
 //        PFUser.logInWithUsername("targetDonor", password: "targetDonor")
-        PFUser.logInWithUsername("testOrg", password: "testOrg")
-
-        if let user = PFUser.currentUser() as? User {
-            println("yay")
-        } else {
-            println(":(")
-        }
+//        PFUser.logInWithUsername("testOrg", password: "testOrg")
+//
+//        if let user = PFUser.currentUser() as? User {
+//            println("yay")
+//        } else {
+//            println(":(")
+//        }
         
         // Parse push notification setup
         let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
@@ -58,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         
-        return true
+        return true //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     
     /// MARK: more Parse push notification setup

@@ -9,6 +9,7 @@ target 'Mezzo-1.0' do
     pod 'FBSDKCoreKit', '~> 4.4'
 	pod 'Parse'
     pod 'ParseUI'
+    pod 'ConvenienceKit'
 	pod 'Bond', '~> 3.7'
 end
 
@@ -18,6 +19,7 @@ target 'Mezzo-1.0Tests' do
 	platform :ios, '8.0'
     pod 'FBSDKCoreKit', '~> 4.4'
 	pod 'Parse'
+    pod 'ConvenienceKit'
     pod 'ParseUI'
 end
 

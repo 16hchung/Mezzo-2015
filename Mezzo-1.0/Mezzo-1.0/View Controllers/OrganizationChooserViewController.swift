@@ -41,10 +41,14 @@ class OrganizationChooserViewController: UIViewController {
         loadingView.hidden = false
         // run Parse query
         ParseHelper.getAllOrgs { (result: [AnyObject]?, error: NSError?) -> Void in
-            let loadedOrgs = result as? [Organization] ?? []
-            self.organizations = loadedOrgs
-            self.tableView.reloadData()
-            self.loadingView.hidden = true
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+                
+            } else if let loadedOrgs = result as? [Organization] {
+                self.organizations = loadedOrgs
+                self.tableView.reloadData()
+                self.loadingView.hidden = true
+            }
         }
     }
     
