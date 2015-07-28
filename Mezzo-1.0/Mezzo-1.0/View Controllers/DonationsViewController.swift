@@ -318,7 +318,7 @@ class DonationsViewController: UIViewController {
             case "Send Offer":
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
-                source.donation.offer ((PFUser.currentUser()! as! User).donor!)  { (success: Bool, error: NSError?) -> Void in
+                source.donation.offer ((PFUser.currentUser()! as! User).donor!, toOrgs: source.selectedRecipientOrganizations)   { (success: Bool, error: NSError?) -> Void in
                     if let error = error {
                         ErrorHandling.defaultErrorHandler(error)
                         
