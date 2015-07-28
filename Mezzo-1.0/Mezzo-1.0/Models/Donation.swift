@@ -54,8 +54,8 @@ class Donation: PFObject, PFSubclassing {
     static let foodTypes: [String] = ["Grains", "Fruits/Veggies", "Meats/Beans",
         "Dairy", "Oils", "Desserts", "Condiments", "Other"]
     
-    static let pluralSizeTypes: [String] = ["boxes", "pallets"]
-    static let singularSizeTypes: [String] = ["box", "pallet"]
+    static let pluralSizeTypes: [String] = ["boxes", "carts", "pallets"]
+    static let singularSizeTypes: [String] = ["box", "cart", "pallet"]
     
     // MARK: Methods
     

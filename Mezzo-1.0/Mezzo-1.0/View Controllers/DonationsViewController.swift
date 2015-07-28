@@ -217,7 +217,7 @@ class DonationsViewController: UIViewController {
             navigationItem.rightBarButtonItem = self.addBarButton
             // donors can't add two donations at once
             if donations.count > 1 { navigationItem.rightBarButtonItem?.enabled = false }
-            else { navigationItem.rightBarButtonItem?.enabled = false }
+            else { navigationItem.rightBarButtonItem?.enabled = true }
         } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
             self.navigationItem.rightBarButtonItem = nil
         }
