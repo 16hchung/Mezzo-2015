@@ -53,6 +53,12 @@ class ParseHelper {
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
+    static func getUserForOrg(org: Organization, callback: PFArrayResultBlock) {
+        let userQuery = User.query()
+        userQuery?.whereKey("organization", equalTo: org)
+        userQuery?.findObjectsInBackgroundWithBlock(callback)
+    }
+    
     // MARK: donations
     
     /**
@@ -82,6 +88,7 @@ class ParseHelper {
         donationQuery.includeKey(DonationConstants.toOrgProperty)
         donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser) // from the donor user passed in
         donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue) // not completed yet
+        donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Cancelled.rawValue)
         donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
@@ -128,6 +135,13 @@ class ParseHelper {
         offerObject[OfferConstants.donationProperty] = donation
         offerObject[OfferConstants.statusProperty] = Donation.DonationState.Offered.rawValue
         
+        var offerACL = offerObject.ACL!
+        self.getUserForOrg(toOrganization, callback: { (results, error) -> Void in
+            let user = results![0] as! PFUser
+            offerACL.setWriteAccess(true, forUser: user)
+            offerObject.ACL = offerACL
+        })
+        
         offerObject.saveInBackground()
         
     }
@@ -172,6 +186,11 @@ class ParseHelper {
                 // save donation state in donation object
                 for donationObject in donationsToAccept {
                     
+                    // set ACL to current org can edit the donation
+                    var donationACL = donationObject.ACL
+                    donationACL?.setWriteAccess(true, forUser: PFUser.currentUser()!)
+                    donationObject.ACL = donationACL
+                    
                     if byAccepting {
                         donationObject.toOrganization = (PFUser.currentUser()! as! User).organization!
                         donationObject.orgSpecificTime = withTime
@@ -184,7 +203,6 @@ class ParseHelper {
                     
                     donationObject.saveInBackgroundWithBlock(callBack)
                 }
-                
             }
         }
     }

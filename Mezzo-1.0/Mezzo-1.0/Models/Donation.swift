@@ -60,9 +60,25 @@ class Donation: PFObject, PFSubclassing {
     // MARK: Methods
     
     /// Uploads donation to Parse (with all fields populated except state)
-    func offer(fromDonor: Donor, callback: PFBooleanResultBlock ) {
+    func offer(fromDonor: Donor, toOrgs: [Organization], callback: PFBooleanResultBlock ) {
         donationState = .Offered
         self.fromDonor = fromDonor
+        
+        var donationACL = self.ACL!
+        for org in toOrgs {
+            ParseHelper.getUserForOrg(org, callback: { (results, error) -> Void in
+                let user = results![0] as! PFUser
+                donationACL.setWriteAccess(true, forUser: user)
+                if org == toOrgs.last { self.ACL = donationACL }
+            })
+        }
+        
+        
+        self.saveInBackgroundWithBlock(callback)
+    }
+    
+    func cancel(callback: PFBooleanResultBlock) {
+        donationState = .Cancelled
         self.saveInBackgroundWithBlock(callback)
     }
     

@@ -17,11 +17,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="341" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-gj-fZ0">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="372" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="z9C-gj-fZ0">
                                 <rect key="frame" x="0.0" y="112" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="341" id="kHh-SL-O7p" customClass="DonationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="372" id="kHh-SL-O7p" customClass="DonationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kHh-SL-O7p" id="9yz-OS-nlW">
@@ -161,9 +161,19 @@
                                                     <color key="textColor" red="0.93725490199999995" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="84o-Yd-y5T">
+                                                    <rect key="frame" x="243" y="333" width="114" height="30"/>
+                                                    <state key="normal" title="Cancel Donation">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="cancelDonationTapped:" destination="kHh-SL-O7p" eventType="touchUpInside" id="hEd-eS-1oB"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="centerY" secondItem="DqX-Ig-tr2" secondAttribute="centerY" id="0ro-Ly-JTN"/>
+                                                <constraint firstAttribute="centerX" secondItem="84o-Yd-y5T" secondAttribute="centerX" id="0vv-8F-zLK"/>
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="leading" secondItem="sbH-4q-6R8" secondAttribute="leading" id="14E-q1-y6z"/>
                                                 <constraint firstItem="yM7-SB-u3K" firstAttribute="top" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="1A1-Qv-fIG"/>
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="leading" secondItem="oM4-qK-2aL" secondAttribute="leading" id="1P1-5p-Abo"/>
@@ -186,8 +196,10 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="sbH-4q-6R8" secondAttribute="trailing" constant="-2" id="TRP-cy-GzV"/>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="14" id="UIv-UQ-Zpj"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="8" id="YzL-2a-rxw"/>
+                                                <constraint firstItem="84o-Yd-y5T" firstAttribute="bottom" secondItem="9yz-OS-nlW" secondAttribute="bottomMargin" id="ZDi-eQ-aEm"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="cIg-db-JZO" secondAttribute="leading" id="baM-v6-NzG"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="2a0-6q-Qjb" secondAttribute="trailing" constant="10" id="ceT-Ml-Ob1"/>
+                                                <constraint firstItem="84o-Yd-y5T" firstAttribute="top" secondItem="bfN-58-Gip" secondAttribute="bottom" constant="11" id="dfj-2n-y8B"/>
                                                 <constraint firstItem="2a0-6q-Qjb" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leading" constant="10" id="dhd-cu-1OB"/>
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="leading" id="dxD-vQ-mkE"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bfB-ZX-hzS" secondAttribute="trailing" constant="-2" id="e9M-wM-bZ7"/>
@@ -204,6 +216,7 @@
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="top" secondItem="DqX-Ig-tr2" secondAttribute="bottom" constant="8" id="shz-FN-CZt"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bVb-cy-F8U" secondAttribute="trailing" constant="10" id="vS8-a1-PvB"/>
                                                 <constraint firstItem="cIg-db-JZO" firstAttribute="top" secondItem="bfB-ZX-hzS" secondAttribute="top" constant="-2" id="wSk-ls-n2A"/>
+                                                <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="bfN-58-Gip" secondAttribute="bottom" constant="10" id="wZC-K0-cbs"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="centerY" secondItem="cIg-db-JZO" secondAttribute="centerY" id="wnM-kA-hSO"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cX9-TJ-ENz" secondAttribute="trailing" constant="-2" id="zQz-Po-aU4"/>
                                             </constraints>
@@ -213,6 +226,7 @@
                                                     <exclude reference="4T5-LR-gQV"/>
                                                     <exclude reference="0ro-Ly-JTN"/>
                                                     <exclude reference="UIv-UQ-Zpj"/>
+                                                    <exclude reference="6yx-Ct-nZm"/>
                                                     <exclude reference="wnM-kA-hSO"/>
                                                 </mask>
                                             </variation>
@@ -221,6 +235,7 @@
                                             <outlet property="OfferSentToTitle" destination="eiN-XT-rJI" id="Y3A-7l-VhP"/>
                                             <outlet property="acceptButton" destination="H9q-Eh-heU" id="QXc-Je-ERd"/>
                                             <outlet property="acceptButtonBottomConstraint" destination="3gx-C0-DEl" id="qua-1B-zAH"/>
+                                            <outlet property="cancelDonationButton" destination="84o-Yd-y5T" id="5F2-hu-qvV"/>
                                             <outlet property="contactInfoBottomConstraint" destination="1A1-Qv-fIG" id="gG1-7r-oHX"/>
                                             <outlet property="contactInfoTitle" destination="oM4-qK-2aL" id="KKn-Tw-Yx4"/>
                                             <outlet property="declineButton" destination="cX9-TJ-ENz" id="x4R-eG-tip"/>

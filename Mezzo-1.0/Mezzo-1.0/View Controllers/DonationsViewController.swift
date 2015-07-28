@@ -128,7 +128,7 @@ class DonationsViewController: UIViewController {
                     for donation in loadedDonations {
                         ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
                             let loadedOffers = result as? [PFObject] ?? []
-                            loadingDonations[donation] = []
+                            loadingDonations[donation] = loadedOffers
                             
                             if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                 self.donations = loadingDonations
@@ -180,7 +180,7 @@ class DonationsViewController: UIViewController {
     }
     
     
-    @IBAction func segmentedControlChanged(sender: AnyObject) {
+    @IBAction func segmentedControlChanged(sender: AnyObject?) {
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -291,7 +291,7 @@ class DonationsViewController: UIViewController {
             case "Send Offer":
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
-                source.donation.offer ((PFUser.currentUser()! as! User).donor!)  { (success: Bool, error: NSError?) -> Void in
+                source.donation.offer ((PFUser.currentUser()! as! User).donor!, toOrgs: source.selectedRecipientOrganizations) { (success: Bool, error: NSError?) -> Void in
                     for org in source.selectedRecipientOrganizations {
                         ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
                     }
@@ -401,6 +401,12 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         alertController.addAction(yesAction)
         
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func cancelDonation(cell: DonationHeaderTableViewCell) {
+        cell.donation.cancel { (success, error) -> Void in
+            self.segmentedControlChanged(nil)
+        }
     }
 }
 
