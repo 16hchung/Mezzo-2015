@@ -24,7 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
         
         parseLoginHelper = ParseLoginHelper { [unowned self] user, error in
-            if let user = user {
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+                
+            } else if let user = user {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let navController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UIViewController
                 

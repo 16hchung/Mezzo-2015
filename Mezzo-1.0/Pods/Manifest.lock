@@ -6,6 +6,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.2.0)
   - Bond (3.9.0)
+  - ConvenienceKit (0.2.0)
   - FBSDKCoreKit (4.4.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.4.0)
@@ -25,6 +26,7 @@ PODS:
 
 DEPENDENCIES:
   - Bond (~> 3.7)
+  - ConvenienceKit
   - FBSDKCoreKit (~> 4.4)
   - Parse
   - ParseUI
@@ -33,6 +35,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
+  ConvenienceKit: 947032f82c3d419d107e0cbde1fcb725e9c7ed62
   FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0

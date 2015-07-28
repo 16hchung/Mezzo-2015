@@ -30,6 +30,12 @@
 #define COCOAPODS_VERSION_MINOR_Bond 9
 #define COCOAPODS_VERSION_PATCH_Bond 0
 
+// ConvenienceKit
+#define COCOAPODS_POD_AVAILABLE_ConvenienceKit
+#define COCOAPODS_VERSION_MAJOR_ConvenienceKit 0
+#define COCOAPODS_VERSION_MINOR_ConvenienceKit 2
+#define COCOAPODS_VERSION_PATCH_ConvenienceKit 0
+
 // FBSDKCoreKit
 #define COCOAPODS_POD_AVAILABLE_FBSDKCoreKit
 #define COCOAPODS_VERSION_MAJOR_FBSDKCoreKit 4

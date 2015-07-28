@@ -112,27 +112,36 @@ class DonationsViewController: UIViewController {
         // load donations (getDonations already deals with type of user)
         if let donorUser = (PFUser.currentUser() as! User).donor {
             ParseHelper.getUpcomingDonationsForDonor(donorUser: donorUser) { (result: [AnyObject]?, error: NSError?) -> Void in
-                var loadedDonations =  result as? [Donation] ?? []
-                loadedDonations = loadedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
-                
-                for donation in loadedDonations {
-                    loadingDonations[donation] = []
-                }
-                
-                // filter donations that need to display their offers
-                loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
-                if loadedDonations.isEmpty {
-                    self.donations = loadingDonations
-                    self.reloadUI()
-                } else {
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                    
+                } else if var loadedDonations = result as? [Donation] {
+                    loadedDonations = loadedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
+                    
                     for donation in loadedDonations {
-                        ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
-                            let loadedOffers = result as? [PFObject] ?? []
-                            loadingDonations[donation] = []
-                            
-                            if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
-                                self.donations = loadingDonations
-                                self.reloadUI()
+                        loadingDonations[donation] = []
+                    }
+                    
+                    // filter donations that need to display their offers
+                    loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
+                    if loadedDonations.isEmpty {
+                        self.donations = loadingDonations
+                        self.reloadUI()
+                    } else {
+                        for donation in loadedDonations {
+                            ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
+                                if let error = error {
+                                    ErrorHandling.defaultErrorHandler(error)
+                                    
+                                } else if let loadedOffers = result as? [PFObject] {
+                                    loadingDonations[donation] = []
+                                    
+                                    if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
+                                        self.donations = loadingDonations
+                                        self.reloadUI()
+                                    }
+                                }
+                                
                             }
                         }
                     }
@@ -142,23 +151,32 @@ class DonationsViewController: UIViewController {
         } else if let orgUser = (PFUser.currentUser() as! User).organization {
             // load pending donation offers first
             ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: true) { (result: [AnyObject]?, error: NSError?) -> Void in
-                let pendingOffers = result as? [PFObject] ?? []
-                var pendingDonations:[Donation] = [Donation]()
-                
-                for offer in pendingOffers {
-                    let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
-                    if donation.checkIfExpiredOrCompleted() { pendingDonations.append(donation) }
-                }
-                
-                // then load any accepted donations
-                ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
-                    var acceptedDonations = result as? [Donation] ?? []
-                    acceptedDonations = acceptedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
-                    for donation in pendingDonations + acceptedDonations {
-                        loadingDonations[donation] = []
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                    
+                } else if let pendingOffers = result as? [PFObject] {
+                    
+                    var pendingDonations:[Donation] = [Donation]()
+                    
+                    for offer in pendingOffers {
+                        let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
+                        if donation.checkIfExpiredOrCompleted() { pendingDonations.append(donation) }
                     }
-                    self.donations = loadingDonations
-                    self.reloadUI()
+                    
+                    // then load any accepted donations
+                    ParseHelper.getUpcomingDonationsForRecipient(orgUser: orgUser, isPending: false) { (result: [AnyObject]?, error: NSError?) -> Void in
+                        if let error = error {
+                            ErrorHandling.defaultErrorHandler(error)
+                            
+                        } else if var acceptedDonations = result as? [Donation] {
+                            acceptedDonations = acceptedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
+                            for donation in pendingDonations + acceptedDonations {
+                                loadingDonations[donation] = []
+                            }
+                            self.donations = loadingDonations
+                            self.reloadUI()
+                        }
+                    }
                 }
             }
         }
@@ -170,12 +188,17 @@ class DonationsViewController: UIViewController {
         loadingView.hidden = false
         
         ParseHelper.getCompletedDonations() { (result: [AnyObject]?, error: NSError?) -> Void in
-            let loadedDonations = result as? [Donation] ?? []
-            for donation in loadedDonations {
-                loadingDonations[donation] = []
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+                
+            } else if let loadedDonations = result as? [Donation] {
+                for donation in loadedDonations {
+                    loadingDonations[donation] = []
+                }
+                self.donations = loadingDonations
+                self.reloadUI()
             }
-            self.donations = loadingDonations
-            self.reloadUI()
+            
         }
     }
     
@@ -292,9 +315,15 @@ class DonationsViewController: UIViewController {
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
                 source.donation.offer ((PFUser.currentUser()! as! User).donor!)  { (success: Bool, error: NSError?) -> Void in
-                    for org in source.selectedRecipientOrganizations {
-                        ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                    if let error = error {
+                        ErrorHandling.defaultErrorHandler(error)
+                        
+                    } else {
+                        for org in source.selectedRecipientOrganizations {
+                            ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                        }
                     }
+                    
                 }
             default:
                 break
@@ -371,6 +400,11 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         let selectAction = RMAction(title: "Select", style: RMActionStyle.Done) { controller -> Void in
             if let controller = controller as? RMDateSelectionViewController {
                 ParseHelper.respondToOfferForDonation(cell.donation, withTime: controller.datePicker.date, byAccepting: true) { success, error -> Void in
+                    if let error = error {
+                        ErrorHandling.defaultErrorHandler(error)
+                        
+                    }
+                    
                     self.reloadUpcomingDonationsData()
                 }
             }
@@ -395,6 +429,10 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         
         let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
             ParseHelper.respondToOfferForDonation(cell.donation, withTime: nil, byAccepting: false) { success, error -> Void in
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                    
+                }
                 self.reloadUpcomingDonationsData()
             }
         }
