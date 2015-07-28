@@ -24,6 +24,7 @@ class DonationsViewController: UIViewController {
 
     // MARK: Properties
     
+    var noUpcomingDonations: Bool = false
     var donations = [Donation : [PFObject]]()
     var orderedDonationKeys: [Donation] {
         get { // TODO: add canceled?
@@ -126,6 +127,7 @@ class DonationsViewController: UIViewController {
                     loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
                     if loadedDonations.isEmpty {
                         self.donations = loadingDonations
+                        self.noUpcomingDonations = (self.donations.count == 0)
                         self.reloadUI()
                     } else {
                         for donation in loadedDonations {
@@ -138,6 +140,7 @@ class DonationsViewController: UIViewController {
                                     
                                     if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                         self.donations = loadingDonations
+                                        self.noUpcomingDonations = (self.donations.count == 0)
                                         self.reloadUI()
                                     }
                                 }
@@ -174,6 +177,7 @@ class DonationsViewController: UIViewController {
                                 loadingDonations[donation] = []
                             }
                             self.donations = loadingDonations
+                            self.noUpcomingDonations = (self.donations.count == 0)
                             self.reloadUI()
                         }
                     }
@@ -239,7 +243,7 @@ class DonationsViewController: UIViewController {
         if let user = PFUser.currentUser()! as? User where user.donor != nil {
             navigationItem.rightBarButtonItem = self.addBarButton
             // donors can't add two donations at once
-            if donations.count > 1 { navigationItem.rightBarButtonItem?.enabled = false }
+            if !noUpcomingDonations { navigationItem.rightBarButtonItem?.enabled = false }
             else { navigationItem.rightBarButtonItem?.enabled = true }
         } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
             self.navigationItem.rightBarButtonItem = nil
@@ -267,6 +271,7 @@ class DonationsViewController: UIViewController {
                 let text = NSMutableAttributedString(string: "\(headline)")
                 text.addAttribute(NSFontAttributeName, value: UIFont(name: "HelveticaNeue-Medium", size: 20.0)!, range: NSRange(location: 0, length: count(headline)))
                 emptyStateButton.setAttributedTitle(text, forState: .Normal)
+                emptyStateButton.enabled = false
             } else {
                 if let user = PFUser.currentUser()! as? User where user.donor != nil {
                     let headline = "No donations yet!"

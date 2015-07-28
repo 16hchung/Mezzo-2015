@@ -16,7 +16,7 @@ struct ErrorHandling {
   
   static let ErrorTitle           = "Error"
   static let ErrorOKButtonTitle   = "Ok"
-  static let ErrorDefaultMessage  = "Something unexpected happened, sorry for that!"
+  static let ErrorDefaultMessage  = "Sorry, something unexpected happened. Try checking your network connection."
   
   /** 
     This default error handler presents an Alert View on the topmost View Controller 
