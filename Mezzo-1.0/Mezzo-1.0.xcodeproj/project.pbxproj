@@ -15,6 +15,7 @@
 		8D18DED71B48359F004E3087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED61B48359F004E3087 /* Images.xcassets */; };
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
+		8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */; };
 		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
 		8D6B05B71B51AAB300CDE5B9 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */; };
 		8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */; };
@@ -66,6 +67,7 @@
 		8D18DEDF1B48359F004E3087 /* Mezzo-1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mezzo-1.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
+		8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 		8D6B05BD1B51B47C00CDE5B9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */,
 				8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */,
 			);
 			path = Helpers;
@@ -492,6 +495,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
+				8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
 				8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */,
 				8D6B05B71B51AAB300CDE5B9 /* NewDonationViewController.swift in Sources */,

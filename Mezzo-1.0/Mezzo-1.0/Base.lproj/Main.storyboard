@@ -304,7 +304,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Donations" id="P06-wj-MzM">
-                        <barButtonItem key="leftBarButtonItem" title="Settings" id="5Os-Nn-Wcy"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="u2J-zT-V1M">
                             <connections>
                                 <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonation" id="Xin-Kr-cHh"/>

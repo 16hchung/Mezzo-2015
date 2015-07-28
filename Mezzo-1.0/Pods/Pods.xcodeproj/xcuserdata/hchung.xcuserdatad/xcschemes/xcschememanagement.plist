@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Mezzo-1.0-FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Mezzo-1.0-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -39,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Mezzo-1.0Tests-FBSDKCoreKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Mezzo-1.0Tests-Parse.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,47 +62,57 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>409E8B440BC6324C84E2E843</key>
+		<key>2FF37F04962E72AA4874DF68</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>42B8EC85060973AA9B5A0C67</key>
+		<key>33F48AF6A11B56ADE12A7B37</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4A0F3BE0F3ED1C434474D30D</key>
+		<key>43BBB6CD868FD005591A18E8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5B4668048892C89B6282717F</key>
+		<key>65ABC7629FCF279F23838D7B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6FAD5C8A3AC098DFD6F26DBC</key>
+		<key>80401EB7BD59BEAB6C2261A3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>870434F48FA6420E6A2F4510</key>
+		<key>8777DCD58F2561E8F23259DE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>91C14563AF1A2AFD94235B38</key>
+		<key>9DEC5B8F6DA219016119812A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A0A9ACB45CF600DFDC90B75E</key>
+		<key>B437BE91DA2B3668FE1193F5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F26711557CCC90FDC53BA507</key>
+		<key>CCD74E3EAB2C17F9AA1366DB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDD6D4E6336CB83EE85F581D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFB5FEC1580DEBE40D82B694</key>
 		<dict>
 			<key>primary</key>
 			<true/>

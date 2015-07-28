@@ -1,6 +1,20 @@
 PODS:
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
   - Bolts/Tasks (1.2.0)
   - Bond (3.9.0)
+  - FBSDKCoreKit (4.4.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc (= 4.4.0)
+    - FBSDKCoreKit/no-arc (= 4.4.0)
+  - FBSDKCoreKit/arc (4.4.0):
+    - Bolts (~> 1.1)
+  - FBSDKCoreKit/no-arc (4.4.0):
+    - Bolts (~> 1.1)
+    - FBSDKCoreKit/arc
   - Parse (1.7.5):
     - Bolts/Tasks (>= 1.2.0)
   - RMActionController (1.0.4)
@@ -9,12 +23,14 @@ PODS:
 
 DEPENDENCIES:
   - Bond (~> 3.7)
+  - FBSDKCoreKit (~> 4.4)
   - Parse
   - RMDateSelectionViewController (~> 2.0.1)
 
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
+  FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
   Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09
   RMDateSelectionViewController: 027bdeeaacb78b2b528808ed21efd697490d2b4e
