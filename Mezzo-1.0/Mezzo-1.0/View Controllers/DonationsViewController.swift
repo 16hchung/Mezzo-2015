@@ -144,7 +144,6 @@ class DonationsViewController: UIViewController {
                                         self.reloadUI()
                                     }
                                 }
-                                
                             }
                         }
                     }
@@ -207,7 +206,7 @@ class DonationsViewController: UIViewController {
     }
     
     
-    @IBAction func segmentedControlChanged(sender: AnyObject) {
+    @IBAction func segmentedControlChanged(sender: AnyObject?) {
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
@@ -444,6 +443,12 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         alertController.addAction(yesAction)
         
         presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func cancelDonation(cell: DonationHeaderTableViewCell) {
+        cell.donation.cancel { (success, error) -> Void in
+            self.segmentedControlChanged(nil)
+        }
     }
 }
 

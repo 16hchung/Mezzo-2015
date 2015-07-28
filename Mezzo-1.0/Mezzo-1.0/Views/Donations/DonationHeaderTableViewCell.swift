@@ -12,6 +12,7 @@ import Parse
 protocol DonationHeaderCellDelegate: class {
     func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
     func showDeclineDialogue(cell: DonationHeaderTableViewCell)
+    func cancelDonation(cell: DonationHeaderTableViewCell)
 }
 
 class DonationHeaderTableViewCell: UITableViewCell {
@@ -151,6 +152,10 @@ class DonationHeaderTableViewCell: UITableViewCell {
         }
     }
     
+    @IBAction func cancelDonationTapped(sender: AnyObject) {
+        delegate?.cancelDonation(self)
+    }
+    
     @IBAction func acceptDonation(sender: UIButton) {
         delegate?.showTimePickingDialogue(self)
     }
@@ -263,6 +268,8 @@ class DonationHeaderTableViewCell: UITableViewCell {
     
     /// Hides buttons that appear when a donation is all declined (cancel and change recipient buttons)
     private func hideDeclinedOptions(hidden: Bool) {
+        cancelDonationButton.hidden = hidden
+        
 //        setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
 //        setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
         
