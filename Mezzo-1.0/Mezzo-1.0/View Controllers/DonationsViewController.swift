@@ -136,7 +136,7 @@ class DonationsViewController: UIViewController {
                                     ErrorHandling.defaultErrorHandler(error)
                                     
                                 } else if let loadedOffers = result as? [PFObject] {
-                                    loadingDonations[donation] = []
+                                    loadingDonations[donation] = loadedOffers
                                     
                                     if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                         self.donations = loadingDonations
