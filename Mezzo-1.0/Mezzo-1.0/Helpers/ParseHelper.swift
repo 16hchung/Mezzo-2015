@@ -50,6 +50,12 @@ class ParseHelper {
         // TODO: sort by times, desired foods
         orgsQuery.orderByAscending(OrgConstants.nameProperty) // filler sort
         
+        if let donorUser = PFUser.currentUser() as? User where donorUser.username == "testDonor" {
+            orgsQuery.whereKey(OrgConstants.nameProperty, equalTo: "Test Organization")
+        } else {
+            orgsQuery.whereKey(OrgConstants.nameProperty, notEqualTo: "Test Organization")
+        }
+        
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
