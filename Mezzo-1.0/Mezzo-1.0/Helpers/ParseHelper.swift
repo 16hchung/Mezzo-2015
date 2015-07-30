@@ -127,7 +127,7 @@ class ParseHelper {
     
     // MARK: offers
     
-    static func addOfferToDonation(donation: Donation, toOrganization: Organization) {
+    static func addOfferToDonation(donation: Donation, toOrganization: Organization, callback: PFBooleanResultBlock) {
         
         let offerObject = PFObject(className: OfferConstants.className)
         offerObject[OfferConstants.fromDonorProperty] = donation.fromDonor
@@ -140,10 +140,8 @@ class ParseHelper {
             let user = results![0] as! PFUser
             offerACL.setWriteAccess(true, forUser: user)
             offerObject.ACL = offerACL
+            offerObject.saveInBackgroundWithBlock(callback)
         })
-        
-        offerObject.saveInBackground()
-        
     }
     
     /**
