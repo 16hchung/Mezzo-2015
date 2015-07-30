@@ -70,13 +70,13 @@
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
 		8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
-		8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoLoginViewController.swift; sourceTree = "<group>"; };
+		8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MezzoLoginViewController.swift; path = ../MezzoLoginViewController.swift; sourceTree = "<group>"; };
 		8D40EF791B67F3640093A10B /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
-		8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
+		8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewDonationViewController.swift; path = ../NewDonationViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
-		8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
+		8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OrganizationChooserViewController.swift; path = ../OrganizationChooserViewController.swift; sourceTree = "<group>"; };
 		8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationBodyTableViewCell.swift; sourceTree = "<group>"; };
 		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6B8BA6B1B52206600C0B393 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
+		A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PickupTimeViewController.swift; path = ../PickupTimeViewController.swift; sourceTree = "<group>"; };
 		B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.release.xcconfig"; sourceTree = "<group>"; };
 		EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +232,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8D5835641B6AC3300027FE55 /* New Donation */ = {
+			isa = PBXGroup;
+			children = (
+				8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */,
+				8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */,
+				A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */,
+			);
+			path = "New Donation";
+			sourceTree = "<group>";
+		};
+		8D5835651B6AC3300027FE55 /* User-related */ = {
+			isa = PBXGroup;
+			children = (
+				8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */,
+			);
+			path = "User-related";
+			sourceTree = "<group>";
+		};
 		8D6B05BA1B51AE0400CDE5B9 /* New Donation */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,11 +279,9 @@
 		8DF4FC0E1B4C629D0020DB33 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8D5835641B6AC3300027FE55 /* New Donation */,
+				8D5835651B6AC3300027FE55 /* User-related */,
 				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
-				8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */,
-				8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */,
-				A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */,
-				8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
