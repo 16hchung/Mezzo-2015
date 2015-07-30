@@ -108,7 +108,7 @@ extension OrganizationChooserViewController: OrgHeaderCellDelegate {
             selectedRecipientOrganizations = selectedRecipientOrganizations.filter { $0 != orgCell.organization! }
         }
         
-        offerBarButton.enabled = !offerBarButton.enabled
+        offerBarButton.enabled = selectedRecipientOrganizations.count != 0
     }
     
 }
