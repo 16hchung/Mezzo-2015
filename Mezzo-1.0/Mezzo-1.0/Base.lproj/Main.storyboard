@@ -55,24 +55,6 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-TJ-ENz">
-                                                    <rect key="frame" x="543" y="248" width="51" height="30"/>
-                                                    <state key="normal" title="Decline">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="declineDonation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="q6J-rH-28C"/>
-                                                    </connections>
-                                                </button>
-                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9q-Eh-heU">
-                                                    <rect key="frame" x="10" y="248" width="49" height="30"/>
-                                                    <state key="normal" title="Accept">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="acceptDonation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="EKx-NP-swn"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contact Info:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oM4-qK-2aL">
                                                     <rect key="frame" x="10" y="149" width="86" height="21"/>
                                                     <constraints>
@@ -89,25 +71,12 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-SB-u3K">
-                                                    <rect key="frame" x="10" y="219" width="62" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="21" id="QW6-9e-ywk"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name of user" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edf-uD-zYV">
+                                                    <rect key="frame" x="104" y="151" width="85" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-cy-F8U">
-                                                    <rect key="frame" x="80" y="215" width="171" height="29"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <state key="normal" title="14 Hippo St., Palo Alto CA">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="mapLocation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="XFk-fT-oY6"/>
-                                                    </connections>
-                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Details: " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DqX-Ig-tr2">
                                                     <rect key="frame" x="10" y="91" width="54" height="21"/>
                                                     <constraints>
@@ -162,7 +131,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-08-onu">
-                                                    <rect key="frame" x="10" y="178" width="92" height="29"/>
+                                                    <rect key="frame" x="197" y="145" width="92" height="29"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <state key="normal" title="000-000-0000">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -171,12 +140,43 @@
                                                         <action selector="dialPhoneNumber:" destination="kHh-SL-O7p" eventType="touchUpInside" id="Lod-1f-RTW"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name of user" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="edf-uD-zYV">
-                                                    <rect key="frame" x="104" y="151" width="490" height="17"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-TJ-ENz">
+                                                    <rect key="frame" x="543" y="209" width="51" height="30"/>
+                                                    <state key="normal" title="Decline">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="declineDonation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="q6J-rH-28C"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9q-Eh-heU">
+                                                    <rect key="frame" x="10" y="209" width="49" height="30"/>
+                                                    <state key="normal" title="Accept">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="acceptDonation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="EKx-NP-swn"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yM7-SB-u3K">
+                                                    <rect key="frame" x="10" y="180" width="62" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="QW6-9e-ywk"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bVb-cy-F8U">
+                                                    <rect key="frame" x="80" y="176" width="171" height="29"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <state key="normal" title="14 Hippo St., Palo Alto CA">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="mapLocation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="XFk-fT-oY6"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="centerY" secondItem="DqX-Ig-tr2" secondAttribute="centerY" id="0ro-Ly-JTN"/>
@@ -194,19 +194,18 @@
                                                 <constraint firstItem="bfN-58-Gip" firstAttribute="top" secondItem="eiN-XT-rJI" secondAttribute="bottom" constant="8" id="9G2-12-f1J"/>
                                                 <constraint firstItem="oM4-qK-2aL" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="leading" id="9sc-Qn-rxC"/>
                                                 <constraint firstItem="EgA-08-onu" firstAttribute="centerY" secondItem="oM4-qK-2aL" secondAttribute="centerY" constant="1" id="A1t-0n-yfn"/>
-                                                <constraint firstItem="yM7-SB-u3K" firstAttribute="top" secondItem="EgA-08-onu" secondAttribute="bottom" constant="12" id="B3g-7B-1TG"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YSf-ry-4KG" secondAttribute="trailing" constant="-2" id="DFu-H3-Jrx"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="Dv5-ts-UHf"/>
+                                                <constraint firstItem="EgA-08-onu" firstAttribute="leading" secondItem="edf-uD-zYV" secondAttribute="trailing" constant="8" id="ETx-DQ-i5S"/>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EgA-08-onu" secondAttribute="trailing" constant="10" id="IFF-sX-fW1"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="centerY" secondItem="2a0-6q-Qjb" secondAttribute="centerY" id="JPF-5h-DbS"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="2a0-6q-Qjb" secondAttribute="trailing" constant="10" id="RNd-2O-ky9"/>
-                                                <constraint firstItem="EgA-08-onu" firstAttribute="top" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="8" id="T1p-o3-sue"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="sbH-4q-6R8" secondAttribute="trailing" constant="-2" id="TRP-cy-GzV"/>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="14" id="UIv-UQ-Zpj"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="8" id="YzL-2a-rxw"/>
                                                 <constraint firstItem="84o-Yd-y5T" firstAttribute="bottom" secondItem="9yz-OS-nlW" secondAttribute="bottomMargin" id="ZDi-eQ-aEm"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="cIg-db-JZO" secondAttribute="leading" id="baM-v6-NzG"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="2a0-6q-Qjb" secondAttribute="trailing" constant="10" id="ceT-Ml-Ob1"/>
-                                                <constraint firstItem="edf-uD-zYV" firstAttribute="trailing" secondItem="bfB-ZX-hzS" secondAttribute="trailing" id="ctV-L2-5UL"/>
                                                 <constraint firstItem="84o-Yd-y5T" firstAttribute="top" secondItem="bfN-58-Gip" secondAttribute="bottom" constant="11" id="dfj-2n-y8B"/>
                                                 <constraint firstItem="2a0-6q-Qjb" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leading" constant="10" id="dhd-cu-1OB"/>
                                                 <constraint firstItem="edf-uD-zYV" firstAttribute="leading" secondItem="oM4-qK-2aL" secondAttribute="trailing" constant="8" id="doF-zw-baE"/>
@@ -215,8 +214,9 @@
                                                 <constraint firstItem="bVb-cy-F8U" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="trailing" constant="8" id="f3A-d4-04z"/>
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="top" secondItem="yM7-SB-u3K" secondAttribute="bottom" constant="8" id="gZ4-VU-XqS"/>
                                                 <constraint firstItem="bfN-58-Gip" firstAttribute="leading" secondItem="eiN-XT-rJI" secondAttribute="leading" id="hzV-tI-VKg"/>
+                                                <constraint firstItem="yM7-SB-u3K" firstAttribute="top" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="lCK-dG-dgr"/>
                                                 <constraint firstItem="bVb-cy-F8U" firstAttribute="centerY" secondItem="yM7-SB-u3K" secondAttribute="centerY" id="lWg-hq-DZ7"/>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EgA-08-onu" secondAttribute="trailing" constant="10" id="nZW-PI-leV"/>
+                                                <constraint firstItem="edf-uD-zYV" firstAttribute="centerY" secondItem="EgA-08-onu" secondAttribute="centerY" id="n99-4d-ule"/>
                                                 <constraint firstItem="2a0-6q-Qjb" firstAttribute="leading" secondItem="DqX-Ig-tr2" secondAttribute="leading" id="ou4-e5-IZ2"/>
                                                 <constraint firstItem="YSf-ry-4KG" firstAttribute="centerY" secondItem="bfN-58-Gip" secondAttribute="centerY" id="pHC-i2-GJ1"/>
                                                 <constraint firstItem="edf-uD-zYV" firstAttribute="centerY" secondItem="oM4-qK-2aL" secondAttribute="centerY" id="q10-RT-cVY"/>
@@ -224,7 +224,6 @@
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yM7-SB-u3K" secondAttribute="bottom" constant="10" id="rPp-3o-775"/>
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="top" secondItem="bfB-ZX-hzS" secondAttribute="bottom" constant="4" id="rym-2o-SFw"/>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="top" secondItem="DqX-Ig-tr2" secondAttribute="bottom" constant="8" id="shz-FN-CZt"/>
-                                                <constraint firstItem="EgA-08-onu" firstAttribute="leading" secondItem="oM4-qK-2aL" secondAttribute="leading" id="sjG-Oe-5LU"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="bVb-cy-F8U" secondAttribute="trailing" constant="10" id="vS8-a1-PvB"/>
                                                 <constraint firstItem="cIg-db-JZO" firstAttribute="top" secondItem="bfB-ZX-hzS" secondAttribute="top" constant="-2" id="wSk-ls-n2A"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="bfN-58-Gip" secondAttribute="bottom" constant="10" id="wZC-K0-cbs"/>

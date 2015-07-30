@@ -128,7 +128,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } // @ this point, either donor or org is nil, not both
                 
                 // update label text
-                managerNameLabel.text = managerName
+                managerNameLabel.text = "\(managerName) - "
                 entityNameLabel.text = entityName
                 updateTimeLabel()
                 
