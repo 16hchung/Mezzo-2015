@@ -17,8 +17,12 @@ class MezzoLoginViewController: PFLogInViewController {
         
         self.view.backgroundColor = UIColor.whiteColor()
         
+        // logo
         let logoView = UIImageView(image: UIImage(named: "Logo"))
         self.logInView!.logo = logoView
+        
+        // sign up button
+        
     }
 
     override func viewDidLayoutSubviews() {

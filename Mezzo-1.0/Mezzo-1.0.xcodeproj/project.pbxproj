@@ -22,6 +22,7 @@
 		8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */; };
 		8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */; };
 		8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */; };
+		8D5835731B6AC8260027FE55 /* MezzoSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */; };
 		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
 		8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */; };
 		8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */; };
@@ -77,6 +78,7 @@
 		8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
 		8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
 		8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
+		8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoSettingsViewController.swift; sourceTree = "<group>"; };
 		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			children = (
 				8D58356A1B6AC4230027FE55 /* MezzoLoginViewController.swift */,
 				8D5835661B6AC3760027FE55 /* SignUpViewController.swift */,
+				8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */,
 			);
 			path = "User-related";
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
+				8D5835731B6AC8260027FE55 /* MezzoSettingsViewController.swift in Sources */,
 				8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
 				8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */,

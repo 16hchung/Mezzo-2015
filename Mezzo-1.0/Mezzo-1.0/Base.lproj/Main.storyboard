@@ -911,6 +911,24 @@
             </objects>
             <point key="canvasLocation" x="3069" y="-842"/>
         </scene>
+        <!--Mezzo Settings View Controller-->
+        <scene sceneID="mqL-vp-aER">
+            <objects>
+                <viewController id="Eeu-02-Vkl" customClass="MezzoSettingsViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zzE-Ee-fxH"/>
+                        <viewControllerLayoutGuide type="bottom" id="Tn9-te-yzq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="UEo-AE-hCa">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HR8-1h-H2b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3069" y="-156"/>
+        </scene>
     </scenes>
     <resources>
         <image name="blue profile" width="48" height="48"/>
