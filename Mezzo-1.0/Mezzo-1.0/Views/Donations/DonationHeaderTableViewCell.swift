@@ -33,6 +33,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var phoneNumberButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
+    @IBOutlet weak var managerNameLabel: UILabel!
     @IBOutlet weak var contactInfoTitle: UILabel!
     @IBOutlet weak var locationTitle: UILabel!
     @IBOutlet weak var OfferSentToTitle: UILabel!
@@ -71,6 +72,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     hideAcceptAndDeclineButtons()
                 }
                 var entityName: String = "Today's donation offer"
+                var managerName = ""
                 
                 var otherDonorUser: Donor?
                 var otherOrgUser: Organization?
@@ -82,6 +84,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                     otherOrgUser = donation.toOrganization
                     if otherOrgUser != nil { // accepted or completed
                         entityName = otherOrgUser?["name"] as! String
+                        managerName = otherOrgUser?["managerName"] as? String ?? ""
                         hideOffers(true)
                         hideContactInfo(false)
                     } else { // declined or offered
@@ -115,6 +118,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } else if let orgUser = (PFUser.currentUser() as? User)?.organization {
                     otherDonorUser = donation.fromDonor
                     entityName = otherDonorUser?["name"] as! String
+                    managerName = otherDonorUser?["managerName"] as? String ?? ""
+                    hideOffers(true)
+                    hideContactInfo(false)
                     
                     hideLocation(false)
                     hideContactInfo(false)
@@ -122,6 +128,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 } // @ this point, either donor or org is nil, not both
                 
                 // update label text
+                managerNameLabel.text = "\(managerName) - "
                 entityNameLabel.text = entityName
                 updateTimeLabel()
                 

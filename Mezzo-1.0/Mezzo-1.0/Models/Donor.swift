@@ -23,6 +23,8 @@ class Donor: PFObject, PFSubclassing {
     @NSManaged var phoneNumber: String
     /// donor's profile picture PFFile
     @NSManaged var profilePictureFile: PFFile?
+    /// name of manager
+    @NSManaged var managerName: String?
     
     // MARK: PFSubclassing Protocol
     
