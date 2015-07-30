@@ -262,6 +262,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     private func hideContactInfo(hidden: Bool) {
         setFontOfUIObject(contactInfoTitle, normalFontSize: 14.0 , hidden: hidden)
         setFontOfUIObject(phoneNumberButton, normalFontSize: 14.0 , hidden: hidden)
+        setFontOfUIObject(managerNameLabel, normalFontSize: 14.0 , hidden: hidden)
         
 //        for constraint in contactInfoTitle.constraints() {
 //            if let constraint = constraint as? NSLayoutConstraint {
