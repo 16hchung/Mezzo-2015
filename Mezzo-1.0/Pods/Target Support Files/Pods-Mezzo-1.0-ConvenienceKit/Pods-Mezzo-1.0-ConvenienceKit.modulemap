@@ -1,6 +1,0 @@
-framework module ConvenienceKit {
-  umbrella header "Pods-Mezzo-1.0-ConvenienceKit-umbrella.h"
-
-  export *
-  module * { export * }
-}

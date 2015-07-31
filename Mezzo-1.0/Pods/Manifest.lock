@@ -16,7 +16,7 @@ PODS:
   - FBSDKCoreKit/no-arc (4.4.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc
-  - Parse (1.7.5):
+  - Parse (1.7.5.3):
     - Bolts/Tasks (>= 1.2.0)
   - ParseUI (1.1.4):
     - Parse (~> 1.7)
@@ -37,9 +37,9 @@ SPEC CHECKSUMS:
   Bond: 994ccc56aebfe2707d7b5e76f6d665a5beefa45b
   ConvenienceKit: 947032f82c3d419d107e0cbde1fcb725e9c7ed62
   FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
-  Parse: 7c0f115eff3e0cea3fac08d50bda47154edb8832
+  Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09
   RMDateSelectionViewController: 027bdeeaacb78b2b528808ed21efd697490d2b4e
 
-COCOAPODS: 0.37.2
+COCOAPODS: 0.38.2
