@@ -17,12 +17,15 @@
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
 		8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */; };
 		8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF791B67F3640093A10B /* ErrorHandling.swift */; };
-		8D5835671B6AC3760027FE55 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835661B6AC3760027FE55 /* SignUpViewController.swift */; };
-		8D58356B1B6AC4230027FE55 /* MezzoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356A1B6AC4230027FE55 /* MezzoLoginViewController.swift */; };
 		8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */; };
 		8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */; };
 		8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */; };
-		8D5835731B6AC8260027FE55 /* MezzoSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */; };
+		8D5835771B6B26D00027FE55 /* MezzoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */; };
+		8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835761B6B26D00027FE55 /* SignUpViewController.swift */; };
+		8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */; };
+		8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */; };
+		8D58357F1B6B275A0027FE55 /* FoodPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */; };
+		8D5835811B6BCA8C0027FE55 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */; };
 		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
 		8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */; };
 		8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */; };
@@ -73,12 +76,15 @@
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
 		8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		8D40EF791B67F3640093A10B /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
-		8D5835661B6AC3760027FE55 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
-		8D58356A1B6AC4230027FE55 /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoLoginViewController.swift; sourceTree = "<group>"; };
 		8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
 		8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
 		8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
-		8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoSettingsViewController.swift; sourceTree = "<group>"; };
+		8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoLoginViewController.swift; sourceTree = "<group>"; };
+		8D5835761B6B26D00027FE55 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoSettingsViewController.swift; sourceTree = "<group>"; };
+		8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodPreferencesViewController.swift; sourceTree = "<group>"; };
+		8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
 		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
@@ -246,14 +252,24 @@
 			path = "New Donation";
 			sourceTree = "<group>";
 		};
-		8D5835651B6AC3300027FE55 /* User-related */ = {
+		8D5835741B6B26D00027FE55 /* Log in */ = {
 			isa = PBXGroup;
 			children = (
-				8D58356A1B6AC4230027FE55 /* MezzoLoginViewController.swift */,
-				8D5835661B6AC3760027FE55 /* SignUpViewController.swift */,
-				8D5835721B6AC8260027FE55 /* MezzoSettingsViewController.swift */,
+				8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */,
+				8D5835761B6B26D00027FE55 /* SignUpViewController.swift */,
 			);
-			path = "User-related";
+			path = "Log in";
+			sourceTree = "<group>";
+		};
+		8D5835791B6B26DA0027FE55 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */,
+				8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */,
+				8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */,
+				8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		8D6B05BA1B51AE0400CDE5B9 /* New Donation */ = {
@@ -285,8 +301,9 @@
 		8DF4FC0E1B4C629D0020DB33 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8D5835791B6B26DA0027FE55 /* Settings */,
+				8D5835741B6B26D00027FE55 /* Log in */,
 				8D5835641B6AC3300027FE55 /* New Donation */,
-				8D5835651B6AC3300027FE55 /* User-related */,
 				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
 			);
 			path = "View Controllers";
@@ -523,16 +540,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
-				8D5835731B6AC8260027FE55 /* MezzoSettingsViewController.swift in Sources */,
+				8D58357F1B6B275A0027FE55 /* FoodPreferencesViewController.swift in Sources */,
+				8D5835811B6BCA8C0027FE55 /* AvailabilityViewController.swift in Sources */,
+				8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */,
+				8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */,
 				8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
 				8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */,
 				8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */,
 				8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */,
-				8D5835671B6AC3760027FE55 /* SignUpViewController.swift in Sources */,
+				8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */,
 				8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */,
 				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
-				8D58356B1B6AC4230027FE55 /* MezzoLoginViewController.swift in Sources */,
+				8D5835771B6B26D00027FE55 /* MezzoLoginViewController.swift in Sources */,
 				8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */,
 				A6B8BA6C1B52206600C0B393 /* User.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,

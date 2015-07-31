@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MezzoSettingsViewController: UIViewController {
+class MezzoSettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
