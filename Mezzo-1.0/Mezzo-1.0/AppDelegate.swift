@@ -12,7 +12,10 @@ import Parse
 import ParseUI
 import Bolts
 import FBSDKCoreKit
+import Mixpanel
 
+/// global debug variable -- switches between production and development Parse apps based on its value
+var debugMode = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -53,19 +56,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Organization.registerSubclass()
         Donor.registerSubclass()
         
-        // Initialize Parse.
-        Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
+        // Initialize Parse
+        if (debugMode) {
+            Parse.setApplicationId("cX7yVorAA99FNZyW5mWoEoGs07LE2jUCRKtEi0wt", clientKey: "ADboeEkiWri2efGeLzRJx8lTF4St9qZ64CZ7gmDX")
+        } else {
+            Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
+        }
         
+        // set default ACL for all Parse objects
         let acl = PFACL()
         acl.setPublicReadAccess(true)
         PFACL.setDefaultACL(acl, withAccessForCurrentUser: true)
         
 //        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
+        // choose which screen to show first (login VC or donations VC)
         let user = PFUser.currentUser()
-        
         let startViewController: UIViewController
-        
         if user != nil {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
@@ -83,21 +90,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = startViewController
         self.window?.makeKeyAndVisible()
         
-//        PFUser.logInWithUsername("testDonor", password: "testDonor")
-//        PFUser.logInWithUsername("targetDonor", password: "targetDonor")
-//        PFUser.logInWithUsername("testOrg", password: "testOrg")
-//
-//        if let user = PFUser.currentUser() as? User {
-//            println("yay")
-//        } else {
-//            println(":(")
-//        }
         
         // Parse push notification setup
         let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        
+        // Mixpanel setup
+        Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("App launched")
         
         return true //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

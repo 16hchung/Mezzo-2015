@@ -11,6 +11,7 @@ target 'Mezzo-1.0' do
     pod 'ParseUI'
     pod 'ConvenienceKit'
 	pod 'Bond', '~> 3.7'
+	pod 'Mixpanel'
 end
 
 target 'Mezzo-1.0Tests' do
