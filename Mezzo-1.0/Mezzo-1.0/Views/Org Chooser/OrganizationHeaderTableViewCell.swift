@@ -30,7 +30,7 @@ class OrganizationHeaderTableViewCell: UITableViewCell {
     
     //static var selectedOrgArray = [Organization]()
     
-    weak var organization: Organization? {
+    var organization: Organization? {
         didSet {
             if let organization = organization {
                 orgNameLabel.text = organization.name

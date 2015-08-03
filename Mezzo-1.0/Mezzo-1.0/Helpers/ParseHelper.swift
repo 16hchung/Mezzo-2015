@@ -50,12 +50,6 @@ class ParseHelper {
         // TODO: sort by times, desired foods
         orgsQuery.orderByAscending(OrgConstants.nameProperty) // filler sort
         
-        if let donorUser = PFUser.currentUser() as? User where donorUser.username == "testDonor" {
-            orgsQuery.whereKey(OrgConstants.nameProperty, equalTo: "Test Organization")
-        } else {
-            orgsQuery.whereKey(OrgConstants.nameProperty, notEqualTo: "Test Organization")
-        }
-        
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     
@@ -133,7 +127,7 @@ class ParseHelper {
     
     // MARK: offers
     
-    static func addOfferToDonation(donation: Donation, toOrganization: Organization, callback: PFBooleanResultBlock) {
+    static func addOfferToDonation(donation: Donation, toOrganization: Organization) {
         
         let offerObject = PFObject(className: OfferConstants.className)
         offerObject[OfferConstants.fromDonorProperty] = donation.fromDonor
@@ -146,8 +140,10 @@ class ParseHelper {
             let user = results![0] as! PFUser
             offerACL.setWriteAccess(true, forUser: user)
             offerObject.ACL = offerACL
-            offerObject.saveInBackgroundWithBlock(callback)
         })
+        
+        offerObject.saveInBackground()
+        
     }
     
     /**

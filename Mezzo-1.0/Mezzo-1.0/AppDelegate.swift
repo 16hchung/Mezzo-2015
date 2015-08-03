@@ -31,18 +31,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let navController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UIViewController
                 
-                
-                let currentInstallation = PFInstallation.currentInstallation()
-                
-                // store the user pointer
-                if let donor = (PFUser.currentUser() as? User)?.donor {
-                    currentInstallation["donor"] = donor
-                } else if let org = (PFUser.currentUser() as? User)?.organization {
-                    currentInstallation["org"] = org
-                }
-                
-                currentInstallation.saveInBackground()
-                
                 self.window?.rootViewController!.presentViewController(navController, animated: true, completion: nil)
             }
         }
