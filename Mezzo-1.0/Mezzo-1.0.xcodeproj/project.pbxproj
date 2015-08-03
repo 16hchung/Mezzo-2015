@@ -16,13 +16,19 @@
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
 		8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */; };
-		8D40EF781B67DEE40093A10B /* MezzoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */; };
 		8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF791B67F3640093A10B /* ErrorHandling.swift */; };
+		8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */; };
+		8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */; };
+		8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */; };
+		8D5835771B6B26D00027FE55 /* MezzoLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */; };
+		8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835761B6B26D00027FE55 /* SignUpViewController.swift */; };
+		8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */; };
+		8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */; };
+		8D58357F1B6B275A0027FE55 /* FoodPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */; };
+		8D5835811B6BCA8C0027FE55 /* AvailabilityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */; };
 		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
-		8D6B05B71B51AAB300CDE5B9 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */; };
 		8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */; };
 		8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */; };
-		8D6B05C51B52723800CDE5B9 /* OrganizationChooserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */; };
 		8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */; };
 		8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
@@ -42,7 +48,6 @@
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
 		A6B8BA6C1B52206600C0B393 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8BA6B1B52206600C0B393 /* User.swift */; };
-		A6ED92A11B56FF82000AC031 /* PickupTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,13 +75,19 @@
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
 		8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
-		8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoLoginViewController.swift; sourceTree = "<group>"; };
 		8D40EF791B67F3640093A10B /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
+		8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
+		8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
+		8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
+		8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoLoginViewController.swift; sourceTree = "<group>"; };
+		8D5835761B6B26D00027FE55 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MezzoSettingsViewController.swift; sourceTree = "<group>"; };
+		8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
+		8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodPreferencesViewController.swift; sourceTree = "<group>"; };
+		8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvailabilityViewController.swift; sourceTree = "<group>"; };
 		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
-		8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
-		8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationChooserViewController.swift; sourceTree = "<group>"; };
 		8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationBodyTableViewCell.swift; sourceTree = "<group>"; };
 		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -97,7 +108,6 @@
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6B8BA6B1B52206600C0B393 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupTimeViewController.swift; sourceTree = "<group>"; };
 		B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.release.xcconfig"; sourceTree = "<group>"; };
 		EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -232,6 +242,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8D5835641B6AC3300027FE55 /* New Donation */ = {
+			isa = PBXGroup;
+			children = (
+				8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */,
+				8D58356D1B6AC42D0027FE55 /* OrganizationChooserViewController.swift */,
+				8D58356E1B6AC42D0027FE55 /* PickupTimeViewController.swift */,
+			);
+			path = "New Donation";
+			sourceTree = "<group>";
+		};
+		8D5835741B6B26D00027FE55 /* Log in */ = {
+			isa = PBXGroup;
+			children = (
+				8D5835751B6B26D00027FE55 /* MezzoLoginViewController.swift */,
+				8D5835761B6B26D00027FE55 /* SignUpViewController.swift */,
+			);
+			path = "Log in";
+			sourceTree = "<group>";
+		};
+		8D5835791B6B26DA0027FE55 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				8D58357A1B6B26DA0027FE55 /* MezzoSettingsViewController.swift */,
+				8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */,
+				8D58357E1B6B275A0027FE55 /* FoodPreferencesViewController.swift */,
+				8D5835801B6BCA8C0027FE55 /* AvailabilityViewController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		8D6B05BA1B51AE0400CDE5B9 /* New Donation */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,11 +301,10 @@
 		8DF4FC0E1B4C629D0020DB33 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8D5835791B6B26DA0027FE55 /* Settings */,
+				8D5835741B6B26D00027FE55 /* Log in */,
+				8D5835641B6AC3300027FE55 /* New Donation */,
 				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
-				8D6B05B61B51AAB300CDE5B9 /* NewDonationViewController.swift */,
-				8D6B05C41B52723800CDE5B9 /* OrganizationChooserViewController.swift */,
-				A6ED92A01B56FF82000AC031 /* PickupTimeViewController.swift */,
-				8D40EF771B67DEE40093A10B /* MezzoLoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -501,22 +540,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
+				8D58357F1B6B275A0027FE55 /* FoodPreferencesViewController.swift in Sources */,
+				8D5835811B6BCA8C0027FE55 /* AvailabilityViewController.swift in Sources */,
+				8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */,
+				8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */,
 				8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
+				8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */,
 				8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */,
 				8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */,
-				8D6B05B71B51AAB300CDE5B9 /* NewDonationViewController.swift in Sources */,
+				8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */,
 				8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */,
-				8D40EF781B67DEE40093A10B /* MezzoLoginViewController.swift in Sources */,
 				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
+				8D5835771B6B26D00027FE55 /* MezzoLoginViewController.swift in Sources */,
 				8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */,
 				A6B8BA6C1B52206600C0B393 /* User.swift in Sources */,
-				8D6B05C51B52723800CDE5B9 /* OrganizationChooserViewController.swift in Sources */,
-				A6ED92A11B56FF82000AC031 /* PickupTimeViewController.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,
+				8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */,
 				8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */,
 				A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */,
 				8D18DECD1B48359F004E3087 /* AppDelegate.swift in Sources */,
+				8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,11 +638,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "0bfd683f-ab82-452e-8636-98b8ab522cd0";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mezzo-1.0/Mezzo-1.0-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -635,10 +681,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INSTALL_PATH = /Applications;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PROVISIONING_PROFILE = "0bfd683f-ab82-452e-8636-98b8ab522cd0";
 				SDKROOT = iphoneos;
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Mezzo-1.0/Mezzo-1.0-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -662,6 +710,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 			};
 			name = Debug;
 		};
@@ -682,6 +731,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = NO;
 			};
 			name = Release;
 		};

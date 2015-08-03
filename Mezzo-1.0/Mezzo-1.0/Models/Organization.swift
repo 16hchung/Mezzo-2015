@@ -23,6 +23,8 @@ class Organization: PFObject, PFSubclassing{
     @NSManaged var availableTimes: [String]
     /// org's profile picture PFFile
     @NSManaged var profilePictureFile: PFFile?
+    /// name of manager
+    @NSManaged var managerName: String?
     
     // MARK: Methods
     
