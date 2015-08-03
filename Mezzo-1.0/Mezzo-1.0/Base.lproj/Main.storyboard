@@ -526,7 +526,7 @@
         <!--My Info-->
         <scene sceneID="hCN-8b-2Ti">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ykF-AZ-zoc" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="ykF-AZ-zoc" customClass="MyInfoViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hPe-PP-zI1"/>
                         <viewControllerLayoutGuide type="bottom" id="oMZ-VW-hhr"/>
@@ -569,7 +569,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbv-WX-5dO">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rbv-WX-5dO" customClass="TextView" customModule="ConvenienceKit">
                                                 <rect key="frame" x="20" y="196" width="560" height="128"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
@@ -630,6 +630,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="My Info" id="sHE-y6-z9N"/>
+                    <connections>
+                        <outlet property="managerName" destination="hrX-SZ-hRj" id="0Ij-0v-IMu"/>
+                        <outlet property="phoneNumber" destination="GQJ-Hh-8cW" id="OdA-ho-lg6"/>
+                        <outlet property="scrollView" destination="WOa-y3-UXE" id="RBR-tX-OQH"/>
+                        <outlet property="specialInstructions" destination="Rbv-WX-5dO" id="8fy-kF-Uni"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5PF-r3-Lh6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
