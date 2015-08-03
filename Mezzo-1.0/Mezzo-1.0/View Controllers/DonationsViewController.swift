@@ -31,7 +31,13 @@ class DonationsViewController: UIViewController {
             var donationsToReturn = [Donation]()
             
             var allSortedKeys = donations.keys.array
-            allSortedKeys.sort { return $0.updatedAt < $1.updatedAt }
+            allSortedKeys.sort {
+                if $0.donationState == .Accepted && $1.donationState == .Accepted {
+                    return $0.orgSpecificTime < $1.orgSpecificTime
+                } else {
+                    return $0.updatedAt < $1.updatedAt
+                }
+            }
             
             // states array ordered based on order we want in tableView
             for donationState: Donation.DonationState in [.Declined, .Offered, .Accepted, .Completed] {
