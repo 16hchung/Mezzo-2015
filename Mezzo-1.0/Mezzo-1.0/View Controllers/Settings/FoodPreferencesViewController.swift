@@ -117,6 +117,10 @@ class FoodPreferencesViewController: UIViewController {
         toggleDayButton(sender, select: true)
         selectedDayButton = sender
         
+        // change availability checkboxes
+        availableOptionButton.setTitle("I am available on \(fullDayStringForButton(sender))...", forState: UIControlState.Normal)
+        unavailableOptionButton.setTitle("I'm not available at all on \(fullDayStringForButton(sender)).", forState: UIControlState.Normal)
+        
         showSettingsForDay(selectedDayButton)
     }
     
@@ -170,6 +174,27 @@ class FoodPreferencesViewController: UIViewController {
             
         } else {
             availabilityToggled(unavailableOptionButton)
+        }
+    }
+    
+    func fullDayStringForButton(button: UIButton) -> String {
+        switch button.titleLabel!.text! {
+        case "S":
+            return "Sundays"
+        case "M":
+            return "Mondays"
+        case "T":
+            return "Tuesdays"
+        case "W":
+            return "Wednesdays"
+        case "Th":
+            return "Thursdays"
+        case "F":
+            return "Fridays"
+        case "Sa":
+            return "Saturdays"
+        default:
+            return ""
         }
     }
     

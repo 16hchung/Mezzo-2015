@@ -86,6 +86,8 @@ class DonationsViewController: UIViewController {
     @IBAction func settingsButtonSelected(sender: UIBarButtonItem) {
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
             performSegueWithIdentifier("Org Settings", sender: nil)
+        } else {
+            performSegueWithIdentifier("Donor Settings", sender: nil)
         }
     }
     

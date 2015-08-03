@@ -1267,10 +1267,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PJx-xh-ADD">
-                                <rect key="frame" x="16" y="164" width="280" height="28"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="PJx-xh-ADD">
+                                <rect key="frame" x="16" y="164" width="285" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="I'm not available at all on Mondays" image="unchecked box">
+                                <state key="normal" title="I'm not available at all on Mondays." image="unchecked box">
                                     <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1280,7 +1280,7 @@
                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="Mj1-jU-AAD"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q9z-2r-kfJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="q9z-2r-kfJ">
                                 <rect key="frame" x="16" y="200" width="236" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="I am available on Mondays..." image="unchecked box">
@@ -1463,6 +1463,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xin-Kr-cHh"/>
-        <segue reference="MXr-v1-TKa"/>
+        <segue reference="HTJ-J4-aaI"/>
     </inferredMetricsTieBreakers>
 </document>
