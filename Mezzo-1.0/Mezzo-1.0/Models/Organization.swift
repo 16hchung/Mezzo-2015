@@ -26,6 +26,20 @@ class Organization: PFObject, PFSubclassing{
     @NSManaged var managerName: String?
     @NSManaged var weeklyHours: [String]
     
+    struct DefaultHours {
+        static let startTime = formatter.dateFromString("08:00 am")!
+        static let endTime = formatter.dateFromString("12:00 PM")!
+    }
+    
+    /// default date formatter for String <-> NSdate conversion
+    static var formatter: NSDateFormatter {
+        get {
+            let returnable = NSDateFormatter()
+            returnable.dateFormat = "hh:mm a"
+            return returnable
+        }
+    }
+    
     // MARK: Methods
     
     // TODO: implement cancel method
@@ -39,7 +53,6 @@ class Organization: PFObject, PFSubclassing{
         // delete from Parse (or add a cancelled flag?)
         // notify donor of this donation
     }
-    
     
     // MARK: PFSubclassing Protocol
     

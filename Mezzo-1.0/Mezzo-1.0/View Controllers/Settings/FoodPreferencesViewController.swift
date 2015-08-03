@@ -27,14 +27,14 @@ class FoodPreferencesViewController: UIViewController {
     var weeklyHours: [String : (start: NSDate?, end: NSDate?)] = [:]
     let weekDaySymbols = ["S", "M", "T", "W", "Th", "F", "Sa"]
     
-    /// default date formatter for String <-> NSdate conversion
-    var formatter: NSDateFormatter {
-        get {
-            let returnable = NSDateFormatter()
-            returnable.dateFormat = "hh:mm a"
-            return returnable
-        }
-    }
+//    /// default date formatter for String <-> NSdate conversion
+//    var formatter: NSDateFormatter {
+//        get {
+//            let returnable = NSDateFormatter()
+//            returnable.dateFormat = "hh:mm a"
+//            return returnable
+//        }
+//    }
     
     // MARK: VC lifecycle
     
@@ -60,7 +60,8 @@ class FoodPreferencesViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
         
-        
+        saveDateSettingsForDay(selectedDayButton)
+        saveAllDateSettings()
     }
     
     // MARK: UI change methods
@@ -73,8 +74,8 @@ class FoodPreferencesViewController: UIViewController {
                 let dateStrings = orgUser.weeklyHours[index].componentsSeparatedByString(", ")
                 
                 // load into weely hours dictionary
-                let startDate = formatter.dateFromString(dateStrings[0])
-                let endDate = formatter.dateFromString(dateStrings[1])
+                let startDate = Organization.formatter.dateFromString(dateStrings[0])
+                let endDate = Organization.formatter.dateFromString(dateStrings[1])
                 weeklyHours[weekDaySymbols[index]] = (startDate, endDate)
                 
                 // set gray background for all unavailable days
@@ -84,6 +85,23 @@ class FoodPreferencesViewController: UIViewController {
                 let available = startDate != nil && endDate != nil
                 toggleAvailabilityForDayButton(dayButton[0], available: available)
             }
+        }
+    }
+    
+    func saveAllDateSettings() {
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            for index in 0..<weeklyHours.count {
+                let dateTuple = weeklyHours[weekDaySymbols[index]]!
+                if let startDate = dateTuple.start, endDate = dateTuple.end {
+                    let startString = Organization.formatter.stringFromDate(startDate)
+                    let endString = Organization.formatter.stringFromDate(endDate)
+                    orgUser.weeklyHours[index] = "\(startString), \(endString)"
+                } else {
+                    orgUser.weeklyHours[index] = ", "
+                }
+            }
+            
+            orgUser.saveInBackground()
         }
     }
 
@@ -107,6 +125,9 @@ class FoodPreferencesViewController: UIViewController {
         availableOptionButton.selected = available
         unavailableOptionButton.selected = !available
         timePickingContentView.hidden = !available
+        
+        let dateTuple = weeklyHours[selectedDayButton.titleLabel!.text!]
+        if available && dateTuple!.start == nil { resetDatePickersToDefaults() }
     }
     
     /// toggle selection of day button (border)
@@ -137,7 +158,8 @@ class FoodPreferencesViewController: UIViewController {
             fromTimePicker.date = startDate
             toTimePicker.date = endDate
             
-            resetDatePickerMinsAndMaxes()
+            toTimePicker.minimumDate = fromTimePicker.date
+            fromTimePicker.maximumDate = toTimePicker.date
             
             availabilityToggled(availableOptionButton)
             
@@ -146,8 +168,9 @@ class FoodPreferencesViewController: UIViewController {
         }
     }
     
-    func resetDatePickerMinsAndMaxes() {
-        
+    func resetDatePickersToDefaults() {
+        fromTimePicker.date = Organization.DefaultHours.startTime
+        toTimePicker.date = Organization.DefaultHours.endTime
     }
     
     func saveDateSettingsForDay(button: UIButton) {
