@@ -117,8 +117,6 @@ class DonationsViewController: UIViewController {
                     ErrorHandling.defaultErrorHandler(error)
                     
                 } else if var loadedDonations = result as? [Donation] {
-                    loadedDonations = loadedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
-                    
                     for donation in loadedDonations {
                         loadingDonations[donation] = []
                     }
@@ -162,7 +160,7 @@ class DonationsViewController: UIViewController {
                     
                     for offer in pendingOffers {
                         let donation = offer.objectForKey(ParseHelper.OfferConstants.donationProperty) as! Donation
-                        if donation.checkIfExpiredOrCompleted() { pendingDonations.append(donation) }
+                        pendingDonations.append(donation)
                     }
                     
                     // then load any accepted donations
@@ -171,7 +169,6 @@ class DonationsViewController: UIViewController {
                             ErrorHandling.defaultErrorHandler(error)
                             
                         } else if var acceptedDonations = result as? [Donation] {
-                            acceptedDonations = acceptedDonations.filter { $0.checkIfExpiredOrCompleted() } // update any already completed donations
                             for donation in pendingDonations + acceptedDonations {
                                 loadingDonations[donation] = []
                             }
@@ -241,9 +238,15 @@ class DonationsViewController: UIViewController {
         // do the add button thing
         if let user = PFUser.currentUser()! as? User where user.donor != nil {
             navigationItem.rightBarButtonItem = self.addBarButton
-            // donors can't add two donations at once
-            if !noUpcomingDonations { navigationItem.rightBarButtonItem?.enabled = false }
-            else { navigationItem.rightBarButtonItem?.enabled = true }
+            
+            // in production mode, donors can't add two donations at once
+            // in debug mode, donors can add more than one donation (for ease of testing)
+            if (debugMode) {
+                navigationItem.rightBarButtonItem?.enabled = true
+            } else {
+                if !noUpcomingDonations { navigationItem.rightBarButtonItem?.enabled = false }
+                else { navigationItem.rightBarButtonItem?.enabled = true }
+            }
         } else if let user = PFUser.currentUser()! as? User where user.organization != nil {
             self.navigationItem.rightBarButtonItem = nil
         }
@@ -453,9 +456,52 @@ extension DonationsViewController: DonationHeaderCellDelegate {
     }
     
     func cancelDonation(cell: DonationHeaderTableViewCell) {
-        cell.donation.cancel { (success, error) -> Void in
+        cell.donation.setDonationState(.Cancelled) { (success, error) -> Void in
+            if let error = error { ErrorHandling.defaultErrorHandler(error) }
             self.segmentedControlChanged(nil)
         }
+    }
+    
+    func completeDonation(cell: DonationHeaderTableViewCell) {
+        let alertController = UIAlertController(title: "Donation complete", message: "Confirming that \(cell.donation.toOrganization!.name) picked up this donation?", preferredStyle: .ActionSheet)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        let yesAction = UIAlertAction(title: "Yes", style: .Default) { (action) -> Void in
+            cell.donation.setDonationState(.Completed) { (success, error) -> Void in
+                if let error = error { ErrorHandling.defaultErrorHandler(error) }
+                self.segmentedControlChanged(nil)
+            }
+        }
+        alertController.addAction(yesAction)
+        
+        presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    func showNeverPickedUpDialogue(cell: DonationHeaderTableViewCell) {
+        var explanationTextField: UITextField?
+        
+        let alertView = UIAlertController(title: "Incomplete donation", message: "Please briefly explain why this donation was never picked up by \(cell.donation.toOrganization!.name).", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertView.addAction(cancelAction)
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) -> Void in
+            println(explanationTextField!.text)
+            cell.donation.setDonationState(.Expired, callback: { (success, error) -> Void in
+                if let error = error { ErrorHandling.defaultErrorHandler(error) }
+                self.segmentedControlChanged(nil)
+            })
+        }
+        alertView.addAction(submitAction)
+        
+        alertView.addTextFieldWithConfigurationHandler { (textField) -> Void in
+            explanationTextField = textField
+            explanationTextField?.placeholder = "Explain here"
+        }
+        
+        presentViewController(alertView, animated: true, completion: nil)
     }
 }
 

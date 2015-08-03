@@ -38,6 +38,7 @@ class Donation: PFObject, PFSubclassing {
         case Accepted = "Accepted"
         case Declined = "Declined"
         case Cancelled = "Cancelled"
+        case Expired = "Expired" // donation was accepted, but pick up was never completed
         case Completed = "Completed"
     }
     
@@ -77,8 +78,8 @@ class Donation: PFObject, PFSubclassing {
         }
     }
     
-    func cancel(callback: PFBooleanResultBlock) {
-        donationState = .Cancelled
+    func setDonationState(state: DonationState, callback: PFBooleanResultBlock) {
+        donationState = state
         self.saveInBackgroundWithBlock(callback)
     }
     
@@ -121,26 +122,6 @@ class Donation: PFObject, PFSubclassing {
         }
         
         return toReturn
-    }
-    
-    /**
-        Checks if the current donation is already expired or completed (the pickup time range
-        or specific pickup time has already passed).
-    
-        :returns: whether the donation should be displayed (either marked as complete now or just shouldn't be shown)
-    */
-    func checkIfExpiredOrCompleted() -> Bool {
-        // if past today's date      
-        if donorTimeRangeEnd < NSDate() || (orgSpecificTime != nil && orgSpecificTime < NSDate()) {
-            // don't mark pending or declined donations that have expired as complete
-            
-            if donationState == .Accepted { // mark expired accpeted donations as complete
-                donationState = .Completed
-                self.saveInBackground()
-            }
-            return false // should not be displayed
-        }
-        return true // should be displayed
     }
     
     /// Returns appropriate color for a donation's state

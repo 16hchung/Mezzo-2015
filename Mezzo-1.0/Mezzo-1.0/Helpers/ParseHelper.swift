@@ -50,11 +50,13 @@ class ParseHelper {
         // TODO: sort by times, desired foods
         orgsQuery.orderByAscending(OrgConstants.nameProperty) // filler sort
         
-        if let donorUser = PFUser.currentUser() as? User where donorUser.username == "testDonor" {
-            orgsQuery.whereKey(OrgConstants.nameProperty, equalTo: "Test Organization")
-        } else {
-            orgsQuery.whereKey(OrgConstants.nameProperty, notEqualTo: "Test Organization")
-        }
+//        if let donorUser = PFUser.currentUser() as? User where donorUser.username == "testDonor" {
+//            orgsQuery.whereKey(OrgConstants.nameProperty, equalTo: "Test Organization")
+//        } else {
+//            orgsQuery.whereKey(OrgConstants.nameProperty, notEqualTo: "Test Organization")
+//        }
+
+        if (!debugMode) { orgsQuery.whereKey(OrgConstants.nameProperty, notEqualTo: "Test Organization") }
         
         orgsQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
@@ -93,8 +95,9 @@ class ParseHelper {
         let donationQuery = PFQuery(className: DonationConstants.className)
         donationQuery.includeKey(DonationConstants.toOrgProperty)
         donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser) // from the donor user passed in
-        donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Completed.rawValue) // not completed yet
-        donationQuery.whereKey(DonationConstants.statusProperty, notEqualTo: Donation.DonationState.Cancelled.rawValue)
+        let upcomingStatuses:[Donation.DonationState] = [.Offered, .Accepted, .Declined]
+        let upcomingStatusStrings:[String] = upcomingStatuses.map({ $0.rawValue })
+        donationQuery.whereKey(DonationConstants.statusProperty, containedIn: upcomingStatusStrings)
         donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
     }
     

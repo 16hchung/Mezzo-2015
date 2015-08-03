@@ -13,6 +13,8 @@ protocol DonationHeaderCellDelegate: class {
     func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
     func showDeclineDialogue(cell: DonationHeaderTableViewCell)
     func cancelDonation(cell: DonationHeaderTableViewCell)
+    func completeDonation(cell: DonationHeaderTableViewCell)
+    func showNeverPickedUpDialogue(cell: DonationHeaderTableViewCell)
 }
 
 class DonationHeaderTableViewCell: UITableViewCell {
@@ -39,19 +41,11 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var OfferSentToTitle: UILabel!
     
     @IBOutlet weak var cancelDonationButton: UIButton!
-    @IBOutlet weak var changeRecipientButton: UIButton!
+    @IBOutlet weak var pickupCompleteButton: UIButton!
+    @IBOutlet weak var neverPickedUpButton: UIButton!
     
     @IBOutlet weak var pendingOrgListLabel: UILabel!
     @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
-    
-    
-    // MARK: constraints
-    @IBOutlet weak var contactInfoBottomConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var locationBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var cancelDonationBottomConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var offerSentToBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var pendingOrgListBottomConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var pendingStatusListBottomConstraint: NSLayoutConstraint!
     
     weak var delegate: DonationHeaderCellDelegate?
     
@@ -65,8 +59,10 @@ class DonationHeaderTableViewCell: UITableViewCell {
                 multiLineLabels = [timeLabel, statusLabel, foodDetailsLabel, locationButton.titleLabel, pendingOrgListLabel]
                 
                 hideDeclinedOptions(true)
-                // toggle hide and accept stuff
-                if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == Donation.DonationState.Offered {
+                hidePickupTimePastOptions(true)
+                
+                // toggle hide and accept/decline stuff
+                if let orgUser = (PFUser.currentUser() as? User)?.organization where donation.donationState == .Offered {
                     showAcceptAndDeclineButtons()
                 } else {
                     hideAcceptAndDeclineButtons()
@@ -87,6 +83,10 @@ class DonationHeaderTableViewCell: UITableViewCell {
                         managerName = otherOrgUser?["managerName"] as? String ?? ""
                         hideOffers(true)
                         hideContactInfo(false)
+                        
+                        if donation.donationState == .Accepted {
+                            hidePickupTimePastOptions(donation.orgSpecificTime > NSDate()) // show if pickup date is in the past
+                        }
                     } else { // declined or offered
                         hideContactInfo(true) // b/c there is no recipient's contact info to display yet
                         
@@ -109,7 +109,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
                             }
                         }
                         
-                        if donation.donationState == Donation.DonationState.Declined { // declined
+                        if donation.donationState == .Declined { // declined
                             hideDeclinedOptions(false) // show options
                         }
 
@@ -171,21 +171,23 @@ class DonationHeaderTableViewCell: UITableViewCell {
         delegate?.showDeclineDialogue(self)
     }
     
+    @IBAction func completePickupTapped(sender: AnyObject) {
+        delegate?.completeDonation(self)
+    }
+    
+    @IBAction func neverPickedUpTapped(sender: AnyObject) {
+        delegate?.showNeverPickedUpDialogue(self)
+    }
+    
     private func showAcceptAndDeclineButtons() {
-//        acceptButtonBottomConstraint.active = true
-        
         declineButton.hidden = false
         acceptButton.hidden = false
         
         acceptButton.titleLabel!.font = UIFont(name: acceptButton.titleLabel!.font.fontName, size: 15.0)
         declineButton.titleLabel!.font = UIFont(name: declineButton.titleLabel!.font.fontName, size: 15.0)
-        
-//        acceptButtonBottomConstraint.constant = 16
     }
     
     private func hideAcceptAndDeclineButtons() {
-//        acceptButtonBottomConstraint.active = false
-
         declineButton.hidden = true
         acceptButton.hidden = true
         
@@ -247,15 +249,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
     private func hideLocation(hidden: Bool) {
         setFontOfUIObject(locationTitle, normalFontSize: 14.0, hidden: hidden)
         setFontOfUIObject(locationButton, normalFontSize: 14.0, hidden: hidden)
-        
-//        for constraint in locationTitle.constraints() {
-//            if let constraint = constraint as? NSLayoutConstraint {
-////                constraint.active = !hidden
-//                constraint.priority = hidden ? 1 : 750
-//            }
-//        }
-        
-//        locationBottomConstraint.constant = hidden ? -15 : 10
     }
     
     /// Hides contact info title and button with phone number.
@@ -263,32 +256,17 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(contactInfoTitle, normalFontSize: 14.0 , hidden: hidden)
         setFontOfUIObject(phoneNumberButton, normalFontSize: 14.0 , hidden: hidden)
         setFontOfUIObject(managerNameLabel, normalFontSize: 14.0 , hidden: hidden)
-        
-//        for constraint in contactInfoTitle.constraints() {
-//            if let constraint = constraint as? NSLayoutConstraint {
-////                constraint.active = !hidden
-//                constraint.priority = hidden ? 1 : 750
-//            }
-//        }
-        
-//        contactInfoBottomConstraint.constant = hidden ? -20 : 10
     }
     
     /// Hides buttons that appear when a donation is all declined (cancel and change recipient buttons)
     private func hideDeclinedOptions(hidden: Bool) {
         cancelDonationButton.hidden = hidden
-        
-//        setFontOfUIObject(cancelDonationButton, normalFontSize: 15.0, hidden: hidden)
-//        setFontOfUIObject(changeRecipientButton, normalFontSize: 15.0, hidden: hidden)
-        
-//        for constraint in cancelDonationButton.constraints() {
-//            if let constraint = constraint as? NSLayoutConstraint {
-////                constraint.active = !hidden
-//                constraint.priority = hidden ? 1 : 750
-//            }
-//        }
-        
-//        cancelDonationBottomConstraint.constant = hidden ? 0 : -16
+    }
+    
+    /// Hides or shows two buttons that appear when a donation's pickup time has past.
+    private func hidePickupTimePastOptions(hidden: Bool) {
+        pickupCompleteButton.hidden = hidden
+        neverPickedUpButton.hidden = hidden
     }
     
     /// Hides offers title label and two pending list labels (org names and statuses)
@@ -296,17 +274,6 @@ class DonationHeaderTableViewCell: UITableViewCell {
         setFontOfUIObject(OfferSentToTitle, normalFontSize: 14.0, hidden: hidden)
         setFontOfUIObject(pendingOrgListLabel, normalFontSize: 12.0, hidden: hidden)
         setFontOfUIObject(pendingOrgStatusesLabel, normalFontSize: 12.0, hidden: hidden)
-        
-//        for constraint in OfferSentToTitle.constraints() + pendingOrgListLabel.constraints() + pendingOrgStatusesLabel.constraints() {
-//            if let constraint = constraint as? NSLayoutConstraint {
-////                constraint.active = !hidden
-//                constraint.priority = hidden ? 1 : 750
-//            }
-//        }
-        
-//        offerSentToBottomConstraint.constant = hidden ? 0 : 8
-//        pendingStatusListBottomConstraint.constant = hidden ? 0 : 8
-//        pendingOrgListBottomConstraint.constant = hidden ? 0 : 8
     }
     
 }
