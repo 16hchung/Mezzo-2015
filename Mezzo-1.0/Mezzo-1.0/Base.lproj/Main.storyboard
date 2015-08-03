@@ -177,26 +177,33 @@
                                                         <action selector="mapLocation:" destination="kHh-SL-O7p" eventType="touchUpInside" id="XFk-fT-oY6"/>
                                                     </connections>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dn-N7-NC6">
-                                                    <rect key="frame" x="16" y="352" width="116" height="30"/>
-                                                    <state key="normal" title="Pickup complete">
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="completePickupTapped:" destination="kHh-SL-O7p" eventType="touchUpInside" id="1RG-nE-ZZZ"/>
-                                                    </connections>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9H-RD-Zy8">
-                                                    <rect key="frame" x="471" y="352" width="113" height="30"/>
-                                                    <state key="normal" title="Never picked up">
+                                                    <rect key="frame" x="267" y="352" width="30" height="30"/>
+                                                    <state key="normal" title="No">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
                                                         <action selector="neverPickedUpTapped:" destination="kHh-SL-O7p" eventType="touchUpInside" id="YMF-MP-KtN"/>
                                                     </connections>
                                                 </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Was the donation picked up?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9c2-cq-MPb">
+                                                    <rect key="frame" x="16" y="358" width="201" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Dn-N7-NC6">
+                                                    <rect key="frame" x="227" y="352" width="30" height="30"/>
+                                                    <state key="normal" title="Yes">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="completePickupTapped:" destination="kHh-SL-O7p" eventType="touchUpInside" id="1RG-nE-ZZZ"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="9c2-cq-MPb" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leadingMargin" constant="8" id="0pO-eF-kgY"/>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="centerY" secondItem="DqX-Ig-tr2" secondAttribute="centerY" id="0ro-Ly-JTN"/>
                                                 <constraint firstAttribute="centerX" secondItem="84o-Yd-y5T" secondAttribute="centerX" id="0vv-8F-zLK"/>
                                                 <constraint firstItem="DqX-Ig-tr2" firstAttribute="leading" secondItem="sbH-4q-6R8" secondAttribute="leading" id="14E-q1-y6z"/>
@@ -216,12 +223,15 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="YSf-ry-4KG" secondAttribute="trailing" constant="-2" id="DFu-H3-Jrx"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="Dv5-ts-UHf"/>
                                                 <constraint firstItem="EgA-08-onu" firstAttribute="leading" secondItem="edf-uD-zYV" secondAttribute="trailing" constant="8" id="ETx-DQ-i5S"/>
+                                                <constraint firstItem="G9H-RD-Zy8" firstAttribute="leading" secondItem="0Dn-N7-NC6" secondAttribute="trailing" constant="10" id="H9r-Ti-Bks"/>
                                                 <constraint firstItem="0Dn-N7-NC6" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leadingMargin" constant="8" id="HIR-cV-Krf"/>
                                                 <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="EgA-08-onu" secondAttribute="trailing" constant="10" id="IFF-sX-fW1"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="centerY" secondItem="2a0-6q-Qjb" secondAttribute="centerY" id="JPF-5h-DbS"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="2a0-6q-Qjb" secondAttribute="trailing" constant="10" id="RNd-2O-ky9"/>
+                                                <constraint firstItem="9c2-cq-MPb" firstAttribute="centerY" secondItem="84o-Yd-y5T" secondAttribute="centerY" constant="-0.5" id="T0k-rK-oGx"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="sbH-4q-6R8" secondAttribute="trailing" constant="-2" id="TRP-cy-GzV"/>
                                                 <constraint firstItem="sbH-4q-6R8" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="14" id="UIv-UQ-Zpj"/>
+                                                <constraint firstItem="0Dn-N7-NC6" firstAttribute="leading" secondItem="9c2-cq-MPb" secondAttribute="trailing" constant="10" id="Wep-Oz-ZQA"/>
                                                 <constraint firstItem="84o-Yd-y5T" firstAttribute="centerY" secondItem="0Dn-N7-NC6" secondAttribute="centerY" id="Y4y-i1-8h7"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="top" secondItem="cIg-db-JZO" secondAttribute="bottom" constant="8" id="YzL-2a-rxw"/>
                                                 <constraint firstItem="84o-Yd-y5T" firstAttribute="bottom" secondItem="9yz-OS-nlW" secondAttribute="bottomMargin" id="ZDi-eQ-aEm"/>
@@ -260,7 +270,9 @@
                                                     <exclude reference="UIv-UQ-Zpj"/>
                                                     <exclude reference="A1t-0n-yfn"/>
                                                     <exclude reference="6yx-Ct-nZm"/>
+                                                    <exclude reference="HIR-cV-Krf"/>
                                                     <exclude reference="wnM-kA-hSO"/>
+                                                    <exclude reference="5W6-S8-Fla"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -276,11 +288,12 @@
                                             <outlet property="locationButton" destination="bVb-cy-F8U" id="hTL-ov-vv9"/>
                                             <outlet property="locationTitle" destination="yM7-SB-u3K" id="3qW-rK-UXe"/>
                                             <outlet property="managerNameLabel" destination="edf-uD-zYV" id="oXe-DK-heJ"/>
-                                            <outlet property="neverPickedUpButton" destination="G9H-RD-Zy8" id="jUR-mG-hhN"/>
                                             <outlet property="pendingOrgListLabel" destination="bfN-58-Gip" id="yDW-yW-dku"/>
                                             <outlet property="pendingOrgStatusesLabel" destination="YSf-ry-4KG" id="1Zj-za-uyn"/>
                                             <outlet property="phoneNumberButton" destination="EgA-08-onu" id="2Qi-jS-Ysv"/>
-                                            <outlet property="pickupCompleteButton" destination="0Dn-N7-NC6" id="kmj-LW-1VR"/>
+                                            <outlet property="pickupCompleteLabel" destination="9c2-cq-MPb" id="auu-Lh-Yoe"/>
+                                            <outlet property="pickupCompleteNoButton" destination="G9H-RD-Zy8" id="nRq-Ra-0ug"/>
+                                            <outlet property="pickupCompleteYesButton" destination="0Dn-N7-NC6" id="JlM-XX-NIv"/>
                                             <outlet property="profileImageView" destination="2a0-6q-Qjb" id="SKL-5s-pkO"/>
                                             <outlet property="statusLabel" destination="bfB-ZX-hzS" id="OMV-5B-Ene"/>
                                             <outlet property="timeLabel" destination="cIg-db-JZO" id="DUg-Wv-WuK"/>

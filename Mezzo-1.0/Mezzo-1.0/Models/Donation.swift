@@ -38,7 +38,7 @@ class Donation: PFObject, PFSubclassing {
         case Accepted = "Accepted"
         case Declined = "Declined"
         case Cancelled = "Cancelled"
-        case Expired = "Expired" // donation was accepted, but pick up was never completed
+        case Incomplete = "Incomplete" // donation was accepted, but pick up was never completed
         case Completed = "Completed"
     }
     

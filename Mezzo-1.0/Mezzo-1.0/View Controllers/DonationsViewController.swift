@@ -502,7 +502,7 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) -> Void in
             println(explanationTextField!.text)
-            cell.donation.setDonationState(.Expired, callback: { (success, error) -> Void in
+            cell.donation.setDonationState(.Incomplete, callback: { (success, error) -> Void in
                 if let error = error { ErrorHandling.defaultErrorHandler(error) }
                 self.segmentedControlChanged(nil)
             })
