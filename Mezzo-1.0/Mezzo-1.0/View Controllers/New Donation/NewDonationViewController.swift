@@ -17,6 +17,7 @@ class NewDonationViewController: UIViewController {
     @IBOutlet weak var sizeTypePickerView: UIPickerView!
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var otherTextField: UITextField!
     
     // MARK: Properties
     
@@ -28,6 +29,11 @@ class NewDonationViewController: UIViewController {
     
     func saveDonation() {
         donation.size = convertSizeToString()
+        if !otherTextField.hidden {
+            let index = find(donation.foodDescription, "Other")
+            donation.foodDescription.removeAtIndex(index!)
+            donation.foodDescription.append(otherTextField.text)
+        }
     }
     
     func convertSizeToString() -> String {
@@ -145,12 +151,17 @@ class NewDonationViewController: UIViewController {
         if (!button.selected) { // if image is empty checkbox, select
             button.selected = true
             donation.foodDescription.append(button.titleLabel!.text!)
+            
             println(donation.foodDescription)
         } else { // if image is filled checkbox, deselect
             button.selected = false
             let index = find(donation.foodDescription, button.titleLabel!.text!)
             donation.foodDescription.removeAtIndex(index!)
             println(donation.foodDescription)
+        }
+        
+        if button.titleLabel!.text == "Other" {
+            otherTextField.hidden = !button.selected
         }
         
         // next button shouldn't be enabled unless foodDescription and size are populated
