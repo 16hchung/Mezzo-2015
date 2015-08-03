@@ -36,27 +36,3 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     }
 
 }
-
-
-// MARK: - UIPickerView Data Source
-// http://makeapppie.com/tag/uipickerview-in-swift/
-extension OrganizationBodyTableViewCell: UIPickerViewDataSource {
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return organization!.availableTimes.count
-    }
-}
-
-// MARK: - UIPickerView Delegate
-
-extension OrganizationBodyTableViewCell: UIPickerViewDelegate {
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
-        return organization!.availableTimes[row]
-    }
-    
-}

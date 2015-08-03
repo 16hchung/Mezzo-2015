@@ -77,6 +77,11 @@ class DonationsViewController: UIViewController {
         return refreshControl
     }()
     
+    @IBAction func settingsButtonSelected(sender: UIBarButtonItem) {
+        if let orgUser = (PFUser.currentUser() as? User)?.organization {
+            performSegueWithIdentifier("Org Settings", sender: nil)
+        }
+    }
     
     // MARK: VC Lifecycle
     
