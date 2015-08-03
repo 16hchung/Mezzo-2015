@@ -41,8 +41,10 @@ class DonationHeaderTableViewCell: UITableViewCell {
     @IBOutlet weak var OfferSentToTitle: UILabel!
     
     @IBOutlet weak var cancelDonationButton: UIButton!
-    @IBOutlet weak var pickupCompleteButton: UIButton!
-    @IBOutlet weak var neverPickedUpButton: UIButton!
+    
+    @IBOutlet weak var pickupCompleteLabel: UILabel!
+    @IBOutlet weak var pickupCompleteYesButton: UIButton!
+    @IBOutlet weak var pickupCompleteNoButton: UIButton!
     
     @IBOutlet weak var pendingOrgListLabel: UILabel!
     @IBOutlet weak var pendingOrgStatusesLabel: UILabel!
@@ -265,8 +267,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
     
     /// Hides or shows two buttons that appear when a donation's pickup time has past.
     private func hidePickupTimePastOptions(hidden: Bool) {
-        pickupCompleteButton.hidden = hidden
-        neverPickedUpButton.hidden = hidden
+        pickupCompleteYesButton.hidden = hidden
+        pickupCompleteNoButton.hidden = hidden
+        pickupCompleteLabel.hidden = hidden
     }
     
     /// Hides offers title label and two pending list labels (org names and statuses)

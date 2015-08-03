@@ -99,13 +99,26 @@ class DonationsViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        segmentedControl.selectedSegmentIndex = UPCOMING
-        reloadUpcomingDonationsData()
+        
+        // adds listener to reload table view data every time the app comes back into the foreground
+        // (ex user goes to home screen and comes back to the app without quitting)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
         
         // pull to refresh setup
         self.tableView.addSubview(refreshControl)
         
 //        searchBarState = .DefaultMode
+    }
+    
+    func applicationWillEnterForeground(notification: NSNotification) {
+        segmentedControl.selectedSegmentIndex = UPCOMING
+        reloadUpcomingDonationsData()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        // remove listener for foreground when the user navigates away from the table view
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     // MARK: reload donations data
@@ -494,7 +507,7 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) -> Void in
             println(explanationTextField!.text)
-            cell.donation.setDonationState(.Expired, callback: { (success, error) -> Void in
+            cell.donation.setDonationState(.Incomplete, callback: { (success, error) -> Void in
                 if let error = error { ErrorHandling.defaultErrorHandler(error) }
                 self.segmentedControlChanged(nil)
             })
