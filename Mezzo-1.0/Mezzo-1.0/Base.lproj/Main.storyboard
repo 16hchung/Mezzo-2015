@@ -271,8 +271,8 @@
                                                     <exclude reference="A1t-0n-yfn"/>
                                                     <exclude reference="6yx-Ct-nZm"/>
                                                     <exclude reference="HIR-cV-Krf"/>
-                                                    <exclude reference="wnM-kA-hSO"/>
                                                     <exclude reference="5W6-S8-Fla"/>
+                                                    <exclude reference="wnM-kA-hSO"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
