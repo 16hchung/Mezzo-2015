@@ -84,8 +84,6 @@ class FoodPreferencesViewController: UIViewController {
                 let available = startDate != nil && endDate != nil
                 toggleAvailabilityForDayButton(dayButton[0], available: available)
             }
-            
-            
         }
     }
 
@@ -115,16 +113,19 @@ class FoodPreferencesViewController: UIViewController {
     func toggleDayButton(button: UIButton, select: Bool) {
         button.layer.borderWidth = select ? 3.0 : 0.0
         button.layer.borderColor = UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor
+        if select {
+            button.setTitleColor(UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
+        } else {
+            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+        }
     }
     
     /// toggle availability indicator (background color)
     func toggleAvailabilityForDayButton(button: UIButton, available: Bool) {
         if available {
             button.backgroundColor = UIColor(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         } else {
             button.backgroundColor = UIColor.lightGrayColor()
-            button.setTitleColor(UIColor.lightTextColor(), forState: UIControlState.Normal)
         }
     }
 
@@ -150,7 +151,11 @@ class FoodPreferencesViewController: UIViewController {
     }
     
     func saveDateSettingsForDay(button: UIButton) {
-        
+        if availableOptionButton.selected {
+            weeklyHours.updateValue((fromTimePicker.date, toTimePicker.date), forKey: button.titleLabel!.text!)
+        } else {
+            weeklyHours.updateValue((nil, nil), forKey: button.titleLabel!.text!)
+        }
     }
     
     /*
