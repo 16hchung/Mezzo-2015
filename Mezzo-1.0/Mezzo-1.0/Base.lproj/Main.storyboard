@@ -488,7 +488,7 @@
         <!--Food Preferences-->
         <scene sceneID="gWZ-vz-9hx">
             <objects>
-                <viewController id="fNm-a4-kPt" customClass="AvailabilityViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fNm-a4-kPt" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RNp-td-b9g"/>
                         <viewControllerLayoutGuide type="bottom" id="byo-mV-C0Q"/>
@@ -621,10 +621,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3U3-9G-L6S">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3U3-9G-L6S">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Chb-Ba-aAT" userLabel="Content View">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Chb-Ba-aAT" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="535"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What type(s) of food are you donating?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IGS-cE-5RJ">
@@ -820,7 +820,7 @@
                             <constraint firstItem="3U3-9G-L6S" firstAttribute="top" secondItem="aSC-ik-Fqp" secondAttribute="bottom" id="azu-yQ-1bI"/>
                             <constraint firstItem="3U3-9G-L6S" firstAttribute="leading" secondItem="wc8-jI-sCv" secondAttribute="leadingMargin" constant="-16" id="oHR-fU-nYe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="3U3-9G-L6S" secondAttribute="trailing" constant="-16" id="tMd-L3-ZYh"/>
-                            <constraint firstAttribute="height" relation="lessThanOrEqual" secondItem="Chb-Ba-aAT" secondAttribute="height" constant="65" id="xU3-lX-VBN"/>
+                            <constraint firstAttribute="height" secondItem="Chb-Ba-aAT" secondAttribute="height" priority="750" constant="65" id="xU3-lX-VBN"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="What" id="AkB-kp-nMw">
@@ -1164,7 +1164,7 @@
         <!--Weekly Hours-->
         <scene sceneID="dsy-JZ-RCp">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qgW-dL-eOr" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qgW-dL-eOr" customClass="WeeklyHoursViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zVm-W5-Ag6"/>
                         <viewControllerLayoutGuide type="bottom" id="Vz3-qS-VQ7"/>
