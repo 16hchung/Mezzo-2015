@@ -95,6 +95,9 @@ class DonationsViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
+        segmentedControl.selectedSegmentIndex = UPCOMING
+        reloadUpcomingDonationsData()
+        
         // adds listener to reload table view data every time the app comes back into the foreground
         // (ex user goes to home screen and comes back to the app without quitting)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "applicationWillEnterForeground:", name: UIApplicationWillEnterForegroundNotification, object: nil)
