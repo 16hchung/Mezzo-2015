@@ -20,11 +20,11 @@ class Organization: PFObject, PFSubclassing{
     /// String representation of organization's manager's phone number
     @NSManaged var phoneNumber: String
     @NSManaged var missionStatement: String
-    @NSManaged var availableTimes: [String]
     /// org's profile picture PFFile
     @NSManaged var profilePictureFile: PFFile?
     /// name of manager
     @NSManaged var managerName: String?
+    @NSManaged var weeklyHours: [String]
     
     // MARK: Methods
     
