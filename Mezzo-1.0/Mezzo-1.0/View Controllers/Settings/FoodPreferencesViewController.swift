@@ -23,6 +23,7 @@ class FoodPreferencesViewController: UIViewController {
     @IBOutlet weak var toTimePicker: UIDatePicker!
     
     @IBOutlet weak var timePickingContentView: UIView!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var weeklyHours: [String : (start: NSDate?, end: NSDate?)] = [:]
     let weekDaySymbols = ["S", "M", "T", "W", "Th", "F", "Sa"]
@@ -54,7 +55,7 @@ class FoodPreferencesViewController: UIViewController {
                 }
             }
         }
-        // Do any additional setup after loading the view.
+        
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -125,6 +126,7 @@ class FoodPreferencesViewController: UIViewController {
         availableOptionButton.selected = available
         unavailableOptionButton.selected = !available
         timePickingContentView.hidden = !available
+        if available { scrollView.flashScrollIndicators() }
         
         let dateTuple = weeklyHours[selectedDayButton.titleLabel!.text!]
         if available && dateTuple!.start == nil { resetDatePickersToDefaults() }
@@ -133,9 +135,12 @@ class FoodPreferencesViewController: UIViewController {
     /// toggle selection of day button (border)
     func toggleDayButton(button: UIButton, select: Bool) {
         button.layer.borderWidth = select ? 3.0 : 0.0
-        button.layer.borderColor = UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor
+        button.layer.borderColor = UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor // dark blue
+//        button.layer.borderColor = UIColor(red: 192.0/255.0, green: 54.0/255.0, blue: 44.0/255.0, alpha: 1.0).CGColor // golden gate bridge
+        
         if select {
-            button.setTitleColor(UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0), forState: UIControlState.Normal)
+            button.setTitleColor(UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0), forState: UIControlState.Normal) // dark blue
+//            button.setTitleColor(UIColor(red: 192.0/255.0, green: 54.0/255.0, blue: 44.0/255.0, alpha: 1.0), forState: UIControlState.Normal) // golden gate bridge
         } else {
             button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         }
