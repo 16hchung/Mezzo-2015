@@ -50,8 +50,7 @@ class NewDonationViewController: UIViewController {
     func didTapView() {
         self.view.endEditing(true)
         // next button shouldn't be enabled unless foodDescription and size are populated
-        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
-            && sizeTextField.text.toInt() > 0
+        
     }
     
     // MARK: keyboard handling
@@ -91,6 +90,11 @@ class NewDonationViewController: UIViewController {
         doneToolbar.sizeToFit()
         
         sizeTextField.inputAccessoryView = doneToolbar
+    }
+    
+    @IBAction func amountNumberChanged(sender: UITextField) {
+        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
+            && sizeTextField.text.toInt() > 0
     }
     
     func doneButtonAction() {
@@ -151,6 +155,7 @@ class NewDonationViewController: UIViewController {
         
         // next button shouldn't be enabled unless foodDescription and size are populated
         nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
+            && sizeTextField.text.toInt() > 0
     }
     
     

@@ -38,7 +38,8 @@ class PickupTimeViewController: UIViewController {
     }
     
     @IBAction func startTimePicked(sender: AnyObject) {
-        let startTime = startTimeRangePicker.date
+        let startTime = NSDate(timeInterval: 10800, sinceDate: startTimeRangePicker.date)
+        // 10800 seconds in 3 hours
         endTimeRangePicker.minimumDate = startTime
         endTimeRangePicker.setDate(startTime, animated: true)
     }

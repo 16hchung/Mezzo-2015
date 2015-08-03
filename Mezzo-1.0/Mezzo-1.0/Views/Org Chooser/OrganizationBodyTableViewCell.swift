@@ -15,7 +15,7 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     @IBOutlet weak var missionStatementLabel: UILabel!
     // MARK: Properties
     
-    var organization: Organization? {
+    weak var organization: Organization? {
         didSet {
             if let organization = organization {
                 missionStatementLabel.text = organization.missionStatement

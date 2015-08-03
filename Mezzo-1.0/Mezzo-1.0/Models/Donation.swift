@@ -69,12 +69,12 @@ class Donation: PFObject, PFSubclassing {
             ParseHelper.getUserForOrg(org, callback: { (results, error) -> Void in
                 let user = results![0] as! PFUser
                 donationACL.setWriteAccess(true, forUser: user)
-                if org == toOrgs.last { self.ACL = donationACL }
+                if org == toOrgs.last {
+                    self.ACL = donationACL
+                    self.saveInBackgroundWithBlock(callback)
+                }
             })
         }
-        
-        
-        self.saveInBackgroundWithBlock(callback)
     }
     
     func cancel(callback: PFBooleanResultBlock) {

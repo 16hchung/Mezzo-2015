@@ -136,7 +136,7 @@ class DonationsViewController: UIViewController {
                                     ErrorHandling.defaultErrorHandler(error)
                                     
                                 } else if let loadedOffers = result as? [PFObject] {
-                                    loadingDonations[donation] = []
+                                    loadingDonations[donation] = loadedOffers
                                     
                                     if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                         self.donations = loadingDonations
@@ -324,7 +324,14 @@ class DonationsViewController: UIViewController {
                         
                     } else {
                         for org in source.selectedRecipientOrganizations {
-                            ParseHelper.addOfferToDonation(source.donation, toOrganization: org)
+                            ParseHelper.addOfferToDonation(source.donation, toOrganization: org) { (success, error) -> Void in
+                                println("yay finished with the callback")
+                                if let error = error {
+                                    ErrorHandling.defaultErrorHandler(error)
+                                } else {
+                                    self.segmentedControlChanged(nil)
+                                }
+                            }
                         }
                     }
                     
