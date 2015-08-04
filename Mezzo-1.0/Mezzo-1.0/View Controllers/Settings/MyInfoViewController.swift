@@ -8,15 +8,35 @@
 
 import UIKit
 import ConvenienceKit
+import Parse
 
 class MyInfoViewController: UIViewController {
     
     @IBOutlet weak var managerName: UITextField!
     @IBOutlet weak var phoneNumber: UITextField!
+    @IBOutlet weak var specialInstructionsLabel: UILabel!
     @IBOutlet weak var specialInstructions: TextView!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var aboutMezzoButton: UIButton!
+    @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     
+    private var saveButtonActive: Bool! {
+        didSet {
+            saveButton.enabled = saveButtonActive
+            if !saveButtonActive {
+                saveButton.title = "Saved"
+                saveButton.setTitleTextAttributes([NSFontAttributeName: UIFont.systemFontOfSize(16.0)], forState: .Normal)
+            } else {
+                saveButton.title = "Save"
+                saveButton.setTitleTextAttributes([NSFontAttributeName: UIFont.boldSystemFontOfSize(16.0)], forState: .Normal)
+            }
+        }
+    }
     private var specialInstructionsActive: Bool = false
+    
+    let DONOR = true
+    let ORG = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +45,38 @@ class MyInfoViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // add border to text view
-        specialInstructions.layer.borderWidth = 1.0
-        let grayColor = UIColor(white: 0.875, alpha: 1.000)
-        specialInstructions.layer.borderColor = grayColor.CGColor
-        specialInstructions.layer.cornerRadius = 5.0
+        // user-specific setup
+        if let donor = (PFUser.currentUser() as! User).donor {
+            // add border to text view
+            specialInstructions.layer.borderWidth = 1.0
+            let grayColor = UIColor(white: 0.875, alpha: 1.000)
+            specialInstructions.layer.borderColor = grayColor.CGColor
+            specialInstructions.layer.cornerRadius = 5.0
+            
+            specialInstructions.delegate = self // set text view delegate
+            
+            donor.fetchIfNeededInBackgroundWithBlock({ (result, error) -> Void in
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                } else {
+                    self.loadMyInfo(donor, isDonor: self.DONOR)
+                }
+            })
+            
+        } else if let org = (PFUser.currentUser() as! User).organization {
+            self.hideOrgSettings()
+            
+            org.fetchIfNeededInBackgroundWithBlock({ (result, error) -> Void in
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                } else {
+                    self.loadMyInfo(org, isDonor: self.ORG)
+                }
+            })
+        }
         
+        loadingView.hidden = true
+        saveButtonActive = false
         addDoneToKeyboard() // add done toolbar
         
         // register for keyboard show/hide notifications
@@ -38,7 +84,6 @@ class MyInfoViewController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
         
         phoneNumber.delegate = self // set text field delegate
-        specialInstructions.delegate = self // set text view delegate
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -50,11 +95,61 @@ class MyInfoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    private func hideOrgSettings() {
+        specialInstructions.hidden = true
+        specialInstructionsLabel.hidden = true
+        aboutMezzoButton.hidden = true
+    }
     
+    // MARK: load and save settings info
+    
+    private func loadMyInfo(user: PFObject, isDonor: Bool) {
+        managerName.text = user["managerName"] as! String
+        phoneNumber.text = user["phoneNumber"] as! String
+        
+        if isDonor == DONOR {
+            specialInstructions.text = user["specialInstructions"] as! String
+        }
+    }
+    
+    private func saveMyInfo(user: PFObject, isDonor: Bool, callback: PFBooleanResultBlock) {
+        user["managerName"] = managerName.text
+        user["phoneNumber"] = phoneNumber.text
+        
+        if isDonor == DONOR {
+            user["specialInstructions"] = specialInstructions.text
+        }
+        
+        user.saveInBackgroundWithBlock(callback)
+    }
+    
+    @IBAction func saveButtonTapped(sender: AnyObject) {
+        var user: PFObject?
+        var isDonor: Bool?
+        
+        if let donor = (PFUser.currentUser() as! User).donor {
+            user = donor
+            isDonor = DONOR
+        } else if let org = (PFUser.currentUser() as! User).organization {
+            user = org
+            isDonor = ORG
+        }
+        
+        loadingView.hidden = false
+        saveMyInfo(user!, isDonor: isDonor!, callback: { (success, error) -> Void in
+            if let error = error {
+                ErrorHandling.defaultErrorHandler(error)
+            } else {
+                self.loadingView.hidden = true
+            }
+        })
+    }
     
     // MARK: keyboard handling
     
     func keyboardWasShown(notif: NSNotification) {
+        saveButtonActive = true
+        
         if let info = notif.userInfo {
             let keyboardSize = info[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
             let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height + 50, 0.0)
@@ -64,7 +159,7 @@ class MyInfoViewController: UIViewController {
             // if currently editing special instructions text view, scroll up
             if specialInstructionsActive {
                 var rect = self.view.frame
-                rect.size.height -= keyboardSize!.height
+                rect.size.height -= keyboardSize!.height + 50
                 if !CGRectContainsPoint(rect, CGPointMake(specialInstructions.frame.origin.x, specialInstructions.frame.origin.y + 100)) {
                     let scrollPoint = CGPointMake(0.0, -(specialInstructions.frame.origin.y - keyboardSize!.height))
                     scrollView.setContentOffset(scrollPoint, animated: true)
@@ -110,7 +205,6 @@ class MyInfoViewController: UIViewController {
 }
 
 extension MyInfoViewController: UITextFieldDelegate {
-    
     /// Formats phone number string while user is typing
     func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         if textField == phoneNumber {
@@ -136,7 +230,8 @@ extension MyInfoViewController: UITextFieldDelegate {
             
             if (length - index) > 3 {
                 var areaCode = decimalString.substringWithRange(NSMakeRange(index, 3))
-                formattedString.appendFormat("(%@) ", areaCode)
+//                formattedString.appendFormat("(%@) ", areaCode)
+                formattedString.appendFormat("%@-", areaCode)
                 index += 3
             }
             
