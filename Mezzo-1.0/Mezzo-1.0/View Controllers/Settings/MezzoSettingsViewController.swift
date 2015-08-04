@@ -31,5 +31,10 @@ class MezzoSettingsViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    @IBAction func unwindToSettings(segue: UIStoryboardSegue) {
+        
+    }
+    
 
 }

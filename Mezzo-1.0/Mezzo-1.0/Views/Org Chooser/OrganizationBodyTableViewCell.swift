@@ -12,13 +12,16 @@ class OrganizationBodyTableViewCell: UITableViewCell {
 
     // MARK: Outlets
     
-    @IBOutlet weak var missionStatementLabel: UILabel!
+    @IBOutlet weak var hoursLabel: UILabel!
+    @IBOutlet weak var unacceptableFoodLabel: UILabel!
+    @IBOutlet weak var seeWebsiteButton: UIButton!
+    @IBOutlet weak var warningLabel: UILabel!
+    
     // MARK: Properties
     
     weak var organization: Organization? {
         didSet {
             if let organization = organization {
-                missionStatementLabel.text = organization.missionStatement
                 
             }
         }
