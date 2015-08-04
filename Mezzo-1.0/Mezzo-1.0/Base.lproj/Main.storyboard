@@ -488,7 +488,7 @@
         <!--Food Policies-->
         <scene sceneID="gWZ-vz-9hx">
             <objects>
-                <viewController id="fNm-a4-kPt" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fNm-a4-kPt" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RNp-td-b9g"/>
                         <viewControllerLayoutGuide type="bottom" id="byo-mV-C0Q"/>
@@ -1605,7 +1605,13 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" title="Weekly Hours" id="dRR-oZ-Dm5"/>
+                    <navigationItem key="navigationItem" title="Weekly Hours" id="dRR-oZ-Dm5">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="NBm-7w-Moh">
+                            <connections>
+                                <segue destination="IT4-uk-Dfv" kind="unwind" identifier="Save Weekly Hours" unwindAction="unwindToSettings:" id="O2b-5o-BqO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="availableOptionButton" destination="q9z-2r-kfJ" id="IKd-OQ-E9e"/>
                         <outlet property="fromTimePicker" destination="dcZ-Q2-tXO" id="0ky-DV-P8p"/>
@@ -1623,6 +1629,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Shr-AE-uxd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="IT4-uk-Dfv" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3186" y="721"/>
         </scene>

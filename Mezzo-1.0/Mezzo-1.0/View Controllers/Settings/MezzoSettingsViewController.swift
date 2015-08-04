@@ -33,10 +33,13 @@ class MezzoSettingsViewController: UITableViewController {
     */
     
     @IBAction func unwindToSettings(segue: UIStoryboardSegue) {
-        if let id = segue.identifier {
-            switch id {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "Save Weekly Hours":
+                let source = segue.sourceViewController as! WeeklyHoursViewController
+                source.saveAllDateSettings()
             default:
-                return
+                break
             }
         }
     }

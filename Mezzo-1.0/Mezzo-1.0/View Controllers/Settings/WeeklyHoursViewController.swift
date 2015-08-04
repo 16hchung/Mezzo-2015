@@ -61,8 +61,6 @@ class WeeklyHoursViewController: UIViewController {
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(true)
         
-        saveDateSettingsForDay(selectedDayButton)
-        saveAllDateSettings()
     }
     
     // MARK: UI change methods
@@ -90,6 +88,8 @@ class WeeklyHoursViewController: UIViewController {
     }
     
     func saveAllDateSettings() {
+        saveDateSettingsForDay(selectedDayButton)
+
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
             for index in 0..<weeklyHours.count {
                 let dateTuple = weeklyHours[weekDaySymbols[index]]!

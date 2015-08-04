@@ -15,6 +15,8 @@
 		8D18DED71B48359F004E3087 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED61B48359F004E3087 /* Images.xcassets */; };
 		8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D18DED81B48359F004E3087 /* LaunchScreen.xib */; };
 		8D18DEE61B48359F004E3087 /* Mezzo_1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */; };
+		8D3739DF1B712992003EB53A /* KeyboardHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3739DE1B712992003EB53A /* KeyboardHelper.swift */; };
+		8D3739E11B7129AB003EB53A /* TimeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D3739E01B7129AB003EB53A /* TimeHelper.swift */; };
 		8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */; };
 		8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40EF791B67F3640093A10B /* ErrorHandling.swift */; };
 		8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */; };
@@ -74,6 +76,8 @@
 		8D18DEDF1B48359F004E3087 /* Mezzo-1.0Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mezzo-1.0Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D18DEE41B48359F004E3087 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D18DEE51B48359F004E3087 /* Mezzo_1_0Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mezzo_1_0Tests.swift; sourceTree = "<group>"; };
+		8D3739DE1B712992003EB53A /* KeyboardHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHelper.swift; sourceTree = "<group>"; };
+		8D3739E01B7129AB003EB53A /* TimeHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeHelper.swift; sourceTree = "<group>"; };
 		8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseLoginHelper.swift; sourceTree = "<group>"; };
 		8D40EF791B67F3640093A10B /* ErrorHandling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorHandling.swift; sourceTree = "<group>"; };
 		8D58356C1B6AC42D0027FE55 /* NewDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonationViewController.swift; sourceTree = "<group>"; };
@@ -285,6 +289,7 @@
 				8D40EF791B67F3640093A10B /* ErrorHandling.swift */,
 				8D40EF751B66FCAC0093A10B /* ParseLoginHelper.swift */,
 				8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */,
+				8D3739E01B7129AB003EB53A /* TimeHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				8D6B05C61B52725100CDE5B9 /* Org Chooser */,
 				8D6B05BA1B51AE0400CDE5B9 /* New Donation */,
 				A6DCE8681B4B960C00ADA2EC /* Donations */,
+				8D3739DE1B712992003EB53A /* KeyboardHelper.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -541,6 +547,7 @@
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
 				8D58357F1B6B275A0027FE55 /* WeeklyHoursViewController.swift in Sources */,
+				8D3739E11B7129AB003EB53A /* TimeHelper.swift in Sources */,
 				8D5835811B6BCA8C0027FE55 /* FoodPreferencesViewController.swift in Sources */,
 				8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */,
 				8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */,
@@ -556,6 +563,7 @@
 				8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */,
 				A6B8BA6C1B52206600C0B393 /* User.swift in Sources */,
 				8D18DED01B48359F004E3087 /* Mezzo_1_0.xcdatamodeld in Sources */,
+				8D3739DF1B712992003EB53A /* KeyboardHelper.swift in Sources */,
 				8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */,
 				8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */,
 				A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */,

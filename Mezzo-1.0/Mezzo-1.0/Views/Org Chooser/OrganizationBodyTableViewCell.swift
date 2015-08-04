@@ -19,23 +19,23 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
+    var weekDayHoursToDisplay: [String : (start: NSDate, end: NSDate)]!
+    
     weak var organization: Organization? {
         didSet {
             if let organization = organization {
+                // set availability label
                 
+                // set unacceptable foods label
+                
+                // set warning label
             }
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    func stringRepOfSchedule() {
+        
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    
 }
