@@ -50,11 +50,7 @@ class Donation: PFObject, PFSubclassing {
             return statusStringToStateInt()
         }
     }
-    
-    /// 8 food types
-    static let foodTypes: [String] = ["Grains", "Fruits/Veggies", "Meats/Beans",
-        "Dairy", "Oils", "Desserts", "Condiments", "Other"]
-    
+        
     static let pluralSizeTypes: [String] = ["boxes", "carts", "pallets"]
     static let singularSizeTypes: [String] = ["box", "cart", "pallet"]
     
