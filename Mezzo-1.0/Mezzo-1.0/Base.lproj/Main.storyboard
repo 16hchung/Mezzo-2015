@@ -488,7 +488,7 @@
         <!--Food Policies-->
         <scene sceneID="gWZ-vz-9hx">
             <objects>
-                <viewController id="fNm-a4-kPt" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="fNm-a4-kPt" customClass="FoodPreferencesViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="RNp-td-b9g"/>
                         <viewControllerLayoutGuide type="bottom" id="byo-mV-C0Q"/>
