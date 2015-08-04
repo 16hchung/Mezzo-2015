@@ -33,7 +33,21 @@ class MezzoSettingsViewController: UITableViewController {
     */
     
     @IBAction func unwindToSettings(segue: UIStoryboardSegue) {
-        
+        if let id = segue.identifier {
+            switch id {
+            default:
+                return
+            }
+        }
+    }
+    
+    @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
+        switch sender.identifier! {
+        case "Save my info":
+            println("saving my info")
+        default:
+            break
+        }
     }
     
 

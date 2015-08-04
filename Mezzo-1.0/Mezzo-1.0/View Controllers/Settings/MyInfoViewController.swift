@@ -18,7 +18,6 @@ class MyInfoViewController: UIViewController {
     @IBOutlet weak var specialInstructions: TextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var aboutMezzoButton: UIButton!
-    @IBOutlet weak var loadingView: UIView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     private var saveButtonActive: Bool! {
@@ -75,7 +74,6 @@ class MyInfoViewController: UIViewController {
             })
         }
         
-        loadingView.hidden = true
         saveButtonActive = false
         addDoneToKeyboard() // add done toolbar
         
@@ -104,11 +102,11 @@ class MyInfoViewController: UIViewController {
     // MARK: load and save settings info
     
     private func loadMyInfo(user: PFObject, isDonor: Bool) {
-        managerName.text = user["managerName"] as! String
-        phoneNumber.text = user["phoneNumber"] as! String
+        managerName.text = user["managerName"] as? String ?? ""
+        phoneNumber.text = user["phoneNumber"] as? String ?? ""
         
         if isDonor == DONOR {
-            specialInstructions.text = user["specialInstructions"] as! String
+            specialInstructions.text = user["specialInstructions"] as? String ?? ""
         }
     }
     
@@ -123,26 +121,27 @@ class MyInfoViewController: UIViewController {
         user.saveInBackgroundWithBlock(callback)
     }
     
-    @IBAction func saveButtonTapped(sender: AnyObject) {
-        var user: PFObject?
-        var isDonor: Bool?
-        
-        if let donor = (PFUser.currentUser() as! User).donor {
-            user = donor
-            isDonor = DONOR
-        } else if let org = (PFUser.currentUser() as! User).organization {
-            user = org
-            isDonor = ORG
-        }
-        
-        loadingView.hidden = false
-        saveMyInfo(user!, isDonor: isDonor!, callback: { (success, error) -> Void in
-            if let error = error {
-                ErrorHandling.defaultErrorHandler(error)
-            } else {
-                self.loadingView.hidden = true
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "Save my info" {
+            var user: PFObject?
+            var isDonor: Bool?
+            
+            if let donor = (PFUser.currentUser() as! User).donor {
+                user = donor
+                isDonor = DONOR
+            } else if let org = (PFUser.currentUser() as! User).organization {
+                user = org
+                isDonor = ORG
             }
-        })
+            
+            saveMyInfo(user!, isDonor: isDonor!, callback: { (success, error) -> Void in
+                if let error = error {
+                    ErrorHandling.defaultErrorHandler(error)
+                } else {
+                    self.performSegueWithIdentifier("Save my info", sender: self)
+                }
+            })
+        }
     }
     
     // MARK: keyboard handling

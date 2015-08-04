@@ -371,11 +371,19 @@ class DonationsViewController: UIViewController {
                             }
                         }
                     }
-                    
                 }
             default:
                 break
             }
+        }
+    }
+    
+    @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
+        switch sender.identifier! {
+        case "Save my info":
+            println("saving my info")
+        default:
+            break
         }
     }
 }
