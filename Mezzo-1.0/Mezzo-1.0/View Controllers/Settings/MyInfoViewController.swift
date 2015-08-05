@@ -32,7 +32,6 @@ class MyInfoViewController: UIViewController {
             }
         }
     }
-    private var specialInstructionsActive: Bool = false
     
     let DONOR = true
     let ORG = false
@@ -51,9 +50,7 @@ class MyInfoViewController: UIViewController {
             let grayColor = UIColor(white: 0.875, alpha: 1.000)
             specialInstructions.layer.borderColor = grayColor.CGColor
             specialInstructions.layer.cornerRadius = 5.0
-            
-            specialInstructions.delegate = self // set text view delegate
-            
+                        
             donor.fetchIfNeededInBackgroundWithBlock({ (result, error) -> Void in
                 if let error = error {
                     ErrorHandling.defaultErrorHandler(error)
@@ -75,17 +72,15 @@ class MyInfoViewController: UIViewController {
         }
         
         saveButtonActive = false
-        addDoneToKeyboard() // add done toolbar
         
-        // register for keyboard show/hide notifications
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillBeHidden:", name: UIKeyboardWillHideNotification, object: nil)
+        KeyboardHelper.addDoneToKeyboard(self, textFields: [managerName, phoneNumber], textViews: [specialInstructions])
+        KeyboardHelper.registerForKeyboardNotifications(self)
         
         phoneNumber.delegate = self // set text field delegate
     }
     
     override func viewWillDisappear(animated: Bool) {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        KeyboardHelper.deregisterFromKeyboardNotifications(self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -143,64 +138,26 @@ class MyInfoViewController: UIViewController {
             })
         }
     }
-    
-    // MARK: keyboard handling
-    
+}
+
+// MARK: keyboard handling
+
+extension MyInfoViewController: KeyboardProtocol {
     func keyboardWasShown(notif: NSNotification) {
         saveButtonActive = true
-        
-        if let info = notif.userInfo {
-            let keyboardSize = info[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-            let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height + 50, 0.0)
-            scrollView.contentInset = contentInset
-            scrollView.scrollIndicatorInsets = contentInset
-            
-            // if currently editing special instructions text view, scroll up
-            if specialInstructionsActive {
-                var rect = self.view.frame
-                rect.size.height -= keyboardSize!.height + 50
-                if !CGRectContainsPoint(rect, CGPointMake(specialInstructions.frame.origin.x, specialInstructions.frame.origin.y + 100)) {
-                    let scrollPoint = CGPointMake(0.0, -(specialInstructions.frame.origin.y - keyboardSize!.height))
-                    scrollView.setContentOffset(scrollPoint, animated: true)
-                }
-            }
-        }
+
+        KeyboardHelper.addScrollInsets(self, notifInfo: notif.userInfo ?? [:], scrollView: self.scrollView, textViewsToCheck: [self.specialInstructions])
     }
     
     func keyboardWillBeHidden(notif: NSNotification) {
-        let contentInset = UIEdgeInsetsZero
-        
-        scrollView.contentInset = contentInset
-        scrollView.scrollIndicatorInsets = contentInset
-        
-        scrollView.setContentOffset(CGPointMake(0.0, -self.view.frame.origin.y / 2), animated: true)
+        KeyboardHelper.resetScrollInsetsToNormal(self, scrollView: self.scrollView)
     }
-    
-    /// Adds done toolbar to the keyboards of all three text inputs.
-    private func addDoneToKeyboard() {
-        var doneToolbar: UIToolbar = UIToolbar(frame: CGRectMake(0, 0, 320, 50))
-        doneToolbar.barStyle = UIBarStyle.Default
-        
-        var flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
-        var done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Done, target: self, action: Selector("doneButtonAction"))
-        
-        var items = NSMutableArray()
-        items.addObject(flexSpace)
-        items.addObject(done)
-        
-        doneToolbar.items = items as [AnyObject]
-        doneToolbar.sizeToFit()
-        
-        specialInstructions.inputAccessoryView = doneToolbar
-        phoneNumber.inputAccessoryView = doneToolbar
-        managerName.inputAccessoryView = doneToolbar
-    }
-    
-    /// Dismisses keyboard when done toolbar button is tapped.
-    func doneButtonAction() {
-        self.view.endEditing(true)
-    }
+}
 
+extension MyInfoViewController: DoneButtonProtocol {
+    func doneButtonAction() {
+        KeyboardHelper.dismissKeyboard(self)
+    }
 }
 
 extension MyInfoViewController: UITextFieldDelegate {
@@ -247,15 +204,5 @@ extension MyInfoViewController: UITextFieldDelegate {
         } else {
             return true
         }
-    }
-}
-
-extension MyInfoViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(textView: UITextView) {
-        self.specialInstructionsActive = true
-    }
-    
-    func textViewDidEndEditing(textView: UITextView) {
-        self.specialInstructionsActive = false
     }
 }
