@@ -49,8 +49,6 @@ class NewDonationViewController: UIViewController {
             }
         }
         
-        println(result)
-        
         return result
     }
     
@@ -113,7 +111,7 @@ class NewDonationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        otherTextField.enabled = false
+        otherTextField.hidden = true
         KeyboardHelper.registerForKeyboardNotifications(self)
     }
     
@@ -134,17 +132,10 @@ class NewDonationViewController: UIViewController {
         if (!button.selected) { // if image is empty checkbox, select
             button.selected = true
             donation.foodDescription.append(button.titleLabel!.text!)
-            
-            println(donation.foodDescription)
         } else { // if image is filled checkbox, deselect
             button.selected = false
             let index = find(donation.foodDescription, button.titleLabel!.text!)
             donation.foodDescription.removeAtIndex(index!)
-            println(donation.foodDescription)
-        }
-        
-        if button.titleLabel!.text == "Other" {
-            otherTextField.hidden = !button.selected
         }
         
         // next button shouldn't be enabled unless foodDescription and size are populated
@@ -154,7 +145,7 @@ class NewDonationViewController: UIViewController {
     
     @IBAction func otherButtonSelected(sender: AnyObject) {
         let button = sender as! UIButton
-        otherTextField.enabled = button.selected
+        otherTextField.hidden = !button.selected
     }
     
     // MARK: - Navigation
