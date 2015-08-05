@@ -22,6 +22,7 @@ class TimeHelper {
     }
     
     static let weekDaySymbols = ["S", "M", "T", "W", "Th", "F", "Sa"]
+    static let weekdayFullNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
     
     /**
         converts array of comma-separated times in string form to dictionary
@@ -64,10 +65,25 @@ class TimeHelper {
 //        
 //    }
     
-    // TODO: documentation
-    static func relevantHoursInTimeRange(donorTimeRange: (start: NSDate, end: NSDate), forOrgSchedule: WeeklyHoursDictionary) -> String {
+    static func relevantHoursInTimeRange(donorTimeRange: (start: NSDate, end: NSDate), forOrgSchedule: [String]) -> [String] {
         
-        return ""
+        var returnable = [String]()
+        
+        let calendar = NSCalendar.autoupdatingCurrentCalendar()
+        
+        // get weekday of donorTR.start
+        let startWeekday = calendar.component(.CalendarUnitWeekday, fromDate: donorTimeRange.start) - 1
+        let endWeekday = calendar.component(.CalendarUnitWeekday, fromDate: donorTimeRange.end) - 1
+        
+        
+        
+        for weekdayNum in startWeekday...endWeekday {
+            let weekdayKey = weekdayFullNames[weekdayNum]
+            let hours = (forOrgSchedule[weekdayNum] == " - ") ? " --" : forOrgSchedule[weekdayNum]
+            returnable.append("\(weekdayKey.uppercaseString): \(hours)")
+        }
+        
+        return returnable
     }
 }
 

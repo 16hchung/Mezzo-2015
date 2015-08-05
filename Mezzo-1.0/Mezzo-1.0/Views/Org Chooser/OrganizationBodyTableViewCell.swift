@@ -34,7 +34,17 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     }
     
     func setAvailabilityLabel() {
-        
+//        let relevantHours = TimeHelper.relevantHoursInTimeRange(donorSpecifiedTimeRange, forOrgSchedule: organization!.weeklyHours)
+//        hoursLabel.numberOfLines = relevantHours.count
+//        hoursLabel.text = "\n".join(relevantHours)
+        var displayable = [String]()
+        for index in 0...6 {
+            let weekday = TimeHelper.weekdayFullNames[index]
+            let hours = (organization!.weeklyHours[index] == " - ") ? " --" : organization!.weeklyHours[index]
+            displayable.append("\(weekday): \(hours)")
+        }
+        hoursLabel.numberOfLines = 7
+        hoursLabel.text = "\n".join(displayable)
     }
     
     func setUnacceptableFoodsLabel() {
@@ -42,12 +52,12 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     }
     
     func setWarningLabel() {
-        let timeRangesMatch = true
-        if timeRangesMatch {
-            warningLabel.hidden = false
-        } else {
-            warningLabel.hidden = true
-        }
+//        let timeRangesMatch = true
+//        if timeRangesMatch {
+//            warningLabel.hidden = false
+//        } else {
+//            warningLabel.hidden = true
+//        }
     }
 
     
