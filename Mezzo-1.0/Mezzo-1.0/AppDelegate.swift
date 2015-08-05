@@ -98,9 +98,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         // Mixpanel setup
-        Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
-        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
-        mixpanel.track("App launched")
+        if !debugMode {
+            Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
+            let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("App launched")
+        }
         
         return true //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
