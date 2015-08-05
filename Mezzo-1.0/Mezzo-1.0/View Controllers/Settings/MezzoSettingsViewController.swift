@@ -21,23 +21,14 @@ class MezzoSettingsViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
     @IBAction func unwindToSettings(segue: UIStoryboardSegue) {
         if let identifier = segue.identifier {
             switch identifier {
             case "Save Weekly Hours":
                 let source = segue.sourceViewController as! WeeklyHoursViewController
                 source.saveAllDateSettings()
+            case "Save Food Policies":
+                println("saving food policies")
             default:
                 break
             }

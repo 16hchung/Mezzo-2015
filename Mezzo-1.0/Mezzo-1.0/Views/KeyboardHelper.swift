@@ -41,8 +41,29 @@ class KeyboardHelper {
             if textView.isFirstResponder() { // if the text input is currently being edited
                 var rect = viewController.view.frame
                 rect.size.height -= keyboardSize!.height + 50
-                if !CGRectContainsPoint(rect, CGPointMake(textView.frame.origin.x, textView.frame.origin.y + 100)) {
-                    let scrollPoint = CGPointMake(0.0, -(textView.frame.origin.y - keyboardSize!.height))
+                if !CGRectContainsPoint(rect, CGPointMake(textView.frame.origin.x, textView.frame.origin.y + 70)) {
+//                    let scrollPoint = CGPointMake(0.0, -textView.frame.origin.y + keyboardSize!.height)
+                    let scrollPoint = CGPointMake(0.0, textView.frame.origin.y - 20)
+                    scrollView.setContentOffset(scrollPoint, animated: true)
+                }
+            }
+        }
+    }
+    
+    static func addScrollInsets(viewController: UIViewController, notifInfo: [NSObject:AnyObject], scrollView: UIScrollView, textFieldsToCheck: [UITextField]) {
+        let keyboardSize = notifInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+        let contentInset = UIEdgeInsetsMake(0.0, 0.0, keyboardSize!.height + 50, 0.0)
+        scrollView.contentInset = contentInset
+        scrollView.scrollIndicatorInsets = contentInset
+        
+        // check text inputs that may be hidden
+        for textField in textFieldsToCheck {
+            if textField.isFirstResponder() { // if the text input is currently being edited
+                var rect = viewController.view.frame
+                rect.size.height -= keyboardSize!.height + 50
+                if !CGRectContainsPoint(rect, CGPointMake(textField.frame.origin.x, textField.frame.origin.y + 70)) {
+                    //                    let scrollPoint = CGPointMake(0.0, -textView.frame.origin.y + keyboardSize!.height)
+                    let scrollPoint = CGPointMake(0.0, textField.frame.origin.y - 20)
                     scrollView.setContentOffset(scrollPoint, animated: true)
                 }
             }

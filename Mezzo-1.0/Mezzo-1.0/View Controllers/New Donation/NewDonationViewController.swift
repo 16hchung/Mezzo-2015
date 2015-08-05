@@ -18,6 +18,7 @@ class NewDonationViewController: UIViewController {
     @IBOutlet weak var nextButton: UIBarButtonItem!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var otherTextField: UITextField!
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // MARK: Properties
     
@@ -54,32 +55,30 @@ class NewDonationViewController: UIViewController {
     }
     
     func didTapView() {
-        self.view.endEditing(true)
-        // next button shouldn't be enabled unless foodDescription and size are populated
-        
+        KeyboardHelper.dismissKeyboard(self)
     }
     
     // MARK: keyboard handling
     
-    func keyboardWillShow(notification: NSNotification) {
-        var info = notification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.view.frame.origin.y -= keyboardFrame.size.height
-            self.bottomConstraint.constant -= 200 // reduce the gap between the bottom of the picker and the keyboard
-        })
-    }
-    
-    func keyboardWillHide(notification: NSNotification) {
-        var info = notification.userInfo!
-        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-        
-        UIView.animateWithDuration(0.1, animations: { () -> Void in
-            self.view.frame.origin.y += keyboardFrame.size.height
-            self.bottomConstraint.constant += 200
-        })
-    }
+//    func keyboardWillShow(notification: NSNotification) {
+//        var info = notification.userInfo!
+//        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        
+//        UIView.animateWithDuration(0.1, animations: { () -> Void in
+//            self.view.frame.origin.y -= keyboardFrame.size.height
+//            self.bottomConstraint.constant -= 200 // reduce the gap between the bottom of the picker and the keyboard
+//        })
+//    }
+//    
+//    func keyboardWillHide(notification: NSNotification) {
+//        var info = notification.userInfo!
+//        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
+//        
+//        UIView.animateWithDuration(0.1, animations: { () -> Void in
+//            self.view.frame.origin.y += keyboardFrame.size.height
+//            self.bottomConstraint.constant += 200
+//        })
+//    }
     
     @IBAction func amountNumberChanged(sender: UITextField) {
         nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
@@ -104,15 +103,23 @@ class NewDonationViewController: UIViewController {
         nextButton.enabled = false
         
         // adjust the view up and down based on whether keyboard is shown
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
-        
-        KeyboardHelper.addDoneToKeyboard(self, textFields: [sizeTextField], textViews: [])
+        KeyboardHelper.addDoneToKeyboard(self, textFields: [otherTextField, sizeTextField], textViews: [])
         
         // if users taps outside of the keyboard area, dismiss the keyboard
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: "didTapView")
         self.view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        otherTextField.enabled = false
+        KeyboardHelper.registerForKeyboardNotifications(self)
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated)
+        KeyboardHelper.deregisterFromKeyboardNotifications(self)
     }
     
     override func didReceiveMemoryWarning() {
@@ -145,6 +152,10 @@ class NewDonationViewController: UIViewController {
             && sizeTextField.text.toInt() > 0
     }
     
+    @IBAction func otherButtonSelected(sender: AnyObject) {
+        let button = sender as! UIButton
+        otherTextField.enabled = button.selected
+    }
     
     // MARK: - Navigation
     
@@ -184,6 +195,16 @@ extension NewDonationViewController: UIPickerViewDataSource {
 }
 
 // MARK: keyboard
+
+extension NewDonationViewController: KeyboardProtocol {
+    func keyboardWillBeHidden(notif: NSNotification) {
+        KeyboardHelper.resetScrollInsetsToNormal(self, scrollView: self.scrollView)
+    }
+    
+    func keyboardWasShown(notif: NSNotification) {
+        KeyboardHelper.addScrollInsets(self, notifInfo: notif.userInfo ?? [:], scrollView: self.scrollView, textFieldsToCheck: [otherTextField, sizeTextField])
+    }
+}
 
 extension NewDonationViewController: DoneButtonProtocol {
     func doneButtonAction() {
