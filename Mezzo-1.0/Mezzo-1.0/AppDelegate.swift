@@ -71,12 +71,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        PFFacebookUtils.initializeFacebookWithApplicationLaunchOptions(launchOptions)
         
         // choose which screen to show first (login VC or donations VC)
-        let user = PFUser.currentUser()
+//        let user = PFUser.currentUser()
         let startViewController: UIViewController
-        if user != nil {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
-        } else {
+//        if user != nil {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
+//        } else {
             let loginViewController = MezzoLoginViewController()
             loginViewController.fields = .UsernameAndPassword | .LogInButton | .PasswordForgotten // | .Facebook
             loginViewController.delegate = parseLoginHelper
@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             loginViewController.signUpController?.delegate = parseLoginHelper
             
             startViewController = loginViewController
-        }
+//        }
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         self.window?.rootViewController = startViewController
