@@ -44,5 +44,14 @@ class MezzoSettingsViewController: UITableViewController {
         }
     }
     
+    @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
+        switch sender.identifier! {
+        case "Save my info":
+            println("saving my info")
+        default:
+            break
+        }
+    }
+    
 
 }
