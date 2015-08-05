@@ -11,6 +11,8 @@ import Parse
 import ParseUI
 
 class MezzoLoginViewController: PFLogInViewController {
+    
+    private var requestButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,48 +25,51 @@ class MezzoLoginViewController: PFLogInViewController {
         // logo
         let logoView = UIImageView(image: UIImage(named: "Logo"))
         self.logInView!.logo = logoView
-        
-        // sign up button
-        
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         logInView!.logo!.frame = CGRectMake(logInView!.frame.width / 2 - 50, 60, 100, 100)
+        addConstraintsToRequestButton()
     }
     
     private func addRequestAccountButton() {
         // create button
-        let requestButton: UIButton = UIButton.buttonWithType(.Custom) as! UIButton
+        requestButton = UIButton.buttonWithType(.Custom) as! UIButton
         requestButton.setTitle("Request an Account", forState: .Normal)
-        requestButton.backgroundColor = UIColor.blueColor()
+        let blueColor = UIColor(red: 0.349, green: 0.506, blue: 0.937, alpha: 1.000)
+        requestButton.backgroundColor = blueColor
+        requestButton.layer.cornerRadius = 5.0
         requestButton.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-//        requestButton.frame = CGRectMake(100, 100, 100, 50)
         requestButton.addTarget(self, action: "requestAccountButtonTapped:", forControlEvents: .TouchUpInside)
         
         // add underneath forgot password buttons
         self.logInView?.addSubview(requestButton)
-        
+    }
+    
+    private func addConstraintsToRequestButton() {
         // add constraints
+        requestButton.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
         self.logInView?.addConstraint(NSLayoutConstraint(
             item: requestButton,
-            attribute: .Bottom,
+            attribute: .CenterX,
             relatedBy: .Equal,
             toItem: self.logInView!,
-            attribute: .Bottom,
+            attribute: .CenterX,
             multiplier: 1.0,
             constant: 0.0))
         
-//        self.logInView?.addConstraint(NSLayoutConstraint(
-//            item: requestButton,
-//            attribute: .Top,
-//            relatedBy: .Equal,
-//            toItem: self.logInView?.passwordForgottenButton,
-//            attribute: .Bottom,
-//            multiplier: 1.0,
-//            constant: 30.0))
-
+        self.logInView?.addConstraint(NSLayoutConstraint(
+            item: requestButton,
+            attribute: .Top,
+            relatedBy: .Equal,
+            toItem: self.logInView!.passwordForgottenButton,
+            attribute: .Bottom,
+            multiplier: 1.0,
+            constant: 20.0))
+        
         self.logInView?.addConstraint(NSLayoutConstraint(
             item: requestButton,
             attribute: .Width,
@@ -72,7 +77,8 @@ class MezzoLoginViewController: PFLogInViewController {
             toItem: nil,
             attribute: .NotAnAttribute,
             multiplier: 1.0,
-            constant: 48.0))
+//            constant: 200.0))
+            constant: self.logInView!.frame.width - 40.0))
         
         self.logInView?.addConstraint(NSLayoutConstraint(
             item: requestButton,
@@ -81,7 +87,7 @@ class MezzoLoginViewController: PFLogInViewController {
             toItem: nil,
             attribute: .NotAnAttribute,
             multiplier: 1.0,
-            constant: 32.0))
+            constant: 50.0))
         
         self.logInView?.layoutIfNeeded()
     }
