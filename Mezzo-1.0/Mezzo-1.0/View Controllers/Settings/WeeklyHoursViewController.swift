@@ -26,17 +26,7 @@ class WeeklyHoursViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var weeklyHours: [String : (start: NSDate?, end: NSDate?)] = [:]
-    let weekDaySymbols = ["S", "M", "T", "W", "Th", "F", "Sa"]
-    
-//    /// default date formatter for String <-> NSdate conversion
-//    var formatter: NSDateFormatter {
-//        get {
-//            let returnable = NSDateFormatter()
-//            returnable.dateFormat = "hh:mm a"
-//            return returnable
-//        }
-//    }
-    
+
     // MARK: VC lifecycle
     
     override func viewDidLoad() {
@@ -68,20 +58,14 @@ class WeeklyHoursViewController: UIViewController {
     /// load strings from parse into local weeklyHours property + toggle unavailable day buttons
     func loadAllDateSettings() {
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
-            for index in 0..<(orgUser.weeklyHours as [String]).count {
-                // get separate date strings
-                let dateStrings = orgUser.weeklyHours[index].componentsSeparatedByString(", ")
-                
-                // load into weely hours dictionary
-                let startDate = Organization.formatter.dateFromString(dateStrings[0])
-                let endDate = Organization.formatter.dateFromString(dateStrings[1])
-                weeklyHours[weekDaySymbols[index]] = (startDate, endDate)
+            weeklyHours = TimeHelper.datesDictionaryFromStrings(orgUser.weeklyHours)
+            
+            for key in TimeHelper.weekDaySymbols {
+                let dateTuple = weeklyHours[key]!
                 
                 // set gray background for all unavailable days
-                let dayButton = self.weekdayButtons.filter {
-                    $0.titleLabel!.text! == self.weekDaySymbols[index]
-                }
-                let available = startDate != nil && endDate != nil
+                let dayButton = weekdayButtons.filter { $0.titleLabel!.text! == key }
+                let available = dateTuple.start != nil && dateTuple.end != nil
                 toggleAvailabilityForDayButton(dayButton[0], available: available)
             }
         }
@@ -91,16 +75,7 @@ class WeeklyHoursViewController: UIViewController {
         saveDateSettingsForDay(selectedDayButton)
 
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
-            for index in 0..<weeklyHours.count {
-                let dateTuple = weeklyHours[weekDaySymbols[index]]!
-                if let startDate = dateTuple.start, endDate = dateTuple.end {
-                    let startString = Organization.formatter.stringFromDate(startDate)
-                    let endString = Organization.formatter.stringFromDate(endDate)
-                    orgUser.weeklyHours[index] = "\(startString), \(endString)"
-                } else {
-                    orgUser.weeklyHours[index] = ", "
-                }
-            }
+            orgUser.weeklyHours = TimeHelper.stringsFromDatesDictionary(weeklyHours)
             
             orgUser.saveInBackground()
         }

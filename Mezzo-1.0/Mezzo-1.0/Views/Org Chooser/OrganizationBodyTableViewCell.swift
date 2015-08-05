@@ -19,22 +19,35 @@ class OrganizationBodyTableViewCell: UITableViewCell {
     
     // MARK: Properties
     
-    var weekDayHoursToDisplay: [String : (start: NSDate, end: NSDate)]!
+    var donorSpecifiedTimeRange: (start: NSDate, end: NSDate)!
     
     weak var organization: Organization? {
         didSet {
             if let organization = organization {
-                // set availability label
+                setAvailabilityLabel()
                 
-                // set unacceptable foods label
+                setUnacceptableFoodsLabel()
                 
-                // set warning label
+                setWarningLabel()
             }
         }
     }
     
-    func stringRepOfSchedule() {
+    func setAvailabilityLabel() {
         
+    }
+    
+    func setUnacceptableFoodsLabel() {
+        unacceptableFoodLabel.text = organization!.unacceptableFoods
+    }
+    
+    func setWarningLabel() {
+        let timeRangesMatch = true
+        if timeRangesMatch {
+            warningLabel.hidden = false
+        } else {
+            warningLabel.hidden = true
+        }
     }
 
     
