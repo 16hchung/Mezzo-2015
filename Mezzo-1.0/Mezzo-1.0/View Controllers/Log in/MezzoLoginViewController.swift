@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import ParseUI
+import MessageUI
 
 class MezzoLoginViewController: PFLogInViewController {
 
@@ -87,6 +88,61 @@ class MezzoLoginViewController: PFLogInViewController {
     }
     
     func requestAccountButtonTapped(sender: AnyObject?) {
-        println("yay you tapped me")
+        
+        let mailComposeViewController = configuredMailComposeViewController()
+        
+        if MFMailComposeViewController.canSendMail() {
+            self.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+    }
+    
+    func configuredMailComposeViewController() -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = self
+        
+        mailComposerVC.setToRecipients(["team.mezzo@gmail.com"])
+        mailComposerVC.setSubject("Requesting an account")
+        mailComposerVC.setMessageBody("Hello, \n\nMy name is [INSERT NAME HERE (eg. John Smith, Jane Doe)], and I'm involved with [NAME OF ORGANIZATION (eg. Whole Foods, Tri-City Volunteers)]. I'd like to join the Mezzo community, so that my organization can donate/accept surplus food. \n\n", isHTML: false)
+        
+        return mailComposerVC
+    }
+    
+    func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
     }
 }
+
+extension MezzoLoginViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
