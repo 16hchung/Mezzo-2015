@@ -165,8 +165,7 @@ class NewDonationViewController: UIViewController {
         }
         
         // next button shouldn't be enabled unless foodDescription and size are populated
-        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
-            && sizeTextField.text.toInt() > 0
+        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty && sizeTextField.text.toInt() > 0
     }
     
     
