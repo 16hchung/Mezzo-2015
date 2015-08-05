@@ -30,7 +30,7 @@ class NewDonationViewController: UIViewController {
     
     func saveDonation() {
         donation.size = convertSizeToString()
-        if !otherTextField.hidden {
+        if !otherTextField.hidden && otherTextField.text != "" {
             let index = find(donation.foodDescription, "Other")
             donation.foodDescription.removeAtIndex(index!)
             donation.foodDescription.append(otherTextField.text)
