@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -840,8 +840,8 @@
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="oBT-bs-r2n"/>
                                                 </connections>
                                             </button>
-                                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. candy, frozen lasagna" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RPb-p0-8tb">
-                                                <rect key="frame" x="20" y="197" width="568" height="30"/>
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. candy, frozen lasagna" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RPb-p0-8tb">
+                                                <rect key="frame" x="16" y="193" width="572" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -1177,7 +1177,7 @@
                                             <outlet property="profileImageView" destination="r9P-SP-Kuj" id="zte-g4-ATm"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Body Cell" rowHeight="129" id="cTG-N9-fb8" customClass="OrganizationBodyTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Org Body Cell" rowHeight="188" id="cTG-N9-fb8" customClass="OrganizationBodyTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cTG-N9-fb8" id="jIn-eF-a7X">
@@ -1209,22 +1209,42 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Pi-tF-JBq">
+                                                    <rect key="frame" x="8" y="124" width="86" height="30"/>
+                                                    <state key="normal" title="See Website">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <segue destination="33a-Dm-h6K" kind="show" id="bAw-eD-5Id"/>
+                                                    </connections>
+                                                </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MONDAYS: 4:30 pm - 6:00 pm" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="azm-tN-f61">
                                                     <rect key="frame" x="8" y="33" width="584" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="not available during your specified time range" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m25-Oa-mgm">
+                                                    <rect key="frame" x="8" y="162" width="584" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="m25-Oa-mgm" firstAttribute="top" secondItem="3Pi-tF-JBq" secondAttribute="bottom" constant="8" id="0Pc-4a-7p6"/>
                                                 <constraint firstItem="PZ9-Yh-hFG" firstAttribute="leading" secondItem="azm-tN-f61" secondAttribute="leading" id="2uj-lo-ABR"/>
                                                 <constraint firstItem="MVU-ej-2nh" firstAttribute="top" secondItem="jZ7-oX-wOE" secondAttribute="bottom" constant="4" id="3Rt-1K-atY"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="m25-Oa-mgm" secondAttribute="bottom" id="6ci-Hi-95V"/>
                                                 <constraint firstItem="PZ9-Yh-hFG" firstAttribute="leading" secondItem="jIn-eF-a7X" secondAttribute="leadingMargin" id="HXe-yQ-Ae3"/>
                                                 <constraint firstItem="azm-tN-f61" firstAttribute="top" secondItem="PZ9-Yh-hFG" secondAttribute="bottom" constant="4" id="NFf-uR-JiY"/>
                                                 <constraint firstItem="azm-tN-f61" firstAttribute="leading" secondItem="MVU-ej-2nh" secondAttribute="leading" id="R6D-wi-jiS"/>
                                                 <constraint firstItem="PZ9-Yh-hFG" firstAttribute="leading" secondItem="jZ7-oX-wOE" secondAttribute="leading" id="Vcv-8O-DyM"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="MVU-ej-2nh" secondAttribute="bottom" constant="12" id="fZJ-iy-lf4"/>
+                                                <constraint firstItem="m25-Oa-mgm" firstAttribute="leading" secondItem="3Pi-tF-JBq" secondAttribute="leading" id="ai0-Cm-sks"/>
+                                                <constraint firstItem="3Pi-tF-JBq" firstAttribute="leading" secondItem="MVU-ej-2nh" secondAttribute="leading" id="d7v-wm-9Lf"/>
+                                                <constraint firstItem="3Pi-tF-JBq" firstAttribute="top" secondItem="MVU-ej-2nh" secondAttribute="bottom" constant="16" id="gaA-Lq-A9N"/>
                                                 <constraint firstItem="MVU-ej-2nh" firstAttribute="trailing" secondItem="jIn-eF-a7X" secondAttribute="trailingMargin" id="o3K-1o-sde"/>
+                                                <constraint firstAttribute="centerX" secondItem="m25-Oa-mgm" secondAttribute="centerX" id="oSx-AK-RlR"/>
                                                 <constraint firstItem="jZ7-oX-wOE" firstAttribute="leading" secondItem="MVU-ej-2nh" secondAttribute="leading" id="pp1-yo-hl5"/>
                                                 <constraint firstItem="azm-tN-f61" firstAttribute="trailing" secondItem="jIn-eF-a7X" secondAttribute="trailingMargin" id="qxv-tW-B1c"/>
                                                 <constraint firstItem="PZ9-Yh-hFG" firstAttribute="top" secondItem="jIn-eF-a7X" secondAttribute="topMargin" id="t0Q-tH-MGn"/>
@@ -1234,7 +1254,9 @@
                                         <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="hoursLabel" destination="azm-tN-f61" id="i7T-uu-5MV"/>
+                                            <outlet property="seeWebsiteButton" destination="3Pi-tF-JBq" id="GzS-XB-MCE"/>
                                             <outlet property="unacceptableFoodLabel" destination="MVU-ej-2nh" id="hVJ-3s-Wj4"/>
+                                            <outlet property="warningLabel" destination="m25-Oa-mgm" id="ASm-NG-ciY"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1295,6 +1317,37 @@
                 <exit id="5uS-Cr-ERE" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6200" y="-842"/>
+        </scene>
+        <!--Org Name-->
+        <scene sceneID="8fR-87-GHc">
+            <objects>
+                <viewController id="33a-Dm-h6K" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pIz-Xi-qo2"/>
+                        <viewControllerLayoutGuide type="bottom" id="Lss-Ye-gxW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vLz-yI-pDP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jgk-hP-4Oy">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Jgk-hP-4Oy" secondAttribute="trailing" constant="-16" id="5YJ-26-3hN"/>
+                            <constraint firstItem="Jgk-hP-4Oy" firstAttribute="top" secondItem="pIz-Xi-qo2" secondAttribute="bottom" id="Tzu-mM-16U"/>
+                            <constraint firstItem="Lss-Ye-gxW" firstAttribute="top" secondItem="Jgk-hP-4Oy" secondAttribute="bottom" id="gME-tb-3Dn"/>
+                            <constraint firstItem="Jgk-hP-4Oy" firstAttribute="leading" secondItem="vLz-yI-pDP" secondAttribute="leadingMargin" constant="-16" id="qe6-yi-UjP"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Org Name" id="c5X-Ss-I0q"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mYd-lu-tBP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6982" y="-842"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FjZ-kY-iIX">

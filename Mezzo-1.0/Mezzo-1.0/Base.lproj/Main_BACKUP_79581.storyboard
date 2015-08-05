@@ -840,8 +840,13 @@
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="oBT-bs-r2n"/>
                                                 </connections>
                                             </button>
+<<<<<<< HEAD
                                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. candy, frozen lasagna" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RPb-p0-8tb">
                                                 <rect key="frame" x="20" y="197" width="568" height="30"/>
+=======
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="eg. candy, frozen lasagna" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RPb-p0-8tb">
+                                                <rect key="frame" x="16" y="193" width="572" height="30"/>
+>>>>>>> fdf5e95201794286607491bd241d9401461461ba
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>

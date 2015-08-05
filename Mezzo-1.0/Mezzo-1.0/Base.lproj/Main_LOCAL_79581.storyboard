@@ -509,14 +509,8 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter a comma-separated list" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZl-eE-USR">
-                                                <rect key="frame" x="16" y="40" width="568" height="16"/>
-                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                                <color key="textColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Kf-SA-suG" customClass="TextView" customModule="ConvenienceKit">
-                                                <rect key="frame" x="16" y="60" width="568" height="140"/>
+                                                <rect key="frame" x="16" y="44" width="568" height="140"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="140" id="xYF-LJ-56D"/>
@@ -527,14 +521,11 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
+                                            <constraint firstItem="7Kf-SA-suG" firstAttribute="top" secondItem="QjC-r5-If8" secondAttribute="bottom" constant="8" id="BOZ-rT-Bcn"/>
                                             <constraint firstItem="QjC-r5-If8" firstAttribute="leading" secondItem="YtR-z1-omk" secondAttribute="leading" constant="16" id="IiF-iY-ice"/>
                                             <constraint firstItem="QjC-r5-If8" firstAttribute="top" secondItem="YtR-z1-omk" secondAttribute="top" constant="16" id="Pqn-yb-NtQ"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QjC-r5-If8" secondAttribute="trailing" constant="10" id="ZMV-H8-3Xz"/>
-                                            <constraint firstItem="7Kf-SA-suG" firstAttribute="top" secondItem="hZl-eE-USR" secondAttribute="bottom" constant="4" id="avv-06-6Hh"/>
-                                            <constraint firstItem="hZl-eE-USR" firstAttribute="top" secondItem="QjC-r5-If8" secondAttribute="bottom" constant="4" id="dQb-QI-IHc"/>
-                                            <constraint firstItem="QjC-r5-If8" firstAttribute="leading" secondItem="hZl-eE-USR" secondAttribute="leading" id="hxC-Pr-XSH"/>
                                             <constraint firstItem="QjC-r5-If8" firstAttribute="leading" secondItem="7Kf-SA-suG" secondAttribute="leading" id="md3-7I-gMA"/>
-                                            <constraint firstAttribute="trailing" secondItem="hZl-eE-USR" secondAttribute="trailing" constant="16" id="pPx-eb-ARs"/>
                                             <constraint firstAttribute="centerX" secondItem="7Kf-SA-suG" secondAttribute="centerX" id="rfo-Mm-PZa"/>
                                         </constraints>
                                     </view>
@@ -557,21 +548,9 @@
                             <constraint firstAttribute="trailingMargin" secondItem="stF-Z9-tS9" secondAttribute="trailing" constant="-16" id="wzn-iX-iMZ"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Food Policies" id="4Sc-5i-2tR">
-                        <barButtonItem key="rightBarButtonItem" title="Save" id="2ub-h0-9EW">
-                            <connections>
-                                <segue destination="Wm4-l5-bGy" kind="unwind" identifier="Save Food Policies" unwindAction="unwindToSettings:" id="O3d-Ld-dW8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="foodTextView" destination="7Kf-SA-suG" id="6cf-cE-rsb"/>
-                        <outlet property="saveButton" destination="2ub-h0-9EW" id="uy9-WF-7TY"/>
-                        <outlet property="scrollView" destination="stF-Z9-tS9" id="kbR-hc-pt3"/>
-                    </connections>
+                    <navigationItem key="navigationItem" title="Food Policies" id="4Sc-5i-2tR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kC4-tn-2ae" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Wm4-l5-bGy" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4082" y="721"/>
         </scene>
@@ -750,7 +729,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cph-4d-7ia">
-                                                <rect key="frame" x="16" y="53" width="131" height="28"/>
+                                                <rect key="frame" x="20" y="57" width="131" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Grains/Beans" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -762,7 +741,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Vb-96-Wf3">
-                                                <rect key="frame" x="16" y="89" width="131" height="28"/>
+                                                <rect key="frame" x="20" y="93" width="131" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Fruits/Veggies" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -774,7 +753,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ppU-q8-XjI">
-                                                <rect key="frame" x="16" y="125" width="131" height="28"/>
+                                                <rect key="frame" x="20" y="129" width="131" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Meats" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -786,7 +765,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sfe-uy-wCm">
-                                                <rect key="frame" x="161" y="53" width="116" height="28"/>
+                                                <rect key="frame" x="165" y="57" width="116" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="116" id="AKK-Tm-C33"/>
                                                 </constraints>
@@ -801,7 +780,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="pLk-qV-Pin">
-                                                <rect key="frame" x="161" y="125" width="128" height="28"/>
+                                                <rect key="frame" x="165" y="129" width="128" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Baked Goods" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -813,7 +792,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mjw-z9-mcD">
-                                                <rect key="frame" x="16" y="161" width="116" height="28"/>
+                                                <rect key="frame" x="20" y="165" width="116" height="28"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="116" id="RbK-o1-WRR"/>
                                                 </constraints>
@@ -825,11 +804,10 @@
                                                 <state key="selected" image="checked box"/>
                                                 <connections>
                                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="LNi-db-HXl"/>
-                                                    <action selector="otherButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="pTT-YY-A5E"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="0oM-Iy-UBq">
-                                                <rect key="frame" x="161" y="89" width="150" height="28"/>
+                                                <rect key="frame" x="165" y="93" width="150" height="28"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <state key="normal" title="Oils/Condiments" image="unchecked box">
                                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -846,7 +824,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5UU-cu-cbs">
-                                                <rect key="frame" x="388" y="231" width="200" height="162"/>
+                                                <rect key="frame" x="388" y="235" width="200" height="162"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="200" id="rKj-HO-Y46"/>
                                                     <constraint firstAttribute="width" constant="200" id="rmy-0l-NsF"/>
@@ -858,7 +836,7 @@
                                                 </variation>
                                             </pickerView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How big is your total donation?" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJi-mA-n22">
-                                                <rect key="frame" x="20" y="250" width="568" height="21"/>
+                                                <rect key="frame" x="20" y="254" width="568" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="j5D-YW-gPO"/>
                                                 </constraints>
@@ -867,7 +845,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZO-Ws-LA8">
-                                                <rect key="frame" x="20" y="297" width="360" height="30"/>
+                                                <rect key="frame" x="20" y="301" width="360" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="V8h-F4-GDn"/>
                                                 </constraints>
@@ -908,8 +886,8 @@
                                             <constraint firstItem="5Vb-96-Wf3" firstAttribute="leading" secondItem="ppU-q8-XjI" secondAttribute="leading" id="YGT-ao-YGR"/>
                                             <constraint firstItem="sfe-uy-wCm" firstAttribute="centerY" secondItem="Cph-4d-7ia" secondAttribute="centerY" id="a2u-VX-4eK"/>
                                             <constraint firstItem="0oM-Iy-UBq" firstAttribute="leading" secondItem="5Vb-96-Wf3" secondAttribute="trailing" constant="14" id="aMZ-Ju-d7d"/>
-                                            <constraint firstItem="Cph-4d-7ia" firstAttribute="leading" secondItem="Chb-Ba-aAT" secondAttribute="leading" constant="16" id="azr-SJ-j9z"/>
-                                            <constraint firstItem="Cph-4d-7ia" firstAttribute="top" secondItem="IGS-cE-5RJ" secondAttribute="bottom" constant="12" id="bZI-TR-gah"/>
+                                            <constraint firstItem="Cph-4d-7ia" firstAttribute="leading" secondItem="Chb-Ba-aAT" secondAttribute="leading" constant="20" id="azr-SJ-j9z"/>
+                                            <constraint firstItem="Cph-4d-7ia" firstAttribute="top" secondItem="IGS-cE-5RJ" secondAttribute="bottom" constant="16" id="bZI-TR-gah"/>
                                             <constraint firstItem="mjw-z9-mcD" firstAttribute="leading" secondItem="ppU-q8-XjI" secondAttribute="leading" id="btq-aJ-SrY"/>
                                             <constraint firstItem="pLk-qV-Pin" firstAttribute="leading" secondItem="0oM-Iy-UBq" secondAttribute="leading" id="d0R-0w-RZq"/>
                                             <constraint firstItem="0oM-Iy-UBq" firstAttribute="top" secondItem="sfe-uy-wCm" secondAttribute="bottom" constant="8" id="diK-C9-w1u"/>
@@ -956,7 +934,6 @@
                         <outlet property="bottomConstraint" destination="BDA-ta-E4q" id="Djb-18-LS2"/>
                         <outlet property="nextButton" destination="tpk-1I-Aiz" id="vYU-Bk-w7I"/>
                         <outlet property="otherTextField" destination="RPb-p0-8tb" id="m7w-gc-qMy"/>
-                        <outlet property="scrollView" destination="3U3-9G-L6S" id="Q8b-Gc-8xI"/>
                         <outlet property="sizeTextField" destination="JZO-Ws-LA8" id="UKt-eu-kd1"/>
                         <outlet property="sizeTypePickerView" destination="5UU-cu-cbs" id="Rae-sb-yy1"/>
                         <outletCollection property="foodTypeButtons" destination="Cph-4d-7ia" collectionClass="NSMutableArray" id="m0T-om-6wj"/>
