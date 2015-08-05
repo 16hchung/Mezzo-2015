@@ -25,20 +25,13 @@ class Organization: PFObject, PFSubclassing{
     /// name of manager
     @NSManaged var managerName: String?
     @NSManaged var weeklyHours: [String]
+    @NSManaged var unacceptableFoods: String?
     
     struct DefaultHours {
-        static let startTime = formatter.dateFromString("08:00 am")!
-        static let endTime = formatter.dateFromString("12:00 PM")!
+        static let startTime = TimeHelper.formatter.dateFromString("08:00 am")!
+        static let endTime = TimeHelper.formatter.dateFromString("12:00 PM")!
     }
     
-    /// default date formatter for String <-> NSdate conversion
-    static var formatter: NSDateFormatter {
-        get {
-            let returnable = NSDateFormatter()
-            returnable.dateFormat = "hh:mm a"
-            return returnable
-        }
-    }
     
     // MARK: Methods
     
