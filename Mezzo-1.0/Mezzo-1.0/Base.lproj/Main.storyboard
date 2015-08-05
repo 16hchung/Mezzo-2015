@@ -141,8 +141,10 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cX9-TJ-ENz">
-                                                    <rect key="frame" x="543" y="209" width="51" height="30"/>
+                                                    <rect key="frame" x="312" y="217" width="282" height="30"/>
+                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="0.75" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Decline">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -150,8 +152,10 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H9q-Eh-heU">
-                                                    <rect key="frame" x="10" y="209" width="49" height="30"/>
+                                                    <rect key="frame" x="10" y="217" width="282" height="30"/>
+                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="0.75" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="Accept">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -220,6 +224,7 @@
                                                 <constraint firstItem="bfN-58-Gip" firstAttribute="top" secondItem="eiN-XT-rJI" secondAttribute="bottom" constant="8" id="9G2-12-f1J"/>
                                                 <constraint firstItem="oM4-qK-2aL" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="leading" id="9sc-Qn-rxC"/>
                                                 <constraint firstItem="EgA-08-onu" firstAttribute="centerY" secondItem="oM4-qK-2aL" secondAttribute="centerY" constant="1" id="A1t-0n-yfn"/>
+                                                <constraint firstItem="cX9-TJ-ENz" firstAttribute="width" secondItem="H9q-Eh-heU" secondAttribute="width" id="Aha-T4-s5x"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="YSf-ry-4KG" secondAttribute="trailing" constant="-2" id="DFu-H3-Jrx"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="Dv5-ts-UHf"/>
                                                 <constraint firstItem="EgA-08-onu" firstAttribute="leading" secondItem="edf-uD-zYV" secondAttribute="trailing" constant="8" id="ETx-DQ-i5S"/>
@@ -243,7 +248,7 @@
                                                 <constraint firstItem="H9q-Eh-heU" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="leading" id="dxD-vQ-mkE"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="bfB-ZX-hzS" secondAttribute="trailing" constant="-2" id="e9M-wM-bZ7"/>
                                                 <constraint firstItem="bVb-cy-F8U" firstAttribute="leading" secondItem="yM7-SB-u3K" secondAttribute="trailing" constant="8" id="f3A-d4-04z"/>
-                                                <constraint firstItem="H9q-Eh-heU" firstAttribute="top" secondItem="yM7-SB-u3K" secondAttribute="bottom" constant="8" id="gZ4-VU-XqS"/>
+                                                <constraint firstItem="H9q-Eh-heU" firstAttribute="top" secondItem="yM7-SB-u3K" secondAttribute="bottom" constant="16" id="gZ4-VU-XqS"/>
                                                 <constraint firstItem="bfN-58-Gip" firstAttribute="leading" secondItem="eiN-XT-rJI" secondAttribute="leading" id="hzV-tI-VKg"/>
                                                 <constraint firstItem="yM7-SB-u3K" firstAttribute="top" secondItem="oM4-qK-2aL" secondAttribute="bottom" constant="10" id="lCK-dG-dgr"/>
                                                 <constraint firstItem="bVb-cy-F8U" firstAttribute="centerY" secondItem="yM7-SB-u3K" secondAttribute="centerY" id="lWg-hq-DZ7"/>
@@ -260,6 +265,7 @@
                                                 <constraint firstItem="84o-Yd-y5T" firstAttribute="centerY" secondItem="G9H-RD-Zy8" secondAttribute="centerY" id="wWi-mA-uwl"/>
                                                 <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="bfN-58-Gip" secondAttribute="bottom" constant="10" id="wZC-K0-cbs"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="centerY" secondItem="cIg-db-JZO" secondAttribute="centerY" id="wnM-kA-hSO"/>
+                                                <constraint firstItem="cX9-TJ-ENz" firstAttribute="leading" secondItem="H9q-Eh-heU" secondAttribute="trailing" constant="20" id="ylg-Uz-7OR"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="cX9-TJ-ENz" secondAttribute="trailing" constant="-2" id="zQz-Po-aU4"/>
                                             </constraints>
                                             <variation key="default">
@@ -1611,8 +1617,8 @@
         <image name="unchecked box" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="HTJ-J4-aaI"/>
         <segue reference="Xin-Kr-cHh"/>
-        <segue reference="MXr-v1-TKa"/>
         <segue reference="8rN-GH-Rmh"/>
     </inferredMetricsTieBreakers>
 </document>
