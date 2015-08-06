@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import ParseUI
 import MessageUI
+import Mixpanel
 
 class MezzoLoginViewController: PFLogInViewController {
     
@@ -22,6 +23,8 @@ class MezzoLoginViewController: PFLogInViewController {
         addRequestAccountButton()
         
         self.view.backgroundColor = UIColor.whiteColor()
+        
+        logInView!.passwordForgottenButton!.addTarget(self, action: "trackForgottenPassword:", forControlEvents: .TouchUpInside)
         
         // logo
         let logoView = UIImageView(image: UIImage(named: "Logo"))
@@ -47,6 +50,12 @@ class MezzoLoginViewController: PFLogInViewController {
         
         // add underneath forgot password buttons
         self.logInView?.addSubview(requestButton)
+    }
+    
+    func trackForgottenPassword(sender: AnyObject?) {
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("log in", properties: ["action" : "password forgotten"])
     }
     
     private func addConstraintsToRequestButton() {
@@ -94,6 +103,9 @@ class MezzoLoginViewController: PFLogInViewController {
     }
     
     func requestAccountButtonTapped(sender: AnyObject?) {
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("log in", properties: ["action" : "request account"])
         
         let mailComposeViewController = configuredMailComposeViewController()
         

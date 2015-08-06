@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import RMDateSelectionViewController
 import RMActionController
+import Mixpanel
 
 class DonationsViewController: UIViewController {
     
@@ -238,11 +239,18 @@ class DonationsViewController: UIViewController {
     
     
     @IBAction func segmentedControlChanged(sender: AnyObject?) {
+        let mixpanel = Mixpanel.sharedInstance()
         switch segmentedControl.selectedSegmentIndex {
         case UPCOMING:
             reloadUpcomingDonationsData()
+            if sender != nil {
+                mixpanel.track("all donations", properties: ["action" : "segmented control to upcoming"])
+            }
         case COMPLETED:
             reloadCompletedDonationsData()
+            if sender != nil {
+                mixpanel.track("all donations", properties: ["action" : "segmented control to completed"])
+            }
         default:
             reloadUpcomingDonationsData()
         }

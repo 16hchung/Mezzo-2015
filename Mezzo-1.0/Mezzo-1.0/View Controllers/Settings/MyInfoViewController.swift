@@ -42,8 +42,6 @@ class MyInfoViewController: UIViewController {
         
         let mixpanel = Mixpanel.sharedInstance()
         mixpanel.track("show setting", properties: ["setting type" : "my info"])
-        
-        
     }
     
     override func viewWillAppear(animated: Bool) {

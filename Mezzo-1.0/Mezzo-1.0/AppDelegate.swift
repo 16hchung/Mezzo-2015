@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 let currentInstallation = PFInstallation.currentInstallation()
                 let mixpanel = Mixpanel.sharedInstance()
+                mixpanel.track("log in", properties: ["action" : "log in"])
                 
                 // store the user pointer
                 if let donor = (PFUser.currentUser() as? User)?.donor {

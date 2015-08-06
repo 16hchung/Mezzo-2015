@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Mixpanel
 
 protocol DonationHeaderCellDelegate: class {
     func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
@@ -162,22 +163,33 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func cancelDonationTapped(sender: AnyObject) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "canceled", "donation state" : donation.donationState.rawValue])
         delegate?.cancelDonation(self)
     }
     
     @IBAction func acceptDonation(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "accept", "donation state" : donation.donationState.rawValue])
         delegate?.showTimePickingDialogue(self)
     }
     
     @IBAction func declineDonation(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "decline", "donation state" : donation.donationState.rawValue])
         delegate?.showDeclineDialogue(self)
     }
     
     @IBAction func completePickupTapped(sender: AnyObject) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "pickup completed", "donation state" : donation.donationState.rawValue])
+        
         delegate?.completeDonation(self)
     }
     
     @IBAction func neverPickedUpTapped(sender: AnyObject) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "pickup never completed", "donation state" : donation.donationState.rawValue])
         delegate?.showNeverPickedUpDialogue(self)
     }
     
@@ -199,6 +211,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func dialPhoneNumber(sender: AnyObject) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "dial phone number", "donation state" : donation.donationState.rawValue])
+        
         if let button = sender as? UIButton {
             let oldPhone:String! = button.titleLabel?.text ?? ""
             
@@ -222,6 +237,9 @@ class DonationHeaderTableViewCell: UITableViewCell {
     }
     
     @IBAction func mapLocation(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "see location", "donation state" : donation.donationState.rawValue])
+        
         let location = donation.location()
         
         if let lat = location.latitude, long = location.longitude {

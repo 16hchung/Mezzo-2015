@@ -14,6 +14,8 @@ class MezzoSettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("all donations", properties: ["action" : "show settings"])
         // Do any additional setup after loading the view.
     }
 

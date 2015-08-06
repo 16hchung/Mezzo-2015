@@ -75,6 +75,8 @@ class NewDonationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+         mixpanel.track("next", properties: ["screen" : "all donations", "action" : "new donation"])
                 
         // set text wrap for food type button labels
         for button in foodTypeButtons {

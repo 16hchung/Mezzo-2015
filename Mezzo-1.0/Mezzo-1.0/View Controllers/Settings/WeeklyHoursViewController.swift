@@ -165,19 +165,22 @@ class WeeklyHoursViewController: UIViewController {
 //        button.layer.borderColor = UIColor(red: 192.0/255.0, green: 54.0/255.0, blue: 44.0/255.0, alpha: 1.0).CGColor // golden gate bridge
         
         if select {
-            button.setTitleColor(UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0), forState: UIControlState.Normal) // dark blue
+//            button.setTitleColor(UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0), forState: UIControlState.Normal) // dark blue
 //            button.setTitleColor(UIColor(red: 192.0/255.0, green: 54.0/255.0, blue: 44.0/255.0, alpha: 1.0), forState: UIControlState.Normal) // golden gate bridge
         } else {
-            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
+//            button.setTitleColor(UIColor.whiteColor(), forState: UIControlState.Normal)
         }
     }
     
     /// toggle availability indicator (background color)
     func toggleAvailabilityForDayButton(button: UIButton, available: Bool) {
         if available {
-            button.backgroundColor = UIColor(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+//            button.backgroundColor = UIColor(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0, alpha: 1.0)
+            button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
         } else {
-            button.backgroundColor = UIColor.lightGrayColor()
+//            button.backgroundColor = UIColor.lightGrayColor()
+//            207, 0, 15
+            button.setTitleColor(UIColor(red: 207.0/255.0, green: 0, blue: 15.0/255.0, alpha: 1), forState: UIControlState.Normal)
         }
     }
 
