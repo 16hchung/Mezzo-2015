@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import RMDateSelectionViewController
 import RMActionController
+import Mixpanel
 
 class DonationsViewController: UIViewController {
     
@@ -353,6 +354,9 @@ class DonationsViewController: UIViewController {
         if let identifier = sender.identifier {
             switch identifier {
             case "Send Offer":
+                let mixpanel = Mixpanel.sharedInstance()
+                mixpanel.track("next", properties: ["from screen": "new donation who", "action": "offer"])
+                
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
                 source.donation.offer ((PFUser.currentUser()! as! User).donor!, toOrgs: source.selectedRecipientOrganizations)   { (success: Bool, error: NSError?) -> Void in
@@ -381,7 +385,8 @@ class DonationsViewController: UIViewController {
     @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
         switch sender.identifier! {
         case "Save my info":
-            println("saving my info")
+            break
+//            println("saving my info")
         default:
             break
         }
@@ -546,34 +551,3 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         presentViewController(alertView, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

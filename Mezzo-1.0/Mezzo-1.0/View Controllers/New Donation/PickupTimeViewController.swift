@@ -31,13 +31,6 @@ class PickupTimeViewController: UIViewController {
         startTimeRangePicker.minimumDate = startTime
         startTimePicked(startTimeRangePicker)
     }
-    
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            println("back button tapped")
-            mixpanel.track("back", properties: ["from screen": "new donation when"])
-        }
-    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -89,6 +82,8 @@ class PickupTimeViewController: UIViewController {
                 saveDonation()
                 let destination = segue.destinationViewController as? OrganizationChooserViewController
                 destination?.donation = self.donation
+                
+                mixpanel.track("next", properties: ["from screen": "new donation when", "action": "next"])
             default:
                 break
             }

@@ -378,7 +378,7 @@
                                 <action selector="settingsButtonSelected:" destination="hU1-ZQ-Oh3" id="98u-5K-Mk3"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="u2J-zT-V1M">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="u2J-zT-V1M">
                             <connections>
                                 <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonation" id="Xin-Kr-cHh"/>
                             </connections>
