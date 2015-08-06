@@ -27,7 +27,6 @@ class OrganizationChooserViewController: UIViewController {
     // MARK: Properties
     
     var donation: Donation!
-    
     var organizations: [Organization]!
     
     var selectedIndex: Int? = nil {
@@ -67,13 +66,6 @@ class OrganizationChooserViewController: UIViewController {
                 self.tableView.reloadData()
                 self.loadingView.hidden = true
             }
-        }
-    }
-    
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            println("back button tapped")
-            mixpanel.track("back", properties: ["from screen": "new donation who"])
         }
     }
 }

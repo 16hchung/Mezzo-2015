@@ -98,7 +98,7 @@ class NewDonationViewController: UIViewController {
         tapRecognizer.addTarget(self, action: "didTapView")
         self.view.addGestureRecognizer(tapRecognizer)
         
-        // add action to cancel button for mixpanel analytics
+        // add action to cancel and next buttons for mixpanel analytics
         navBar.leftBarButtonItem?.target = self
         navBar.leftBarButtonItem?.action = "cancelButtonTapped"
     }
@@ -162,6 +162,8 @@ class NewDonationViewController: UIViewController {
                 saveDonation()
                 let destination = segue.destinationViewController as! PickupTimeViewController
                 destination.donation = self.donation
+                
+                mixpanel.track("next", properties: ["from screen": "new donation what", "action": "next"])
             default:
                 break
             }

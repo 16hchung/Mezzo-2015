@@ -35,8 +35,10 @@ class DonationsViewController: UIViewController {
             allSortedKeys.sort {
                 if $0.donationState == .Accepted && $1.donationState == .Accepted {
                     return $0.orgSpecificTime < $1.orgSpecificTime
+                } else if $0.donationState == .Completed && $1.donationState == .Completed {
+                    return $0.orgSpecificTime > $1.orgSpecificTime
                 } else {
-                    return $0.updatedAt < $1.updatedAt
+                    return $0.updatedAt > $1.updatedAt
                 }
             }
             
@@ -361,6 +363,9 @@ class DonationsViewController: UIViewController {
         if let identifier = sender.identifier {
             switch identifier {
             case "Send Offer":
+                let mixpanel = Mixpanel.sharedInstance()
+                mixpanel.track("next", properties: ["from screen": "new donation who", "action": "offer"])
+                
                 let source = sender.sourceViewController as! OrganizationChooserViewController
                 
                 source.donation.offer ((PFUser.currentUser()! as! User).donor!, toOrgs: source.selectedRecipientOrganizations)   { (success: Bool, error: NSError?) -> Void in
@@ -389,7 +394,8 @@ class DonationsViewController: UIViewController {
     @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
         switch sender.identifier! {
         case "Save my info":
-            println("saving my info")
+            break
+//            println("saving my info")
         default:
             break
         }
@@ -554,34 +560,3 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         presentViewController(alertView, animated: true, completion: nil)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

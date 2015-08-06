@@ -31,7 +31,8 @@ class MezzoSettingsViewController: UITableViewController {
                 let source = segue.sourceViewController as! WeeklyHoursViewController
                 source.saveAllDateSettings()
             case "Save Food Policies":
-                println("saving food policies")
+                break
+//                println("saving food policies")
             default:
                 break
             }
@@ -41,17 +42,10 @@ class MezzoSettingsViewController: UITableViewController {
     @IBAction func unwindFromMyInfo(sender: UIStoryboardSegue) {
         switch sender.identifier! {
         case "Save my info":
-            println("saving my info")
+            break
+//            println("saving my info")
         default:
             break
-        }
-    }
-    
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            println("back button tapped")
-            let mixpanel = Mixpanel.sharedInstance()
-            mixpanel.track("back", properties: ["from screen": "settings home page"])
         }
     }
 

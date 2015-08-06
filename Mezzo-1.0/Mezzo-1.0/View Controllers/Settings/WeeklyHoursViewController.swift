@@ -52,14 +52,6 @@ class WeeklyHoursViewController: UIViewController {
         
     }
     
-    override func didMoveToParentViewController(parent: UIViewController?) {
-        if parent == nil {
-            println("back button tapped")
-            let mixpanel = Mixpanel.sharedInstance()
-            mixpanel.track("back", properties: ["from screen": "settings weekly hours"])
-        }
-    }
-    
     // MARK: UI change methods
     
     /// load strings from parse into local weeklyHours property + toggle unavailable day buttons
