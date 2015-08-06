@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class OrganizationChooserViewController: UIViewController {
 
@@ -16,13 +17,29 @@ class OrganizationChooserViewController: UIViewController {
     @IBOutlet weak var offerBarButton: UIBarButtonItem!
     @IBOutlet weak var loadingView: UIView!
     
+    // mixpanel setup
+    let MIXPANEL_NEW_DONATION_EVENT = "new donation changed"
+    let MIXPANEL_ACTION = "action"
+    let MIXPANEL_VALUE = "value"
+    let mixpanel = Mixpanel.sharedInstance()
+    
     // MARK: Properties
     
     var donation: Donation!
     
     var organizations: [Organization]!
     
-    var selectedIndex: Int? = nil
+    var selectedIndex: Int? = nil {
+        didSet {
+            if selectedIndex == nil {
+                mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+                    properties: [MIXPANEL_ACTION: "org expanded", MIXPANEL_VALUE: "closed"])
+            } else {
+                mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+                    properties: [MIXPANEL_ACTION: "org expanded", MIXPANEL_VALUE: "expanded"])
+            }
+        }
+    }
     
     var selectedRecipientOrganizations = [Organization]()
     
@@ -110,6 +127,9 @@ extension OrganizationChooserViewController: OrgHeaderCellDelegate {
         }
         
         offerBarButton.enabled = selectedRecipientOrganizations.count != 0
+        
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "org chosen", MIXPANEL_VALUE: "N/A"])
     }
     
 }
@@ -143,12 +163,4 @@ extension OrganizationChooserViewController: UITableViewDelegate {
         }
         tableView.endUpdates()
     }
-    
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        if indexPath.row == 0 {
-//            return 70
-//        } else {
-//            return 290
-//        }
-//    }
 }

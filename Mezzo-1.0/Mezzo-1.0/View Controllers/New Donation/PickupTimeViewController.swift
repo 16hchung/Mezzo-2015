@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class PickupTimeViewController: UIViewController {
     
@@ -14,6 +15,12 @@ class PickupTimeViewController: UIViewController {
     @IBOutlet weak var endTimeRangePicker: UIDatePicker!
     
     var donation: Donation!
+    
+    // mixpanel setup
+    let MIXPANEL_NEW_DONATION_EVENT = "new donation changed"
+    let MIXPANEL_ACTION = "action"
+    let MIXPANEL_VALUE = "value"
+    let mixpanel = Mixpanel.sharedInstance()
 
     // MARK: VC lifecycle
     
@@ -42,6 +49,14 @@ class PickupTimeViewController: UIViewController {
         // 10800 seconds in 3 hours
         endTimeRangePicker.minimumDate = startTime
         endTimeRangePicker.setDate(startTime, animated: true)
+        
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "start time picked", MIXPANEL_VALUE: "N/A"])
+    }
+    
+    @IBAction func endTimePicked(sender: AnyObject) {
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "end time picked", MIXPANEL_VALUE: "N/A"])
     }
     
     private func nearestFifteenthMinute() -> NSDate {

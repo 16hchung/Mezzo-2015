@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class NewDonationViewController: UIViewController {
     
@@ -19,6 +20,12 @@ class NewDonationViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var otherTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    
+    // mixpanel setup
+    let MIXPANEL_NEW_DONATION_EVENT = "new donation changed"
+    let MIXPANEL_ACTION = "action"
+    let MIXPANEL_VALUE = "value"
+    let mixpanel = Mixpanel.sharedInstance()
     
     // MARK: Properties
     
@@ -56,38 +63,18 @@ class NewDonationViewController: UIViewController {
         KeyboardHelper.dismissKeyboard(self)
     }
     
-    // MARK: keyboard handling
-    
-//    func keyboardWillShow(notification: NSNotification) {
-//        var info = notification.userInfo!
-//        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-//        
-//        UIView.animateWithDuration(0.1, animations: { () -> Void in
-//            self.view.frame.origin.y -= keyboardFrame.size.height
-//            self.bottomConstraint.constant -= 200 // reduce the gap between the bottom of the picker and the keyboard
-//        })
-//    }
-//    
-//    func keyboardWillHide(notification: NSNotification) {
-//        var info = notification.userInfo!
-//        var keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).CGRectValue()
-//        
-//        UIView.animateWithDuration(0.1, animations: { () -> Void in
-//            self.view.frame.origin.y += keyboardFrame.size.height
-//            self.bottomConstraint.constant += 200
-//        })
-//    }
-    
     @IBAction func amountNumberChanged(sender: UITextField) {
         nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
             && sizeTextField.text.toInt() > 0
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "food amount changed", MIXPANEL_VALUE: sender.text])
     }
     
     // MARK: VC Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         // set text wrap for food type button labels
         for button in foodTypeButtons {
             button.titleLabel?.numberOfLines = 1
@@ -140,11 +127,17 @@ class NewDonationViewController: UIViewController {
         
         // next button shouldn't be enabled unless foodDescription and size are populated
         nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty && sizeTextField.text.toInt() > 0
+        
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "food type selected", MIXPANEL_VALUE: button.titleLabel!.text!])
     }
     
     @IBAction func otherButtonSelected(sender: AnyObject) {
         let button = sender as! UIButton
         otherTextField.hidden = !button.selected
+        
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "food type other text changed", MIXPANEL_VALUE: otherTextField.text])
     }
     
     // MARK: - Navigation
@@ -170,6 +163,11 @@ class NewDonationViewController: UIViewController {
 extension NewDonationViewController: UIPickerViewDelegate {
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         return Donation.pluralSizeTypes[row]
+    }
+    
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+            properties: [MIXPANEL_ACTION: "food size option changed", MIXPANEL_VALUE: Donation.pluralSizeTypes[row]])
     }
 }
 
