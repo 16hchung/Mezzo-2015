@@ -34,14 +34,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 let navController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UIViewController
                 
-                
                 let currentInstallation = PFInstallation.currentInstallation()
+                let mixpanel = Mixpanel.sharedInstance()
                 
                 // store the user pointer
                 if let donor = (PFUser.currentUser() as? User)?.donor {
                     currentInstallation["donor"] = donor
+                    mixpanel.registerSuperProperties(["user type" : "donor", "debug mode" : "\(debugMode)"])
                 } else if let org = (PFUser.currentUser() as? User)?.organization {
                     currentInstallation["org"] = org
+                    mixpanel.registerSuperProperties(["user type" : "organization", "debug mode" : "\(debugMode)"])
                 }
                 
                 currentInstallation.saveInBackground()
@@ -61,6 +63,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             Parse.setApplicationId("cX7yVorAA99FNZyW5mWoEoGs07LE2jUCRKtEi0wt", clientKey: "ADboeEkiWri2efGeLzRJx8lTF4St9qZ64CZ7gmDX")
         } else {
             Parse.setApplicationId("DUJHLQUGe79QD2rOzbCRXjn1jrRDGqrSrpA5RdTD", clientKey: "Jphp5RR0YfXZPPvhRGal3L9YYes7cgfEAObcRfCr")
+            
         }
         
         // set default ACL for all Parse objects
@@ -98,11 +101,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerForRemoteNotifications()
         
         // Mixpanel setup
-        if !debugMode {
-            Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
-            let mixpanel: Mixpanel = Mixpanel.sharedInstance()
-            mixpanel.track("App launched")
-        }
+        Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("App launched")
         
         return true //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

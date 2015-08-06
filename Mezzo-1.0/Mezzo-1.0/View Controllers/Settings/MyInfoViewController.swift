@@ -9,6 +9,7 @@
 import UIKit
 import ConvenienceKit
 import Parse
+import Mixpanel
 
 class MyInfoViewController: UIViewController {
     
@@ -38,6 +39,9 @@ class MyInfoViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("show setting", properties: ["setting type" : "my info"])
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -86,6 +90,11 @@ class MyInfoViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    @IBAction func aboutMezzoPressed(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("show setting", properties: ["setting type" : "about mezzo"])
     }
     
     private func hideOrgSettings() {

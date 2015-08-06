@@ -9,6 +9,7 @@
 import UIKit
 import ConvenienceKit
 import Parse
+import Mixpanel
 
 class FoodPreferencesViewController: UIViewController {
 
@@ -37,6 +38,9 @@ class FoodPreferencesViewController: UIViewController {
         let grayColor = UIColor(white: 0.875, alpha: 1.000)
         foodTextView.layer.borderColor = grayColor.CGColor
         foodTextView.layer.cornerRadius = 5.0
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("show setting", properties: ["setting type" : "food preferences"])
     }
     
     override func viewWillAppear(animated: Bool) {

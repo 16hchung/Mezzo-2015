@@ -662,6 +662,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
+                                                    <action selector="aboutMezzoPressed:" destination="ykF-AZ-zoc" eventType="touchUpInside" id="tf6-V5-COJ"/>
                                                     <segue destination="0yM-yl-2iw" kind="show" id="8rN-GH-Rmh"/>
                                                 </connections>
                                             </button>
@@ -1115,7 +1116,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XBb-lV-3ZN" id="g4S-kv-gas">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Nj-GWz">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3b4-Nj-GWz">
                                                     <rect key="frame" x="534" y="10" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="48" id="b1a-8B-a1y"/>
@@ -1617,8 +1618,8 @@
         <image name="unchecked box" width="28" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="HTJ-J4-aaI"/>
         <segue reference="Xin-Kr-cHh"/>
+        <segue reference="MXr-v1-TKa"/>
         <segue reference="8rN-GH-Rmh"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Mixpanel
 
 class WeeklyHoursViewController: UIViewController {
 
@@ -45,6 +46,9 @@ class WeeklyHoursViewController: UIViewController {
                 }
             }
         }
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("show setting", properties: ["setting type" : "weekly hours"])
         
     }
     

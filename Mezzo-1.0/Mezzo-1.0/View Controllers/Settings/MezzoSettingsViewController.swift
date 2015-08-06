@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Mixpanel
 
 class MezzoSettingsViewController: UITableViewController {
 
@@ -43,6 +44,14 @@ class MezzoSettingsViewController: UITableViewController {
             break
         }
     }
-    
 
+}
+
+extension MezzoSettingsViewController: UITableViewDelegate {
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("show setting", properties: ["setting type" : "about mezzo"])
+    }
+    
 }
