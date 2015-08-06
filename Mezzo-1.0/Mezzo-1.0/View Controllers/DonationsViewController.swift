@@ -35,8 +35,10 @@ class DonationsViewController: UIViewController {
             allSortedKeys.sort {
                 if $0.donationState == .Accepted && $1.donationState == .Accepted {
                     return $0.orgSpecificTime < $1.orgSpecificTime
+                } else if $0.donationState == .Completed && $1.donationState == .Completed {
+                    return $0.orgSpecificTime > $1.orgSpecificTime
                 } else {
-                    return $0.updatedAt < $1.updatedAt
+                    return $0.updatedAt > $1.updatedAt
                 }
             }
             
