@@ -42,6 +42,8 @@ class MyInfoViewController: UIViewController {
         
         let mixpanel = Mixpanel.sharedInstance()
         mixpanel.track("show setting", properties: ["setting type" : "my info"])
+        
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -97,6 +99,19 @@ class MyInfoViewController: UIViewController {
         mixpanel.track("show setting", properties: ["setting type" : "about mezzo"])
     }
     
+    @IBAction func textFieldChanged(sender: UITextField) {
+        let mixpanel = Mixpanel.sharedInstance()
+        
+        switch sender {
+        case managerName:
+            mixpanel.track("edit setting", properties: ["field" : "manager name", "value" : "N/A"])
+        case phoneNumber:
+            mixpanel.track("edit setting", properties: ["field" : "phone number", "value" : "N/A"])
+        default:
+            break
+        }
+    }
+    
     private func hideOrgSettings() {
         specialInstructions.hidden = true
         specialInstructionsLabel.hidden = true
@@ -127,6 +142,9 @@ class MyInfoViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Save my info" {
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("next", properties: ["screen" : "my info", "action" : "save"])
+            
             var user: PFObject?
             var isDonor: Bool?
             
@@ -148,7 +166,7 @@ class MyInfoViewController: UIViewController {
         }
     }
 }
-
+ 
 // MARK: keyboard handling
 
 extension MyInfoViewController: KeyboardProtocol {

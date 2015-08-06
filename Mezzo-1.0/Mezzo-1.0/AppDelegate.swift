@@ -66,6 +66,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
         }
         
+        // Mixpanel setup
+        Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
+        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("App launched")
+        
         // set default ACL for all Parse objects
         let acl = PFACL()
         acl.setPublicReadAccess(true)
@@ -77,6 +82,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let user = PFUser.currentUser()
         let startViewController: UIViewController
         if user != nil {
+            if let donor = (PFUser.currentUser() as? User)?.donor {
+                mixpanel.registerSuperProperties(["user type" : "donor", "debug mode" : "\(debugMode)"])
+            } else if let org = (PFUser.currentUser() as? User)?.organization {
+                mixpanel.registerSuperProperties(["user type" : "organization", "debug mode" : "\(debugMode)"])
+            }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
         } else {
@@ -93,17 +103,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = startViewController
         self.window?.makeKeyAndVisible()
         
-        
         // Parse push notification setup
         let userNotificationTypes: UIUserNotificationType = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        
-        // Mixpanel setup
-        Mixpanel.sharedInstanceWithToken("addb634d2df408a6f26df48826cfa460")
-        let mixpanel: Mixpanel = Mixpanel.sharedInstance()
-        mixpanel.track("App launched")
         
         return true //FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }

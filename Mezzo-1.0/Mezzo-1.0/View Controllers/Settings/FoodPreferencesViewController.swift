@@ -82,6 +82,9 @@ class FoodPreferencesViewController: UIViewController {
                     self.performSegueWithIdentifier("Save Food Policies", sender: self)
                 }
             })
+            
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("next", properties: ["screen" : "food policies", "action" : "save"])
         }
     }
 }

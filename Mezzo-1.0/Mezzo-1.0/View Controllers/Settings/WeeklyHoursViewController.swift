@@ -83,9 +83,16 @@ class WeeklyHoursViewController: UIViewController {
             
             orgUser.saveInBackground()
         }
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("next", properties: ["screen" : "weekly hours", "action" : "save"])
     }
 
     @IBAction func weekDayButtonTapped(sender: UIButton) {
+        
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("edit setting", properties: ["field" : "weekday", "value" : sender.titleLabel!.text!])
+        
         // save current day's settings
         saveDateSettingsForDay(selectedDayButton)
         
@@ -104,7 +111,40 @@ class WeeklyHoursViewController: UIViewController {
     }
     
     @IBAction func availabilityToggled(sender: UIButton) {
-        let available = sender == availableOptionButton
+        availabilitySet(sender)
+        
+        let available = (sender == unavailableOptionButton) ? "to available" : "to unavailable"
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("edit setting", properties: ["field" : "availability", "value" : available])
+    }
+    
+    @IBAction func timeChanged(sender: UIDatePicker) {
+        let mixpanel = Mixpanel.sharedInstance()
+        
+        switch sender {
+        case fromTimePicker:
+            let startTime = NSDate(timeInterval: 3600, sinceDate: fromTimePicker.date)
+            // 3600 seconds in 1 hour
+            toTimePicker.minimumDate = startTime
+            toTimePicker.setDate(startTime, animated: true)
+            
+            mixpanel.track("edit setting", properties: ["field" : "from time changed", "value" : "N/A"])
+        case toTimePicker:
+            let endTime = NSDate(timeInterval: -3600, sinceDate: toTimePicker.date)
+            
+            fromTimePicker.maximumDate = endTime
+            fromTimePicker.setDate(endTime, animated: true)
+            
+            mixpanel.track("edit setting", properties: ["field" : "to time changed", "value" : "N/A"])
+        default:
+            break
+        }
+        
+        
+    }
+    
+    func availabilitySet(button: UIButton) {
+        let available = button == availableOptionButton
         toggleAvailabilityForDayButton(selectedDayButton, available: available)
         availableOptionButton.selected = available
         unavailableOptionButton.selected = !available
@@ -149,10 +189,10 @@ class WeeklyHoursViewController: UIViewController {
             toTimePicker.minimumDate = fromTimePicker.date
             fromTimePicker.maximumDate = toTimePicker.date
             
-            availabilityToggled(availableOptionButton)
+            availabilitySet(availableOptionButton)
             
         } else {
-            availabilityToggled(unavailableOptionButton)
+            availabilitySet(unavailableOptionButton)
         }
     }
     
