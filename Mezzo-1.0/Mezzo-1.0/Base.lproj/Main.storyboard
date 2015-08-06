@@ -622,6 +622,9 @@
                                                 <rect key="frame" x="20" y="48" width="560" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <action selector="textFieldChanged:" destination="ykF-AZ-zoc" eventType="editingDidEnd" id="Aoc-eg-WYs"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Manager's Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TPn-uP-Lmb">
                                                 <rect key="frame" x="20" y="20" width="560" height="20"/>
@@ -633,6 +636,9 @@
                                                 <rect key="frame" x="20" y="122" width="560" height="30"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                                <connections>
+                                                    <action selector="textFieldChanged:" destination="ykF-AZ-zoc" eventType="editingDidEnd" id="AWH-Ed-8fx"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUh-Ge-Hxv">
                                                 <rect key="frame" x="20" y="94" width="560" height="20"/>
@@ -1471,6 +1477,9 @@
                                                 <date key="minimumDate" timeIntervalSinceReferenceDate="-31593540">
                                                     <!--2000-01-01 08:01:00 +0000-->
                                                 </date>
+                                                <connections>
+                                                    <action selector="timeChanged:" destination="qgW-dL-eOr" eventType="valueChanged" id="v20-oi-QKN"/>
+                                                </connections>
                                             </datePicker>
                                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="c56-TW-MWI">
                                                 <rect key="frame" x="63" y="178" width="537" height="162"/>
@@ -1483,6 +1492,9 @@
                                                 <date key="maximumDate" timeIntervalSinceReferenceDate="-31507500">
                                                     <!--2000-01-02 07:55:00 +0000-->
                                                 </date>
+                                                <connections>
+                                                    <action selector="timeChanged:" destination="qgW-dL-eOr" eventType="valueChanged" id="yED-lj-aeA"/>
+                                                </connections>
                                             </datePicker>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ni2-MH-N5B">
                                                 <rect key="frame" x="16" y="251" width="15" height="17"/>
@@ -1622,7 +1634,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Xin-Kr-cHh"/>
-        <segue reference="MXr-v1-TKa"/>
+        <segue reference="HTJ-J4-aaI"/>
         <segue reference="8rN-GH-Rmh"/>
     </inferredMetricsTieBreakers>
 </document>
