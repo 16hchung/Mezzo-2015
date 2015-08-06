@@ -165,6 +165,14 @@ class MyInfoViewController: UIViewController {
             })
         }
     }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("back", properties: ["from screen": "settings my info"])
+        }
+    }
 }
  
 // MARK: keyboard handling

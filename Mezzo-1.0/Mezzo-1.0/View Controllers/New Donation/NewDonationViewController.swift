@@ -20,6 +20,7 @@ class NewDonationViewController: UIViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var otherTextField: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     // mixpanel setup
     let MIXPANEL_NEW_DONATION_EVENT = "new donation changed"
@@ -94,6 +95,15 @@ class NewDonationViewController: UIViewController {
         let tapRecognizer = UITapGestureRecognizer()
         tapRecognizer.addTarget(self, action: "didTapView")
         self.view.addGestureRecognizer(tapRecognizer)
+        
+        // add action to cancel button for mixpanel analytics
+        navBar.leftBarButtonItem?.target = self
+        navBar.leftBarButtonItem?.action = "cancelButtonTapped"
+    }
+    
+    func cancelButtonTapped() {
+        mixpanel.track("back", properties: ["from screen": "new donation what"])
+        self.navigationController?.popViewControllerAnimated(true)
     }
     
     override func viewWillAppear(animated: Bool) {

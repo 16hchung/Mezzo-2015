@@ -13,6 +13,7 @@ class PickupTimeViewController: UIViewController {
     
     @IBOutlet weak var startTimeRangePicker: UIDatePicker!
     @IBOutlet weak var endTimeRangePicker: UIDatePicker!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     var donation: Donation!
     
@@ -29,7 +30,13 @@ class PickupTimeViewController: UIViewController {
         let startTime = nearestFifteenthMinute()
         startTimeRangePicker.minimumDate = startTime
         startTimePicked(startTimeRangePicker)
-        
+    }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            mixpanel.track("back", properties: ["from screen": "new donation when"])
+        }
     }
 
     override func didReceiveMemoryWarning() {

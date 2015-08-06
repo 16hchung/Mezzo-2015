@@ -16,6 +16,7 @@ class OrganizationChooserViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var offerBarButton: UIBarButtonItem!
     @IBOutlet weak var loadingView: UIView!
+    @IBOutlet weak var navBar: UINavigationItem!
     
     // mixpanel setup
     let MIXPANEL_NEW_DONATION_EVENT = "new donation changed"
@@ -69,14 +70,12 @@ class OrganizationChooserViewController: UIViewController {
         }
     }
     
-    
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            mixpanel.track("back", properties: ["from screen": "new donation who"])
+        }
     }
-
 }
 
 // MARK: - Table View Data Source Protocol

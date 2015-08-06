@@ -967,6 +967,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="bottomConstraint" destination="BDA-ta-E4q" id="Djb-18-LS2"/>
+                        <outlet property="navBar" destination="AkB-kp-nMw" id="nlf-1w-2nw"/>
                         <outlet property="nextButton" destination="tpk-1I-Aiz" id="vYU-Bk-w7I"/>
                         <outlet property="otherTextField" destination="RPb-p0-8tb" id="m7w-gc-qMy"/>
                         <outlet property="scrollView" destination="3U3-9G-L6S" id="Q8b-Gc-8xI"/>
@@ -1090,6 +1091,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="endTimeRangePicker" destination="y9n-dP-F6l" id="tUF-OF-K8w"/>
+                        <outlet property="navBar" destination="cHd-cr-6Bm" id="4M3-fs-bb3"/>
                         <outlet property="startTimeRangePicker" destination="JdF-oV-zWA" id="blb-jR-u4h"/>
                     </connections>
                 </viewController>
@@ -1303,6 +1305,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="loadingView" destination="wx3-e7-daa" id="FLy-78-js4"/>
+                        <outlet property="navBar" destination="vXV-bf-Bmo" id="plo-i0-Uma"/>
                         <outlet property="offerBarButton" destination="heK-0J-dit" id="3ux-7a-oNa"/>
                         <outlet property="tableView" destination="7yo-Fv-ojy" id="V5w-IB-Uxx"/>
                     </connections>

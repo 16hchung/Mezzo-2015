@@ -66,6 +66,14 @@ class FoodPreferencesViewController: UIViewController {
         super.viewWillDisappear(animated)
         KeyboardHelper.deregisterFromKeyboardNotifications(self)
     }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("back", properties: ["from screen": "settings food preferences"])
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

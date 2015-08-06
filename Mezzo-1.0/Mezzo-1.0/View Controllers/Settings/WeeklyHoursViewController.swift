@@ -52,9 +52,12 @@ class WeeklyHoursViewController: UIViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillDisappear(true)
-        
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("back", properties: ["from screen": "settings weekly hours"])
+        }
     }
     
     // MARK: UI change methods

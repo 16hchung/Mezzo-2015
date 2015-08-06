@@ -44,6 +44,14 @@ class MezzoSettingsViewController: UITableViewController {
             break
         }
     }
+    
+    override func didMoveToParentViewController(parent: UIViewController?) {
+        if parent == nil {
+            println("back button tapped")
+            let mixpanel = Mixpanel.sharedInstance()
+            mixpanel.track("back", properties: ["from screen": "settings home page"])
+        }
+    }
 
 }
 
