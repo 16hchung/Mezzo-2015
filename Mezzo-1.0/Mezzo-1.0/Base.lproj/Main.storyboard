@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -584,7 +585,7 @@
         <!--About Mezzo-->
         <scene sceneID="SCX-55-PjK">
             <objects>
-                <viewController id="0yM-yl-2iw" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="0yM-yl-2iw" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kP3-BY-W51"/>
                         <viewControllerLayoutGuide type="bottom" id="BoJ-1B-wAH"/>
@@ -592,7 +593,46 @@
                     <view key="view" contentMode="scaleToFill" id="O4j-PU-J9a">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
+                                <rect key="frame" x="16" y="171" width="568" height="429"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
+
+Features for donors:
+- offer food donations
+- choose which food pantry you want to donate to
+- communicate with the recipient of your donation
+- see a history of all your completed donations
+
+Features for food pantries:
+- accept or decline donation offers
+- organize your accepted donations
+- call your donors and see their locations in Google Maps
+- specify settings (like your weekly hours or food policies)
+
+Awards:
+- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xDc-pw-Lco">
+                                <rect key="frame" x="255" y="72" width="91" height="91"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="91" id="3RT-bG-96f"/>
+                                    <constraint firstAttribute="width" secondItem="xDc-pw-Lco" secondAttribute="height" multiplier="1:1" id="ZD0-ca-NgD"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p6D-FR-mHE" firstAttribute="top" secondItem="xDc-pw-Lco" secondAttribute="bottom" constant="8" id="Atr-Jy-b6R"/>
+                            <constraint firstAttribute="centerX" secondItem="xDc-pw-Lco" secondAttribute="centerX" id="FHa-6u-mSH"/>
+                            <constraint firstItem="p6D-FR-mHE" firstAttribute="trailing" secondItem="O4j-PU-J9a" secondAttribute="trailingMargin" id="j58-lz-r3t"/>
+                            <constraint firstItem="xDc-pw-Lco" firstAttribute="top" secondItem="kP3-BY-W51" secondAttribute="bottom" constant="8" id="k8z-Fy-DFY"/>
+                            <constraint firstItem="p6D-FR-mHE" firstAttribute="leading" secondItem="O4j-PU-J9a" secondAttribute="leadingMargin" id="wGW-Du-bDW"/>
+                            <constraint firstItem="BoJ-1B-wAH" firstAttribute="top" secondItem="p6D-FR-mHE" secondAttribute="bottom" id="zWW-zB-ZdC"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="About Mezzo" id="lI7-uL-QvU"/>
                 </viewController>
@@ -1630,6 +1670,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Logo" width="245" height="245"/>
         <image name="blue profile" width="48" height="48"/>
         <image name="checked box" width="28" height="28"/>
         <image name="expand" width="48" height="48"/>
