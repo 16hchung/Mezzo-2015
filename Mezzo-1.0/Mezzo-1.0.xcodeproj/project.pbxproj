@@ -50,6 +50,7 @@
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
 		A6B8BA6C1B52206600C0B393 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8BA6B1B52206600C0B393 /* User.swift */; };
+		A6F33F7A1B754E810081B9C4 /* SingleDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6B8BA6B1B52206600C0B393 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
 		B30E2CDA3FF5F9E5039CBB7B /* Pods-Mezzo-1.0.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.release.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.release.xcconfig"; sourceTree = "<group>"; };
 		EA4BE1759D6096657F83554E /* Pods_Mezzo_1_0.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mezzo_1_0.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD22340553C804377552CADD /* Pods-Mezzo-1.0.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Mezzo-1.0.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Mezzo-1.0/Pods-Mezzo-1.0.debug.xcconfig"; sourceTree = "<group>"; };
@@ -310,6 +312,7 @@
 				8D5835741B6B26D00027FE55 /* Log in */,
 				8D5835641B6AC3300027FE55 /* New Donation */,
 				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
+				A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -556,6 +559,7 @@
 				8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */,
 				8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */,
 				8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */,
+				A6F33F7A1B754E810081B9C4 /* SingleDonationViewController.swift in Sources */,
 				8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */,
 				8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */,
 				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
