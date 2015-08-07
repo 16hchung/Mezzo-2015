@@ -121,14 +121,12 @@ class WeeklyHoursViewController: UIViewController {
             let startTime = NSDate(timeInterval: 3600, sinceDate: fromTimePicker.date)
             // 3600 seconds in 1 hour
             toTimePicker.minimumDate = startTime
-            toTimePicker.setDate(startTime, animated: true)
             
             mixpanel.track("edit setting", properties: ["field" : "from time changed", "value" : "N/A"])
         case toTimePicker:
             let endTime = NSDate(timeInterval: -3600, sinceDate: toTimePicker.date)
             
             fromTimePicker.maximumDate = endTime
-            fromTimePicker.setDate(endTime, animated: true)
             
             mixpanel.track("edit setting", properties: ["field" : "to time changed", "value" : "N/A"])
         default:

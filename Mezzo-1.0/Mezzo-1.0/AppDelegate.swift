@@ -15,7 +15,7 @@ import FBSDKCoreKit
 import Mixpanel
 
 /// global debug variable -- switches between production and development Parse apps based on its value
-var debugMode = false
+var debugMode = true
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
