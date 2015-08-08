@@ -6,6 +6,7 @@ PODS:
     - Bolts/Tasks
   - Bolts/Tasks (1.2.0)
   - ConvenienceKit (0.2.0)
+  - DatePickerCell (1.0.2)
   - FBSDKCoreKit (4.4.0):
     - Bolts (~> 1.1)
     - FBSDKCoreKit/arc (= 4.4.0)
@@ -28,6 +29,7 @@ PODS:
 
 DEPENDENCIES:
   - ConvenienceKit
+  - DatePickerCell
   - FBSDKCoreKit (~> 4.4)
   - Mixpanel
   - Parse
@@ -37,6 +39,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Bolts: d176cb1e0012175589e389a9db49b85e27787576
   ConvenienceKit: 947032f82c3d419d107e0cbde1fcb725e9c7ed62
+  DatePickerCell: b2abd1f6ba08f01da11baee73a503d6dc33f3118
   FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
   Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
   Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881

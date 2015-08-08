@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import Mixpanel
+import DatePickerCell
 
 class WeeklyHoursViewController: UIViewController {
 
@@ -27,6 +28,7 @@ class WeeklyHoursViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     
     var weeklyHours: [String : (start: NSDate?, end: NSDate?)] = [:]
+    var datePickerCells: NSArray = []
 
     // MARK: VC lifecycle
     
