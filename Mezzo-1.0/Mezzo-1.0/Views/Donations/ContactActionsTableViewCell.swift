@@ -9,12 +9,22 @@
 import UIKit
 
 class ContactActionsTableViewCell: UITableViewCell {
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    @IBAction func callButtonPressed(sender: UIButton) {
+    }
 
+    @IBAction func emailButtonPressed(sender: UIButton) {
+    }
+    
+    @IBAction func routeButtonPressed(sender: UIButton) {
+    }
+    
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
