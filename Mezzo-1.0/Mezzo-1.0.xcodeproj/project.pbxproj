@@ -28,11 +28,15 @@
 		8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */; };
 		8D58357F1B6B275A0027FE55 /* WeeklyHoursViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D58357E1B6B275A0027FE55 /* WeeklyHoursViewController.swift */; };
 		8D5835811B6BCA8C0027FE55 /* FoodPreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5835801B6BCA8C0027FE55 /* FoodPreferencesViewController.swift */; };
-		8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */; };
 		8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */; };
 		8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */; };
 		8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */; };
 		8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */; };
+		8D73FA2F1B757F4E007FD1C5 /* DonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA2E1B757F4E007FD1C5 /* DonationsViewController.swift */; };
+		8D73FA311B758015007FD1C5 /* OrgOfferedActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA301B758015007FD1C5 /* OrgOfferedActionsTableViewCell.swift */; };
+		8D73FA331B75802E007FD1C5 /* ContactActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */; };
+		8D73FA351B758041007FD1C5 /* CancelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */; };
+		8D73FA371B758053007FD1C5 /* PickupConfirmationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
 		8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC181B4D9F250020DB33 /* Donation.swift */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
@@ -90,11 +94,15 @@
 		8D58357C1B6B273F0027FE55 /* MyInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyInfoViewController.swift; sourceTree = "<group>"; };
 		8D58357E1B6B275A0027FE55 /* WeeklyHoursViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyHoursViewController.swift; sourceTree = "<group>"; };
 		8D5835801B6BCA8C0027FE55 /* FoodPreferencesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FoodPreferencesViewController.swift; sourceTree = "<group>"; };
-		8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
 		8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05BE1B51B4E600CDE5B9 /* ParseHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseHelper.swift; sourceTree = "<group>"; };
 		8D6B05C71B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		8D6B05C91B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationBodyTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA2E1B757F4E007FD1C5 /* DonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationsViewController.swift; sourceTree = "<group>"; };
+		8D73FA301B758015007FD1C5 /* OrgOfferedActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrgOfferedActionsTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactActionsTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupConfirmationTableViewCell.swift; sourceTree = "<group>"; };
 		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
@@ -311,7 +319,7 @@
 				8D5835791B6B26DA0027FE55 /* Settings */,
 				8D5835741B6B26D00027FE55 /* Log in */,
 				8D5835641B6AC3300027FE55 /* New Donation */,
-				8D6B05B31B4DC5FC00CDE5B9 /* DonationsViewController.swift */,
+				8D73FA2E1B757F4E007FD1C5 /* DonationsViewController.swift */,
 				A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */,
 			);
 			path = "View Controllers";
@@ -343,6 +351,10 @@
 			isa = PBXGroup;
 			children = (
 				8D6B05B81B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift */,
+				8D73FA301B758015007FD1C5 /* OrgOfferedActionsTableViewCell.swift */,
+				8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */,
+				8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */,
+				8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -550,19 +562,23 @@
 			files = (
 				8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */,
 				8D58357F1B6B275A0027FE55 /* WeeklyHoursViewController.swift in Sources */,
+				8D73FA371B758053007FD1C5 /* PickupConfirmationTableViewCell.swift in Sources */,
 				8D3739E11B7129AB003EB53A /* TimeHelper.swift in Sources */,
 				8D5835811B6BCA8C0027FE55 /* FoodPreferencesViewController.swift in Sources */,
 				8D58357B1B6B26DA0027FE55 /* MezzoSettingsViewController.swift in Sources */,
 				8D58357D1B6B273F0027FE55 /* MyInfoViewController.swift in Sources */,
 				8D40EF761B66FCAC0093A10B /* ParseLoginHelper.swift in Sources */,
+				8D73FA2F1B757F4E007FD1C5 /* DonationsViewController.swift in Sources */,
 				8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */,
+				8D73FA351B758041007FD1C5 /* CancelTableViewCell.swift in Sources */,
 				8D5835701B6AC42D0027FE55 /* OrganizationChooserViewController.swift in Sources */,
+				8D73FA331B75802E007FD1C5 /* ContactActionsTableViewCell.swift in Sources */,
+				8D73FA311B758015007FD1C5 /* OrgOfferedActionsTableViewCell.swift in Sources */,
 				8D40EF7A1B67F3640093A10B /* ErrorHandling.swift in Sources */,
 				8D6B05C81B52728700CDE5B9 /* OrganizationHeaderTableViewCell.swift in Sources */,
 				A6F33F7A1B754E810081B9C4 /* SingleDonationViewController.swift in Sources */,
 				8D5835781B6B26D00027FE55 /* SignUpViewController.swift in Sources */,
 				8D6B05CA1B52729700CDE5B9 /* OrganizationBodyTableViewCell.swift in Sources */,
-				8D6B05B41B4DC5FC00CDE5B9 /* DonationsViewController.swift in Sources */,
 				8D5835771B6B26D00027FE55 /* MezzoLoginViewController.swift in Sources */,
 				8D6B05B91B51ADE100CDE5B9 /* DonationHeaderTableViewCell.swift in Sources */,
 				A6B8BA6C1B52206600C0B393 /* User.swift in Sources */,
