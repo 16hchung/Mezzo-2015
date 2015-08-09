@@ -23,15 +23,7 @@ class WeeklyHoursViewController: UIViewController {
     var fromTimePicker: UIDatePicker!
     var toTimePicker: UIDatePicker!
     
-    var fromMax: NSDate! {
-        didSet {
-            let cell = timePickerCells[0][0] as! DatePickerCell
-            if cell.date > fromMax {
-                fromTimePicker.maximumDate = fromMax
-                cell.date = fromMax
-            }
-        }
-    }
+    var fromMax: NSDate!
     var fromDate: NSDate! {
         didSet {
             fromTimePicker.date = fromDate
@@ -41,10 +33,8 @@ class WeeklyHoursViewController: UIViewController {
     var toMin: NSDate! {
         didSet {
             let cell = timePickerCells[1][0] as! DatePickerCell
-            if cell.date < toMin {
-                toTimePicker.minimumDate = toMin
-                cell.date = toMin
-            }
+            toTimePicker.minimumDate = toMin
+            if cell.date < toMin { cell.date = toMin }
         }
     }
     var toDate: NSDate! {
