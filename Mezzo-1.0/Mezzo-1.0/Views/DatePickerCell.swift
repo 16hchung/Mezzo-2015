@@ -1,12 +1,11 @@
 //
-//  DVDatePickerTableViewCell.swift
-//  DVDatePickerTableViewCellDemo
+//  DatePickerCell.swift
+//  Mezzo-1.0
 //
-//  Created by Dylan Vann on 2014-10-21.
+//  Created by Claire Huang on 8/8/15.
+//  Copyright (c) 2015 MezzoAwesomeness. All rights reserved.
 //  Copyright (c) 2014 Dylan Vann. All rights reserved.
-//
 
-import Foundation
 import UIKit
 
 /**
@@ -46,15 +45,16 @@ public class DatePickerCell: UITableViewCell {
     public var date:NSDate = NSDate() {
         didSet {
             datePicker.date = date
-            DatePickerCell.Stored.dateFormatter.dateStyle = dateStyle
+            //            DatePickerCell.Stored.dateFormatter.dateStyle = dateStyle
             DatePickerCell.Stored.dateFormatter.timeStyle = timeStyle
+            DatePickerCell.Stored.dateFormatter == "HH:mm a"
             rightLabel.text = DatePickerCell.Stored.dateFormatter.stringFromDate(date)
         }
     }
     /// The timestyle.
     public var timeStyle = NSDateFormatterStyle.ShortStyle
     /// The datestyle.
-    public var dateStyle = NSDateFormatterStyle.MediumStyle
+    //    public var dateStyle = NSDateFormatterStyle.NoStyle
     
     /// Label on the left side of the cell.
     public var leftLabel = UILabel()
@@ -83,11 +83,10 @@ public class DatePickerCell: UITableViewCell {
     */
     override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-                
-        setup()
+        setup(reuseIdentifier!)
     }
     
-    private func setup() {
+    private func setup(leftLabelText: String) {
         // The datePicker overhangs the view slightly to avoid invalid constraints.
         self.clipsToBounds = true
         
@@ -278,21 +277,23 @@ public class DatePickerCell: UITableViewCell {
             ),
             ])
         
-        datePicker.addTarget(self, action: "datePicked", forControlEvents: UIControlEvents.ValueChanged)
+        datePicker.datePickerMode = UIDatePickerMode.Time
+        datePicker.minuteInterval = 10
+        datePicker.addTarget(self, action: "dateChanged", forControlEvents: .ValueChanged)
         let timeIntervalSinceReferenceDateWithoutSeconds = floor(date.timeIntervalSinceReferenceDate / 60.0) * 60.0 // Clear seconds.
         self.date = NSDate(timeIntervalSinceReferenceDate: timeIntervalSinceReferenceDateWithoutSeconds)
-        leftLabel.text = "Date Picker"
+        leftLabel.text = leftLabelText
     }
     
     /**
     Needed for initialization from a storyboard.
-
+    
     :param: aDecoder An unarchiver object.
     :returns: An initialized DatePickerCell object or nil if the object could not be created.
     */
     required public init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        setup()
+        setup("Date Picker")
     }
     
     /**
@@ -314,15 +315,14 @@ public class DatePickerCell: UITableViewCell {
         expanded = !expanded
         
         UIView.transitionWithView(rightLabel, duration: 0.25, options:UIViewAnimationOptions.TransitionCrossDissolve, animations: { () -> Void in
-                self.rightLabel.textColor = self.expanded ? self.tintColor : self.rightLabelTextColor
-        }, completion: nil)
+            self.rightLabel.textColor = self.expanded ? self.tintColor : self.rightLabelTextColor
+            }, completion: nil)
         
         tableView.beginUpdates()
         tableView.endUpdates()
     }
     
-    // Action for the datePicker ValueChanged event.
-    func datePicked() {
+    func dateChanged() {
         date = datePicker.date
     }
 }

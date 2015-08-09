@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -1352,7 +1352,7 @@ Awards:
         <!--Weekly Hours-->
         <scene sceneID="dsy-JZ-RCp">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="qgW-dL-eOr" customClass="WeeklyHoursViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="WeeklyHours" automaticallyAdjustsScrollViewInsets="NO" id="qgW-dL-eOr" customClass="WeeklyHoursViewController" customModule="Mezzo_1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zVm-W5-Ag6"/>
                         <viewControllerLayoutGuide type="bottom" id="Vz3-qS-VQ7"/>
@@ -1445,9 +1445,9 @@ Awards:
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="PJx-xh-ADD">
-                                <rect key="frame" x="16" y="157" width="285" height="28"/>
+                                <rect key="frame" x="16" y="157" width="568" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                <state key="normal" title="I'm not available at all on Mondays." image="unchecked box">
+                                <state key="normal" title="I'm not available at all on Mondays" image="unchecked box">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1458,7 +1458,7 @@ Awards:
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="q9z-2r-kfJ">
-                                <rect key="frame" x="16" y="193" width="236" height="28"/>
+                                <rect key="frame" x="16" y="193" width="568" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <state key="normal" title="I am available on Mondays..." image="unchecked box">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -1470,7 +1470,7 @@ Awards:
                                     <action selector="foodTypeButtonSelected:" destination="gqo-Z8-jTQ" eventType="touchUpInside" id="zbB-O4-fzs"/>
                                 </connections>
                             </button>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLc-4i-Go8">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aLc-4i-Go8">
                                 <rect key="frame" x="0.0" y="229" width="600" height="371"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XxQ-iZ-M2o">
@@ -1552,6 +1552,27 @@ Awards:
                                     <constraint firstAttribute="width" secondItem="XxQ-iZ-M2o" secondAttribute="width" id="eE7-tK-5M7"/>
                                 </constraints>
                             </scrollView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8wG-nk-gLW">
+                                <rect key="frame" x="0.0" y="229" width="600" height="371"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="tXR-n2-WFG">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="tXR-n2-WFG" id="4mc-jF-4C0">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="jmv-Nv-Cw1">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jmv-Nv-Cw1" id="Mg6-HS-KnB">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <sections/>
+                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="utJ-nH-NvJ">
                                 <rect key="frame" x="2" y="146" width="596" height="5"/>
                                 <color key="backgroundColor" red="0.0" green="0.4823529411764706" blue="0.72156862745098038" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1563,19 +1584,22 @@ Awards:
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Zzh-RN-yZG" firstAttribute="leading" secondItem="LAB-rh-jOZ" secondAttribute="leadingMargin" id="05W-P5-qJi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="q9z-2r-kfJ" secondAttribute="trailing" id="0Rm-bi-sL6"/>
                             <constraint firstItem="pRQ-Mm-FXm" firstAttribute="width" secondItem="gYh-Yn-nKE" secondAttribute="width" id="0SB-ni-Jy8"/>
                             <constraint firstItem="utJ-nH-NvJ" firstAttribute="leading" secondItem="LAB-rh-jOZ" secondAttribute="leadingMargin" constant="-14" id="1cq-bf-6ii"/>
                             <constraint firstItem="PJx-xh-ADD" firstAttribute="leading" secondItem="9hi-hj-JtS" secondAttribute="leading" id="1r3-Ui-LrK"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="q9z-2r-kfJ" secondAttribute="trailing" id="6Jh-vD-TzV"/>
                             <constraint firstItem="q9z-2r-kfJ" firstAttribute="leading" secondItem="PJx-xh-ADD" secondAttribute="leading" id="7rj-12-lSU"/>
                             <constraint firstItem="9hi-hj-JtS" firstAttribute="leading" secondItem="LAB-rh-jOZ" secondAttribute="leadingMargin" id="AgB-OR-VRb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4V2-Rx-gRR" secondAttribute="trailing" id="C3M-1I-Z7t"/>
                             <constraint firstItem="ckh-7V-z78" firstAttribute="leading" secondItem="1EX-VB-bnj" secondAttribute="trailing" constant="2" id="EmF-dp-Rbt"/>
                             <constraint firstItem="4V2-Rx-gRR" firstAttribute="centerY" secondItem="pRQ-Mm-FXm" secondAttribute="centerY" id="FV3-dC-2T8"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8wG-nk-gLW" secondAttribute="trailing" constant="-16" id="G9I-j5-Ygq"/>
                             <constraint firstItem="1EX-VB-bnj" firstAttribute="leading" secondItem="Lp6-z1-HPR" secondAttribute="trailing" constant="2" id="Gmk-EU-Tp2"/>
                             <constraint firstItem="9hi-hj-JtS" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="LAB-rh-jOZ" secondAttribute="trailingMargin" id="Hjp-jy-uFg"/>
+                            <constraint firstItem="8wG-nk-gLW" firstAttribute="top" secondItem="q9z-2r-kfJ" secondAttribute="bottom" constant="8" id="JlG-YD-OfF"/>
                             <constraint firstItem="Zzh-RN-yZG" firstAttribute="top" secondItem="utJ-nH-NvJ" secondAttribute="top" id="MGH-5e-NVD"/>
                             <constraint firstItem="aLc-4i-Go8" firstAttribute="leading" secondItem="LAB-rh-jOZ" secondAttribute="leadingMargin" constant="-16" id="N0E-Pm-Z31"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PJx-xh-ADD" secondAttribute="trailing" id="PeP-5h-D3q"/>
                             <constraint firstItem="Zzh-RN-yZG" firstAttribute="bottom" secondItem="utJ-nH-NvJ" secondAttribute="bottom" id="QWB-Zu-RFE"/>
                             <constraint firstItem="Vz3-qS-VQ7" firstAttribute="top" secondItem="aLc-4i-Go8" secondAttribute="bottom" id="SdR-Ne-nMb"/>
                             <constraint firstItem="pRQ-Mm-FXm" firstAttribute="width" secondItem="4V2-Rx-gRR" secondAttribute="width" id="U20-oJ-WWe"/>
@@ -1585,7 +1609,7 @@ Awards:
                             <constraint firstItem="utJ-nH-NvJ" firstAttribute="top" secondItem="Zzh-RN-yZG" secondAttribute="bottom" constant="-3" id="XN8-6b-DL4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="aLc-4i-Go8" secondAttribute="trailing" constant="-16" id="a89-eQ-L3I"/>
                             <constraint firstItem="pRQ-Mm-FXm" firstAttribute="leading" secondItem="gYh-Yn-nKE" secondAttribute="trailing" constant="2" id="acm-VZ-lwK"/>
-                            <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="PJx-xh-ADD" secondAttribute="trailing" id="bMK-J8-dXu"/>
+                            <constraint firstItem="Vz3-qS-VQ7" firstAttribute="top" secondItem="8wG-nk-gLW" secondAttribute="bottom" id="byo-Kd-pCR"/>
                             <constraint firstItem="1EX-VB-bnj" firstAttribute="centerY" secondItem="Lp6-z1-HPR" secondAttribute="centerY" id="gBX-39-667"/>
                             <constraint firstItem="Zzh-RN-yZG" firstAttribute="top" secondItem="9hi-hj-JtS" secondAttribute="bottom" constant="8" id="gLC-ZH-Xwo"/>
                             <constraint firstItem="gYh-Yn-nKE" firstAttribute="leading" secondItem="ckh-7V-z78" secondAttribute="trailing" constant="2" id="h9s-p8-r3I"/>
@@ -1597,6 +1621,7 @@ Awards:
                             <constraint firstItem="4V2-Rx-gRR" firstAttribute="trailing" secondItem="utJ-nH-NvJ" secondAttribute="trailing" constant="-8" id="nYz-GM-yfK"/>
                             <constraint firstItem="pRQ-Mm-FXm" firstAttribute="width" secondItem="Lp6-z1-HPR" secondAttribute="width" id="oEr-8D-45d"/>
                             <constraint firstItem="utJ-nH-NvJ" firstAttribute="top" secondItem="Zzh-RN-yZG" secondAttribute="bottom" id="rBe-n6-gec"/>
+                            <constraint firstItem="8wG-nk-gLW" firstAttribute="leading" secondItem="LAB-rh-jOZ" secondAttribute="leadingMargin" constant="-16" id="scC-jU-iFB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="utJ-nH-NvJ" secondAttribute="trailing" constant="-14" id="sdy-YR-zxr"/>
                             <constraint firstItem="pRQ-Mm-FXm" firstAttribute="width" secondItem="1EX-VB-bnj" secondAttribute="width" id="tzD-J1-xJk"/>
                             <constraint firstAttribute="height" secondItem="XxQ-iZ-M2o" secondAttribute="height" priority="750" constant="236" id="wF6-KE-xxz"/>
@@ -1626,8 +1651,7 @@ Awards:
                     <connections>
                         <outlet property="availableOptionButton" destination="q9z-2r-kfJ" id="IKd-OQ-E9e"/>
                         <outlet property="fromTimePicker" destination="dcZ-Q2-tXO" id="0ky-DV-P8p"/>
-                        <outlet property="scrollView" destination="aLc-4i-Go8" id="vQj-Mv-Mzs"/>
-                        <outlet property="timePickingContentView" destination="XxQ-iZ-M2o" id="qDM-fU-J4r"/>
+                        <outlet property="timeTableView" destination="8wG-nk-gLW" id="l7L-Df-9Nr"/>
                         <outlet property="toTimePicker" destination="c56-TW-MWI" id="bEX-Qh-mpb"/>
                         <outlet property="unavailableOptionButton" destination="PJx-xh-ADD" id="Myf-Ot-lkC"/>
                         <outletCollection property="weekdayButtons" destination="pRQ-Mm-FXm" collectionClass="NSMutableArray" id="0ro-Xo-aHw"/>

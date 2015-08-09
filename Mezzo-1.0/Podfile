@@ -7,8 +7,7 @@ platform :ios, '8.0'
 
 target 'Mezzo-1.0' do
 	pod "RMDateSelectionViewController", "~> 2.0.1"
-    pod 'DatePickerCell'
-    
+#    pod 'DatePickerCell', :podspec => 'https://raw.github.com/team-mezzo/DatePickerCell/master/DatePickerCell.podspec'
     pod 'FBSDKCoreKit', '~> 4.4'
 	pod 'Parse'
     pod 'ParseUI'

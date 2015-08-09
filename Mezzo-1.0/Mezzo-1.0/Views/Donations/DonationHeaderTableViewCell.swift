@@ -59,7 +59,7 @@ class DonationHeaderTableViewCell: UITableViewCell {
     weak var donation: Donation! {
         didSet {
             if let donation = donation {
-                multiLineLabels = [timeLabel, statusLabel, foodDetailsLabel, locationButton.titleLabel, pendingOrgListLabel]
+//                multiLineLabels = [timeLabel, statusLabel, foodDetailsLabel, locationButton.titleLabel, pendingOrgListLabel]
                 
                 hideDeclinedOptions(true)
                 hidePickupTimePastOptions(true)

@@ -54,7 +54,6 @@ code_sign_if_enabled() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'Pods-Mezzo-1.0/Bolts.framework'
   install_framework 'Pods-Mezzo-1.0/ConvenienceKit.framework'
-  install_framework 'Pods-Mezzo-1.0/DatePickerCell.framework'
   install_framework 'Pods-Mezzo-1.0/FBSDKCoreKit.framework'
   install_framework 'Pods-Mezzo-1.0/Mixpanel.framework'
   install_framework 'Pods-Mezzo-1.0/Parse.framework'
@@ -65,7 +64,6 @@ fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'Pods-Mezzo-1.0/Bolts.framework'
   install_framework 'Pods-Mezzo-1.0/ConvenienceKit.framework'
-  install_framework 'Pods-Mezzo-1.0/DatePickerCell.framework'
   install_framework 'Pods-Mezzo-1.0/FBSDKCoreKit.framework'
   install_framework 'Pods-Mezzo-1.0/Mixpanel.framework'
   install_framework 'Pods-Mezzo-1.0/Parse.framework'

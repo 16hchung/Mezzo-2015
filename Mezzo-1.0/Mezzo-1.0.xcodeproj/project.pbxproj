@@ -52,6 +52,7 @@
 		A64509351B4C32B700D1C8BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */; };
 		A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509361B4C32C000D1C8BE /* libz.dylib */; };
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
+		A665AE991B76CC6A00BC5882 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A665AE981B76CC6A00BC5882 /* DatePickerCell.swift */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
 		A6B8BA6C1B52206600C0B393 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8BA6B1B52206600C0B393 /* User.swift */; };
 		A6F33F7A1B754E810081B9C4 /* SingleDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */; };
@@ -119,6 +120,7 @@
 		A64509341B4C32B700D1C8BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A64509361B4C32C000D1C8BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		A665AE981B76CC6A00BC5882 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6B8BA6B1B52206600C0B393 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
@@ -343,6 +345,7 @@
 				8D6B05BA1B51AE0400CDE5B9 /* New Donation */,
 				A6DCE8681B4B960C00ADA2EC /* Donations */,
 				8D3739DE1B712992003EB53A /* KeyboardHelper.swift */,
+				A665AE981B76CC6A00BC5882 /* DatePickerCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */,
 				8D18DECD1B48359F004E3087 /* AppDelegate.swift in Sources */,
 				8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */,
+				A665AE991B76CC6A00BC5882 /* DatePickerCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
