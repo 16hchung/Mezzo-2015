@@ -8,17 +8,17 @@
 
 import UIKit
 
+protocol PendingOrgActionsCellDelegate: class {
+    func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
+    func showDeclineDialogue(cell: DonationHeaderTableViewCell)
+
+}
+
 class OrgOfferedActionsTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var declineButton: UIButton!
+    
+    
 
 }

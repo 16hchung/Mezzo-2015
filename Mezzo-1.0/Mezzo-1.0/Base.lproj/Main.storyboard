@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="112" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="127" id="kHh-SL-O7p" customClass="DonationHeaderTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="127" id="kHh-SL-O7p" customClass="DonationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kHh-SL-O7p" id="9yz-OS-nlW">
@@ -53,7 +53,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍅🍉🍚🍞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtn-KR-Jqt">
-                                                    <rect key="frame" x="22" y="95" width="84" height="20"/>
+                                                    <rect key="frame" x="22" y="97" width="84" height="20"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -63,8 +63,9 @@
                                                 <constraint firstItem="mtn-KR-Jqt" firstAttribute="leading" secondItem="bfB-ZX-hzS" secondAttribute="leading" id="24R-VL-3jR"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="top" secondItem="9yz-OS-nlW" secondAttribute="top" constant="16" id="2LV-8y-HwR"/>
                                                 <constraint firstItem="6RI-Pk-GT5" firstAttribute="top" secondItem="OdY-Mr-IBj" secondAttribute="bottom" id="3ue-PI-KS9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mtn-KR-Jqt" secondAttribute="bottom" constant="1" id="9mb-1k-dnt"/>
                                                 <constraint firstItem="6RI-Pk-GT5" firstAttribute="leading" secondItem="OdY-Mr-IBj" secondAttribute="leading" constant="10" id="EcR-I9-hXx"/>
-                                                <constraint firstItem="mtn-KR-Jqt" firstAttribute="top" secondItem="bfB-ZX-hzS" secondAttribute="bottom" constant="2" id="GUE-be-yWh"/>
+                                                <constraint firstItem="mtn-KR-Jqt" firstAttribute="top" secondItem="bfB-ZX-hzS" secondAttribute="bottom" constant="4" id="GUE-be-yWh"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mtn-KR-Jqt" secondAttribute="bottom" id="LQm-Yh-tbC"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="top" secondItem="6RI-Pk-GT5" secondAttribute="bottom" constant="4" id="ZeO-QH-VQI"/>
                                                 <constraint firstItem="cIg-db-JZO" firstAttribute="leading" secondItem="6RI-Pk-GT5" secondAttribute="trailing" constant="8" id="gMD-Ty-xar"/>
@@ -76,16 +77,19 @@
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="LQm-Yh-tbC"/>
+                                                    <exclude reference="hRV-i9-zD1"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="entityNameLabel" destination="OdY-Mr-IBj" id="osh-QJ-SHQ"/>
-                                            <outlet property="statusLabel" destination="bfB-ZX-hzS" id="OMV-5B-Ene"/>
-                                            <outlet property="timeLabel" destination="cIg-db-JZO" id="DUg-Wv-WuK"/>
+                                            <outlet property="foodLabel" destination="mtn-KR-Jqt" id="Ri2-lI-czq"/>
+                                            <outlet property="nameLabel" destination="OdY-Mr-IBj" id="Z29-ir-mjO"/>
+                                            <outlet property="statusLabel" destination="bfB-ZX-hzS" id="0hI-SD-ln6"/>
+                                            <outlet property="timeLabel" destination="6RI-Pk-GT5" id="Me1-HV-lnO"/>
+                                            <outlet property="weekdayLabel" destination="cIg-db-JZO" id="lW8-hm-tlK"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="PLE-tT-b5G" customClass="OrgOfferedActionsTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Pending Org Options" rowHeight="46" id="PLE-tT-b5G" customClass="OrgOfferedActionsTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PLE-tT-b5G" id="bwL-mj-acc">
@@ -123,8 +127,12 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <connections>
+                                            <outlet property="acceptButton" destination="ygu-8I-39G" id="Jum-nd-cEv"/>
+                                            <outlet property="declineButton" destination="feU-gI-cgD" id="yFa-cx-roh"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="E0V-v8-oZp" customClass="PickupConfirmationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Pickup Confirmation" rowHeight="77" id="E0V-v8-oZp" customClass="PickupConfirmationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E0V-v8-oZp" id="dTI-6D-vCt">
@@ -174,7 +182,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="46" id="6ta-zP-29f" customClass="ContactActionsTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact Options" rowHeight="46" id="6ta-zP-29f" customClass="ContactActionsTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6ta-zP-29f" id="BXk-bg-rHv">
@@ -237,7 +245,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="77" id="8bv-60-Jl8" customClass="CancelTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cancel Option" rowHeight="77" id="8bv-60-Jl8" customClass="CancelTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8bv-60-Jl8" id="wf0-Ft-UUS">

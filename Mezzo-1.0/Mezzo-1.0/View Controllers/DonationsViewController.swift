@@ -415,21 +415,21 @@ extension DonationsViewController: UITableViewDataSource {
     
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let headerCell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationHeaderTableViewCell
-        headerCell.delegate = self
+        let cell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationTableViewCell
+//        headerCell.delegate = self
         
         let donation = orderedDonationKeys[indexPath.row]
-        headerCell.pendingOffers = donations[donation]
-        headerCell.donation = donation
+//        headerCell.pendingOffers = donations[donation]
+        cell.donation = donation
         
 //        headerCell.updateConstraintsIfNeeded()
-        for label in headerCell.multiLineLabels! {
-            label.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds)
-        }
-        headerCell.setNeedsLayout()
-        headerCell.layoutIfNeeded()
+//        for label in headerCell.multiLineLabels! {
+//            label.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds)
+//        }
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
         
-        return headerCell
+        return cell
         
     }
     

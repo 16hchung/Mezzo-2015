@@ -37,6 +37,7 @@
 		8D73FA331B75802E007FD1C5 /* ContactActionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */; };
 		8D73FA351B758041007FD1C5 /* CancelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */; };
 		8D73FA371B758053007FD1C5 /* PickupConfirmationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */; };
+		8D73FA391B78FEF0007FD1C5 /* DonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA381B78FEF0007FD1C5 /* DonationTableViewCell.swift */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
 		8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC181B4D9F250020DB33 /* Donation.swift */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
@@ -104,6 +105,7 @@
 		8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactActionsTableViewCell.swift; sourceTree = "<group>"; };
 		8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelTableViewCell.swift; sourceTree = "<group>"; };
 		8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupConfirmationTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA381B78FEF0007FD1C5 /* DonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationTableViewCell.swift; sourceTree = "<group>"; };
 		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
@@ -358,6 +360,7 @@
 				8D73FA321B75802E007FD1C5 /* ContactActionsTableViewCell.swift */,
 				8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */,
 				8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */,
+				8D73FA381B78FEF0007FD1C5 /* DonationTableViewCell.swift */,
 			);
 			path = Donations;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				8D3739DF1B712992003EB53A /* KeyboardHelper.swift in Sources */,
 				8D5835711B6AC42D0027FE55 /* PickupTimeViewController.swift in Sources */,
 				8D6B05BF1B51B4E600CDE5B9 /* ParseHelper.swift in Sources */,
+				8D73FA391B78FEF0007FD1C5 /* DonationTableViewCell.swift in Sources */,
 				A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */,
 				8D18DECD1B48359F004E3087 /* AppDelegate.swift in Sources */,
 				8D58356F1B6AC42D0027FE55 /* NewDonationViewController.swift in Sources */,
