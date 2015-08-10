@@ -7,18 +7,29 @@
 //
 
 import UIKit
+import Mixpanel
+
+protocol PickupConfirmationCellDelegate: class {
+    func completeDonation(cell: PickupConfirmationTableViewCell)
+    func showNeverPickedUpDialogue(cell: PickupConfirmationTableViewCell)
+}
 
 class PickupConfirmationTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var donation: Donation!
+    weak var delegate: PickupConfirmationCellDelegate!
+    
+    @IBAction func donationCompleted(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "pickup completed", "donation state" : donation.donationState.rawValue])
+        
+        delegate?.completeDonation(self)
     }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    @IBAction func donationNeverCompleted(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "pickup never completed", "donation state" : donation.donationState.rawValue])
+        delegate?.showNeverPickedUpDialogue(self)
     }
-
+    
 }

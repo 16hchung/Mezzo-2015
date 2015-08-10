@@ -408,29 +408,70 @@ extension DonationsViewController: UITableViewDataSource {
     
     // MARK: Cells
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return donations.count
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let donation = orderedDonationKeys[section]
+        if let donorUser = (PFUser.currentUser() as? User)?.donor where donation.donationState == .Offered {
+            return 1
+        } else {
+            return 2
+        }
     }
     
     
     // load a new table view cell with donor's name and time of next donation (if applicable)
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationTableViewCell
-//        headerCell.delegate = self
+        let donation = orderedDonationKeys[indexPath.section]
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("Donation Header", forIndexPath: indexPath) as! DonationTableViewCell
+            cell.donation = donation
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+            
+            return cell
+        } else {
+            if let donorUser = (PFUser.currentUser() as? User)?.donor {
+                switch donation.donationState {
+                case .Accepted:
+                    if donation.orgSpecificTime > NSDate() {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("Contact Options", forIndexPath: indexPath) as! ContactActionsTableViewCell
+                        cell.donation = donation
+                        return cell
+                    } else {
+                        let cell = tableView.dequeueReusableCellWithIdentifier("Pickup Confirmation", forIndexPath: indexPath) as! PickupConfirmationTableViewCell
+                        cell.delegate = self
+                        cell.donation = donation
+                        return cell
+                    }
+                case .Declined:
+                    let cell = tableView.dequeueReusableCellWithIdentifier("Cancel Option", forIndexPath: indexPath) as! CancelTableViewCell
+                    cell.donation = donation
+                    cell.delegate = self
+                    return cell
+                default:
+                    break
+                }
+            } else {
+                switch donation.donationState {
+                case .Accepted:
+                    let cell = tableView.dequeueReusableCellWithIdentifier("Contact Options", forIndexPath: indexPath) as! ContactActionsTableViewCell
+                    cell.donation = donation
+                    return cell
+                case .Offered:
+                    let cell = tableView.dequeueReusableCellWithIdentifier("Pending Org Options", forIndexPath: indexPath) as! OrgOfferedActionsTableViewCell
+                    cell.donation = donation
+                    cell.delegate = self
+                    return cell
+                default:
+                    break
+                }
+            }
+        }
         
-        let donation = orderedDonationKeys[indexPath.row]
-//        headerCell.pendingOffers = donations[donation]
-        cell.donation = donation
-        
-//        headerCell.updateConstraintsIfNeeded()
-//        for label in headerCell.multiLineLabels! {
-//            label.preferredMaxLayoutWidth = CGRectGetWidth(tableView.bounds)
-//        }
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        
-        return cell
-        
+        return UITableViewCell()
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -463,9 +504,9 @@ extension DonationsViewController: UITableViewDelegate {
 //    }
 //}
 
-extension DonationsViewController: DonationHeaderCellDelegate {
+extension DonationsViewController: PendingOrgActionsCellDelegate {
     
-    func showTimePickingDialogue(cell: DonationHeaderTableViewCell) {
+    func showTimePickingDialogue(cell: OrgOfferedActionsTableViewCell) {
         
         let selectAction = RMAction(title: "Select", style: RMActionStyle.Done) { controller -> Void in
             if let controller = controller as? RMDateSelectionViewController {
@@ -490,7 +531,7 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         presentViewController(controller, animated: true, completion: nil)
     }
     
-    func showDeclineDialogue(cell: DonationHeaderTableViewCell) {
+    func showDeclineDialogue(cell: OrgOfferedActionsTableViewCell) {
         
         let alertController = UIAlertController(title: nil, message: "Decline this donation offer?", preferredStyle: .ActionSheet)
         
@@ -511,14 +552,21 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func cancelDonation(cell: DonationHeaderTableViewCell) {
+}
+
+extension DonationsViewController: CancelCellDelegate {
+
+    func cancelDonation(cell: CancelTableViewCell) {
         cell.donation.setDonationState(.Cancelled) { (success, error) -> Void in
             if let error = error { ErrorHandling.defaultErrorHandler(error) }
             self.segmentedControlChanged(nil)
         }
     }
-    
-    func completeDonation(cell: DonationHeaderTableViewCell) {
+}
+
+extension DonationsViewController: PickupConfirmationCellDelegate {
+
+    func completeDonation(cell: PickupConfirmationTableViewCell) {
         let alertController = UIAlertController(title: "Donation complete", message: "Confirming that \(cell.donation.toOrganization!.name) picked up this donation?", preferredStyle: .ActionSheet)
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
@@ -535,7 +583,7 @@ extension DonationsViewController: DonationHeaderCellDelegate {
         presentViewController(alertController, animated: true, completion: nil)
     }
     
-    func showNeverPickedUpDialogue(cell: DonationHeaderTableViewCell) {
+    func showNeverPickedUpDialogue(cell: PickupConfirmationTableViewCell) {
         var explanationTextField: UITextField?
         
         let alertView = UIAlertController(title: "Incomplete donation", message: "Please briefly explain why this donation was never picked up by \(cell.donation.toOrganization!.name).", preferredStyle: .Alert)

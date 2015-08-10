@@ -7,18 +7,28 @@
 //
 
 import UIKit
+import Mixpanel
 
 protocol PendingOrgActionsCellDelegate: class {
-    func showTimePickingDialogue(cell: DonationHeaderTableViewCell)
-    func showDeclineDialogue(cell: DonationHeaderTableViewCell)
-
+    func showTimePickingDialogue(cell: OrgOfferedActionsTableViewCell)
+    func showDeclineDialogue(cell: OrgOfferedActionsTableViewCell)
 }
 
 class OrgOfferedActionsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var declineButton: UIButton!
+    weak var delegate: PendingOrgActionsCellDelegate!
+    weak var donation: Donation!
     
+    @IBAction func acceptButtonPressed(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "accept", "donation state" : donation.donationState.rawValue])
+        delegate?.showTimePickingDialogue(self)
+    }
     
+    @IBAction func declineButtonPressed(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "decline", "donation state" : donation.donationState.rawValue])
+        delegate?.showDeclineDialogue(self)
+    }
 
 }

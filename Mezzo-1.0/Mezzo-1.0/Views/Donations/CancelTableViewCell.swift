@@ -7,18 +7,21 @@
 //
 
 import UIKit
+import Mixpanel
+
+protocol CancelCellDelegate: class {
+    func cancelDonation(cell: CancelTableViewCell)
+}
 
 class CancelTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    weak var donation: Donation!
+    weak var delegate: CancelCellDelegate!
+    
+    @IBAction func cancelDonation(sender: UIButton) {
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "canceled", "donation state" : donation.donationState.rawValue])
+        delegate?.cancelDonation(self)
     }
 
 }
