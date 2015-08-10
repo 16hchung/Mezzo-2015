@@ -90,6 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             startViewController = storyboard.instantiateViewControllerWithIdentifier("NavController") as! UINavigationController
+//            startViewController = storyboard.instantiateViewControllerWithIdentifier("WeeklyHours") as! UIViewController
         } else {
             let loginViewController = MezzoLoginViewController()
             loginViewController.fields = .UsernameAndPassword | .LogInButton | .PasswordForgotten // | .Facebook
