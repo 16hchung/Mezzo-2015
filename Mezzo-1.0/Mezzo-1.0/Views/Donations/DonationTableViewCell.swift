@@ -68,12 +68,8 @@ class DonationTableViewCell: UITableViewCell {
                 displayable += NSString(UTF8String: "\u{e606}") as! String + " "
             }
         }
-//        [iconLabel setFont:[UIFont fontWithName:@"fontello" size:130]];
-//        [iconLabel setText:[NSString stringWithUTF8String:"\u2692"]];
-//        
         foodLabel.font = UIFont(name: "FoodItems", size: 20)
         foodLabel.text = displayable
-//        foodLabel.font = UIFont(name: "FoodItems.ttf", size: 16.0)
     }
     
     func populateStatusLabel() {
@@ -94,8 +90,8 @@ class DonationTableViewCell: UITableViewCell {
         }
         
         statusLabel.textColor = color
-        timeLabel.textColor = color
-        weekdayLabel.textColor = color
+//        timeLabel.textColor = color
+//        weekdayLabel.textColor = color
         
     }
 }
