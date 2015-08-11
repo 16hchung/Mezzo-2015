@@ -525,7 +525,8 @@ extension DonationsViewController: PendingOrgActionsCellDelegate {
         
         let controller = RMDateSelectionViewController(style: RMActionControllerStyle.White, title: "Pickup Time", message: "I can pick up the donation at:", selectAction: selectAction, andCancelAction: cancelAction)
         
-        controller.datePicker.minimumDate = cell.donation.donorTimeRangeStart
+//        controller.datePicker.minimumDate = cell.donation.donorTimeRangeStart
+        controller.datePicker.minimumDate = NSDate()
         controller.datePicker.maximumDate = cell.donation.donorTimeRangeEnd
         
         presentViewController(controller, animated: true, completion: nil)

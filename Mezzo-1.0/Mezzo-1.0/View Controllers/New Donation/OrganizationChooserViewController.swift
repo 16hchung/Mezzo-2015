@@ -100,7 +100,7 @@ extension OrganizationChooserViewController: UITableViewDataSource {
             return headerCell
         } else {
             let bodyCell = tableView.dequeueReusableCellWithIdentifier("Org Body Cell") as! OrganizationBodyTableViewCell
-            bodyCell.donorSpecifiedTimeRange = (donation.donorTimeRangeStart!, donation.donorTimeRangeEnd!)
+//            bodyCell.donorSpecifiedTimeRange = (donation.donorTimeRangeStart!, donation.donorTimeRangeEnd!)
             bodyCell.organization = self.organizations[indexPath.section]
             return bodyCell
         }

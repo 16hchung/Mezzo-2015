@@ -11,8 +11,8 @@ import Mixpanel
 
 class PickupTimeViewController: UIViewController {
     
-    @IBOutlet weak var startTimeRangePicker: UIDatePicker!
-    @IBOutlet weak var endTimeRangePicker: UIDatePicker!
+    @IBOutlet weak var deadlineTimePicker: UIDatePicker!
+//    @IBOutlet weak var endTimeRangePicker: UIDatePicker!
     @IBOutlet weak var navBar: UINavigationItem!
     
     var donation: Donation!
@@ -28,8 +28,8 @@ class PickupTimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let startTime = nearestFifteenthMinute()
-        startTimeRangePicker.minimumDate = startTime
-        startTimePicked(startTimeRangePicker)
+        deadlineTimePicker.minimumDate = startTime
+//        startTimePicked(startTimeRangePicker)
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,24 +40,24 @@ class PickupTimeViewController: UIViewController {
     // MARK: methods
     
     func saveDonation() {
-        donation.donorTimeRangeStart = startTimeRangePicker.date
-        donation.donorTimeRangeEnd = endTimeRangePicker.date
+        donation.donorTimeRangeEnd = deadlineTimePicker.date
+//        donation.donorTimeRangeEnd = endTimeRangePicker.date
     }
     
     @IBAction func startTimePicked(sender: AnyObject) {
-        let startTime = NSDate(timeInterval: 10800, sinceDate: startTimeRangePicker.date)
-        // 10800 seconds in 3 hours
-        endTimeRangePicker.minimumDate = startTime
-        endTimeRangePicker.setDate(startTime, animated: true)
+//        let startTime = NSDate(timeInterval: 10800, sinceDate: startTimeRangePicker.date)
+//        // 10800 seconds in 3 hours
+//        endTimeRangePicker.minimumDate = startTime
+//        endTimeRangePicker.setDate(startTime, animated: true)
         
         mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
             properties: [MIXPANEL_ACTION: "start time picked", MIXPANEL_VALUE: "N/A"])
     }
-    
-    @IBAction func endTimePicked(sender: AnyObject) {
-        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
-            properties: [MIXPANEL_ACTION: "end time picked", MIXPANEL_VALUE: "N/A"])
-    }
+//    
+//    @IBAction func endTimePicked(sender: AnyObject) {
+//        mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
+//            properties: [MIXPANEL_ACTION: "end time picked", MIXPANEL_VALUE: "N/A"])
+//    }
     
     private func nearestFifteenthMinute() -> NSDate {
         var componentMask : NSCalendarUnit = (NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitMinute)
