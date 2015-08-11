@@ -53,22 +53,27 @@ class DonationTableViewCell: UITableViewCell {
         for food in donation.foodDescription {
             switch food {
             case "Grains/Beans":
-                displayable += "🍞"
+                displayable += NSString(UTF8String: "\u{e604}") as! String + " "
             case "Fruits/Veggies":
-                displayable += "🍊"
+                displayable += NSString(UTF8String: "\u{e603}") as! String + " "
             case "Meats":
-                displayable += "🍗"
+                displayable += NSString(UTF8String: "\u{e605}") as! String + " "
             case "Dairy":
-                displayable += "🍼"
+                displayable += NSString(UTF8String: "\u{e602}") as! String + " "
             case "Oils/Condiments":
-                displayable += "🍦"
+                displayable += NSString(UTF8String: "\u{e601}") as! String + " "
             case "Baked Goods":
-                displayable += "🍰"
+                displayable += NSString(UTF8String: "\u{e600}") as! String + " "
             default:
-                displayable += "💬"
+                displayable += NSString(UTF8String: "\u{e606}") as! String + " "
             }
         }
+//        [iconLabel setFont:[UIFont fontWithName:@"fontello" size:130]];
+//        [iconLabel setText:[NSString stringWithUTF8String:"\u2692"]];
+//        
+        foodLabel.font = UIFont(name: "FoodItems", size: 20)
         foodLabel.text = displayable
+//        foodLabel.font = UIFont(name: "FoodItems.ttf", size: 16.0)
     }
     
     func populateStatusLabel() {

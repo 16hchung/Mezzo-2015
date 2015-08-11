@@ -38,6 +38,7 @@
 		8D73FA351B758041007FD1C5 /* CancelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */; };
 		8D73FA371B758053007FD1C5 /* PickupConfirmationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */; };
 		8D73FA391B78FEF0007FD1C5 /* DonationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D73FA381B78FEF0007FD1C5 /* DonationTableViewCell.swift */; };
+		8D73FA3B1B797BC2007FD1C5 /* FoodItems.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8D73FA3A1B797BC2007FD1C5 /* FoodItems.ttf */; };
 		8DF4FC131B4C638C0020DB33 /* Donor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC121B4C638C0020DB33 /* Donor.swift */; };
 		8DF4FC191B4D9F250020DB33 /* Donation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF4FC181B4D9F250020DB33 /* Donation.swift */; };
 		A64509221B4C31D500D1C8BE /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509201B4C31D500D1C8BE /* Bolts.framework */; };
@@ -106,6 +107,7 @@
 		8D73FA341B758041007FD1C5 /* CancelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancelTableViewCell.swift; sourceTree = "<group>"; };
 		8D73FA361B758053007FD1C5 /* PickupConfirmationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickupConfirmationTableViewCell.swift; sourceTree = "<group>"; };
 		8D73FA381B78FEF0007FD1C5 /* DonationTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonationTableViewCell.swift; sourceTree = "<group>"; };
+		8D73FA3A1B797BC2007FD1C5 /* FoodItems.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FoodItems.ttf; path = "Mezzo-1.0/FoodItems.ttf"; sourceTree = "<group>"; };
 		8DC30DBE1B608B920068E76C /* Mezzo-1.0-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Mezzo-1.0-Bridging-Header.h"; sourceTree = "<group>"; };
 		8DF4FC121B4C638C0020DB33 /* Donor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donor.swift; sourceTree = "<group>"; };
 		8DF4FC181B4D9F250020DB33 /* Donation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Donation.swift; sourceTree = "<group>"; };
@@ -200,6 +202,7 @@
 		8D18DEBE1B48359F004E3087 = {
 			isa = PBXGroup;
 			children = (
+				8D73FA3A1B797BC2007FD1C5 /* FoodItems.ttf */,
 				8D18DEC91B48359F004E3087 /* Mezzo-1.0 */,
 				8D18DEE21B48359F004E3087 /* Mezzo-1.0Tests */,
 				8D18DEC81B48359F004E3087 /* Products */,
@@ -456,6 +459,7 @@
 				8D18DED51B48359F004E3087 /* Main.storyboard in Resources */,
 				8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */,
 				8D18DED71B48359F004E3087 /* Images.xcassets in Resources */,
+				8D73FA3B1B797BC2007FD1C5 /* FoodItems.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
