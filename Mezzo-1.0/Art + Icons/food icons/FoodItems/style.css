@@ -1,0 +1,46 @@
+@font-face {
+	font-family: 'FoodItems';
+	src:url('fonts/FoodItems.eot?-j19uya');
+	src:url('fonts/FoodItems.eot?#iefix-j19uya') format('embedded-opentype'),
+		url('fonts/FoodItems.ttf?-j19uya') format('truetype'),
+		url('fonts/FoodItems.woff?-j19uya') format('woff'),
+		url('fonts/FoodItems.svg?-j19uya#FoodItems') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="food-"], [class*=" food-"] {
+	font-family: 'FoodItems';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.food-bakedgoods:before {
+	content: "\e600";
+}
+.food-condiments:before {
+	content: "\e601";
+}
+.food-dairy:before {
+	content: "\e602";
+}
+.food-fruitsandveggies:before {
+	content: "\e603";
+}
+.food-grains:before {
+	content: "\e604";
+}
+.food-meats:before {
+	content: "\e605";
+}
+.food-more:before {
+	content: "\e606";
+}
