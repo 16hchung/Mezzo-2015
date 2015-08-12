@@ -50,17 +50,6 @@ class SingleDonationViewController: UIViewController {
     @IBOutlet weak var locationTextView: UITextView!
     @IBOutlet weak var locationHeightConstraint: NSLayoutConstraint!
     
-    
-    // MARK: colors
-    struct Colors {
-        static let buttonBlue = UIColor(red:0.392, green:0.710, blue:0.965, alpha:1.000)
-        static let pendingOrange = UIColor(red:1.000, green:0.655, blue:0.149, alpha:1.000)
-        static let acceptedGreen = UIColor(red: 0.332, green:0.824, blue:0.463, alpha:1.000)
-        static let declinedBrightRed = UIColor(red:0.937, green:0.325, blue:0.314, alpha:1.000)
-        static let completedGray = UIColor(white: 0.620, alpha: 1.000)
-        static let declinedMutedRed = UIColor(red:0.898, green:0.451, blue:0.451, alpha:1.000)
-    }
-    
     // MARK: data
     var donation: Donation?
     var pendingOffers: [PFObject]?
@@ -82,7 +71,7 @@ class SingleDonationViewController: UIViewController {
             if let error = error {
                 ErrorHandling.defaultErrorHandler(error)
             } else {
-                self.donation = result![1] as? Donation
+                self.donation = result![0] as? Donation
                 ParseHelper.getOffersForDonation(self.donation!, callBack: { (offers, error2) -> Void in
                     if let error = error2 {
                         ErrorHandling.defaultErrorHandler(error)
@@ -105,27 +94,32 @@ class SingleDonationViewController: UIViewController {
     }
     
     private func testQuery(callback: PFArrayResultBlock) {
-        let query = Donation.query()
-        query?.includeKey("fromDonor")
-        query?.includeKey("toOrganization")
+        let query = Donation.query()!
+        query.includeKey("fromDonor")
+        query.includeKey("toOrganization")
+        query.whereKey("objectId", equalTo: "AXqzIzDbY3")
         
-        query?.findObjectsInBackgroundWithBlock(callback)
+        query.findObjectsInBackgroundWithBlock(callback)
     }
     
     // MARK: updating UI
     private func displayDonation(donation: Donation?) {
         if let donation = donation {
+            var isDonor: Bool!
+            
             if let user = donorUser {
-                displayStatus(donation.donationState, isDonor: true)
+                isDonor = true
                 displayOffers(donation.donationState, offers: self.pendingOffers)
-                displayContactInfo(donation, isDonor: true)
-                displayActionButtons(donation, isDonor: true)
             } else if let user = orgUser {
-                displayStatus(donation.donationState, isDonor: false)
-                hideObjects([donationDetailsDivider, offersHeader, offersOrgLabel, offersStatusLabel])
-                displayActionButtons(donation, isDonor: false)
-                displayContactInfo(donation, isDonor: false)
+                isDonor = false
+                UIHelper.hideObjects([donationDetailsDivider, offersHeader, offersOrgLabel, offersStatusLabel])
             }
+            
+//            displayNavTitle(donation, isDonor: isDonor)
+            displayStatus(donation.donationState, isDonor: isDonor)
+            displayActionButtons(donation, isDonor: isDonor)
+            displayDonationDetails(donation)
+            displayContactInfo(donation, isDonor: isDonor)
         }
     }
     
@@ -150,24 +144,28 @@ class SingleDonationViewController: UIViewController {
     
     private func displayStatus(status: Donation.DonationState, isDonor: Bool) {
         let rawStatus = status.rawValue
+        var statusStr = NSMutableAttributedString(string: "")
         
         switch status {
         case .Offered:
-            statusLabel.text = isDonor ? "Pending acceptance" : "Awaiting your response"
-            statusView.backgroundColor = Colors.pendingOrange
+            statusView.backgroundColor = UIHelper.Colors.pendingOrange
         case .Accepted:
-            statusLabel.text = rawStatus
-            statusView.backgroundColor = Colors.acceptedGreen
+            statusView.backgroundColor = UIHelper.Colors.acceptedGreen
         case .Declined:
-            statusLabel.text = rawStatus
-            statusView.backgroundColor = Colors.declinedBrightRed
+            statusView.backgroundColor = UIHelper.Colors.declinedBrightRed
         case .Completed:
-            statusLabel.text = rawStatus
-            statusView.backgroundColor = Colors.completedGray
+            statusView.backgroundColor = UIHelper.Colors.completedGray
         default:
-            statusLabel.text = rawStatus
-            statusView.backgroundColor = Colors.completedGray
+            statusView.backgroundColor = UIHelper.Colors.completedGray
         }
+        
+        statusStr.appendAttributedString(UIHelper.iconForStatus(status.rawValue, fontSize: 14.0, spacing: 0.0, colored: false))
+        if status == .Offered {
+            statusStr.appendAttributedString(NSMutableAttributedString(string: isDonor ? "  Pending acceptance" : "  Awaiting your response"))
+        } else {
+            statusStr.appendAttributedString(NSMutableAttributedString(string: "  \(rawStatus)"))
+        }
+        statusLabel.attributedText = statusStr
     }
     
     private func displayActionButtons(donation: Donation, isDonor: Bool) {
@@ -176,34 +174,34 @@ class SingleDonationViewController: UIViewController {
         switch status {
         case .Offered:
             if isDonor {
-                hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
+                UIHelper.hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
             } else {
-                hideObjects([actionPromptLabel, rightActionButton])
+                UIHelper.hideObjects([actionPromptLabel, rightActionButton])
                 leftActionButton.setTitle("Accept", forState: .Normal)
-                colorButtons([leftActionButton], color: Colors.acceptedGreen, bold: true)
+                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
                 middleActionButton.setTitle("Decline", forState: .Normal)
-                colorButtons([middleActionButton], color: Colors.declinedMutedRed, bold: false)
+                UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
             }
         case .Accepted:
             if isDonor && donation.orgSpecificTime < NSDate() {
-                hideObjects([rightActionButton])
+                UIHelper.hideObjects([rightActionButton])
                 leftActionButton.setTitle("Yes", forState: .Normal)
-                colorButtons([leftActionButton], color: Colors.acceptedGreen, bold: true)
+                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
                 middleActionButton.setTitle("No", forState: .Normal)
-                colorButtons([middleActionButton], color: Colors.declinedMutedRed, bold: false)
+                UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
             } else {
-                hideObjects([actionPromptLabel])
+                UIHelper.hideObjects([actionPromptLabel])
                 leftActionButton.setTitle("Call", forState: .Normal)
                 middleActionButton.setTitle("Email", forState: .Normal)
                 rightActionButton.setTitle("Route", forState: .Normal)
-                colorButtons([leftActionButton, middleActionButton, rightActionButton], color: Colors.buttonBlue, bold: false)
+                UIHelper.colorButtons([leftActionButton, middleActionButton, rightActionButton], color: UIHelper.Colors.buttonBlue, bold: false)
             }
         case .Declined:
-            hideObjects([middleActionButton, rightActionButton, actionPromptLabel])
+            UIHelper.hideObjects([middleActionButton, rightActionButton, actionPromptLabel])
             leftActionButton.setTitle("Cancel donation", forState: .Normal)
-            colorButtons([leftActionButton], color: Colors.declinedMutedRed, bold: false)
+            UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
         case .Completed:
-            hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
+            UIHelper.hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
         default:
             break
         }
@@ -214,7 +212,7 @@ class SingleDonationViewController: UIViewController {
         formatter.dateStyle = .ShortStyle
         formatter.timeStyle = .ShortStyle
         
-        if donation.donationState == .Offered {
+        if donation.donationState == .Offered || donation.donationState == .Declined {
             timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
         } else {
             timeLabel.text = "\(formatter.stringFromDate(donation.orgSpecificTime!))"
@@ -222,31 +220,59 @@ class SingleDonationViewController: UIViewController {
         
         displayFoodDetails(donation.foodDescription)
         sizeLabel.text = donation.size
+        
+        if let instructions = donation.fromDonor?.specialInstructions {
+            pickupNotesLabel.text = instructions
+        } else {
+            UIHelper.hideObjects([pickupNotesHeader, pickupNotesLabel])
+        }
     }
     
     private func displayFoodDetails(foods: [String]) {
-        var foodsString: String!
+        var foodsString = NSMutableAttributedString(string: "")
         
         for food in foods {
-            
+            foodsString.appendAttributedString(UIHelper.iconForFood(food, fontSize: 20, color: UIColor.blackColor()))
+            foodsString.appendAttributedString(NSMutableAttributedString(string: "\(food)"))
+            if food != foods.last { foodsString.appendAttributedString(NSMutableAttributedString(string: "\n")) }
         }
         
-        foodLabel.text = foodsString
+        foodLabel.attributedText = foodsString
     }
     
     private func displayOffers(status: Donation.DonationState, offers: [PFObject]?) {
-        if let offers = offers {
+        if let offers = offers where offers.count > 0 {
             if status == .Completed || status == .Accepted {
-                hideObjects([offersHeader, offersOrgLabel, offersStatusLabel])
+                UIHelper.hideObjects([offersHeader, offersOrgLabel, offersStatusLabel])
             } else {
-                // TODO: display offers
+                offersOrgLabel.numberOfLines = offers.count
+                offersOrgLabel.text = ""
+                offersStatusLabel.numberOfLines = offers.count
+                offersStatusLabel.text = ""
+                
+                var orgStr = ""
+                var statusStr = NSMutableAttributedString(string: "")
+                
+                for offer in offers {
+                    orgStr += "\((offer.objectForKey(ParseHelper.OfferConstants.toOrgProperty) as? Organization)!.name)" ?? ""
+                    statusStr.appendAttributedString(UIHelper.iconForStatus(offer["status"] as? String ?? "", fontSize: 17.0, spacing: 5, colored: true))
+                    if offer != offers.last {
+                        orgStr += "\n"
+                        statusStr.appendAttributedString(NSMutableAttributedString(string: "\n"))
+                    }
+                }
+                
+                offersStatusLabel.attributedText = statusStr
+                var orgSpacing = NSMutableParagraphStyle()
+                orgSpacing.lineSpacing = 4
+                offersOrgLabel.attributedText = NSMutableAttributedString(string: orgStr, attributes: [NSParagraphStyleAttributeName: orgSpacing])
             }
         }
     }
     
     private func displayContactInfo(donation: Donation, isDonor: Bool) {
-        if isDonor && donation.donationState == .Offered {
-            hideObjects([phoneNumberHeader, phoneNumberTextView, managerNameHeader, managerNameLabel,
+        if isDonor && (donation.donationState == .Offered || donation.donationState == .Declined) {
+            UIHelper.hideObjects([phoneNumberHeader, phoneNumberTextView, managerNameHeader, managerNameLabel,
                 emailHeader, emailTextView, locationHeader, locationTextView])
         } else if isDonor { // show recipient's contact info
             let toOrg = donation.toOrganization
@@ -255,57 +281,14 @@ class SingleDonationViewController: UIViewController {
             // TODO: add email field to org and donor tables
 //            emailTextView.text = toOrg?.email ?? ""
             locationTextView.text = toOrg?.locationString ?? ""
-            resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
+            UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         } else { // show donor's contact info
             let fromDonor = donation.fromDonor
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""
             managerNameLabel.text = fromDonor?.managerName ?? ""
 //            emailTextView.text = fromDonor?.email ?? ""
             locationTextView.text = fromDonor?.locationString ?? ""
-            resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
+            UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         }
-    }
-    
-    // MARK: helper functions
-    private func hideObjects(objects: [AnyObject]) {
-        for object in objects {
-            object.removeFromSuperview()
-            object.removeConstraints(object.constraints())
-        }
-    }
-    
-    private func colorButtons(buttons: [UIButton], color: UIColor, bold: Bool) {
-        for button in buttons {
-            button.layer.borderColor = color.CGColor
-            button.layer.borderWidth = 2.0
-            button.setTitleColor(color, forState: .Normal)
-            if bold { button.titleLabel?.font = UIFont.boldSystemFontOfSize(19.0) }
-        }
-    }
-    
-//    private func iconForFood(food: String) -> NSMutableAttributedString {
-//        switch food {
-//        case "Grains/Beans":
-//            return NSString(UTF8String: "\u{e604}") as! String + " "
-//        case "Fruits/Veggies":
-//            return NSString(UTF8String: "\u{e603}") as! String + " "
-//        case "Meats":
-//            return NSString(UTF8String: "\u{e605}") as! String + " "
-//        case "Dairy":
-//            return NSString(UTF8String: "\u{e602}") as! String + " "
-//        case "Oils/Condiments":
-//            return NSString(UTF8String: "\u{e601}") as! String + " "
-//        case "Baked Goods":
-//            return NSString(UTF8String: "\u{e600}") as! String + " "
-//        default:
-//            return NSString(UTF8String: "\u{e606}") as! String + " "
-//        }
-//        
-//        foodLabel.font = UIFont(name: "FoodItems", size: 20)
-//    }
-    
-    private func resizeTextView(textView: UITextView, heightConstraint: NSLayoutConstraint) {
-        let height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.max)).height
-        heightConstraint.constant = height
     }
 }

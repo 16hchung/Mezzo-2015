@@ -43,4 +43,66 @@ class UIHelper {
         }
     }
     
+    static func iconForStatus(status: String, fontSize: CGFloat, spacing: CGFloat, colored: Bool) -> NSMutableAttributedString {
+        var iconAttributedStr: NSMutableAttributedString!
+        var attributes: [NSObject : AnyObject] = [:]
+        var iconStr: String = ""
+        var textColor = UIColor.whiteColor()
+        
+        switch status {
+        case Donation.DonationState.Accepted.rawValue:
+            iconStr = NSString(UTF8String: "\u{e600}") as! String
+            if colored { textColor = Colors.acceptedGreen }
+        case Donation.DonationState.Declined.rawValue:
+            iconStr = NSString(UTF8String: "\u{e601}") as! String
+            if colored { textColor = Colors.declinedBrightRed }
+        case Donation.DonationState.Offered.rawValue:
+            iconStr = NSString(UTF8String: "\u{e602}") as! String
+            if colored { textColor = Colors.pendingOrange }
+        default:
+            iconStr = ""
+        }
+        
+        attributes[NSForegroundColorAttributeName] = textColor
+        attributes[NSFontAttributeName] = UIFont(name: "icomoon", size: fontSize)
+        
+        let lineSpacing = NSMutableParagraphStyle()
+        lineSpacing.lineSpacing = spacing
+        attributes[NSParagraphStyleAttributeName] = lineSpacing
+        
+        iconAttributedStr = NSMutableAttributedString(string: iconStr, attributes: attributes)
+        
+        return iconAttributedStr
+    }
+    
+    static func iconForFood(food: String, fontSize: CGFloat, color: UIColor) -> NSMutableAttributedString {
+        var iconAttributedStr: NSMutableAttributedString!
+        var attributes: [NSObject : AnyObject] = [:]
+        var iconStr: String = ""
+        
+        switch food {
+        case "Grains/Beans":
+            iconStr = NSString(UTF8String: "\u{e604}") as! String + " "
+        case "Fruits/Veggies":
+            iconStr = NSString(UTF8String: "\u{e603}") as! String + " "
+        case "Meats":
+            iconStr = NSString(UTF8String: "\u{e605}") as! String + " "
+        case "Dairy":
+            iconStr = NSString(UTF8String: "\u{e602}") as! String + " "
+        case "Oils/Condiments":
+            iconStr = NSString(UTF8String: "\u{e601}") as! String + " "
+        case "Baked Goods":
+            iconStr = NSString(UTF8String: "\u{e600}") as! String + " "
+        default:
+            iconStr = NSString(UTF8String: "\u{e606}") as! String + " "
+        }
+        
+        attributes[NSForegroundColorAttributeName] = color
+        attributes[NSFontAttributeName] = UIFont(name: "FoodItems", size: fontSize)
+
+        iconAttributedStr = NSMutableAttributedString(string: iconStr, attributes: attributes)
+        
+        return iconAttributedStr
+    }
+    
 }

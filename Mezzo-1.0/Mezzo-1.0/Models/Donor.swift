@@ -25,6 +25,8 @@ class Donor: PFObject, PFSubclassing {
     @NSManaged var profilePictureFile: PFFile?
     /// name of manager
     @NSManaged var managerName: String?
+    /// special pickup instructions
+    @NSManaged var specialInstructions: String?
     
     // MARK: PFSubclassing Protocol
     

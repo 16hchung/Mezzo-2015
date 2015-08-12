@@ -57,6 +57,7 @@
 		A64509371B4C32C000D1C8BE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509361B4C32C000D1C8BE /* libz.dylib */; };
 		A64509391B4C32C700D1C8BE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A64509381B4C32C700D1C8BE /* libsqlite3.dylib */; };
 		A665AE991B76CC6A00BC5882 /* DatePickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A665AE981B76CC6A00BC5882 /* DatePickerCell.swift */; };
+		A669CE271B7AA874001043C1 /* icomoon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A669CE261B7AA874001043C1 /* icomoon.ttf */; };
 		A69B1E611B4CFF9C0099F1E6 /* Organization.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69B1E601B4CFF9C0099F1E6 /* Organization.swift */; };
 		A6B8BA6C1B52206600C0B393 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B8BA6B1B52206600C0B393 /* User.swift */; };
 		A6F33F7A1B754E810081B9C4 /* SingleDonationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */; };
@@ -129,6 +130,7 @@
 		A64509361B4C32C000D1C8BE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		A64509381B4C32C700D1C8BE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		A665AE981B76CC6A00BC5882 /* DatePickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerCell.swift; sourceTree = "<group>"; };
+		A669CE261B7AA874001043C1 /* icomoon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = icomoon.ttf; path = "Mezzo-1.0/icomoon.ttf"; sourceTree = "<group>"; };
 		A69B1E601B4CFF9C0099F1E6 /* Organization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Organization.swift; sourceTree = "<group>"; };
 		A6B8BA6B1B52206600C0B393 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		A6F33F791B754E810081B9C4 /* SingleDonationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleDonationViewController.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				8D73FA3A1B797BC2007FD1C5 /* FoodItems.ttf */,
+				A669CE261B7AA874001043C1 /* icomoon.ttf */,
 				8D18DEC91B48359F004E3087 /* Mezzo-1.0 */,
 				8D18DEE21B48359F004E3087 /* Mezzo-1.0Tests */,
 				8D18DEC81B48359F004E3087 /* Products */,
@@ -462,6 +465,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A669CE271B7AA874001043C1 /* icomoon.ttf in Resources */,
 				8D18DED51B48359F004E3087 /* Main.storyboard in Resources */,
 				8D18DEDA1B48359F004E3087 /* LaunchScreen.xib in Resources */,
 				8D18DED71B48359F004E3087 /* Images.xcassets in Resources */,
