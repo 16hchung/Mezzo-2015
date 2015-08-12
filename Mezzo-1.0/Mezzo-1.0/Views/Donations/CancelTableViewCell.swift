@@ -15,8 +15,13 @@ protocol CancelCellDelegate: class {
 
 class CancelTableViewCell: UITableViewCell {
 
-    weak var donation: Donation!
+    @IBOutlet weak var cancelButton: UIButton!
     weak var delegate: CancelCellDelegate!
+    weak var donation: Donation! {
+        didSet {
+            UIHelper.colorButtons([cancelButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+        }
+    }
     
     @IBAction func cancelDonation(sender: UIButton) {
         let mixpanel = Mixpanel.sharedInstance()

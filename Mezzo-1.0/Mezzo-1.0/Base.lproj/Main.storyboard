@@ -35,31 +35,31 @@
                                                         <constraint firstAttribute="height" constant="1" id="CLh-xv-SLu"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tri-City Volunteers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-Mr-IBj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tri-City Volunteers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-Mr-IBj">
                                                     <rect key="frame" x="16" y="16" width="144" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="Pickup by:" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-db-JZO">
-                                                    <rect key="frame" x="16" y="45" width="65" height="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="PICKUP BY: Yesterday, 12:30 PM" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-db-JZO">
+                                                    <rect key="frame" x="16" y="45" width="72" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" red="0.53725490200000003" green="0.53725490200000003" blue="0.53725490200000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" text="Tomorrow, 12:30 PM" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RI-Pk-GT5">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" verticalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Tomorrow, 12:30 PM" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6RI-Pk-GT5">
                                                     <rect key="frame" x="16" y="62" width="264" height="36"/>
                                                     <fontDescription key="fontDescription" type="system" weight="thin" pointSize="30"/>
                                                     <color key="textColor" white="0.48800339982226176" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🍅🍉🍚🍞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtn-KR-Jqt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="🍅🍉🍚🍞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtn-KR-Jqt">
                                                     <rect key="frame" x="16" y="106" width="84" height="20"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <color key="textColor" red="0.93725490199999995" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="Acceptance Pending" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Acceptance Pending" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
                                                     <rect key="frame" x="422" y="107" width="137" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.93725490199999995" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,6 +88,7 @@
                                             <outlet property="foodLabel" destination="mtn-KR-Jqt" id="Ri2-lI-czq"/>
                                             <outlet property="nameLabel" destination="OdY-Mr-IBj" id="Z29-ir-mjO"/>
                                             <outlet property="statusLabel" destination="bfB-ZX-hzS" id="0hI-SD-ln6"/>
+                                            <outlet property="timeContextLabel" destination="cIg-db-JZO" id="HDf-cc-ayE"/>
                                             <outlet property="timeLabel" destination="6RI-Pk-GT5" id="Me1-HV-lnO"/>
                                             <outlet property="weekdayLabel" destination="cIg-db-JZO" id="lW8-hm-tlK"/>
                                         </connections>
@@ -100,7 +101,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ygu-8I-39G">
                                                     <rect key="frame" x="16" y="8" width="276" height="30"/>
-                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="1B5-md-bgP"/>
                                                     </constraints>
@@ -114,7 +115,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="feU-gI-cgD">
                                                     <rect key="frame" x="308" y="8" width="276" height="30"/>
-                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Decline">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,6 +137,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.99101236358389155" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="acceptButton" destination="ygu-8I-39G" id="6BA-bs-01g"/>
+                                            <outlet property="declineButton" destination="feU-gI-cgD" id="3t8-V3-sbz"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Pickup Confirmation" rowHeight="77" id="E0V-v8-oZp" customClass="PickupConfirmationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -145,7 +150,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emq-TD-3cC">
                                                     <rect key="frame" x="16" y="38" width="276" height="30"/>
-                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.59999999999999998" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0Pg-Fc-HCD"/>
                                                     </constraints>
@@ -159,7 +164,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoK-83-p2s">
                                                     <rect key="frame" x="308" y="38" width="276" height="30"/>
-                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="No">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -192,6 +197,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.99101236358389155" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="noButton" destination="FoK-83-p2s" id="Zny-ur-vX0"/>
+                                            <outlet property="yesButton" destination="Emq-TD-3cC" id="6GD-8i-awN"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Contact Options" rowHeight="46" id="6ta-zP-29f" customClass="ContactActionsTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -201,7 +210,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gLD-uK-sfv">
                                                     <rect key="frame" x="16" y="8" width="179" height="30"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.4823529412" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="b1C-HI-mRH"/>
                                                     </constraints>
@@ -215,7 +224,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2hn-50-Hjb">
                                                     <rect key="frame" x="405" y="8" width="179" height="30"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.4823529412" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Route">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -226,7 +235,7 @@
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pc4-zN-uUw">
                                                     <rect key="frame" x="211" y="8" width="178" height="30"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.4823529412" blue="0.72156862749999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="Qbb-lC-v2m"/>
                                                     </constraints>
@@ -255,6 +264,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.99101236358389155" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="callButton" destination="gLD-uK-sfv" id="UYx-aY-Hqu"/>
+                                            <outlet property="emailButton" destination="Pc4-zN-uUw" id="dXh-RX-cXh"/>
+                                            <outlet property="routeButton" destination="2hn-50-Hjb" id="Evu-Yz-J2q"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cancel Option" rowHeight="77" id="8bv-60-Jl8" customClass="CancelTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -264,7 +278,7 @@
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd7-bO-kc6">
                                                     <rect key="frame" x="16" y="38" width="568" height="30"/>
-                                                    <color key="backgroundColor" red="0.80000000000000004" green="0.0" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Cancel Donation">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -293,6 +307,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.99101236358389155" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="cancelButton" destination="pd7-bO-kc6" id="tsR-CR-ypi"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

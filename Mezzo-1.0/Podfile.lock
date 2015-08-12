@@ -18,6 +18,7 @@ PODS:
   - Mixpanel (2.8.2):
     - Mixpanel/Mixpanel (= 2.8.2)
   - Mixpanel/Mixpanel (2.8.2)
+  - NSDate+Helper (1.0.0)
   - Parse (1.7.5.3):
     - Bolts/Tasks (>= 1.2.0)
   - ParseUI (1.1.4):
@@ -30,6 +31,7 @@ DEPENDENCIES:
   - ConvenienceKit
   - FBSDKCoreKit (~> 4.4)
   - Mixpanel
+  - NSDate+Helper
   - Parse
   - ParseUI
   - RMDateSelectionViewController (~> 2.0.1)
@@ -39,6 +41,7 @@ SPEC CHECKSUMS:
   ConvenienceKit: 947032f82c3d419d107e0cbde1fcb725e9c7ed62
   FBSDKCoreKit: 75bdd75c980e811db218488d99dd93b7740f4474
   Mixpanel: f4d71ac2a306e7cda6ad03d4a2be249a0fd7a967
+  NSDate+Helper: 38676f1c2bd50fcebcebf8fc281276e1f18df18c
   Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881
   ParseUI: d1228541b02a36a7354c8f47747f5f7a89cf1ff0
   RMActionController: 19423654600d40ca15132a4e548d005042d68f09

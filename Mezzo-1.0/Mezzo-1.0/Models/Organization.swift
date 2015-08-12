@@ -28,8 +28,8 @@ class Organization: PFObject, PFSubclassing{
     @NSManaged var unacceptableFoods: String?
     
     struct DefaultHours {
-        static let startTime = TimeHelper.formatter.dateFromString("08:00 am")!
-        static let endTime = TimeHelper.formatter.dateFromString("12:00 PM")!
+        static let startTime = TimeHelper.timeFormatter.dateFromString("08:00 am")!
+        static let endTime = TimeHelper.timeFormatter.dateFromString("12:00 PM")!
     }
     
     

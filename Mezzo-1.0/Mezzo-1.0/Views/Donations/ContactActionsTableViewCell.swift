@@ -12,7 +12,16 @@ import Parse
 
 class ContactActionsTableViewCell: UITableViewCell {
     
-    weak var donation: Donation!
+    @IBOutlet weak var callButton: UIButton!
+    @IBOutlet weak var emailButton: UIButton!
+    @IBOutlet weak var routeButton: UIButton!
+    
+    
+    weak var donation: Donation! {
+        didSet {
+            UIHelper.colorButtons([callButton, emailButton, routeButton], color: UIHelper.Colors.buttonBlue, bold: false)
+        }
+    }
     
     @IBAction func callButtonPressed(sender: UIButton) {
         let mixpanel = Mixpanel.sharedInstance()
