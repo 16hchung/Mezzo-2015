@@ -7,13 +7,14 @@
 //
 
 import Foundation
+//import NSDateHelper
 
 typealias WeeklyHoursDictionary = [String: (start: NSDate?, end: NSDate?)]
 
 class TimeHelper {
     
     /// default date formatter for String <-> NSdate conversion
-    static var formatter: NSDateFormatter {
+    static var timeFormatter: NSDateFormatter {
         get {
             let returnable = NSDateFormatter()
             returnable.dateFormat = "hh:mm a"
@@ -36,8 +37,8 @@ class TimeHelper {
             let dateStrings = datesArray[index].componentsSeparatedByString(" - ")
             
             // load into weely hours dictionary
-            let startDate = formatter.dateFromString(dateStrings[0])
-            let endDate = formatter.dateFromString(dateStrings[1])
+            let startDate = timeFormatter.dateFromString(dateStrings[0])
+            let endDate = timeFormatter.dateFromString(dateStrings[1])
             returnable[weekDaySymbols[index]] = (startDate, endDate)
         }
         
@@ -50,8 +51,8 @@ class TimeHelper {
         for index in 0..<dictionary.count {
             let dateTuple = dictionary[weekDaySymbols[index]]!
             if let startDate = dateTuple.start, endDate = dateTuple.end {
-                let startString = formatter.stringFromDate(startDate)
-                let endString = formatter.stringFromDate(endDate)
+                let startString = timeFormatter.stringFromDate(startDate)
+                let endString = timeFormatter.stringFromDate(endDate)
                 returnable[index] = "\(startString) - \(endString)"
             }
         }

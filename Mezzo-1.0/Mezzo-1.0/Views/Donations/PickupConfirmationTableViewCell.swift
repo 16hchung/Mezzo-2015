@@ -16,8 +16,16 @@ protocol PickupConfirmationCellDelegate: class {
 
 class PickupConfirmationTableViewCell: UITableViewCell {
 
-    weak var donation: Donation!
     weak var delegate: PickupConfirmationCellDelegate!
+    weak var donation: Donation! {
+        didSet {
+            UIHelper.colorButtons([yesButton], color: UIHelper.Colors.acceptedGreen, bold: true)
+            UIHelper.colorButtons([noButton], color: UIHelper.Colors.completedGray, bold: false)
+        }
+    }
+    
+    @IBOutlet weak var yesButton: UIButton!
+    @IBOutlet weak var noButton: UIButton!
     
     @IBAction func donationCompleted(sender: UIButton) {
         let mixpanel = Mixpanel.sharedInstance()

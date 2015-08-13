@@ -16,8 +16,15 @@ protocol PendingOrgActionsCellDelegate: class {
 
 class OrgOfferedActionsTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var declineButton: UIButton!
     weak var delegate: PendingOrgActionsCellDelegate!
-    weak var donation: Donation!
+    weak var donation: Donation! {
+        didSet {
+            UIHelper.colorButtons([acceptButton], color: UIHelper.Colors.acceptedGreen, bold: true)
+            UIHelper.colorButtons([declineButton], color: UIHelper.Colors.completedGray, bold: false)
+        }
+    }
     
     @IBAction func acceptButtonPressed(sender: UIButton) {
         let mixpanel = Mixpanel.sharedInstance()

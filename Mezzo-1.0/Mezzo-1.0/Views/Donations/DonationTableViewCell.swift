@@ -13,6 +13,7 @@ class DonationTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var timeContextLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var weekdayLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -39,13 +40,26 @@ class DonationTableViewCell: UITableViewCell {
     
     func populateTimeLabel() {
         var formatter = NSDateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.locale = NSLocale.currentLocale()
         formatter.dateStyle = .ShortStyle
         formatter.timeStyle = .ShortStyle
-        if let specificTime = donation.orgSpecificTime {
-            timeLabel.text = formatter.stringFromDate(specificTime)
-        } else {
-            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
+//        formatter.dateFormat = "EEE. MMM d, h:mm a"
+        
+        var date: NSDate!
+        if let specificTime = donation.orgSpecificTime { // if accepted
+            timeContextLabel.text = "PICKUP AT"
+            date = specificTime
+            if donation.donationState == .Completed {
+                timeContextLabel.text = "PICKED UP"
+            }
+        } else if let endTime = donation.donorTimeRangeEnd{ // if pending
+            timeContextLabel.text = "PICKUP BY"
+            date = endTime
+//            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
         }
+        
+        timeLabel.text = formatter.stringFromDate(date)
     }
     
     func populateFoodLabel() {
@@ -68,34 +82,32 @@ class DonationTableViewCell: UITableViewCell {
                 displayable += NSString(UTF8String: "\u{e606}") as! String + " "
             }
         }
-//        [iconLabel setFont:[UIFont fontWithName:@"fontello" size:130]];
-//        [iconLabel setText:[NSString stringWithUTF8String:"\u2692"]];
-//        
-        foodLabel.font = UIFont(name: "FoodItems", size: 20)
+        foodLabel.font = UIFont(name: "FoodItems", size: 26)
         foodLabel.text = displayable
-//        foodLabel.font = UIFont(name: "FoodItems.ttf", size: 16.0)
     }
     
     func populateStatusLabel() {
-        statusLabel.text = donation.donationState.rawValue
+        let donorAndPending = (PFUser.currentUser() as? User)?.donor != nil && donation.donationState == .Offered
+        statusLabel.hidden = !donorAndPending
         
         var color: UIColor!
-        switch statusLabel.text! {
+        switch donation.donationState.rawValue {
         case "Acceptance Pending":
-            color = UIColor.orangeColor()
+            color = UIHelper.Colors.pendingOrange
         case "Accepted":
-            color = UIColor.greenColor()
+            color = UIHelper.Colors.acceptedGreen
         case "Declined":
-            color = UIColor.magentaColor()
+            color = UIHelper.Colors.declinedMutedRed
         case "Completed":
-            color = UIColor.grayColor()
+            color = UIHelper.Colors.completedGray
         default:
             break
         }
         
-        statusLabel.textColor = color
-        timeLabel.textColor = color
-        weekdayLabel.textColor = color
+//        statusLabel.textColor = color
+        foodLabel.textColor = color
+//        timeLabel.textColor = color
+//        weekdayLabel.textColor = color
         
     }
 }
