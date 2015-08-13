@@ -22,6 +22,7 @@ class DonationTableViewCell: UITableViewCell {
     weak var donation: Donation! {
         didSet {
             if let donation = donation {
+                
                 nameLabel.text = "Your donation offers"
                 
                 if let donorUser = (PFUser.currentUser() as? User)?.donor, otherOrgUser = donation.toOrganization {
