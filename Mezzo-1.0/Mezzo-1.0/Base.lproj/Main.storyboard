@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -575,6 +575,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Food Policies" id="4Sc-5i-2tR">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="2ub-h0-9EW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Wm4-l5-bGy" kind="unwind" identifier="Save Food Policies" unwindAction="unwindToSettings:" id="O3d-Ld-dW8"/>
                             </connections>
@@ -603,10 +604,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
-                                <rect key="frame" x="16" y="171" width="568" height="429"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
+                                <rect key="frame" x="16" y="111" width="568" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <string key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
+                                <mutableString key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
+
+Attribution:
+Icons by Robin Kylander and Freepik from www.flaticon.com
 
 Features for donors:
 - offer food donations
@@ -621,12 +625,12 @@ Features for food pantries:
 - specify settings (like your weekly hours or food policies)
 
 Awards:
-- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</string>
+- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</mutableString>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xDc-pw-Lco">
-                                <rect key="frame" x="255" y="72" width="91" height="91"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="Logo" translatesAutoresizingMaskIntoConstraints="NO" id="xDc-pw-Lco">
+                                <rect key="frame" x="285" y="72" width="31" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="91" id="3RT-bG-96f"/>
                                     <constraint firstAttribute="width" secondItem="xDc-pw-Lco" secondAttribute="height" multiplier="1:1" id="ZD0-ca-NgD"/>
@@ -767,6 +771,7 @@ Awards:
                     </view>
                     <navigationItem key="navigationItem" title="My Info" id="sHE-y6-z9N">
                         <barButtonItem key="rightBarButtonItem" title="Save" id="whj-Sy-AJA">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="c3e-3i-Yg7" kind="unwind" identifier="Save my info" unwindAction="unwindFromMyInfo:" id="auN-ld-pfb"/>
                             </connections>
@@ -1007,7 +1012,7 @@ Awards:
                                                     <constraint firstAttribute="height" constant="21" id="Poj-Jc-HtA"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -1385,6 +1390,7 @@ Awards:
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Next" id="tpk-1I-Aiz">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="Eeq-Vc-FkX" kind="show" identifier="Choose Time" id="acr-F7-XOQ"/>
                             </connections>
@@ -1478,6 +1484,7 @@ Awards:
                     </view>
                     <navigationItem key="navigationItem" title="When" id="cHd-cr-6Bm">
                         <barButtonItem key="rightBarButtonItem" title="Next" id="0JK-ZA-o6o">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="5tF-LF-xic" kind="show" identifier="Choose Org" id="Gh1-oI-16q"/>
                             </connections>
@@ -1691,6 +1698,7 @@ Awards:
                     <navigationItem key="navigationItem" title="Who" id="vXV-bf-Bmo">
                         <barButtonItem key="backBarButtonItem" title="Back" id="clM-j7-ajF"/>
                         <barButtonItem key="rightBarButtonItem" title="Offer" id="heK-0J-dit">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="5uS-Cr-ERE" kind="unwind" identifier="Send Offer" unwindAction="unwindToDonationsVC:" id="jg8-aF-pID"/>
                             </connections>
@@ -1937,6 +1945,7 @@ Awards:
                     </view>
                     <navigationItem key="navigationItem" title="Weekly Hours" id="dRR-oZ-Dm5">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="NBm-7w-Moh">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="IT4-uk-Dfv" kind="unwind" identifier="Save Weekly Hours" unwindAction="unwindToSettings:" id="O2b-5o-BqO"/>
                             </connections>
