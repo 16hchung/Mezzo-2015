@@ -401,7 +401,7 @@
                         <outlet property="tableView" destination="z9C-gj-fZ0" id="DNo-0M-7Ha"/>
                         <segue destination="hdC-9A-81e" kind="show" identifier="Org Settings" id="7d9-GK-Q85"/>
                         <segue destination="ykF-AZ-zoc" kind="show" identifier="Donor Settings" id="HTJ-J4-aaI"/>
-                        <segue destination="SRp-tl-D5Y" kind="show" identifier="Show Donation" id="wen-YC-5jc"/>
+                        <segue destination="SRp-tl-D5Y" kind="show" identifier="Show donation" id="wen-YC-5jc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hww-P6-vRT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -880,14 +880,20 @@ Awards:
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PICKUP INSTRUCTIONS" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kJ-ry-tjR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PICKUP INSTRUCTIONS" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4kJ-ry-tjR">
                                                 <rect key="frame" x="24" y="306" width="162" height="17"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="17" id="EhE-RP-hUC"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                 <color key="textColor" red="0.70320986033302213" green="0.70320986033302213" blue="0.70320986033302213" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go past the parking lot and around to the back of the building." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW9-ZD-1Sj">
                                                 <rect key="frame" x="24" y="327" width="552" height="21"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="iT9-He-0JJ"/>
+                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -925,8 +931,8 @@ Awards:
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="¥" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8x-1V-MWj">
-                                                <rect key="frame" x="556" y="412" width="20" height="21"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="¥" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S8x-1V-MWj">
+                                                <rect key="frame" x="556" y="412" width="20" height="20"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="20" id="SK2-8a-LaU"/>
                                                 </constraints>
@@ -1110,7 +1116,7 @@ Awards:
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="LCd-vo-9YV" secondAttribute="trailing" id="ChC-bw-vwW"/>
                                     <constraint firstItem="LCd-vo-9YV" firstAttribute="leading" secondItem="42c-36-HtD" secondAttribute="leading" id="eq0-G0-2k7"/>
-                                    <constraint firstAttribute="bottom" secondItem="LCd-vo-9YV" secondAttribute="bottom" id="jlF-Yp-giP"/>
+                                    <constraint firstAttribute="bottom" secondItem="LCd-vo-9YV" secondAttribute="bottom" priority="1" id="jlF-Yp-giP"/>
                                     <constraint firstItem="LCd-vo-9YV" firstAttribute="top" secondItem="42c-36-HtD" secondAttribute="top" id="zHS-gy-QAq"/>
                                 </constraints>
                             </scrollView>
@@ -1121,7 +1127,7 @@ Awards:
                             <constraint firstAttribute="trailingMargin" secondItem="42c-36-HtD" secondAttribute="trailing" constant="-16" id="B7x-16-brA"/>
                             <constraint firstItem="LCd-vo-9YV" firstAttribute="width" secondItem="g22-oH-RdE" secondAttribute="width" id="Mhu-3l-9FQ"/>
                             <constraint firstItem="elm-LU-AWh" firstAttribute="leading" secondItem="g22-oH-RdE" secondAttribute="leadingMargin" constant="-16" id="P0M-91-4m8"/>
-                            <constraint firstItem="LCd-vo-9YV" firstAttribute="height" secondItem="g22-oH-RdE" secondAttribute="height" priority="250" constant="-94" id="SXl-bc-tfN"/>
+                            <constraint firstItem="LCd-vo-9YV" firstAttribute="height" relation="lessThanOrEqual" secondItem="g22-oH-RdE" secondAttribute="height" priority="750" constant="-94" id="SXl-bc-tfN"/>
                             <constraint firstItem="GhN-nu-QNu" firstAttribute="top" secondItem="42c-36-HtD" secondAttribute="bottom" id="V9L-ZP-nSZ"/>
                             <constraint firstItem="42c-36-HtD" firstAttribute="leading" secondItem="g22-oH-RdE" secondAttribute="leadingMargin" constant="-16" id="bNy-vI-kDX"/>
                             <constraint firstAttribute="trailingMargin" secondItem="elm-LU-AWh" secondAttribute="trailing" constant="-16" id="pkD-0C-uAi"/>
