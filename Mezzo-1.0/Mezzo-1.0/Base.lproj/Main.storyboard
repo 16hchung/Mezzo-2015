@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="112" width="600" height="488"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="133" id="kHh-SL-O7p" customClass="DonationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" verticalCompressionResistancePriority="1000" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Donation Header" rowHeight="156" id="kHh-SL-O7p" customClass="DonationTableViewCell" customModule="Mezzo_1_0" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kHh-SL-O7p" id="9yz-OS-nlW">
@@ -35,7 +35,7 @@
                                                         <constraint firstAttribute="height" constant="1" id="CLh-xv-SLu"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tri-City Volunteers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-Mr-IBj">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tri-City Volunteers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OdY-Mr-IBj">
                                                     <rect key="frame" x="16" y="16" width="144" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -53,13 +53,13 @@
                                                     <color key="textColor" white="0.48800339982226176" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="🍅🍉🍚🍞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtn-KR-Jqt">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="🍅🍉🍚🍞" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtn-KR-Jqt">
                                                     <rect key="frame" x="16" y="106" width="84" height="20"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="26"/>
                                                     <color key="textColor" red="0.93725490199999995" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Acceptance Pending" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Acceptance Pending" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="bfB-ZX-hzS">
                                                     <rect key="frame" x="422" y="107" width="137" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                     <color key="textColor" red="0.93725490199999995" green="0.68235294120000001" blue="0.25882352939999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -71,7 +71,7 @@
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="trailing" secondItem="9yz-OS-nlW" secondAttribute="trailingMargin" id="9M0-Yv-sfi"/>
                                                 <constraint firstItem="bfB-ZX-hzS" firstAttribute="centerY" secondItem="mtn-KR-Jqt" secondAttribute="centerY" constant="-0.5" id="BgM-Jz-jlB"/>
                                                 <constraint firstItem="OdY-Mr-IBj" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leadingMargin" constant="8" id="CSO-Hz-uUH"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="mtn-KR-Jqt" secondAttribute="bottom" constant="-2" id="PIJ-fW-VE9"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mtn-KR-Jqt" secondAttribute="bottom" constant="4" id="PIJ-fW-VE9"/>
                                                 <constraint firstItem="cIg-db-JZO" firstAttribute="top" secondItem="OdY-Mr-IBj" secondAttribute="bottom" constant="8" id="TEP-Ye-Hdb"/>
                                                 <constraint firstItem="mtn-KR-Jqt" firstAttribute="top" secondItem="6RI-Pk-GT5" secondAttribute="bottom" constant="8" id="UMF-9Q-f5E"/>
                                                 <constraint firstItem="xa6-vZ-t0W" firstAttribute="leading" secondItem="9yz-OS-nlW" secondAttribute="leadingMargin" id="ZBG-GC-W7J"/>
@@ -149,7 +149,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Emq-TD-3cC">
-                                                    <rect key="frame" x="16" y="38" width="276" height="30"/>
+                                                    <rect key="frame" x="16" y="34" width="276" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="30" id="0Pg-Fc-HCD"/>
@@ -163,7 +163,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoK-83-p2s">
-                                                    <rect key="frame" x="308" y="38" width="276" height="30"/>
+                                                    <rect key="frame" x="308" y="34" width="276" height="30"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="No">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +174,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Was the donation picked up?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="K79-jz-O3T">
-                                                    <rect key="frame" x="198" y="8" width="205" height="18"/>
+                                                    <rect key="frame" x="198" y="4" width="205" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="5fN-KP-mK7"/>
                                                     </constraints>
@@ -190,7 +190,7 @@
                                                 <constraint firstItem="Emq-TD-3cC" firstAttribute="width" secondItem="FoK-83-p2s" secondAttribute="width" id="Kbr-CO-bTu"/>
                                                 <constraint firstAttribute="centerX" secondItem="K79-jz-O3T" secondAttribute="centerX" id="f4n-mR-DRi"/>
                                                 <constraint firstItem="FoK-83-p2s" firstAttribute="height" secondItem="Emq-TD-3cC" secondAttribute="height" id="f5l-TH-QOZ"/>
-                                                <constraint firstItem="K79-jz-O3T" firstAttribute="top" secondItem="dTI-6D-vCt" secondAttribute="topMargin" id="sZD-qr-Ouv"/>
+                                                <constraint firstItem="K79-jz-O3T" firstAttribute="top" secondItem="dTI-6D-vCt" secondAttribute="topMargin" constant="-4" id="sZD-qr-Ouv"/>
                                                 <constraint firstItem="Emq-TD-3cC" firstAttribute="centerY" secondItem="FoK-83-p2s" secondAttribute="centerY" id="sj6-n9-VF3"/>
                                                 <constraint firstItem="Emq-TD-3cC" firstAttribute="top" secondItem="K79-jz-O3T" secondAttribute="bottom" constant="12" id="tcI-aD-rSs"/>
                                                 <constraint firstItem="Emq-TD-3cC" firstAttribute="leading" secondItem="dTI-6D-vCt" secondAttribute="leadingMargin" constant="8" id="wrO-Rx-c6G"/>
@@ -277,7 +277,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pd7-bO-kc6">
-                                                    <rect key="frame" x="16" y="38" width="568" height="30"/>
+                                                    <rect key="frame" x="16" y="34" width="568" height="34"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <state key="normal" title="Cancel Donation">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -288,7 +288,7 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your donation has been declined" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="68S-GQ-k6u">
-                                                    <rect key="frame" x="185" y="8" width="231" height="18"/>
+                                                    <rect key="frame" x="185" y="4" width="231" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="pEa-Rg-81L"/>
                                                     </constraints>
@@ -303,7 +303,7 @@
                                                 <constraint firstAttribute="bottomMargin" secondItem="pd7-bO-kc6" secondAttribute="bottom" id="TqW-Qi-X6a"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="pd7-bO-kc6" secondAttribute="trailing" constant="8" id="auD-FI-3N5"/>
                                                 <constraint firstItem="pd7-bO-kc6" firstAttribute="leading" secondItem="wf0-Ft-UUS" secondAttribute="leadingMargin" constant="8" id="fG7-wD-zOm"/>
-                                                <constraint firstItem="68S-GQ-k6u" firstAttribute="top" secondItem="wf0-Ft-UUS" secondAttribute="topMargin" id="txy-1G-grR"/>
+                                                <constraint firstItem="68S-GQ-k6u" firstAttribute="top" secondItem="wf0-Ft-UUS" secondAttribute="topMargin" constant="-4" id="txy-1G-grR"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.99101236358389155" alpha="1" colorSpace="calibratedWhite"/>
@@ -380,11 +380,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Donations" id="P06-wj-MzM">
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="qXA-uX-3Ov">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <action selector="settingsButtonSelected:" destination="hU1-ZQ-Oh3" id="98u-5K-Mk3"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="add" id="u2J-zT-V1M">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="gqo-Z8-jTQ" kind="show" identifier="AddDonation" id="Xin-Kr-cHh"/>
                             </connections>
@@ -1020,6 +1022,7 @@ Awards:
                     </view>
                     <navigationItem key="navigationItem" title="What" id="AkB-kp-nMw">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="PTa-Gr-kJ8">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
                                 <segue destination="eYb-EU-HH6" kind="unwind" identifier="Cancel" unwindAction="unwindToDonationsVC:" id="eqg-IZ-dOq"/>
                             </connections>
@@ -1353,9 +1356,13 @@ Awards:
             <objects>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="MJC-V0-7RV" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S6e-wK-4PY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="S6e-wK-4PY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.49411764705882355" green="0.78823529411764703" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

@@ -82,7 +82,7 @@ class DonationTableViewCell: UITableViewCell {
                 displayable += NSString(UTF8String: "\u{e606}") as! String + " "
             }
         }
-        foodLabel.font = UIFont(name: "FoodItems", size: 24)
+        foodLabel.font = UIFont(name: "FoodItems", size: 26)
         foodLabel.text = displayable
     }
     
