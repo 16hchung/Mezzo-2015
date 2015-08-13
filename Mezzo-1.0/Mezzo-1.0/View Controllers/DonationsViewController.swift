@@ -11,6 +11,7 @@ import Parse
 import RMDateSelectionViewController
 import RMActionController
 import Mixpanel
+import MessageUI
 
 class DonationsViewController: UIViewController {
     
@@ -455,6 +456,7 @@ extension DonationsViewController: UITableViewDataSource {
                     if donation.orgSpecificTime > NSDate() {
                         let cell = tableView.dequeueReusableCellWithIdentifier("Contact Options", forIndexPath: indexPath) as! ContactActionsTableViewCell
                         cell.donation = donation
+                        cell.delegate = self
                         return cell
                     } else {
                         let cell = tableView.dequeueReusableCellWithIdentifier("Pickup Confirmation", forIndexPath: indexPath) as! PickupConfirmationTableViewCell
@@ -475,6 +477,7 @@ extension DonationsViewController: UITableViewDataSource {
                 case .Accepted:
                     let cell = tableView.dequeueReusableCellWithIdentifier("Contact Options", forIndexPath: indexPath) as! ContactActionsTableViewCell
                     cell.donation = donation
+                    cell.delegate = self
                     return cell
                 case .Offered:
                     let cell = tableView.dequeueReusableCellWithIdentifier("Pending Org Options", forIndexPath: indexPath) as! OrgOfferedActionsTableViewCell
@@ -629,3 +632,32 @@ extension DonationsViewController: PickupConfirmationCellDelegate {
         presentViewController(alertView, animated: true, completion: nil)
     }
 }
+
+extension DonationsViewController: ContactCellDelegate {
+    
+    func sendEmail(donation: Donation) {
+        DonationActionsHelper.emailButtonTapped(donation, viewController: self)
+    }
+    
+}
+
+extension DonationsViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

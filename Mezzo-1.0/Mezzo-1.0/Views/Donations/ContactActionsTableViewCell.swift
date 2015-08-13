@@ -10,12 +10,17 @@ import UIKit
 import Mixpanel
 import Parse
 
+protocol ContactCellDelegate: class {
+    func sendEmail(donation: Donation)
+}
+
 class ContactActionsTableViewCell: UITableViewCell {
     
     @IBOutlet weak var callButton: UIButton!
     @IBOutlet weak var emailButton: UIButton!
     @IBOutlet weak var routeButton: UIButton!
     
+    weak var delegate: ContactCellDelegate!
     
     weak var donation: Donation! {
         didSet {
@@ -53,7 +58,9 @@ class ContactActionsTableViewCell: UITableViewCell {
     }
 
     @IBAction func emailButtonPressed(sender: UIButton) {
-        // TODO
+        delegate.sendEmail(donation)
+        let mixpanel = Mixpanel.sharedInstance()
+        mixpanel.track("existing donation", properties: ["action" : "email", "donation state" : donation.donationState.rawValue])
     }
     
     @IBAction func routeButtonPressed(sender: UIButton) {

@@ -34,15 +34,41 @@ class NewDonationViewController: UIViewController {
     /// donation being created (no setting)
     var donation = Donation()
     
+    var nextButtonSelectable: Bool! {
+        get {
+            return !foodTypeButtons.filter { $0.selected }.isEmpty && !sizeTextField.text.isEmpty
+                && sizeTextField.text.toInt() > 0
+        }
+    }
+    
     // MARK: Methods
     
     func saveDonation() {
         donation.size = convertSizeToString()
-        if !otherTextField.hidden && otherTextField.text != "" {
-//            let index = find(donation.foodDescription, "Other")
-//            donation.foodDescription.removeAtIndex(index!)
+        
+        donation.foodDescription = foodTypeButtons.filter { $0.selected == true } .map { $0.titleLabel!.text! }
+        if let otherIndex = find(donation.foodDescription, "Other") where otherTextField.text != "" {
+            donation.foodDescription.removeAtIndex(otherIndex)
             donation.foodDescription.append(otherTextField.text)
         }
+        
+//        for button in foodTypeButtons {
+//            if button.selected == true {
+//                if button.titleLabel!.text != "Other" {
+//                    donation.foodDescription.append(button.titleLabel!.text!)
+//                } else if otherTextField.text == "" {
+//                    donation.foodDescription.append(button.titleLabel!.text!)
+//                } else {
+//                    donation.foodDescription.append(otherTextField.text)
+//                }
+//            }
+//        }
+//        if !otherTextField.hidden && otherTextField.text != "" {
+////            let index = find(donation.foodDescription, "Other")
+////            donation.foodDescription.removeAtIndex(index!)
+//            donation.foodDescription.append(otherTextField.text)
+//        }
+//        
     }
     
     func convertSizeToString() -> String {
@@ -65,8 +91,7 @@ class NewDonationViewController: UIViewController {
     }
     
     @IBAction func amountNumberChanged(sender: UITextField) {
-        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
-            && sizeTextField.text.toInt() > 0
+        nextButton.enabled = nextButtonSelectable
         mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
             properties: [MIXPANEL_ACTION: "food amount changed", MIXPANEL_VALUE: sender.text])
     }
@@ -89,6 +114,7 @@ class NewDonationViewController: UIViewController {
         sizeTypePickerView.dataSource = self
         
         nextButton.enabled = false
+        otherTextField.hidden = true
         
         // adjust the view up and down based on whether keyboard is shown
         KeyboardHelper.addDoneToKeyboard(self, textFields: [otherTextField, sizeTextField], textViews: [])
@@ -110,7 +136,7 @@ class NewDonationViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        otherTextField.hidden = true
+        
         KeyboardHelper.registerForKeyboardNotifications(self)
     }
     
@@ -130,15 +156,15 @@ class NewDonationViewController: UIViewController {
         
         if (!button.selected) { // if image is empty checkbox, select
             button.selected = true
-            donation.foodDescription.append(button.titleLabel!.text!)
+//            donation.foodDescription.append(button.titleLabel!.text!)
         } else { // if image is filled checkbox, deselect
             button.selected = false
-            let index = find(donation.foodDescription, button.titleLabel!.text!)
-            donation.foodDescription.removeAtIndex(index!)
+//            let index = find(donation.foodDescription, button.titleLabel!.text!)
+//            donation.foodDescription.removeAtIndex(index!)
         }
         
         // next button shouldn't be enabled unless foodDescription and size are populated
-        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty && sizeTextField.text.toInt() > 0
+        nextButton.enabled = nextButtonSelectable
         
         mixpanel.track(MIXPANEL_NEW_DONATION_EVENT,
             properties: [MIXPANEL_ACTION: "food type selected", MIXPANEL_VALUE: button.titleLabel!.text!])
@@ -212,7 +238,6 @@ extension NewDonationViewController: DoneButtonProtocol {
     func doneButtonAction() {
         KeyboardHelper.dismissKeyboard(self)
         // next button shouldn't be enabled unless foodDescription and size are populated
-        nextButton.enabled = !donation.foodDescription.isEmpty && !sizeTextField.text.isEmpty
-            && sizeTextField.text.toInt() > 0
+        nextButton.enabled = nextButtonSelectable
     }
 }

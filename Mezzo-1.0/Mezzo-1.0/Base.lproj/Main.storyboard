@@ -180,7 +180,7 @@
                                                         <constraint firstAttribute="height" constant="18" id="5fN-KP-mK7"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -294,7 +294,7 @@
                                                         <constraint firstAttribute="height" constant="18" id="pEa-Rg-81L"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -607,7 +607,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
                                 <rect key="frame" x="16" y="111" width="568" height="489"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <mutableString key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
+                                <string key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
 
 Attribution:
 Icons by Robin Kylander and Freepik from www.flaticon.com
@@ -625,7 +625,7 @@ Features for food pantries:
 - specify settings (like your weekly hours or food policies)
 
 Awards:
-- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</mutableString>
+- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
