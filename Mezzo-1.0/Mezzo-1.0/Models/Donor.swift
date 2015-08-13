@@ -27,6 +27,7 @@ class Donor: PFObject, PFSubclassing {
     @NSManaged var managerName: String?
     /// special pickup instructions
     @NSManaged var specialInstructions: String?
+    @NSManaged var email: String?
     
     // MARK: PFSubclassing Protocol
     

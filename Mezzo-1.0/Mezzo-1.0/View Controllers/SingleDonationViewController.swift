@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MessageUI
 
 class SingleDonationViewController: UIViewController {
 
@@ -204,14 +205,10 @@ class SingleDonationViewController: UIViewController {
     }
     
     private func displayDonationDetails(donation: Donation, isDonor: Bool) {
-        var formatter = NSDateFormatter()
-        formatter.dateStyle = .ShortStyle
-        formatter.timeStyle = .ShortStyle
-        
         if donation.donationState == .Offered || donation.donationState == .Declined {
-            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
+            timeLabel.text = "\(formatDateToString(donation.donorTimeRangeEnd!))"
         } else {
-            timeLabel.text = "\(formatter.stringFromDate(donation.orgSpecificTime!))"
+            timeLabel.text = "\(formatDateToString(donation.orgSpecificTime!))"
         }
         
         displayFoodDetails(donation.foodDescription)
@@ -276,15 +273,14 @@ class SingleDonationViewController: UIViewController {
             let toOrg = donation.toOrganization
             phoneNumberTextView.text = toOrg?.phoneNumber ?? ""
             managerNameLabel.text = toOrg?.managerName ?? ""
-            // TODO: add email field to org and donor tables
-//            emailTextView.text = toOrg?.email ?? ""
+            emailTextView.text = toOrg?.email ?? ""
             locationTextView.text = toOrg?.locationString ?? ""
             UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         } else { // show donor's contact info
             let fromDonor = donation.fromDonor
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""
             managerNameLabel.text = fromDonor?.managerName ?? ""
-//            emailTextView.text = fromDonor?.email ?? ""
+            emailTextView.text = fromDonor?.email ?? ""
             locationTextView.text = fromDonor?.locationString ?? ""
             UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         }
@@ -303,7 +299,7 @@ class SingleDonationViewController: UIViewController {
     }
     
     func emailButtonTapped() {
-        DonationActionsHelper.emailButtonTapped(self.donation)
+        DonationActionsHelper.emailButtonTapped(self.donation, viewController: self)
     }
     
     func routeButtonTapped() {
@@ -362,5 +358,22 @@ class SingleDonationViewController: UIViewController {
         })
     }
     
+    private func formatDateToString(date: NSDate) -> String {
+        var formatter = NSDateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.locale = NSLocale.currentLocale()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        
+        return formatter.stringFromDate(date)
+    }
     
+    
+}
+
+extension SingleDonationViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
+    }
 }

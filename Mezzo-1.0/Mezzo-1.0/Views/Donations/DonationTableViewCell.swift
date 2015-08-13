@@ -48,13 +48,13 @@ class DonationTableViewCell: UITableViewCell {
         
         var date: NSDate!
         if let specificTime = donation.orgSpecificTime { // if accepted
-            timeContextLabel.text = "PICKUP AT"
+            timeContextLabel.text = "PICK UP AT"
             date = specificTime
             if donation.donationState == .Completed {
                 timeContextLabel.text = "PICKED UP"
             }
         } else if let endTime = donation.donorTimeRangeEnd{ // if pending
-            timeContextLabel.text = "PICKUP BY"
+            timeContextLabel.text = "PICK UP BY"
             date = endTime
 //            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
         }

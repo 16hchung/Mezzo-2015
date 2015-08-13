@@ -10,6 +10,7 @@ import UIKit
 import Parse
 import RMDateSelectionViewController
 import RMActionController
+import MessageUI
 import Mixpanel
 
 typealias RefreshVC = (AnyObject?) -> Void
@@ -134,9 +135,42 @@ class DonationActionsHelper {
 
     }
     
-    static func emailButtonTapped(donation: Donation) {
+    static func emailButtonTapped<T: UIViewController where T: MFMailComposeViewControllerDelegate>(donation: Donation, viewController: T) {
+        var email = ""
+        if let toOrg = donation.toOrganization {
+            email = toOrg.email!
+        } else if let fromDonor = donation.fromDonor {
+            email = fromDonor.email!
+        }
         
+        let mailComposeViewController = configuredMailComposeViewController(email, viewController: viewController, donation: donation)
+        
+        if MFMailComposeViewController.canSendMail() {
+            viewController.presentViewController(mailComposeViewController, animated: true, completion: nil)
+        } else {
+            self.showSendMailErrorAlert()
+        }
+
     }
+    
+    private static func configuredMailComposeViewController<T: UIViewController where T: MFMailComposeViewControllerDelegate>(email: String, viewController: T, donation: Donation) -> MFMailComposeViewController {
+        let mailComposerVC = MFMailComposeViewController()
+        mailComposerVC.mailComposeDelegate = viewController
+        
+        var formatter = NSDateFormatter()
+        formatter.dateStyle = .ShortStyle
+        
+        mailComposerVC.setToRecipients([email])
+        mailComposerVC.setSubject("Our donation on \(formatter.stringFromDate(donation.orgSpecificTime!))")
+        
+        return mailComposerVC
+    }
+    
+    private static func showSendMailErrorAlert() {
+        let sendMailErrorAlert = UIAlertView(title: "Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.", delegate: self, cancelButtonTitle: "OK")
+        sendMailErrorAlert.show()
+    }
+
     
     static func routeButtonTapped(donation: Donation) {
         let mixpanel = Mixpanel.sharedInstance()
