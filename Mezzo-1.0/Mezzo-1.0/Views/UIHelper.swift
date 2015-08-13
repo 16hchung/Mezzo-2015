@@ -50,7 +50,7 @@ class UIHelper {
         var textColor = UIColor.whiteColor()
         
         switch status {
-        case Donation.DonationState.Accepted.rawValue:
+        case Donation.DonationState.Accepted.rawValue, Donation.DonationState.Completed.rawValue:
             iconStr = NSString(UTF8String: "\u{e600}") as! String
             if colored { textColor = Colors.acceptedGreen }
         case Donation.DonationState.Declined.rawValue:

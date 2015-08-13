@@ -134,6 +134,14 @@ class ParseHelper {
         }
     }
     
+    static func getUpdatedDonationFor(donation: Donation, callback: PFArrayResultBlock) {
+        let query = Donation.query()!
+        query.whereKey("objectId", equalTo: donation.objectId!)
+        query.includeKey(DonationConstants.toOrgProperty)
+        query.includeKey(DonationConstants.fromDonorProperty)
+        query.findObjectsInBackgroundWithBlock(callback)
+    }
+    
     // MARK: offers
     
     static func addOfferToDonation(donation: Donation, toOrganization: Organization, callback: PFBooleanResultBlock) {

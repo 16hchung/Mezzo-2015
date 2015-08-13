@@ -50,6 +50,7 @@ class DonationsViewController: UIViewController {
             return donationsToReturn
         }
     }
+    var selectedDonation: Donation?
     
 //    // search bar modes
 //    private enum SearchBarState {
@@ -356,6 +357,21 @@ class DonationsViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        switch segue.identifier! {
+        case "Show donation":
+            let selectedOffers = donations[selectedDonation!]
+            
+            let singleDonationVC = segue.destinationViewController as! SingleDonationViewController
+            singleDonationVC.donation = selectedDonation
+            singleDonationVC.pendingOffers = selectedOffers
+            
+            break
+        default:
+            break
+        }
+    }
+    
     
     // MARK: Navigation
     
@@ -483,7 +499,10 @@ extension DonationsViewController: UITableViewDataSource {
 // MARK: - Table View Delegate Protocol
 
 extension DonationsViewController: UITableViewDelegate {
-    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedDonation = orderedDonationKeys[indexPath.section]
+        self.performSegueWithIdentifier("Show donation", sender: self)
+    }
 }
 
 // MARK: - Search Bar Delegate

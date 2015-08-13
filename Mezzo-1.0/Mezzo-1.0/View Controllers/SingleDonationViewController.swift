@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import MessageUI
 
 class SingleDonationViewController: UIViewController {
 
@@ -51,7 +52,7 @@ class SingleDonationViewController: UIViewController {
     @IBOutlet weak var locationHeightConstraint: NSLayoutConstraint!
     
     // MARK: data
-    var donation: Donation?
+    var donation: Donation!
     var pendingOffers: [PFObject]?
     var donorUser: Donor?
     var orgUser: Organization?
@@ -60,28 +61,7 @@ class SingleDonationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let donor = (PFUser.currentUser() as? User)?.donor {
-            self.donorUser = donor
-        } else if let org = (PFUser.currentUser() as? User)?.organization {
-            self.orgUser = org
-        }
-
-        
-        testQuery { (result, error) -> Void in
-            if let error = error {
-                ErrorHandling.defaultErrorHandler(error)
-            } else {
-                self.donation = result![0] as? Donation
-                ParseHelper.getOffersForDonation(self.donation!, callBack: { (offers, error2) -> Void in
-                    if let error = error2 {
-                        ErrorHandling.defaultErrorHandler(error)
-                    } else {
-                        self.pendingOffers = offers as? [PFObject]
-                        self.displayDonation(self.donation)
-                    }
-                })
-            }
-        }
+        reloadUI()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -105,7 +85,7 @@ class SingleDonationViewController: UIViewController {
     // MARK: updating UI
     private func displayDonation(donation: Donation?) {
         if let donation = donation {
-            var isDonor: Bool!
+            var isDonor: Bool = false
             
             if let user = donorUser {
                 isDonor = true
@@ -115,10 +95,10 @@ class SingleDonationViewController: UIViewController {
                 UIHelper.hideObjects([donationDetailsDivider, offersHeader, offersOrgLabel, offersStatusLabel])
             }
             
-//            displayNavTitle(donation, isDonor: isDonor)
+            displayNavTitle(donation, isDonor: isDonor)
             displayStatus(donation.donationState, isDonor: isDonor)
             displayActionButtons(donation, isDonor: isDonor)
-            displayDonationDetails(donation)
+            displayDonationDetails(donation, isDonor: isDonor)
             displayContactInfo(donation, isDonor: isDonor)
         }
     }
@@ -128,14 +108,16 @@ class SingleDonationViewController: UIViewController {
         let status = donation.donationState
         
         if isDonor {
-            if status == Donation.DonationState.Offered {
+            if status == .Offered || status == .Declined {
                 navTitle = "Today's Offer"
             } else {
                 let toOrg = donation.toOrganization!
+                toOrg.fetchIfNeeded()
                 navTitle = toOrg["name"] as? String ?? ""
             }
         } else {
             let fromDonor = donation.fromDonor!
+            fromDonor.fetchIfNeeded()
             navTitle = fromDonor["name"] as? String ?? ""
         }
         
@@ -171,6 +153,11 @@ class SingleDonationViewController: UIViewController {
     private func displayActionButtons(donation: Donation, isDonor: Bool) {
         let status = donation.donationState
         
+        // clear all targets from all buttons (b/c we'll be reassigning them)
+        for button in [leftActionButton, middleActionButton, rightActionButton] {
+            button.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
+        }
+        
         switch status {
         case .Offered:
             if isDonor {
@@ -178,28 +165,38 @@ class SingleDonationViewController: UIViewController {
             } else {
                 UIHelper.hideObjects([actionPromptLabel, rightActionButton])
                 leftActionButton.setTitle("Accept", forState: .Normal)
+                leftActionButton.addTarget(self, action: "showAcceptDialogue", forControlEvents: .TouchUpInside)
                 UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
                 middleActionButton.setTitle("Decline", forState: .Normal)
+                middleActionButton.addTarget(self, action: "showDeclineDialogue", forControlEvents: .TouchUpInside)
                 UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
             }
         case .Accepted:
             if isDonor && donation.orgSpecificTime < NSDate() {
                 UIHelper.hideObjects([rightActionButton])
                 leftActionButton.setTitle("Yes", forState: .Normal)
+                leftActionButton.addTarget(self, action: "showCompletedDialogue", forControlEvents: .TouchUpInside)
                 UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
                 middleActionButton.setTitle("No", forState: .Normal)
+                middleActionButton.addTarget(self, action: "showIncompleteDialogue", forControlEvents: .TouchUpInside)
                 UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
             } else {
                 UIHelper.hideObjects([actionPromptLabel])
                 leftActionButton.setTitle("Call", forState: .Normal)
+                leftActionButton.addTarget(self, action: "callButtonTapped", forControlEvents: .TouchUpInside)
                 middleActionButton.setTitle("Email", forState: .Normal)
+                middleActionButton.addTarget(self, action: "emailButtonTapped", forControlEvents: .TouchUpInside)
                 rightActionButton.setTitle("Route", forState: .Normal)
+                rightActionButton.addTarget(self, action: "routeButtonTapped", forControlEvents: .TouchUpInside)
                 UIHelper.colorButtons([leftActionButton, middleActionButton, rightActionButton], color: UIHelper.Colors.buttonBlue, bold: false)
             }
         case .Declined:
-            UIHelper.hideObjects([middleActionButton, rightActionButton, actionPromptLabel])
-            leftActionButton.setTitle("Cancel donation", forState: .Normal)
-            UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+            if isDonor {
+                UIHelper.hideObjects([middleActionButton, rightActionButton, actionPromptLabel])
+                leftActionButton.setTitle("Cancel donation", forState: .Normal)
+                leftActionButton.addTarget(self, action: "cancelDonationTapped", forControlEvents: .TouchUpInside)
+                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+            }
         case .Completed:
             UIHelper.hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
         default:
@@ -207,22 +204,20 @@ class SingleDonationViewController: UIViewController {
         }
     }
     
-    private func displayDonationDetails(donation: Donation) {
-        var formatter = NSDateFormatter()
-        formatter.dateStyle = .ShortStyle
-        formatter.timeStyle = .ShortStyle
-        
+    private func displayDonationDetails(donation: Donation, isDonor: Bool) {
         if donation.donationState == .Offered || donation.donationState == .Declined {
-            timeLabel.text = "\(formatter.stringFromDate(donation.donorTimeRangeStart!)) - \(formatter.stringFromDate(donation.donorTimeRangeEnd!))"
+            timeLabel.text = "\(formatDateToString(donation.donorTimeRangeEnd!))"
         } else {
-            timeLabel.text = "\(formatter.stringFromDate(donation.orgSpecificTime!))"
+            timeLabel.text = "\(formatDateToString(donation.orgSpecificTime!))"
         }
         
         displayFoodDetails(donation.foodDescription)
         sizeLabel.text = donation.size
         
-        if let instructions = donation.fromDonor?.specialInstructions {
-            pickupNotesLabel.text = instructions
+        if !isDonor {
+            if let instructions = donation.fromDonor?.specialInstructions {
+                pickupNotesLabel.text = instructions
+            }
         } else {
             UIHelper.hideObjects([pickupNotesHeader, pickupNotesLabel])
         }
@@ -278,17 +273,107 @@ class SingleDonationViewController: UIViewController {
             let toOrg = donation.toOrganization
             phoneNumberTextView.text = toOrg?.phoneNumber ?? ""
             managerNameLabel.text = toOrg?.managerName ?? ""
-            // TODO: add email field to org and donor tables
-//            emailTextView.text = toOrg?.email ?? ""
+            emailTextView.text = toOrg?.email ?? ""
             locationTextView.text = toOrg?.locationString ?? ""
             UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         } else { // show donor's contact info
             let fromDonor = donation.fromDonor
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""
             managerNameLabel.text = fromDonor?.managerName ?? ""
-//            emailTextView.text = fromDonor?.email ?? ""
+            emailTextView.text = fromDonor?.email ?? ""
             locationTextView.text = fromDonor?.locationString ?? ""
             UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         }
+    }
+    
+    // MARK: button targets
+    
+    func cancelDonationTapped() {
+        DonationActionsHelper.cancelDonationTapped(self.donation!, refreshCallback: { (obj) -> Void in
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        })
+    }
+    
+    func callButtonTapped() {
+        DonationActionsHelper.callButtonTapped(self.donation)
+    }
+    
+    func emailButtonTapped() {
+        DonationActionsHelper.emailButtonTapped(self.donation, viewController: self)
+    }
+    
+    func routeButtonTapped() {
+        DonationActionsHelper.routeButtonTapped(self.donation)
+    }
+    
+    func showCompletedDialogue() {
+        DonationActionsHelper.showCompletedDialogue(self.donation, viewController: self) { (obj) -> Void in
+            self.refreshDonation()
+        }
+    }
+    
+    func showIncompleteDialogue() {
+        DonationActionsHelper.showIncompleteDialogue(self.donation, viewController: self) { (obj) -> Void in
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
+    
+    func showAcceptDialogue() {
+        DonationActionsHelper.showAcceptDialogue(self.donation, viewController: self) { (obj) -> Void in
+            self.refreshDonation()
+        }
+    }
+    
+    func showDeclineDialogue() {
+        DonationActionsHelper.showDeclineDialogue(self.donation, viewController: self) { (obj) -> Void in
+            self.navigationController?.popToRootViewControllerAnimated(true)
+        }
+    }
+    
+    // MARK: helper methods
+    
+    private func reloadUI() {
+        if let donor = (PFUser.currentUser() as? User)?.donor {
+            self.donorUser = donor
+            if let toOrg = self.donation?.toOrganization {
+                toOrg.fetchIfNeededInBackground()
+            }
+        } else if let org = (PFUser.currentUser() as? User)?.organization {
+            self.orgUser = org
+            if let fromDonor = self.donation?.fromDonor {
+                fromDonor.fetchIfNeededInBackground()
+            }
+        }
+        
+        displayDonation(self.donation)
+    }
+    
+    private func refreshDonation() {
+        ParseHelper.getUpdatedDonationFor(self.donation!, callback: { (result, error) -> Void in
+            if let error = error { ErrorHandling.defaultErrorHandler(error) }
+            else {
+                self.donation = result![0] as! Donation
+                self.reloadUI()
+            }
+        })
+    }
+    
+    private func formatDateToString(date: NSDate) -> String {
+        var formatter = NSDateFormatter()
+        formatter.doesRelativeDateFormatting = true
+        formatter.locale = NSLocale.currentLocale()
+        formatter.dateStyle = .ShortStyle
+        formatter.timeStyle = .ShortStyle
+        
+        return formatter.stringFromDate(date)
+    }
+    
+    
+}
+
+extension SingleDonationViewController: MFMailComposeViewControllerDelegate {
+    
+    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+        controller.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -26,6 +26,7 @@ class Organization: PFObject, PFSubclassing{
     @NSManaged var managerName: String?
     @NSManaged var weeklyHours: [String]
     @NSManaged var unacceptableFoods: String?
+    @NSManaged var email: String?
     
     struct DefaultHours {
         static let startTime = TimeHelper.timeFormatter.dateFromString("08:00 am")!
