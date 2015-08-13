@@ -11,12 +11,18 @@ import UIKit
 class UIHelper {
     // MARK: colors
     struct Colors {
-        static let buttonBlue = UIColor(red:0.392, green:0.710, blue:0.965, alpha:1.000)
+        static let button = UIColor(red:0.890, green:0.576, blue:0.098, alpha:1.000)
         static let pendingOrange = UIColor(red:1.000, green:0.655, blue:0.149, alpha:1.000)
         static let acceptedGreen = UIColor(red: 0.332, green:0.824, blue:0.463, alpha:1.000)
         static let declinedBrightRed = UIColor(red:0.937, green:0.325, blue:0.314, alpha:1.000)
         static let completedGray = UIColor(white: 0.620, alpha: 1.000)
         static let declinedMutedRed = UIColor(red:0.898, green:0.451, blue:0.451, alpha:1.000)
+        
+        static let pendingOrangeAlpha = UIColor(red:1.000, green:0.655, blue:0.149, alpha:0.25)
+        static let acceptedGreenAlpha = UIColor(red: 0.332, green:0.824, blue:0.463, alpha:0.35)
+        static let completedGrayAlpha = UIColor(white: 0.620, alpha: 0.25)
+        static let declinedBrightRedAlpha = UIColor(red:0.937, green:0.325, blue:0.314, alpha:0.25)
+
     }
     
     /// Resizes the height of a text view based on its contents.
@@ -50,9 +56,12 @@ class UIHelper {
         var textColor = UIColor.whiteColor()
         
         switch status {
-        case Donation.DonationState.Accepted.rawValue, Donation.DonationState.Completed.rawValue:
+        case Donation.DonationState.Accepted.rawValue:
             iconStr = NSString(UTF8String: "\u{e600}") as! String
             if colored { textColor = Colors.acceptedGreen }
+        case Donation.DonationState.Completed.rawValue:
+            iconStr = NSString(UTF8String: "\u{e600}") as! String
+            if colored { textColor = Colors.completedGray }
         case Donation.DonationState.Declined.rawValue:
             iconStr = NSString(UTF8String: "\u{e601}") as! String
             if colored { textColor = Colors.declinedBrightRed }

@@ -24,7 +24,7 @@ class ContactActionsTableViewCell: UITableViewCell {
     
     weak var donation: Donation! {
         didSet {
-            UIHelper.colorButtons([callButton, emailButton, routeButton], color: UIHelper.Colors.buttonBlue, bold: false)
+            UIHelper.colorButtons([callButton, emailButton, routeButton], color: UIHelper.Colors.button, bold: false)
         }
     }
     

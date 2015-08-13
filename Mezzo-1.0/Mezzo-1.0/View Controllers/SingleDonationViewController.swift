@@ -20,27 +20,34 @@ class SingleDonationViewController: UIViewController {
     @IBOutlet weak var statusLabel: UILabel!
     
     // action buttons
+    @IBOutlet weak var firstSectionView: UIView!
     @IBOutlet weak var actionPromptLabel: UILabel!
-    @IBOutlet weak var leftActionButton: UIButton!
-    @IBOutlet weak var middleActionButton: UIButton!
-    @IBOutlet weak var rightActionButton: UIButton!
+    @IBOutlet weak var buttonsView: UIView!
+    @IBOutlet weak var leftActionButton: UIButton?
+    @IBOutlet weak var middleActionButton: UIButton?
+    @IBOutlet weak var rightActionButton: UIButton?
     @IBOutlet weak var actionButtonsDivider: UIView!
     
     // donation details
+    @IBOutlet weak var secondSectionView: UIView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
+    @IBOutlet weak var pickupNotesView: UIView!
     @IBOutlet weak var pickupNotesHeader: UILabel!
     @IBOutlet weak var pickupNotesLabel: UILabel!
     
     @IBOutlet weak var donationDetailsDivider: UIView!
     
     // offers
+    @IBOutlet weak var offersView: UIView!
     @IBOutlet weak var offersHeader: UILabel!
     @IBOutlet weak var offersOrgLabel: UILabel!
     @IBOutlet weak var offersStatusLabel: UILabel!
     
     // contact info
+    @IBOutlet weak var contactInfoView: UIView!
+    @IBOutlet weak var thirdSectionView: UIView!
     @IBOutlet weak var phoneNumberHeader: UILabel!
     @IBOutlet weak var phoneNumberTextView: UITextView!
     @IBOutlet weak var managerNameHeader: UILabel!
@@ -73,15 +80,6 @@ class SingleDonationViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    private func testQuery(callback: PFArrayResultBlock) {
-        let query = Donation.query()!
-        query.includeKey("fromDonor")
-        query.includeKey("toOrganization")
-        query.whereKey("objectId", equalTo: "AXqzIzDbY3")
-        
-        query.findObjectsInBackgroundWithBlock(callback)
-    }
-    
     // MARK: updating UI
     private func displayDonation(donation: Donation?) {
         if let donation = donation {
@@ -92,7 +90,9 @@ class SingleDonationViewController: UIViewController {
                 displayOffers(donation.donationState, offers: self.pendingOffers)
             } else if let user = orgUser {
                 isDonor = false
-                UIHelper.hideObjects([donationDetailsDivider, offersHeader, offersOrgLabel, offersStatusLabel])
+                if let offersView = offersView {
+                    UIHelper.hideObjects([offersView])
+                }
             }
             
             displayNavTitle(donation, isDonor: isDonor)
@@ -130,18 +130,23 @@ class SingleDonationViewController: UIViewController {
         
         switch status {
         case .Offered:
-            statusView.backgroundColor = UIHelper.Colors.pendingOrange
+            statusView.backgroundColor = UIHelper.Colors.pendingOrangeAlpha
+            statusLabel.textColor = UIHelper.Colors.pendingOrange
         case .Accepted:
-            statusView.backgroundColor = UIHelper.Colors.acceptedGreen
+            statusView.backgroundColor = UIHelper.Colors.acceptedGreenAlpha
+            statusLabel.textColor = UIHelper.Colors.acceptedGreen
         case .Declined:
-            statusView.backgroundColor = UIHelper.Colors.declinedBrightRed
+            statusView.backgroundColor = UIHelper.Colors.declinedBrightRedAlpha
+            statusLabel.textColor = UIHelper.Colors.declinedBrightRed
         case .Completed:
-            statusView.backgroundColor = UIHelper.Colors.completedGray
+            statusView.backgroundColor = UIHelper.Colors.completedGrayAlpha
+            statusLabel.textColor = UIHelper.Colors.completedGray
         default:
-            statusView.backgroundColor = UIHelper.Colors.completedGray
+            statusView.backgroundColor = UIHelper.Colors.completedGrayAlpha
+            statusLabel.textColor = UIHelper.Colors.completedGray
         }
         
-        statusStr.appendAttributedString(UIHelper.iconForStatus(status.rawValue, fontSize: 14.0, spacing: 0.0, colored: false))
+        statusStr.appendAttributedString(UIHelper.iconForStatus(status.rawValue, fontSize: 14.0, spacing: 0.0, colored: true))
         if status == .Offered {
             statusStr.appendAttributedString(NSMutableAttributedString(string: isDonor ? "  Pending acceptance" : "  Awaiting your response"))
         } else {
@@ -155,50 +160,44 @@ class SingleDonationViewController: UIViewController {
         
         // clear all targets from all buttons (b/c we'll be reassigning them)
         for button in [leftActionButton, middleActionButton, rightActionButton] {
-            button.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
+            if button != nil {
+                button!.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
+            }
         }
         
         switch status {
         case .Offered:
             if isDonor {
-                UIHelper.hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
+                UIHelper.hideObjects([firstSectionView])
             } else {
-                UIHelper.hideObjects([actionPromptLabel, rightActionButton])
-                leftActionButton.setTitle("Accept", forState: .Normal)
-                leftActionButton.addTarget(self, action: "showAcceptDialogue", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
-                middleActionButton.setTitle("Decline", forState: .Normal)
-                middleActionButton.addTarget(self, action: "showDeclineDialogue", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+                UIHelper.hideObjects([actionPromptLabel, rightActionButton!])
+                setButton(leftActionButton!, title: "Accept", action: "showAcceptDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
+                setButton(middleActionButton!, title: "Decline", action: "showDeclineDialogue", color: UIHelper.Colors.completedGray, bold: false)
             }
         case .Accepted:
             if isDonor && donation.orgSpecificTime < NSDate() {
-                UIHelper.hideObjects([rightActionButton])
-                leftActionButton.setTitle("Yes", forState: .Normal)
-                leftActionButton.addTarget(self, action: "showCompletedDialogue", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.acceptedGreen, bold: true)
-                middleActionButton.setTitle("No", forState: .Normal)
-                middleActionButton.addTarget(self, action: "showIncompleteDialogue", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([middleActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+                UIHelper.hideObjects([rightActionButton!])
+                setButton(leftActionButton!, title: "Yes", action: "showCompletedDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
+                setButton(middleActionButton!, title: "No", action: "showIncompleteDialogue", color: UIHelper.Colors.completedGray, bold: false)
             } else {
                 UIHelper.hideObjects([actionPromptLabel])
-                leftActionButton.setTitle("Call", forState: .Normal)
-                leftActionButton.addTarget(self, action: "callButtonTapped", forControlEvents: .TouchUpInside)
-                middleActionButton.setTitle("Email", forState: .Normal)
-                middleActionButton.addTarget(self, action: "emailButtonTapped", forControlEvents: .TouchUpInside)
-                rightActionButton.setTitle("Route", forState: .Normal)
-                rightActionButton.addTarget(self, action: "routeButtonTapped", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([leftActionButton, middleActionButton, rightActionButton], color: UIHelper.Colors.buttonBlue, bold: false)
+                setButton(leftActionButton!, title: "Call", action: "callButtonTapped", color: UIHelper.Colors.button, bold: false)
+                setButton(middleActionButton!, title: "Email", action: "emailButtonTapped", color: UIHelper.Colors.button, bold: false)
+                
+                if !isDonor { UIHelper.hideObjects([rightActionButton!]) }
+                else {
+                    setButton(rightActionButton!, title: "Route", action: "routeButtonTapped", color: UIHelper.Colors.button, bold: false)
+                }
+
             }
         case .Declined:
             if isDonor {
-                UIHelper.hideObjects([middleActionButton, rightActionButton, actionPromptLabel])
-                leftActionButton.setTitle("Cancel donation", forState: .Normal)
-                leftActionButton.addTarget(self, action: "cancelDonationTapped", forControlEvents: .TouchUpInside)
-                UIHelper.colorButtons([leftActionButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+                UIHelper.hideObjects([middleActionButton!, rightActionButton!, actionPromptLabel!])
+                setButton(leftActionButton!, title: "Cancel donation", action: "cancelDonationTapped", color: UIHelper.Colors.declinedMutedRed, bold: false)
+
             }
         case .Completed:
-            UIHelper.hideObjects([actionButtonsDivider, leftActionButton, middleActionButton, rightActionButton, actionPromptLabel])
+            UIHelper.hideObjects([firstSectionView])
         default:
             break
         }
@@ -219,7 +218,7 @@ class SingleDonationViewController: UIViewController {
                 pickupNotesLabel.text = instructions
             }
         } else {
-            UIHelper.hideObjects([pickupNotesHeader, pickupNotesLabel])
+            if let pickup = pickupNotesView { UIHelper.hideObjects([pickup]) }
         }
     }
     
@@ -238,7 +237,7 @@ class SingleDonationViewController: UIViewController {
     private func displayOffers(status: Donation.DonationState, offers: [PFObject]?) {
         if let offers = offers where offers.count > 0 {
             if status == .Completed || status == .Accepted {
-                UIHelper.hideObjects([offersHeader, offersOrgLabel, offersStatusLabel])
+                UIHelper.hideObjects([offersView])
             } else {
                 offersOrgLabel.numberOfLines = offers.count
                 offersOrgLabel.text = ""
@@ -267,8 +266,7 @@ class SingleDonationViewController: UIViewController {
     
     private func displayContactInfo(donation: Donation, isDonor: Bool) {
         if isDonor && (donation.donationState == .Offered || donation.donationState == .Declined) {
-            UIHelper.hideObjects([phoneNumberHeader, phoneNumberTextView, managerNameHeader, managerNameLabel,
-                emailHeader, emailTextView, locationHeader, locationTextView])
+            UIHelper.hideObjects([contactInfoView])
         } else if isDonor { // show recipient's contact info
             let toOrg = donation.toOrganization
             phoneNumberTextView.text = toOrg?.phoneNumber ?? ""
@@ -281,8 +279,7 @@ class SingleDonationViewController: UIViewController {
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""
             managerNameLabel.text = fromDonor?.managerName ?? ""
             emailTextView.text = fromDonor?.email ?? ""
-            locationTextView.text = fromDonor?.locationString ?? ""
-            UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
+            UIHelper.hideObjects([locationTextView, locationHeader])
         }
     }
     
@@ -368,6 +365,11 @@ class SingleDonationViewController: UIViewController {
         return formatter.stringFromDate(date)
     }
     
+    private func setButton(button: UIButton, title: String, action: String, color: UIColor, bold: Bool) {
+        button.setTitle(title, forState: .Normal)
+        button.addTarget(self, action: Selector(action), forControlEvents: .TouchUpInside)
+        UIHelper.colorButtons([button], color: color, bold: bold)
+    }
     
 }
 
