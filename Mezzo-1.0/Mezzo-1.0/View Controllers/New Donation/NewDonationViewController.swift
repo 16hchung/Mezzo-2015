@@ -107,7 +107,9 @@ class NewDonationViewController: UIViewController {
         for button in foodTypeButtons {
             button.titleLabel?.numberOfLines = 1
             button.titleLabel?.adjustsFontSizeToFitWidth = true
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+            button.contentMode = UIViewContentMode.ScaleAspectFit
+//            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+            button.imageView!.bounds = CGRectMake(0, 0, 24, 24)
         }
         
         sizeTypePickerView.delegate = self
@@ -156,6 +158,7 @@ class NewDonationViewController: UIViewController {
         
         if (!button.selected) { // if image is empty checkbox, select
             button.selected = true
+//            button.imageEdgeInsets = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
 //            donation.foodDescription.append(button.titleLabel!.text!)
         } else { // if image is filled checkbox, deselect
             button.selected = false
