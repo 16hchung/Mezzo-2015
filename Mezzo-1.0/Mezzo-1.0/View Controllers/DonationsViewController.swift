@@ -161,7 +161,7 @@ class DonationsViewController: UIViewController {
                     }
                     
                     // filter donations that need to display their offers
-                    loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
+                    loadedDonations = loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
                     if loadedDonations.isEmpty {
                         self.donations = loadingDonations
                         self.noUpcomingDonations = (self.donations.count == 0)
@@ -174,8 +174,8 @@ class DonationsViewController: UIViewController {
                                     
                                 } else if let loadedOffers = result as? [PFObject] {
                                     loadingDonations[donation] = loadedOffers
-                                    
-                                    if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
+                                    loadedDonations = loadedDonations.filter { $0 != donation }
+                                    if loadedDonations.isEmpty { // reload UI once the offers for all the donatoins have been loaded
                                         self.donations = loadingDonations
                                         self.noUpcomingDonations = (self.donations.count == 0)
                                         self.reloadUI()
