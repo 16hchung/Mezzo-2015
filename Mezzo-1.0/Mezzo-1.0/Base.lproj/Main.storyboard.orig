@@ -1880,11 +1880,20 @@ Awards:
             <objects>
                 <navigationController storyboardIdentifier="NavController" automaticallyAdjustsScrollViewInsets="NO" id="MJC-V0-7RV" sceneMemberID="viewController">
                     <toolbarItems/>
+<<<<<<< HEAD
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="S6e-wK-4PY">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.95877528137097101" green="1" blue="0.92573283303695375" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.49411764705882355" green="0.78823529411764703" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+=======
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="S6e-wK-4PY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.22600929253290988" green="0.76213894981555841" blue="0.47537578330911923" alpha="1" colorSpace="calibratedRGB"/>
+>>>>>>> 0f9c4520fc561fb0fb2c1b29e0d25ea0ff5855f2
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </textAttributes>
