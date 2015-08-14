@@ -265,7 +265,7 @@ class SingleDonationViewController: UIViewController {
     private func displayOffers(status: Donation.DonationState, offers: [PFObject]?) {
         if let offers = offers where offers.count > 0 {
             if status == .Completed || status == .Accepted {
-                UIHelper.hideObjects([offersView])
+                if offersView != nil { UIHelper.hideObjects([offersView]) }
             } else {
                 offersOrgLabel.numberOfLines = offers.count
                 offersOrgLabel.text = ""
@@ -304,7 +304,9 @@ class SingleDonationViewController: UIViewController {
             phoneNumberTextView.text = toOrg?.phoneNumber ?? ""
             managerNameLabel.text = toOrg?.managerName ?? ""
             emailTextView.text = toOrg?.email ?? ""
-            UIHelper.hideObjects([locationTextView, locationHeader])
+            if locationTextView != nil && locationHeader != nil {
+                UIHelper.hideObjects([locationTextView, locationHeader])
+            }
         } else { // show donor's contact info
             let fromDonor = donation.fromDonor
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""

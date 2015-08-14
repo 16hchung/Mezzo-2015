@@ -116,8 +116,9 @@ class ParseHelper {
             // make sure entire donation is still pending too
             let donationStatusQuery = PFQuery(className: DonationConstants.className)
             donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
+            donationStatusQuery.whereKey(DonationConstants.proposedTimeRangeEnd, greaterThan: NSDate())
             offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
-            offerQuery.whereKey(DonationConstants.proposedTimeRangeEnd, greaterThan: NSDate())
+            
             
             offerQuery.includeKey(OfferConstants.donationProperty)
             offerQuery.includeKey("\(OfferConstants.donationProperty).\(DonationConstants.fromDonorProperty)")
