@@ -207,11 +207,11 @@ class WeeklyHoursViewController: UIViewController {
     func toggleAvailabilityForDayButton(button: UIButton, available: Bool) {
         if available {
 //            button.backgroundColor = UIColor(red: 135.0/255.0, green: 206.0/255.0, blue: 250.0/255.0, alpha: 1.0)
-            button.setTitleColor(UIColor.blackColor(), forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.darkGrayColor(), forState: UIControlState.Normal)
         } else {
 //            button.backgroundColor = UIColor.lightGrayColor()
 //            207, 0, 15
-            button.setTitleColor(UIHelper.Colors.declinedMutedRed, forState: UIControlState.Normal)
+            button.setTitleColor(UIColor.lightGrayColor(), forState: UIControlState.Normal)
         }
     }
 

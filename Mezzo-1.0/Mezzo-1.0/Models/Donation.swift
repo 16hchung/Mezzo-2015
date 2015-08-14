@@ -40,6 +40,7 @@ class Donation: PFObject, PFSubclassing {
         case Cancelled = "Cancelled"
         case Incomplete = "Incomplete" // donation was accepted, but pick up was never completed
         case Completed = "Completed"
+        case Expired = "Expired"
     }
     
     var donationState: DonationState {
@@ -156,6 +157,8 @@ class Donation: PFObject, PFSubclassing {
             return .Cancelled
         case "Completed":
             return .Completed
+        case "Expired":
+            return .Expired
         default:
             return .Offered
         }

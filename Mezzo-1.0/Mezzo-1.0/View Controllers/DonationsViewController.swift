@@ -44,7 +44,7 @@ class DonationsViewController: UIViewController {
             }
             
             // states array ordered based on order we want in tableView
-            for donationState: Donation.DonationState in [.Declined, .Offered, .Accepted, .Completed] {
+            for donationState: Donation.DonationState in [.Expired, .Declined, .Offered, .Accepted, .Completed] {
                 donationsToReturn += allSortedKeys.filter{ $0.donationState == donationState }
             }
             
@@ -161,13 +161,25 @@ class DonationsViewController: UIViewController {
                     }
                     
                     // filter donations that need to display their offers
-                    loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
+                    loadedDonations.filter { donation -> Bool in
+                        let offered = donation.donationState == .Offered
+                        let declined = donation.donationState == .Declined
+                        let expired = donation.donationState == .Expired
+                        return offered || declined || expired
+                    }
+                    
                     if loadedDonations.isEmpty {
                         self.donations = loadingDonations
                         self.noUpcomingDonations = (self.donations.count == 0)
                         self.reloadUI()
                     } else {
                         for donation in loadedDonations {
+                            if donation.donorTimeRangeEnd < NSDate() && donation.donationState == .Offered {
+                                donation.donationState = .Expired
+                                donation.saveInBackground()
+                                
+                            }
+                            
                             ParseHelper.getOffersForDonation(donation) { (result: [AnyObject]?, error: NSError?) -> Void in
                                 if let error = error {
                                     ErrorHandling.defaultErrorHandler(error)
@@ -466,7 +478,7 @@ extension DonationsViewController: UITableViewDataSource {
                         cell.donation = donation
                         return cell
                     }
-                case .Declined:
+                case .Declined, .Expired:
                     let cell = tableView.dequeueReusableCellWithIdentifier("Cancel Option", forIndexPath: indexPath) as! CancelTableViewCell
                     cell.donation = donation
                     cell.delegate = self
