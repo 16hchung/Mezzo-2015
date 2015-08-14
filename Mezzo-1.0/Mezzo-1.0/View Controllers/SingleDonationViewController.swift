@@ -22,14 +22,23 @@ class SingleDonationViewController: UIViewController {
     // action buttons
     @IBOutlet weak var firstSectionView: UIView!
     @IBOutlet weak var actionPromptLabel: UILabel!
-    @IBOutlet weak var buttonsView: UIView!
-    @IBOutlet weak var leftActionButton: UIButton?
-    @IBOutlet weak var middleActionButton: UIButton?
-    @IBOutlet weak var rightActionButton: UIButton?
+    
+    @IBOutlet weak var threeButtonsView: UIView!
+    @IBOutlet weak var threeButtonsLeft: UIButton?
+    @IBOutlet weak var threeButtonsMiddle: UIButton?
+    @IBOutlet weak var threeButtonsRight: UIButton?
+    @IBOutlet weak var threeButtonsViewHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var actionButtonsDivider: UIView!
+    
+    @IBOutlet weak var twoButtonsView: UIView!
+    @IBOutlet weak var twoButtonsViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var twoButtonsRight: UIButton?
+    @IBOutlet weak var twoButtonsLeft: UIButton?
     
     // donation details
     @IBOutlet weak var secondSectionView: UIView!
+    @IBOutlet weak var timeHeaderLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var foodLabel: UILabel!
     @IBOutlet weak var sizeLabel: UILabel!
@@ -63,6 +72,11 @@ class SingleDonationViewController: UIViewController {
     var pendingOffers: [PFObject]?
     var donorUser: Donor?
     var orgUser: Organization?
+    
+    let HIDE = true
+    let SHOW = false
+    let TWO = true
+    let THREE = false
     
     // MARK: view controller lifecycle
     override func viewDidLoad() {
@@ -160,7 +174,7 @@ class SingleDonationViewController: UIViewController {
         let status = donation.donationState
         
         // clear all targets from all buttons (b/c we'll be reassigning them)
-        for button in [leftActionButton, middleActionButton, rightActionButton] {
+        for button in [threeButtonsLeft, threeButtonsMiddle, threeButtonsRight, twoButtonsLeft, twoButtonsRight] {
             if button != nil {
                 button!.removeTarget(nil, action: nil, forControlEvents: .AllEvents)
             }
@@ -171,31 +185,37 @@ class SingleDonationViewController: UIViewController {
             if isDonor {
                 UIHelper.hideObjects([firstSectionView])
             } else {
-                UIHelper.hideObjects([actionPromptLabel, rightActionButton!])
-                setButton(leftActionButton!, title: "Accept", action: "showAcceptDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
-                setButton(middleActionButton!, title: "Decline", action: "showDeclineDialogue", color: UIHelper.Colors.completedGray, bold: false)
+                UIHelper.hideObjects([actionPromptLabel])
+                showButtonsView(TWO)
+                
+                setButton(twoButtonsLeft!, title: "Accept", action: "showAcceptDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
+                setButton(twoButtonsRight!, title: "Decline", action: "showDeclineDialogue", color: UIHelper.Colors.completedGray, bold: false)
             }
         case .Accepted:
             if isDonor && donation.orgSpecificTime < NSDate() {
-                UIHelper.hideObjects([rightActionButton!])
-                setButton(leftActionButton!, title: "Yes", action: "showCompletedDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
-                setButton(middleActionButton!, title: "No", action: "showIncompleteDialogue", color: UIHelper.Colors.completedGray, bold: false)
-            } else {
-                UIHelper.hideObjects([actionPromptLabel])
-                setButton(leftActionButton!, title: "Call", action: "callButtonTapped", color: UIHelper.Colors.button, bold: false)
-                setButton(middleActionButton!, title: "Email", action: "emailButtonTapped", color: UIHelper.Colors.button, bold: false)
+                showButtonsView(TWO)
                 
-                if !isDonor { UIHelper.hideObjects([rightActionButton!]) }
-                else {
-                    setButton(rightActionButton!, title: "Route", action: "routeButtonTapped", color: UIHelper.Colors.button, bold: false)
+                setButton(twoButtonsLeft!, title: "Yes", action: "showCompletedDialogue", color: UIHelper.Colors.acceptedGreen, bold: true)
+                setButton(twoButtonsRight!, title: "No", action: "showIncompleteDialogue", color: UIHelper.Colors.completedGray, bold: false)
+            } else {
+                if let prompt = actionPromptLabel { UIHelper.hideObjects([prompt]) }
+                
+                if isDonor {
+                    showButtonsView(TWO)
+                    setButton(twoButtonsLeft!, title: "Call", action: "callButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
+                    setButton(twoButtonsRight!, title: "Email", action: "emailButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
+                } else {
+                    showButtonsView(THREE)
+                    setButton(threeButtonsLeft!, title: "Call", action: "callButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
+                    setButton(threeButtonsMiddle!, title: "Email", action: "emailButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
+                    setButton(threeButtonsRight!, title: "Route", action: "routeButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
                 }
-
             }
         case .Declined:
             if isDonor {
-                UIHelper.hideObjects([middleActionButton!, rightActionButton!, actionPromptLabel!])
-                setButton(leftActionButton!, title: "Cancel donation", action: "cancelDonationTapped", color: UIHelper.Colors.declinedMutedRed, bold: false)
-
+                showButtonsView(TWO)
+                UIHelper.hideObjects([twoButtonsRight!])
+                setButton(twoButtonsLeft!, title: "Cancel donation", action: "cancelDonationTapped", color: UIHelper.Colors.declinedMutedRed, bold: false)
             }
         case .Completed:
             UIHelper.hideObjects([firstSectionView])
@@ -205,10 +225,18 @@ class SingleDonationViewController: UIViewController {
     }
     
     private func displayDonationDetails(donation: Donation, isDonor: Bool) {
-        if donation.donationState == .Offered || donation.donationState == .Declined {
+        let status = donation.donationState
+        
+        if status == .Offered || status == .Declined {
             timeLabel.text = "\(formatDateToString(donation.donorTimeRangeEnd!))"
+            timeHeaderLabel.text = "PICK UP BY"
         } else {
             timeLabel.text = "\(formatDateToString(donation.orgSpecificTime!))"
+            if status == .Accepted {
+                timeHeaderLabel.text = "PICK UP AT"
+            } else if status == .Completed {
+                timeHeaderLabel.text = "PICKED UP AT"
+            }
         }
         
         displayFoodDetails(donation.foodDescription)
@@ -262,6 +290,8 @@ class SingleDonationViewController: UIViewController {
                 orgSpacing.lineSpacing = 4
                 offersOrgLabel.attributedText = NSMutableAttributedString(string: orgStr, attributes: [NSParagraphStyleAttributeName: orgSpacing])
             }
+        } else {
+            UIHelper.hideObjects([offersView])
         }
     }
     
@@ -273,14 +303,14 @@ class SingleDonationViewController: UIViewController {
             phoneNumberTextView.text = toOrg?.phoneNumber ?? ""
             managerNameLabel.text = toOrg?.managerName ?? ""
             emailTextView.text = toOrg?.email ?? ""
-            locationTextView.text = toOrg?.locationString ?? ""
-            UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
+            UIHelper.hideObjects([locationTextView, locationHeader])
         } else { // show donor's contact info
             let fromDonor = donation.fromDonor
             phoneNumberTextView.text = fromDonor?.phoneNumber ?? ""
             managerNameLabel.text = fromDonor?.managerName ?? ""
             emailTextView.text = fromDonor?.email ?? ""
-            UIHelper.hideObjects([locationTextView, locationHeader])
+            locationTextView.text = fromDonor?.locationString ?? ""
+            UIHelper.resizeTextView(locationTextView, heightConstraint: locationHeightConstraint)
         }
     }
     
@@ -370,6 +400,20 @@ class SingleDonationViewController: UIViewController {
         button.setTitle(title, forState: .Normal)
         button.addTarget(self, action: Selector(action), forControlEvents: .TouchUpInside)
         UIHelper.colorButtons([button], color: color, bold: bold)
+    }
+    
+    private func showButtonsView(twoOrThree: Bool) {
+        if twoOrThree == TWO {
+            twoButtonsView.hidden = SHOW
+            threeButtonsView.hidden = HIDE
+//            twoButtonsViewHeight.constant = 51
+//            threeButtonsViewHeight.constant = 0
+        } else if twoOrThree == THREE {
+            twoButtonsView.hidden = HIDE
+            threeButtonsView.hidden = SHOW
+//            twoButtonsViewHeight.constant = 0
+//            threeButtonsViewHeight.constant = 51
+        }
     }
     
 }
