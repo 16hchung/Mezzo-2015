@@ -138,7 +138,6 @@ class SingleDonationViewController: UIViewController {
         case .Declined:
             statusView.backgroundColor = UIHelper.Colors.declinedBrightRedAlpha
             statusLabel.textColor = UIHelper.Colors.declinedBrightRed
-            statusView.backgroundColor = UIHelper.Colors.declinedMutedRed
         case .Completed:
             statusView.backgroundColor = UIHelper.Colors.completedGrayAlpha
             statusLabel.textColor = UIHelper.Colors.completedGray
