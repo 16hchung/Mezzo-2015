@@ -191,7 +191,8 @@ class WeeklyHoursViewController: UIViewController {
     /// toggle selection of day button (border)
     func toggleDayButton(button: UIButton, select: Bool) {
         button.layer.borderWidth = select ? 3.0 : 0.0
-        button.layer.borderColor = UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor // dark blue
+        button.layer.borderColor = UIHelper.Colors.acceptedGreen.CGColor
+//        button.layer.borderColor = UIColor(red: 0, green: 84.0/255.0, blue: 180.0/255.0, alpha: 1.0).CGColor // dark blue
 //        button.layer.borderColor = UIColor(red: 192.0/255.0, green: 54.0/255.0, blue: 44.0/255.0, alpha: 1.0).CGColor // golden gate bridge
         
         if select {
@@ -210,7 +211,7 @@ class WeeklyHoursViewController: UIViewController {
         } else {
 //            button.backgroundColor = UIColor.lightGrayColor()
 //            207, 0, 15
-            button.setTitleColor(UIColor(red: 207.0/255.0, green: 0, blue: 15.0/255.0, alpha: 1), forState: UIControlState.Normal)
+            button.setTitleColor(UIHelper.Colors.declinedMutedRed, forState: UIControlState.Normal)
         }
     }
 
