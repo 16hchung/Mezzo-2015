@@ -165,7 +165,7 @@ class NewDonationViewController: UIViewController {
 //            let index = find(donation.foodDescription, button.titleLabel!.text!)
 //            donation.foodDescription.removeAtIndex(index!)
         }
-        
+                
         // next button shouldn't be enabled unless foodDescription and size are populated
         nextButton.enabled = nextButtonSelectable
         

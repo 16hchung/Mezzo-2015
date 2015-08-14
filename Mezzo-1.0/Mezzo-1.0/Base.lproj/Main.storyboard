@@ -1655,7 +1655,6 @@ Awards:
                         <outletCollection property="foodTypeButtons" destination="Cph-4d-7ia" collectionClass="NSMutableArray" id="m0T-om-6wj"/>
                         <outletCollection property="foodTypeButtons" destination="5Vb-96-Wf3" collectionClass="NSMutableArray" id="pqg-hF-0yo"/>
                         <outletCollection property="foodTypeButtons" destination="ppU-q8-XjI" collectionClass="NSMutableArray" id="96t-ef-d4i"/>
-                        <outletCollection property="foodTypeButtons" destination="ppU-q8-XjI" collectionClass="NSMutableArray" id="lt2-PO-kwg"/>
                         <outletCollection property="foodTypeButtons" destination="sfe-uy-wCm" collectionClass="NSMutableArray" id="YBB-T2-Sfj"/>
                         <outletCollection property="foodTypeButtons" destination="pLk-qV-Pin" collectionClass="NSMutableArray" id="5Ur-ph-fK5"/>
                         <outletCollection property="foodTypeButtons" destination="mjw-z9-mcD" collectionClass="NSMutableArray" id="IeJ-th-RHf"/>
