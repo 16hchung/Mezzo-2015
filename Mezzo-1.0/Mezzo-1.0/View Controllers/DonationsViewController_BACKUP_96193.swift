@@ -161,6 +161,7 @@ class DonationsViewController: UIViewController {
                     }
                     
                     // filter donations that need to display their offers
+<<<<<<< HEAD
                     loadedDonations.filter { donation -> Bool in
                         let offered = donation.donationState == .Offered
                         let declined = donation.donationState == .Declined
@@ -168,6 +169,9 @@ class DonationsViewController: UIViewController {
                         return offered || declined || expired
                     }
                     
+=======
+                    loadedDonations = loadedDonations.filter { $0.donationState == .Offered || $0.donationState == .Declined }
+>>>>>>> b1562c51b3d4d5bc5891ca86387fd71b82c9e14e
                     if loadedDonations.isEmpty {
                         self.donations = loadingDonations
                         self.noUpcomingDonations = (self.donations.count == 0)

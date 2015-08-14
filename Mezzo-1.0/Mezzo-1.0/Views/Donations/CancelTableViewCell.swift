@@ -15,11 +15,13 @@ protocol CancelCellDelegate: class {
 
 class CancelTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var contextLabel: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     weak var delegate: CancelCellDelegate!
     weak var donation: Donation! {
         didSet {
             UIHelper.colorButtons([cancelButton], color: UIHelper.Colors.declinedMutedRed, bold: false)
+            contextLabel.text = (donation.donationState == .Expired) ? "Your donation has expired." : "Your donation has been declined"
         }
     }
     

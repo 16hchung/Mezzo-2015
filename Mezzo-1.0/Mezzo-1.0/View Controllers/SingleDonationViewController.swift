@@ -122,7 +122,7 @@ class SingleDonationViewController: UIViewController {
         let status = donation.donationState
         
         if isDonor {
-            if status == .Offered || status == .Declined {
+            if status == .Offered || status == .Declined || status == .Expired {
                 navTitle = "Today's Offer"
             } else {
                 let toOrg = donation.toOrganization!
@@ -149,7 +149,7 @@ class SingleDonationViewController: UIViewController {
         case .Accepted:
             statusView.backgroundColor = UIHelper.Colors.acceptedGreenAlpha
             statusLabel.textColor = UIHelper.Colors.acceptedGreen
-        case .Declined:
+        case .Declined, .Expired:
             statusView.backgroundColor = UIHelper.Colors.declinedBrightRedAlpha
             statusLabel.textColor = UIHelper.Colors.declinedMutedRed
             statusView.backgroundColor = UIHelper.Colors.declinedMutedRed

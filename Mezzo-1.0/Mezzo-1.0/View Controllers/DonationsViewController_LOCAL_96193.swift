@@ -186,8 +186,8 @@ class DonationsViewController: UIViewController {
                                     
                                 } else if let loadedOffers = result as? [PFObject] {
                                     loadingDonations[donation] = loadedOffers
-                                    loadedDonations = loadedDonations.filter { $0 != donation }
-                                    if loadedDonations.isEmpty { // reload UI once the offers for all the donatoins have been loaded
+                                    
+                                    if donation == loadedDonations.last { // reload UI once the offers for all the donatoins have been loaded
                                         self.donations = loadingDonations
                                         self.noUpcomingDonations = (self.donations.count == 0)
                                         self.reloadUI()

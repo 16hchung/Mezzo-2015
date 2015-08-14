@@ -88,25 +88,29 @@ class DonationTableViewCell: UITableViewCell {
     }
     
     func populateStatusLabel() {
-        let donorAndPending = (PFUser.currentUser() as? User)?.donor != nil && donation.donationState == .Offered
+        let donorAndPending = (PFUser.currentUser() as? User)?.donor != nil && donation.donationState == .Offered || donation.donationState == .Expired
         statusLabel.hidden = !donorAndPending
         
         var color: UIColor!
         switch donation.donationState.rawValue {
         case "Acceptance Pending":
             color = UIHelper.Colors.pendingOrange
+            statusLabel.text = "Pending"
         case "Accepted":
             color = UIHelper.Colors.acceptedGreen
         case "Declined":
             color = UIHelper.Colors.declinedMutedRed
+        case "Expired":
+            color = UIHelper.Colors.declinedMutedRed
+            statusLabel.text = "Expired"
         case "Completed":
             color = UIHelper.Colors.completedGray
         default:
             break
         }
         
-//        statusLabel.textColor = color
-        foodLabel.textColor = color
+        statusLabel.textColor = color
+//        foodLabel.textColor = color
 //        timeLabel.textColor = color
 //        weekdayLabel.textColor = color
         

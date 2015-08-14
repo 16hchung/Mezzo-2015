@@ -95,7 +95,7 @@ class ParseHelper {
         let donationQuery = PFQuery(className: DonationConstants.className)
         donationQuery.includeKey(DonationConstants.toOrgProperty)
         donationQuery.whereKey(DonationConstants.fromDonorProperty, equalTo: donorUser) // from the donor user passed in
-        let upcomingStatuses:[Donation.DonationState] = [.Offered, .Accepted, .Declined]
+        let upcomingStatuses:[Donation.DonationState] = [.Offered, .Accepted, .Declined, .Expired]
         let upcomingStatusStrings:[String] = upcomingStatuses.map({ $0.rawValue })
         donationQuery.whereKey(DonationConstants.statusProperty, containedIn: upcomingStatusStrings)
         donationQuery.findObjectsInBackgroundWithBlock(completionBlock)
@@ -117,6 +117,7 @@ class ParseHelper {
             let donationStatusQuery = PFQuery(className: DonationConstants.className)
             donationStatusQuery.whereKey(DonationConstants.statusProperty, equalTo: Donation.DonationState.Offered.rawValue)
             offerQuery.whereKey(OfferConstants.donationProperty, matchesQuery: donationStatusQuery)
+            offerQuery.whereKey(DonationConstants.proposedTimeRangeEnd, greaterThan: NSDate())
             
             offerQuery.includeKey(OfferConstants.donationProperty)
             offerQuery.includeKey("\(OfferConstants.donationProperty).\(DonationConstants.fromDonorProperty)")
