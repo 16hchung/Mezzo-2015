@@ -440,7 +440,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="AXM-OI-jwd">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.23921568630000001" green="0.72941176470000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -458,7 +458,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Food Policies" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aKI-xH-nQn">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.23921568630000001" green="0.72941176470000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -476,7 +476,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="My Weekly Hours" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8xc-u0-4vR">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.23921568630000001" green="0.72941176470000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -494,7 +494,7 @@
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="About Mezzo" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="T3j-oe-22e">
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <color key="textColor" red="0.23921568630000001" green="0.72941176470000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -622,13 +622,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
-                                <rect key="frame" x="16" y="115" width="568" height="421"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p6D-FR-mHE">
+                                <rect key="frame" x="16" y="115" width="568" height="575"/>
                                 <color key="backgroundColor" red="1" green="0.99607843139999996" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <string key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
+                                <mutableString key="text">Do you know where over a third of American-produced food goes? The landfill. Mezzo reduces food waste by giving food businesses a quick and easy way to discover local food pantries and donate their surplus. Mezzo is eliminating barriers that would keep potential donors from donating, like the time loss associated with organizing food pickups.
 
 Attribution:
-Icons by Robin Kylander and Freepik from www.flaticon.com
+Icons by Robin Kylander,  Egor Rumyantsev, and Freepik from www.flaticon.com
 
 Features for donors:
 - offer food donations
@@ -643,10 +643,11 @@ Features for food pantries:
 - specify settings (like your weekly hours or food policies)
 
 Awards:
-- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</string>
+- Best Civic App at iOSDevCamp2015, award sponsored by IdeaMarket</mutableString>
                                 <color key="textColor" red="0.23880859068049665" green="0.23762048823930013" blue="0.23999669312169314" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="xDc-pw-Lco">
                                 <rect key="frame" x="255" y="16" width="91" height="91"/>
@@ -2161,7 +2162,7 @@ Awards:
     <resources>
         <image name="baked goods" width="24" height="24"/>
         <image name="blue profile" width="48" height="48"/>
-        <image name="checked box" width="28" height="28"/>
+        <image name="checked box" width="24" height="24"/>
         <image name="condiments" width="24" height="24"/>
         <image name="dairy" width="24" height="24"/>
         <image name="disclosure" width="512" height="512"/>
@@ -2179,4 +2180,5 @@ Awards:
         <segue reference="Xin-Kr-cHh"/>
         <segue reference="8rN-GH-Rmh"/>
     </inferredMetricsTieBreakers>
+    <color key="tintColor" red="0.23921568630000001" green="0.72941176470000002" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>
