@@ -27,7 +27,8 @@ class UIHelper {
     
     /// Resizes the height of a text view based on its contents.
     static func resizeTextView(textView: UITextView, heightConstraint: NSLayoutConstraint) {
-        let height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.max)).height
+        let height: CGFloat = 60
+//        let height = textView.sizeThatFits(CGSize(width: textView.frame.size.width, height: CGFloat.max)).height
         heightConstraint.constant = height
     }
     
