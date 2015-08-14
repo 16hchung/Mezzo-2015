@@ -23,6 +23,7 @@ class OrgOfferedActionsTableViewCell: UITableViewCell {
         didSet {
             UIHelper.colorButtons([acceptButton], color: UIHelper.Colors.acceptedGreen, bold: true)
             UIHelper.colorButtons([declineButton], color: UIHelper.Colors.completedGray, bold: false)
+            acceptButton.titleLabel?.font = UIFont.boldSystemFontOfSize(15.0)
         }
     }
     

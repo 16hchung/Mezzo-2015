@@ -431,7 +431,9 @@ extension DonationsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let donation = orderedDonationKeys[section]
-        if let donorUser = (PFUser.currentUser() as? User)?.donor where donation.donationState == .Offered || donation.donationState == .Completed {
+        if donation.donationState == .Completed {
+            return 1
+        } else if let donorUser = (PFUser.currentUser() as? User)?.donor where donation.donationState == .Offered {
             return 1
         } else {
             return 2

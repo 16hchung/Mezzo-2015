@@ -13,10 +13,10 @@ class UIHelper {
     struct Colors {
         static let buttonBlue = UIColor(red:0.392, green:0.710, blue:0.965, alpha:1.000)
         static let pendingOrange = UIColor(red:1.000, green:0.655, blue:0.149, alpha:1.000)
-        static let acceptedGreen = UIColor(red: 0.332, green:0.824, blue:0.463, alpha:1.000)
-        static let declinedBrightRed = UIColor(red:0.937, green:0.325, blue:0.314, alpha:1.000)
+        static let acceptedGreen = UIColor(red: 22.0/255.0, green: 160.0/255.0, blue: 133.0/255.0, alpha:1.000)
+//        static let declinedBrightRed = UIColor(red:0.937, green:0.325, blue:0.314, alpha:1.000)
         static let completedGray = UIColor(white: 0.620, alpha: 1.000)
-        static let declinedMutedRed = UIColor(red:0.898, green:0.451, blue:0.451, alpha:1.000)
+        static let declinedMutedRed = UIColor(red: 168.0/255.0, green: 47.0/255.0, blue: 32.451/255.0, alpha:1.000)
     }
     
     /// Resizes the height of a text view based on its contents.
@@ -37,9 +37,12 @@ class UIHelper {
     static func colorButtons(buttons: [UIButton], color: UIColor, bold: Bool) {
         for button in buttons {
             button.layer.borderColor = color.CGColor
-            button.layer.borderWidth = 2.0
+            button.layer.borderWidth = 1.0
             button.setTitleColor(color, forState: .Normal)
-            if bold { button.titleLabel?.font = UIFont.boldSystemFontOfSize(19.0) }
+            if bold {
+                button.titleLabel?.font = UIFont.boldSystemFontOfSize(19.0)
+                button.layer.borderWidth = 2.0
+            }
         }
     }
     
@@ -55,7 +58,7 @@ class UIHelper {
             if colored { textColor = Colors.acceptedGreen }
         case Donation.DonationState.Declined.rawValue:
             iconStr = NSString(UTF8String: "\u{e601}") as! String
-            if colored { textColor = Colors.declinedBrightRed }
+            if colored { textColor = Colors.declinedMutedRed }
         case Donation.DonationState.Offered.rawValue:
             iconStr = NSString(UTF8String: "\u{e602}") as! String
             if colored { textColor = Colors.pendingOrange }
