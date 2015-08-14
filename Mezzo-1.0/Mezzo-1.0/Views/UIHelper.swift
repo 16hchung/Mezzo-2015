@@ -66,7 +66,7 @@ class UIHelper {
         case Donation.DonationState.Completed.rawValue:
             iconStr = NSString(UTF8String: "\u{e600}") as! String
             if colored { textColor = Colors.completedGray }
-        case Donation.DonationState.Declined.rawValue:
+        case Donation.DonationState.Declined.rawValue, Donation.DonationState.Expired.rawValue:
             iconStr = NSString(UTF8String: "\u{e601}") as! String
             if colored { textColor = Colors.declinedMutedRed }
         case Donation.DonationState.Offered.rawValue:

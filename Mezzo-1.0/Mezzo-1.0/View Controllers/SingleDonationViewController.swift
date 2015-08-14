@@ -152,7 +152,6 @@ class SingleDonationViewController: UIViewController {
         case .Declined, .Expired:
             statusView.backgroundColor = UIHelper.Colors.declinedBrightRedAlpha
             statusLabel.textColor = UIHelper.Colors.declinedMutedRed
-            statusView.backgroundColor = UIHelper.Colors.declinedMutedRed
         case .Completed:
             statusView.backgroundColor = UIHelper.Colors.completedGrayAlpha
             statusLabel.textColor = UIHelper.Colors.completedGray
@@ -211,7 +210,7 @@ class SingleDonationViewController: UIViewController {
                     setButton(threeButtonsRight!, title: "Route", action: "routeButtonTapped", color: UIHelper.Colors.completedGray, bold: false)
                 }
             }
-        case .Declined:
+        case .Declined, .Expired:
             if isDonor {
                 showButtonsView(TWO)
                 UIHelper.hideObjects([twoButtonsRight!])
@@ -227,7 +226,7 @@ class SingleDonationViewController: UIViewController {
     private func displayDonationDetails(donation: Donation, isDonor: Bool) {
         let status = donation.donationState
         
-        if status == .Offered || status == .Declined {
+        if status == .Offered || status == .Declined || status == .Expired {
             timeLabel.text = "\(formatDateToString(donation.donorTimeRangeEnd!))"
             timeHeaderLabel.text = "PICK UP BY"
         } else {
@@ -296,7 +295,9 @@ class SingleDonationViewController: UIViewController {
     }
     
     private func displayContactInfo(donation: Donation, isDonor: Bool) {
-        if isDonor && (donation.donationState == .Offered || donation.donationState == .Declined) {
+        let status = donation.donationState
+        
+        if isDonor && (status == .Offered || status == .Declined || status == .Expired) {
             UIHelper.hideObjects([contactInfoView])
         } else if isDonor { // show recipient's contact info
             let toOrg = donation.toOrganization
