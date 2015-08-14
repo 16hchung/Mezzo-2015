@@ -54,6 +54,15 @@ class WeeklyHoursViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // date picker cells
+        let fromTimePickerCell = DatePickerCell(style: .Default, reuseIdentifier: "From")
+        fromTimePickerCell.datePicker.addTarget(self, action: "timeChanged:", forControlEvents: .ValueChanged)
+        fromTimePicker = fromTimePickerCell.datePicker
+        let toTimePickerCell = DatePickerCell(style: .Default, reuseIdentifier: "To")
+        toTimePickerCell.datePicker.addTarget(self, action: "timeChanged:", forControlEvents: .ValueChanged)
+        toTimePicker = toTimePickerCell.datePicker
+        timePickerCells = [[fromTimePickerCell], [toTimePickerCell]]
+        
         if let orgUser = (PFUser.currentUser() as? User)?.organization {
             orgUser.fetchIfNeededInBackgroundWithBlock { result, error -> Void in
                 if let error = error {
@@ -83,15 +92,6 @@ class WeeklyHoursViewController: UIViewController {
         unavailableOptionButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 4, bottom: 0, right: 0)
         unavailableOptionButton.titleLabel?.numberOfLines = 1
         unavailableOptionButton.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-        // date picker cells
-        let fromTimePickerCell = DatePickerCell(style: .Default, reuseIdentifier: "From")
-        fromTimePickerCell.datePicker.addTarget(self, action: "timeChanged:", forControlEvents: .ValueChanged)
-        fromTimePicker = fromTimePickerCell.datePicker
-        let toTimePickerCell = DatePickerCell(style: .Default, reuseIdentifier: "To")
-        toTimePickerCell.datePicker.addTarget(self, action: "timeChanged:", forControlEvents: .ValueChanged)
-        toTimePicker = toTimePickerCell.datePicker
-        timePickerCells = [[fromTimePickerCell], [toTimePickerCell]]
     }
     
     // MARK: UI change methods
