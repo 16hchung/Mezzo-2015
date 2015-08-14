@@ -929,7 +929,7 @@ Awards:
                                                         <rect key="frame" x="0.0" y="71" width="600" height="196"/>
                                                         <subviews>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="1234 Hippo Lane, Palo Alto CA" translatesAutoresizingMaskIntoConstraints="NO" id="yvN-Ee-noM">
-                                                                <rect key="frame" x="20" y="146" width="556" height="30"/>
+                                                                <rect key="frame" x="15" y="146" width="561" height="30"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="Tvu-dB-62k"/>
@@ -939,7 +939,7 @@ Awards:
                                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                                             </textView>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="650-678-1642" translatesAutoresizingMaskIntoConstraints="NO" id="0hG-1M-Ygh">
-                                                                <rect key="frame" x="20" y="84" width="557" height="30"/>
+                                                                <rect key="frame" x="15" y="84" width="562" height="30"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="cYp-8p-e4r"/>
@@ -949,7 +949,7 @@ Awards:
                                                                 <dataDetectorType key="dataDetectorTypes" link="YES" address="YES"/>
                                                             </textView>
                                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="650-678-1642" translatesAutoresizingMaskIntoConstraints="NO" id="EIV-um-fnG">
-                                                                <rect key="frame" x="20" y="22" width="280" height="30"/>
+                                                                <rect key="frame" x="15" y="22" width="285" height="30"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="2m1-1Y-qgR"/>
@@ -959,7 +959,7 @@ Awards:
                                                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES"/>
                                                             </textView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE NUMBER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXo-3e-5FF">
-                                                                <rect key="frame" x="25" y="10" width="116" height="17"/>
+                                                                <rect key="frame" x="20" y="10" width="116" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.70320986029999999" green="0.70320986029999999" blue="0.70320986029999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -977,13 +977,16 @@ Awards:
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncu-Mq-rD0">
-                                                                <rect key="frame" x="25" y="72" width="44" height="17"/>
+                                                                <rect key="frame" x="20" y="72" width="44" height="17"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.70320986029999999" green="0.70320986029999999" blue="0.70320986029999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LOCATION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7WH-fR-Aza">
-                                                                <rect key="frame" x="25" y="134" width="71" height="17"/>
+                                                                <rect key="frame" x="20" y="134" width="71" height="17"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="17" id="4MS-3S-eQC"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.70320986029999999" green="0.70320986029999999" blue="0.70320986029999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1008,7 +1011,7 @@ Awards:
                                                             <constraint firstAttribute="centerX" secondItem="EIV-um-fnG" secondAttribute="trailing" id="lYy-u0-d6p"/>
                                                             <constraint firstAttribute="centerX" secondItem="kzf-Lz-KEz" secondAttribute="leading" constant="-10" id="lmU-LD-bhd"/>
                                                             <constraint firstItem="EXo-3e-5FF" firstAttribute="leading" secondItem="EIV-um-fnG" secondAttribute="leading" constant="5" id="lps-s9-ecr"/>
-                                                            <constraint firstItem="EXo-3e-5FF" firstAttribute="leading" secondItem="asj-fh-OzK" secondAttribute="leading" constant="25" id="ogz-Vz-kQf"/>
+                                                            <constraint firstItem="EXo-3e-5FF" firstAttribute="leading" secondItem="asj-fh-OzK" secondAttribute="leading" constant="20" id="ogz-Vz-kQf"/>
                                                             <constraint firstItem="7WH-fR-Aza" firstAttribute="top" secondItem="0hG-1M-Ygh" secondAttribute="bottom" constant="20" id="qlH-fJ-Poz"/>
                                                             <constraint firstAttribute="bottom" secondItem="yvN-Ee-noM" secondAttribute="bottom" constant="20" id="reX-pj-byZ"/>
                                                             <constraint firstItem="cgs-P7-9y2" firstAttribute="top" secondItem="kzf-Lz-KEz" secondAttribute="bottom" constant="4" id="u8B-ts-fuu"/>
