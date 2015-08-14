@@ -27,14 +27,14 @@ class MezzoLoginViewController: PFLogInViewController {
         logInView!.passwordForgottenButton!.addTarget(self, action: "trackForgottenPassword:", forControlEvents: .TouchUpInside)
         
         // logo
-        let logoView = UIImageView(image: UIImage(named: "Logo"))
+        let logoView = UIImageView(image: UIImage(named: "icon"))
         self.logInView!.logo = logoView
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        logInView!.logo!.frame = CGRectMake(logInView!.frame.width / 2 - 50, 60, 100, 100)
+        logInView!.logo!.frame = CGRectMake(logInView!.frame.width / 2 - 75, 30, 150, 150)
         addConstraintsToRequestButton()
     }
     
