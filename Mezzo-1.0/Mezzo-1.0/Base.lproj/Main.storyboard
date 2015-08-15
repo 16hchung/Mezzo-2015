@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="MJC-V0-7RV">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -1118,7 +1118,7 @@ Awards:
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="leading" secondItem="GHg-z4-Uyx" secondAttribute="leading" id="CYb-2K-cZd"/>
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="top" secondItem="GHg-z4-Uyx" secondAttribute="bottom" constant="4" id="DT7-os-xnH"/>
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="leading" secondItem="Saw-kq-3I4" secondAttribute="leading" constant="20" id="Ebd-O1-WJ3"/>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="750" constant="300" id="GBM-AR-PfH"/>
+                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="100" constant="300" id="GBM-AR-PfH"/>
                                                     <constraint firstAttribute="trailing" secondItem="uUt-x9-QqI" secondAttribute="trailing" constant="20" id="GMV-Il-Z7r"/>
                                                     <constraint firstItem="wRw-ad-D7v" firstAttribute="top" secondItem="uUt-x9-QqI" secondAttribute="bottom" constant="20" id="Yhq-WZ-BjN"/>
                                                     <constraint firstItem="xQ6-U6-Foh" firstAttribute="top" secondItem="XDV-D4-Y26" secondAttribute="bottom" constant="4" id="bl0-a0-oe5"/>
@@ -1202,8 +1202,8 @@ Awards:
                                                                     <color key="titleColor" red="0.24695065939999999" green="0.63533037449999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vi-Mu-IOx">
-                                                                <rect key="frame" x="210" y="8" width="181" height="35"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2vi-Mu-IOx">
+                                                                <rect key="frame" x="210" y="9" width="181" height="34"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="oZP-76-ivG"/>
@@ -1212,8 +1212,8 @@ Awards:
                                                                     <color key="titleColor" red="0.24695065939999999" green="0.63533037449999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 </state>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIZ-eH-onb">
-                                                                <rect key="frame" x="399" y="8" width="181" height="35"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIZ-eH-onb">
+                                                                <rect key="frame" x="399" y="9" width="181" height="34"/>
                                                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="181" id="ha5-8l-Ofs"/>
@@ -2233,7 +2233,7 @@ Awards:
         <image name="down" width="512" height="512"/>
         <image name="fruits and veggies" width="24" height="24"/>
         <image name="grains" width="24" height="24"/>
-        <image name="icon" width="1024" height="1024"/>
+        <image name="icon" width="100" height="100"/>
         <image name="meats" width="24" height="24"/>
         <image name="more" width="24" height="24"/>
         <image name="settings" width="24" height="24"/>
