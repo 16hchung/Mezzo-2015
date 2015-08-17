@@ -960,6 +960,9 @@ Awards:
                                                             </textView>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PHONE NUMBER" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EXo-3e-5FF">
                                                                 <rect key="frame" x="20" y="10" width="116" height="17"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="17" id="JDJ-vT-klG"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.70320986029999999" green="0.70320986029999999" blue="0.70320986029999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -978,6 +981,9 @@ Awards:
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EMAIL" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ncu-Mq-rD0">
                                                                 <rect key="frame" x="20" y="72" width="44" height="17"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="17" id="3x3-ny-lVv"/>
+                                                                </constraints>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.70320986029999999" green="0.70320986029999999" blue="0.70320986029999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -1022,7 +1028,7 @@ Awards:
                                                     <constraint firstAttribute="trailing" secondItem="u5j-i6-Yog" secondAttribute="trailing" id="2Ii-Uc-GnW"/>
                                                     <constraint firstAttribute="bottom" secondItem="asj-fh-OzK" secondAttribute="bottom" id="2xM-AA-fuT"/>
                                                     <constraint firstItem="u5j-i6-Yog" firstAttribute="top" secondItem="cR3-57-FNI" secondAttribute="top" id="7Ef-xE-o87"/>
-                                                    <constraint firstItem="asj-fh-OzK" firstAttribute="top" secondItem="cR3-57-FNI" secondAttribute="top" priority="250" constant="10" id="JLO-3m-4Um"/>
+                                                    <constraint firstItem="asj-fh-OzK" firstAttribute="top" secondItem="cR3-57-FNI" secondAttribute="top" priority="780" constant="10" id="JLO-3m-4Um"/>
                                                     <constraint firstAttribute="bottom" secondItem="u5j-i6-Yog" secondAttribute="bottom" priority="250" id="Pm3-rw-jm1"/>
                                                     <constraint firstAttribute="trailing" secondItem="asj-fh-OzK" secondAttribute="trailing" id="aot-dE-8fy"/>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="100" id="gbY-Bk-KvX"/>
@@ -1118,7 +1124,7 @@ Awards:
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="leading" secondItem="GHg-z4-Uyx" secondAttribute="leading" id="CYb-2K-cZd"/>
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="top" secondItem="GHg-z4-Uyx" secondAttribute="bottom" constant="4" id="DT7-os-xnH"/>
                                                     <constraint firstItem="uUt-x9-QqI" firstAttribute="leading" secondItem="Saw-kq-3I4" secondAttribute="leading" constant="20" id="Ebd-O1-WJ3"/>
-                                                    <constraint firstAttribute="height" relation="lessThanOrEqual" priority="100" constant="300" id="GBM-AR-PfH"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="100" constant="300" id="GBM-AR-PfH"/>
                                                     <constraint firstAttribute="trailing" secondItem="uUt-x9-QqI" secondAttribute="trailing" constant="20" id="GMV-Il-Z7r"/>
                                                     <constraint firstItem="wRw-ad-D7v" firstAttribute="top" secondItem="uUt-x9-QqI" secondAttribute="bottom" constant="20" id="Yhq-WZ-BjN"/>
                                                     <constraint firstItem="xQ6-U6-Foh" firstAttribute="top" secondItem="XDV-D4-Y26" secondAttribute="bottom" constant="4" id="bl0-a0-oe5"/>
